@@ -165,3 +165,20 @@ def test_add_existing_nymsense_nomatch(nymsection):
 
     d.add_nymsense(sense2, no_merge=True)
     assert d == "# a [[word]], a [[word2]]; [[word3]]\n#: {{syn|es|syn1}}\n#: {{syn|es|syn2}} <!-- FIXME, MATCH SENSE: 'nomatch2' -->\n"
+
+def test_has_sense():
+
+    defstr = "# [[big deal]], [[fuss]], [[scene]]\n"
+    d = Definition(defstr, name="test", parent=None, lang_id="es")
+
+    assert not d.has_sense("nomatch")
+    assert d.has_sense("big deal")
+    assert d.has_sense("fuss")
+    assert d.has_sense("big deal fuss")
+    assert d.has_sense("big deal, fuss")
+    assert d.has_sense("big deal|fuss")
+
+
+    defstr = "# {{lb|es|botany}} [[bud]], [[shoot]]\n"
+    d = Definition(defstr, name="test", parent=None, lang_id="es")
+    assert d.has_sense("bud|shoot")

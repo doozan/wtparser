@@ -26,7 +26,7 @@ from . import WiktionarySection
 
 def get_nym_sense(line):
     sense = ""
-    res = re.match(r"\*\s*{{s(?:ense)?(\|[^{}]+)}}\s*", line)
+    res = re.match(r"\*\s*{{s(?:ense)?\|([^{}]+)}}\s*", line)
     sense = res.group(1) if res else ""
     return sense
 
@@ -60,19 +60,18 @@ class NymSection(WiktionarySection):
         in_header = True
         in_footer = False
 
-        for unstripped_line in template_aware_splitlines(section_text, True):
-            line = unstripped_line.strip()
+        for line in template_aware_splitlines(section_text, True):
             if in_footer:
-                unhandled.append(unstripped_line)
+                unhandled.append(line)
 
-            elif line == "":
+            elif line.strip() == "":
                 if current_item:
-                    current_item.append(unstripped_line)
+                    current_item.append(line)
                 else:
-                    unhandled.append(unstripped_line)
+                    unhandled.append(line)
 
             elif in_header:
-                unhandled.append(unstripped_line)
+                unhandled.append(line)
                 if line.startswith("="):
                     in_header = False
                 else:
@@ -82,7 +81,6 @@ class NymSection(WiktionarySection):
 
                 if line.startswith("{{sense"):
                     line = "* "+line
-                    unstripped_line = "* "+unstripped_line
                     self.flag_problem("autofix_bad_nymline")
 
                 if len(unhandled):
@@ -90,25 +88,26 @@ class NymSection(WiktionarySection):
                     unhandled = []
 
                 sense = get_nym_sense(line)
-                if not prev_sense:
+                if prev_sense is None:
                     prev_sense = sense
                 elif sense != prev_sense:
                     prev_sense = sense
                     self.add_nymsense(current_item)
                     current_item = []
 
-                current_item.append(unstripped_line)
+                current_item.append(line)
             else:
                 if len(current_item):
                     self.add_nymsense(current_item)
                     current_item = []
-                unhandled.append(unstripped_line)
+                unhandled.append(line)
                 if (
                     line.startswith("----")
                     or line.startswith("[[Category:")
                     or line.startswith("==")
                 ):
                     in_footer = True
+                    raise ValueError("footer")
                 else:
                     self.flag_problem("unhandled_text", line)
 

@@ -87,6 +87,9 @@ class Definition(WiktionaryNode):
         Add a nymline to the definition
         If smart_position is True, insert at the 'correct' position
         Otherwise, append to the end of the definition
+        If no_merge is True, creates a new entry line, even if a line
+        of the same type already exists, and prevents future additions
+        from being merged into the new entry
         """
         res = re.match(r"#:\s*{{(" + "|".join(ALL_NYM_TAGS) + r")\|[^{}]+}}", line)
         if not res:
@@ -96,7 +99,7 @@ class Definition(WiktionaryNode):
         nymline = NymLine(line, name=len(self._children) + 1, parent=self)
 
         nym_type = TAG_TO_NYM[res.group(1)]
-        if self.has_nym(nym_type) and not no_merge:
+        if self.has_nym(nym_type) and not no_merge and not "FIXME" in str(self.get_nym(nym_type)):
             self.flag_problem("duplicate_nyms", line)
             orig_nymline = self.get_nym(nym_type)
             orig_nymline.add_nymline(nymline)
@@ -200,6 +203,7 @@ class Definition(WiktionaryNode):
         # TODO: search in gloss and individual words?
         for sense in re.split(r',|;| |\|', sense):
             if (
+                sense != "" and
                 sense not in self.sense_ids
                 and sense not in self.sense_labels
                 and sense not in self.sense_words
@@ -208,25 +212,25 @@ class Definition(WiktionaryNode):
         return True
 
     def has_sense_id(self, sense):
-        for sense in sense.split("|"):
+        for sense in re.split(r',|;| |\|', sense):
             if not sense in self.sense_ids:
                 return False
         return True
 
     def has_sense_label(self, sense):
-        for sense in sense.split("|"):
+        for sense in re.split(r',|;| |\|', sense):
             if not sense in self.sense_labels:
                 return False
         return True
 
     def has_sense_word(self, sense):
-        for sense in sense.split("|"):
+        for sense in re.split(r',|;| |\|', sense):
             if not sense in self.sense_words:
                 return False
         return True
 
     def add_sense_words(self, line):
-        stripped = re.sub('[\W_]+', ' ', line)
+        stripped = re.sub(r'[\W_]+', ' ', line)
         self.sense_words |= set(stripped.split(' '))
         if "" in self.sense_words:
             self.sense_words.remove("")
@@ -267,15 +271,16 @@ class Definition(WiktionaryNode):
 
     def add_nymsense(self, nymsense, no_merge=False):
         # TODO: Ensure nymsense has items
+        #
 
-        if self.has_nym(nymsense._type) and not no_merge:
+        if self.has_nym(nymsense._type) and not no_merge and not "FIXME" in str(self.get_nym(nymsense._type)):
             self.flag_problem("both_nym_line_and_section")
             nymline = self.get_nym(nymsense._type)
             nymline.add_nymsense(nymsense)
         else:
             nymline = NymLine.from_nymsense(nymsense, name="1", parent=self)
             line = str(nymline)
-            if no_merge and nymsense.sense:
+            if no_merge:
                 line = re.sub("\n", f" <!-- FIXME, MATCH SENSE: '{nymsense.sense}' -->\n", line)
             self.add_nymline(line, smart_position=True, no_merge=no_merge)
 

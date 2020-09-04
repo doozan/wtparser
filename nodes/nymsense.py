@@ -25,8 +25,8 @@ from .language import LanguageSection
 
 
 class NymSense(WiktionaryNode):
-    def __init__(self, wikt, name, parent, nym_type=None, lang_id=None):
-        super().__init__(wikt, name, parent)
+    def __init__(self, text, name, parent, nym_type=None, lang_id=None):
+        super().__init__(text, name, parent)
 
         self.lang_id = (
             lang_id if lang_id else self.get_ancestor_value("lang_id", "ERROR")
@@ -41,14 +41,20 @@ class NymSense(WiktionaryNode):
             ancestor = self.get_ancestor(NymSection)
             self._type = ancestor.name if ancestor is not None else "ERROR"
 
-        self._parse_data(wikt)
+        self._parse_data(text)
 
-    def _parse_data(self, wikt):
+    def _parse_data(self, text):
         self._children = []
-        text = str(wikt)
-        res = re.match(r"\*\s*{{s(?:ense)?\|([^{}\|]+)}}\s*", text)
-        self.sense = res.group(1) if res else ""
-        # TODO: skip over sense template
+        wikt = parse_anything(text)
+        sense_templates = wikt.filter_templates(matches=lambda x: x.name in ["s", "sense"])
+        if len(sense_templates):
+            if len(sense_templates)>1:
+                self.flag_problem("nymsense_has_multi_templates", text)
+
+            senses = [ str(p.value) for t in sense_templates for p in t.params ]
+            self.sense = "|".join(senses)
+        else:
+            self.sense = ""
 
         for line in template_aware_splitlines(text, True):
             if line.strip() == "":

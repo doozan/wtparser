@@ -115,6 +115,28 @@ def test_sense_matching(language):
     assert word.get_defs_matching_sense(senses[2].sense)[0] == defs[2]
 
 
+def test_sense_matching_multi(language,err):
+    orig_text="""===Noun===
+{{es-noun}}
+
+# [[word1]], a [[word2]]
+# [[word2]]
+# [[word3]]
+
+====Synonyms====
+* {{sense|word2}} {{l|es|syn1}}
+"""
+
+    wiki = parse(orig_text, skip_style_tags=True)
+    word = WordSection(wiki, parent=language)
+
+    assert sorted(err.problems.keys()) == []
+    sense = next(word.ifilter_senses())
+
+    assert sense.sense == "word2"
+    assert len(word.get_defs_matching_sense("word2")) == 2
+
+
 def test_add_sense(language):
     orig_text="""===Noun===
 {{es-noun}}
@@ -190,3 +212,5 @@ def test_add_sense(language):
 * {{l|es|guiri}} {{qualifier|Spain}}
 #: {{syn|es|gabacho|q1=Spain, Mexico|guiri|q2=Spain}}
 """
+
+

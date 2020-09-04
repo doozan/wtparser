@@ -100,8 +100,6 @@ class WordLink(WiktionaryNode):
                 self.flag_problem("mulitple_gloss_values", self.gloss, res["gloss"])
 
                 # merge both lists, stripping any duplicate values
-                print("res gloss:", res["gloss"])
-                print("self gloss:", self.gloss)
                 all_gloss = list(dict.fromkeys(res["gloss"] + self.gloss))
                 res["gloss"] = ", ".join(all_gloss)
             else:

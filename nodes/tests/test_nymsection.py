@@ -90,6 +90,23 @@ def test_multisense(language):
     assert senses[1] == "* {{sense|sense2}} {{l|es|syn3}}\n"
     assert senses[2] == "* {{l|es|syn4}}\n"
 
+
+def test_sense_breaks(language):
+    orig_text = """====Synonyms====
+* {{l|es|word1}}
+* {{l|es|word2}}
+* {{sense|sense1}} {{l|es|word3}}
+"""
+    wiki = parse(orig_text, skip_style_tags=True)
+    nymsection = NymSection(wiki, parent=language)
+    assert nymsection.name == "Synonyms"
+    senses = nymsection.filter_senses()
+    assert len(senses) == 2
+
+    assert senses[0] == "* {{l|es|word1}}\n* {{l|es|word2}}\n"
+    assert senses[1] == "* {{sense|sense1}} {{l|es|word3}}\n"
+
+
 def test_qualifiers(language):
     orig_text = """====Synonyms====
 * {{l|es|word1}} {{qualifier|q1, q2}}
