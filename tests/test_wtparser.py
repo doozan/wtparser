@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from ..utils import parse_anything
 from .. import parse, parse_page, parse_language
 from ..nodes import WiktionarySection
 from ..nodes.page import Page
@@ -78,10 +79,13 @@ def print_children(node, contexts=False, restrict=None, parent=None, depth=0):
 
 
 def test_filter():
-    wikt = parse(orig_text)
+    wikt = parse_anything(orig_text)
     assert str(wikt) == orig_text
 
     page = Page(wikt, "myword")
+    assert str(page) == orig_text
+
+    page = parse_page(orig_text, "myword", parent=None)
     assert str(page) == orig_text
 
     wikt = parse(page)
@@ -141,6 +145,10 @@ def test_parse(err):
     spanish = next(page.ifilter_languages(matches=lambda x: name_is(x,"Spanish")))
     assert spanish.name == "Spanish"
     assert spanish._level == 2
+
+#    for i,child in enumerate(spanish._children):
+#        for node in child.nodes:
+#            print(i, child.__class__, node.__class__, node.name)
     assert len(spanish._children) == 4
 
     adj_text = str(next(spanish.ifilter_words(recursive=False, matches=lambda x: name_is(x, "Adjective"))))
@@ -304,6 +312,8 @@ From an earlier {{m|es||*ruino}}, from {{m|es|ruina}}, or from a {{inh|es|VL.|-}
 
     for word in entry.ifilter_words():
         all_defs = word.filter_defs(recursive=False)
+        print(word.name)
+        assert len(all_defs) > 0
         all_nyms = word.filter_nyms(matches="Synonyms")
         for nym in all_nyms:
             senses = nym.filter_senses()
@@ -313,6 +323,7 @@ From an earlier {{m|es||*ruino}}, from {{m|es|ruina}}, or from a {{inh|es|VL.|-}
                     if nymsense.sense == "":
                         defs = all_defs
                     else:
+                        print("all defs: ", len(all_defs))
                         defs = [ all_defs[0] ]
 
                 d = defs[0]

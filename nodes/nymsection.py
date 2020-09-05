@@ -39,89 +39,26 @@ class NymSection(WiktionarySection):
         if self._name not in ALL_NYMS:
             self.flag_problem("section_is_not_nym", self._name)
 
-        self._parse_data(wikt)
+    def _prepare_line(self, line):
+        if line.startswith("{{sense"):
+            self.flag_problem("autofix_bad_nymline")
+            return "* "+ line
+        return line
 
-    def _parse_data(self, wikt):
-        """
-        Parses a wikimarkup section containing a header and an ordered list of wordlinks
-        Returns a list of nodes
-        """
+    def _is_new_item(self, line):
+        if line.startswith("*"):
+            self._prev_sense = get_nym_sense(line)
+            return True
+        return False
 
-        data_nodes = wikt._pop_data()
-        old_children = self._children
-        self._children = []
+    def _is_still_item(self, line):
+        if line.startswith("*"):
+            sense = get_nym_sense(line)
+            if sense == self._prev_sense:
+                return True
+        return False
 
-        section_text = "".join(map(str, data_nodes))
-
-        current_item = []
-        unhandled = []
-
-        prev_sense = None
-        in_header = True
-        in_footer = False
-
-        for line in template_aware_splitlines(section_text, True):
-            if in_footer:
-                unhandled.append(line)
-
-            elif line.strip() == "":
-                if current_item:
-                    current_item.append(line)
-                else:
-                    unhandled.append(line)
-
-            elif in_header:
-                unhandled.append(line)
-                if line.startswith("="):
-                    in_header = False
-                else:
-                    self.flag_problem("text_before_header", line)
-
-            elif line.startswith("*") or line.startswith("{{sense"):
-
-                if line.startswith("{{sense"):
-                    line = "* "+line
-                    self.flag_problem("autofix_bad_nymline")
-
-                if len(unhandled):
-                    self.add_text(unhandled)
-                    unhandled = []
-
-                sense = get_nym_sense(line)
-                if prev_sense is None:
-                    prev_sense = sense
-                elif sense != prev_sense:
-                    prev_sense = sense
-                    self.add_nymsense(current_item)
-                    current_item = []
-
-                current_item.append(line)
-            else:
-                if len(current_item):
-                    self.add_nymsense(current_item)
-                    current_item = []
-                unhandled.append(line)
-                if (
-                    line.startswith("----")
-                    or line.startswith("[[Category:")
-                    or line.startswith("==")
-                ):
-                    in_footer = True
-                    raise ValueError("footer")
-                else:
-                    self.flag_problem("unhandled_text", line)
-
-
-        if len(current_item):
-            self.add_nymsense(current_item)
-            current_item = []
-        elif len(unhandled):
-            self.add_text(unhandled)
-            unparsed = []
-
-        self._children += old_children
-
-    def add_nymsense(self, items):
+    def add_item(self, items):
         item = NymSense("".join(items), name=len(self._children) + 1, parent=self)
         self._children.append(parse_anything(item))
         return item

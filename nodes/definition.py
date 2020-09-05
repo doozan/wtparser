@@ -26,20 +26,13 @@ from .nymline import NymLine
 
 
 class Definition(WiktionaryNode):
-    def __init__(self, text, name, parent, lang_id=None):
+    def __init__(self, text, name, parent):
         super().__init__(text, name, parent)
         self._lines = []
-
-        self.lang_id = (
-            lang_id if lang_id else self.get_ancestor_value("lang_id", "ERROR")
-        )
 
         self.sense_ids = []
         self.sense_labels = []
         self.sense_words = set()
-
-        self._template_depth = 0
-        self._open_template = []
 
         self.nymlines = {}
 

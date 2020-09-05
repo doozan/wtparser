@@ -34,18 +34,13 @@ def has_text(text):
 
 
 class WordLink(WiktionaryNode):
-    def __init__(self, text, name, parent, lang_id=None):
+    def __init__(self, text, name, parent):
         super().__init__(text, name, parent)
         self._has_changed = False
 
-        self.nodes = []
         self._children = []
 
         self._text = text
-
-        self.lang_id = (
-            lang_id if lang_id else self.get_ancestor_value("lang_id", "ERROR")
-        )
 
         # Link is a dict containing, at mininum, "target" and, optionally, "tr" and "alt" values
         self._link = {}

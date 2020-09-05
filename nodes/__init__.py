@@ -20,7 +20,7 @@ from itertools import chain
 import mwparserfromhell
 from mwparserfromhell.nodes import Node
 from mwparserfromhell.wikicode import Wikicode
-from ..utils import parse_anything
+from ..utils import parse_anything, template_aware_splitlines
 
 from mwparserfromhell.nodes import Template
 
@@ -31,11 +31,11 @@ from mwparserfromhell.nodes import Template
 
 def get_section_type(title, default):
 
-    from ..constants import ALL_LANGUAGES, ALL_WORDS, ALL_NYMS
+    from ..constants import ALL_LANGUAGES, ALL_POS, ALL_NYMS
 
     if title in ALL_LANGUAGES:
         return LanguageSection
-    elif title in ALL_WORDS:
+    elif title in ALL_POS:
         return WordSection
     elif title in ALL_NYMS:
         return NymSection
@@ -78,19 +78,30 @@ class WiktionaryNode(Node):
     def name(self):
         return self._name
 
+    @property
+    def lang_id(self):
+        if hasattr(self, "_lang_id"):
+            return self._lang_id
+
+        return self.get_ancestor_attr("_lang_id", "ERROR")
+
+
     def flag_problem(self, problem, *data):
-        ancestor = self.get_ancestor_with("flag_problem")
-        if ancestor:
-            return ancestor.flag_problem(problem, *data)
+        flag_problem = self.get_ancestor_attr("flag_problem")
+        if flag_problem:
+            print("ERROR:", problem, data, self.__class__)
+            return flag_problem(problem, *data)
         else:
             #raise ValueError(problem, data)
             print("UNHANDLED ERROR:", problem, data, self.__class__)
 
+#        self.problems[problem] = self.problems.get(problem, []) + [data]
+
     @property
     def problems(self):
-        ancestor = self.get_ancestor_with("problems")
-        if ancestor:
-            return ancestor.problems
+        problems = self.get_ancestor_attr("problems")
+        if problems is not None:
+            return problems
         else:
             raise ValueError("No ancestor found to provide 'problems'", self.__class__)
 
@@ -107,25 +118,18 @@ class WiktionaryNode(Node):
                 return ancestor
             ancestor = ancestor._parent if hasattr(ancestor, "_parent") else None
 
-    def get_ancestor_with(self, target):
+    def get_ancestor_attr(self, target, default=None):
+        """
+        Returns the ``target`` attr of nearest ancestor able to provide it
+        Returns ``default`` if not found
+        """
         ancestor = self._parent
         while ancestor is not None:
             if hasattr(ancestor, target):
-                return ancestor
+                return getattr(ancestor, target)
             ancestor = ancestor._parent if hasattr(ancestor, "_parent") else None
 
-    def get_ancestor_value(self, target, default=None):
-        """Returns the ``value`` of nearest ancestor able to provide it"""
-        ancestor = self.get_ancestor_with(target)
-        if ancestor:
-            return getattr(ancestor, target)
         return default
-
-    def get_oldest_ancestor(self):
-        ancestor = self._parent
-        while hasattr(ancestor, "_parent") and ancestor._parent is not None:
-            ancestor = ancestor._parent
-        return ancestor
 
     def add_text(self, lines):
         if not lines:
@@ -280,82 +284,181 @@ class WiktionarySection(WiktionaryNode):
         parse_header=True,
         parse_sections=True,
         section_handler=None,
+        parse_data=True
     ):
         self._parent = parent
 
-        #        self._err = ErrorHandler()
-        self._children = [wikt]
+        self._children = []
         self._sections = {}
 
         if not hasattr(self, "_expected_sections"):
             self._expected_sections = None
 
         if parse_header:
-            self._parse_header(wikt)
+            self.heading = next(iter(wikt.filter_headings(recursive=False)))
+            self._level = int(self.heading.count("=") / 2)
+            self._name = self.heading.strip("=")
 
         #        self._logname = parent._logname+"."+self._name if parent else self._name
         #        self.log = logging.getLogger(self._logname)
 
+        # Parse sections will remove processed sections from wiki, so all that's left is data to be processed
         if parse_sections:
             self._parse_sections(wikt, section_handler)
 
-    def _parse_header(self, wikt):
-        heading = next(iter(wikt.filter_headings(recursive=False)))
-        self._level = int(heading.count("=") / 2)
-        self._name = heading.strip("=")
+        if parse_data:
+            self._parse_data(wikt)
 
-    def get_child_sections(self, wikt):
+    def _prepare_line(self, line):
+        """Hook to modify line before it's passed to the parser"""
+        return line
+
+    def _parse_data(self, wikt):
         """
-        Returns a list of all direct child sections
-        This is different than just calling get_sections(self._level+1),
-        because this will find sections with even if they're deeper than level+1
+        Generic line-by-line parser
         """
-        child_sections = []
-        all_sections = wikt.get_sections(include_lead=False)
 
-        top_level = 0
-        for section in all_sections:
-            heading = next(section.ifilter_headings(recursive=False))
-            if heading.level <= self._level:
-                continue
+        section_text = str(wikt)
+        old_children = self._children
+        self._children = []
 
-            if not top_level:
-                top_level = heading.level
-            if heading.level <= top_level:
-                top_level = heading.level
-                child_sections.append(section)
+        current_item = []
+        unhandled = []
 
-        return child_sections
+        in_header = True
+        in_footer = False
+        self._heading_found = False
+
+        for line in template_aware_splitlines(section_text, True):
+            line = self._prepare_line(line)
+
+            in_header = self._is_header(line) if in_header else False
+
+            if in_header or in_footer:
+                unhandled.append(line)
+
+            elif re.match(r"\s+$", line):
+                if current_item:
+                    current_item.append(line)
+                else:
+                    unhandled.append(line)
+
+            elif current_item and self._is_still_item(line):
+                current_item.append(line)
+
+            elif self._is_new_item(line):
+                if len(unhandled):
+                    self.add_text(unhandled)
+                    unhandled = []
+
+                if len(current_item):
+                    self.add_item(current_item)
+                    current_item = []
+
+                current_item.append(line)
+
+            elif self._is_footer(line):
+                in_footer=True
+                unhandled.append(line)
+
+            # Unexpected text
+            else:
+                if current_item:
+                    self.add_item(current_item)
+                    current_item = []
+
+                if not self._handle_other(line):
+                    unhandled.append(line)
+
+        if current_item:
+            self.add_item(current_item)
+            current_item = []
+        elif len(unhandled):
+            self.add_text(unhandled)
+            unparsed = []
+
+        self._children += old_children
+
+    def _is_header(self, line):
+
+        if re.match(r"\s+$", line):
+            return True
+
+        if not self._heading_found and re.match(r"\s*==", line):
+            self._heading_found=True
+            return True
+
+        return False
+
+
+    def _is_footer(self, line):
+
+        re_endings = [ r"\[\[\s*Category\s*:" r"==[^=]+==", r"----" ]
+        template_endings = [ "c", "C", "top", "topics", "categorize", "catlangname", "catlangcode", "cln", "DEFAULTSORT" ]
+        re_endings += [ r"\{\{\s*"+item+r"\s*\|" for item in template_endings ]
+        endings = "|".join(re_endings)
+
+        if re.match(fr"\s*({endings})", line):
+            return True
+        return False
+
+    def _is_new_item(self, line):
+        return False
+
+    def _is_still_item(self, line):
+        return False
+
+    def _handle_other(self, line):
+        self.flag_problem("unhandled_line", line)
+        return False
+
+#    def _parse_sections(self, wikt, section_handler=None):
+#
+#        sections = []
+#        for section in reversed(self.get_child_sections(wikt)):
+#            title = get_section_title(section)
+#            nodes = wikt._pop_section(section)
+#            sections.insert(0, (title, parse_anything(nodes)))
+#
+#        # add parsed objects back to smartlist
+#        for title, section in sections:
+#            section_type = (
+#                section_handler
+#                if section_handler
+#                else get_section_type(title, WiktionarySection)
+#            )
+#            item = section_type(section, parent=self)
+#            if self._expected_sections is not None and title not in self._expected_sections:
+#                self.flag_problem("unexpected_section", title)
+#
+#            self._children.append(parse_anything(item))
+#
+#            if title in self._sections:
+#                self.flag_problem("duplicate_section", title)
+#            self._sections[title] = self._sections.get(title, []) + [item]
 
     def _parse_sections(self, wikt, section_handler=None):
-        from ..utils import parse_anything
-
-        # Split smartlist into independent, unlinked sections
-        # otherwise, popping/replacing a section in-place causes the new item
-        # to be appended to the next section
-
-        sections = []
-        for section in reversed(self.get_child_sections(wikt)):
-            title = get_section_title(section)
+        for section in wikt.get_child_sections(self._level):
             nodes = wikt._pop_section(section)
-            sections.insert(0, (title, parse_anything(nodes)))
+            self.add_section(parse_anything(nodes), section_handler)
 
-        # add parsed objects back to smartlist
-        for title, section in sections:
-            section_type = (
-                section_handler
-                if section_handler
-                else get_section_type(title, WiktionarySection)
-            )
-            item = section_type(section, parent=self)
-            if self._expected_sections is not None and title not in self._expected_sections:
-                self.flag_problem("unexpected_section", title)
+    def add_section(self, section, section_handler=None):
+        title = get_section_title(section)
+        section_type = (
+            section_handler
+            if section_handler
+            else get_section_type(title, WiktionarySection)
+        )
 
-            self._children.append(parse_anything(item))
+        item = section_type(section, parent=self)
+        if self._expected_sections is not None and title not in self._expected_sections:
+            self.flag_problem("unexpected_section", title)
 
-            if title in self._sections:
-                self.flag_problem("duplicate_section", title)
-            self._sections[title] = self._sections.get(title, []) + [item]
+        self._children.append(parse_anything(item))
+
+        if title in self._sections:
+            self.flag_problem("duplicate_section", title)
+        self._sections[title] = self._sections.get(title, []) + [item]
 
 
 from .language import LanguageSection

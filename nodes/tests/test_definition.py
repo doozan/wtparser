@@ -22,7 +22,7 @@ from ...utils import parse_anything
 
 def test_definition(word):
 
-    d = Definition("# {{senseid|es|blah}} [[word1]], [[word3]], [[word2]]", name="test", parent=None, lang_id="es")
+    d = Definition("# {{senseid|es|blah}} [[word1]], [[word3]], [[word2]]", name="test", parent=word)
     assert d.has_nym("Synonyms") == False
     assert d.is_good() == True
     assert d.sense_ids == ["blah"]
@@ -58,19 +58,19 @@ def test_definition(word):
     #    assert sorted([ k for k,v in d.get_problems() ]) == sorted([ "nym_language_mismatch" ])
 
     #err.clear()
-    d = Definition("# {{senseid|es|word}} [[word]] (qualifier)", name="test", parent=None, lang_id="es")
+    d = Definition("# {{senseid|es|word}} [[word]] (qualifier)", name="test", parent=word)
     assert d.sense_ids == ["word"]
     #assert sorted(err.errors.keys()) == sorted([])
 
     #err.clear()
-    d = Definition("# {{senseid|en|word}} [[word]] (qualifier)", name="test", parent=None, lang_id="es")
+    d = Definition("# {{senseid|en|word}} [[word]] (qualifier)", name="test", parent=word)
     assert d.sense_ids == ["word"]
     #assert sorted(err.errors.keys()) == sorted(["def_senseid_lang_mismatch"])
 
 
-def test_definition_stripping():
+def test_definition_stripping(word):
 
-    d = Definition("# [[word1]], [[word2]]; [[word3]]", name="test", parent=None, lang_id="es")
+    d = Definition("# [[word1]], [[word2]]; [[word3]]", name="test", parent=word)
     assert d.has_sense("word1")
     assert d.has_sense("word2")
     assert d.has_sense("word1|word2")
@@ -82,8 +82,8 @@ def test_definition_stripping():
     assert not d.has_sense("word")
 
 
-def test_senes():
-    d = Definition("# {{senseid|es|sense1}} [[word1]]", name="test", parent=None, lang_id="es")
+def test_senes(word):
+    d = Definition("# {{senseid|es|sense1}} [[word1]]", name="test", parent=word)
     assert d.sense_ids == ["sense1"]
     assert d.sense_labels == []
 
@@ -98,7 +98,7 @@ def test_insert_nym_after(word):
     syn = "#: {{syn|es|syn1}}\n"
     ant = "#: {{ant|es|ant1}}\n"
 
-    d = Definition(defstr, name="test", parent=None, lang_id="es")
+    d = Definition(defstr, name="test", parent=word)
     assert str(d) == defstr
 
     assert d.has_nym("Antonyms") == False
@@ -118,7 +118,7 @@ def test_insert_nym_middle(word):
     extra = "## stuff\n##: more stuff\n"
     ant = "#: {{ant|es|ant1}}\n"
 
-    d = Definition("".join([defstr,syn,extra]), name="test", parent=None, lang_id="es")
+    d = Definition("".join([defstr,syn,extra]), name="test", parent=word)
     assert str(d) == "".join([defstr,syn,extra])
 
     assert d.has_nym("Antonyms") == False
@@ -127,10 +127,10 @@ def test_insert_nym_middle(word):
     assert str(d) == "".join([defstr,syn,ant,extra])
 
 
-def test_insert_nym_add(nymsense,nymsection):
+def test_insert_nym_add(nymsense,nymsection,word):
     defstr = "# [[word]], [[word2]]; [[word3]]\n"
 
-    d = Definition(defstr, name="test", parent=None, lang_id="es")
+    d = Definition(defstr, name="test", parent=word)
     d.add_nymsense(nymsense)
     expected_syn = "#: {{syn|es|nounsyn1|q1=blah1|nounsyn2|q2=blah2}}\n"
     assert "".join([defstr, expected_syn]) == str(d)
@@ -144,32 +144,32 @@ def test_insert_nym_add(nymsense,nymsection):
 
 
 
-def test_add_existing_nymsense(nymsection):
+def test_add_existing_nymsense(nymsection,word):
 
     defstr = "# a [[word]], a [[word2]]; [[word3]]\n#: {{syn|es|syn1}}\n"
 
-    d = Definition(defstr, name="test", parent=None, lang_id="es")
+    d = Definition(defstr, name="test", parent=word)
 
     sense2 = NymSense("* {{sense|nomatch2}} {{l|es|syn2}}\n", name="2", parent=nymsection)
 
     d.add_nymsense(sense2)
     assert d == "# a [[word]], a [[word2]]; [[word3]]\n#: {{syn|es|syn1|syn2}}\n"
 
-def test_add_existing_nymsense_nomatch(nymsection):
+def test_add_existing_nymsense_nomatch(nymsection,word):
 
     defstr = "# a [[word]], a [[word2]]; [[word3]]\n#: {{syn|es|syn1}}\n"
 
-    d = Definition(defstr, name="test", parent=None, lang_id="es")
+    d = Definition(defstr, name="test", parent=word)
 
     sense2 = NymSense("* {{sense|nomatch2}} {{l|es|syn2}}\n", name="2", parent=nymsection)
 
     d.add_nymsense(sense2, no_merge=True)
     assert d == "# a [[word]], a [[word2]]; [[word3]]\n#: {{syn|es|syn1}}\n#: {{syn|es|syn2}} <!-- FIXME, MATCH SENSE: 'nomatch2' -->\n"
 
-def test_has_sense():
+def test_has_sense(word):
 
     defstr = "# [[big deal]], [[fuss]], [[scene]]\n"
-    d = Definition(defstr, name="test", parent=None, lang_id="es")
+    d = Definition(defstr, name="test", parent=word)
 
     assert not d.has_sense("nomatch")
     assert d.has_sense("big deal")
@@ -180,5 +180,5 @@ def test_has_sense():
 
 
     defstr = "# {{lb|es|botany}} [[bud]], [[shoot]]\n"
-    d = Definition(defstr, name="test", parent=None, lang_id="es")
+    d = Definition(defstr, name="test", parent=word)
     assert d.has_sense("bud|shoot")

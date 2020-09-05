@@ -129,7 +129,7 @@ def test_subsections(language):
     wiki = parse(orig_text, skip_style_tags=True)
     nymsection = NymSection(wiki, parent=language)
 
-    assert sorted(nymsection.problems.keys()) == sorted(["unexpected_section"])
+    assert sorted(nymsection.problems.keys()) == sorted(["unexpected_section", "unhandled_line"])
 
 def test_badline(language):
     orig_text = """===Synonyms===

@@ -25,12 +25,15 @@ from ..constants import ALL_LANGUAGES
 
 class LanguageSection(WiktionarySection):
     def __init__(self, wikt, parent):
-        super().__init__(wikt, parent, parse_sections=False)
 
-        if self._name not in ALL_LANGUAGES:
-            self.flag_problem("unknown_language", self._name)
-            self.lang_id = "ERROR_NOLANG"
+        # TODO: Fix this mess
+        self._parent = parent
+        heading = next(iter(wikt.filter_headings(recursive=False)))
+        lang = heading.strip("=")
+        if lang not in ALL_LANGUAGES:
+            self.flag_problem("unknown_language", lang)
+            self._lang_id = "ERROR_NOLANG"
         else:
-            self.lang_id = ALL_LANGUAGES[self._name]
+            self._lang_id = ALL_LANGUAGES[lang]
 
-        self._parse_sections(wikt)
+        super().__init__(wikt, parent)

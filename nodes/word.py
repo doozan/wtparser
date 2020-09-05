@@ -29,125 +29,57 @@ from .language import LanguageSection
 
 
 class WordSection(WiktionarySection):
-    def __init__(self, wikt, parent=None, lang_id=None):
-        super().__init__(wikt, parent)
-
-        self.lang_id = (
-            lang_id if lang_id else self.get_ancestor_value("lang_id", "ERROR")
-        )
-
+    def __init__(self, wikt, parent=None):
+        super().__init__(wikt, parent, parse_data=False)
         self._parse_data(wikt)
 
-    def _parse_data(self, wikt):
-        """
-        Converts any line starting with "# " and any following "#[*]" lines into
-        Definition nodes
-        """
+    def _is_header(self, line):
 
-        data_nodes = wikt._pop_data()
-        old_children = self._children
-        self._children = []
+        if re.match(r"\s+$", line):
+            return True
 
-        section_text = "".join(map(str, data_nodes))
+        if line.startswith("==") and not self._heading_found:
+            self._heading_found=True
+            return True
 
-        current_item = []
-        unhandled = []
+        if self._is_headword(line):
+            return True
 
-        in_header = True
-        in_footer = False
+        return False
 
-        for unstripped_line in template_aware_splitlines(section_text, True):
-            line = unstripped_line.strip()
-            if in_footer:
-                unhandled.append(unstripped_line)
+    def _is_headword(self, line):
+        # Header can contain a headword template {{head* or {{lang-*
+        tmpl_prefix = [ "head", self.lang_id + "-" ]
+        if re.match(r"\s*{{\s*("+ "|".join(tmpl_prefix) + ")", line): # }}
+            return True
+        return False
 
-            elif line == "":
-                if current_item:
-                    current_item.append(unstripped_line)
-                else:
-                    unhandled.append(unstripped_line)
+    def _is_new_item(self, line):
+        if line.startswith("# ") or line.startswith("#{"):
+            return True
+        return False
 
-            # Header is expected to look like
-            # ===Section===
-            #
-            # {{es-noun}}
-            #
-            # # start of definitions
-            elif in_header:
-                unhandled.append(unstripped_line)
-                # TODO: This should only find one header == line
-                if line.startswith("=="):
-                    continue
+    def _is_still_item(self, line):
+        if line.startswith("# ") or line.startswith("#{"):
+            return False
+        elif line.startswith("#"):
+            return True
+        return False
 
-                # The header ends after declaring a word
-                if line.startswith("{{" + self.lang_id + "-") or line.startswith(
-                    "{{head"
-                ):  # fix folding }}}}
-                    in_header = False
-                else:
-                    self.flag_problem("text_before_header", line)
+    def _handle_other(self, line):
 
-            elif line.startswith("# ") or line.startswith("#{"):
-                if len(unhandled):
-                    self.add_text(unhandled)
-                    unhandled = []
+        # Word declaration
+        if self._is_headword(line):
 
-                if len(current_item):
-                    self.add_def(current_item)
-                    current_item = []
+            # Some articles list multiple parts of speech or etymology without breaking them into sections.
+            # If we encounter a new declaration, flag it for manual review
+            self.flag_problem("word_has_multiple_headwords", line)
+            return False
 
-                current_item.append(unstripped_line)
+        else:
+            return super()._handle_other(line)
 
-            elif current_item and line.startswith("#"):
-                current_item.append(unstripped_line)
-
-            # Start footer when we come to the end of the section or the Category declarations
-            # or another section
-            elif (
-                line.startswith("----")
-                or line.startswith("[[Category:")
-                or line.startswith("==")
-            ):
-                in_footer = True
-                unhandled.append(unstripped_line)
-
-            # Word declaration
-            elif line.startswith("{{" + self.lang_id + "-") or line.startswith(
-                "{{head"
-            ):  # fix folding }}}}
-
-                # Some articles list multiple parts of speech or etymology without breaking them  into sections.
-                # If we encounter a new declaration, flag it for manual review and stop processing
-                self.flag_problem("multiple_word_declarations_in_def", line)
-                if current_item:
-                    self.add_def(current_item)
-                    current_item = []
-
-                in_footer = True
-                unhandled.append(unstripped_line)
-
-            # Unexpected text
-            else:
-                if current_item:
-                    self.add_def(current_item)
-                    current_item = []
-
-                unhandled.append(unstripped_line)
-                if in_header:
-                    self.flag_problem("unexpected_text_before_def", line)
-                else:
-                    self.flag_problem("unexpected_text_after_def", line)
-
-        if current_item:
-            self.add_def(current_item)
-            current_item = []
-        elif len(unhandled):
-            self.add_text(unhandled)
-            unparsed = []
-
-        self._children += old_children
-
-    def add_def(self, lines):
+    def add_item(self, lines):
         """
         Creates a new Definition from the supplied text
         Returns an array [ leading_newlines, Definition, trailing_newlines ]

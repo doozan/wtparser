@@ -45,17 +45,40 @@ class WTcode(Wikicode):
         # fewer sections than there are other nodes
         from wtparser.nodes import WiktionarySection
 
-        idx = 0
-        for v in self.nodes:
-            if isinstance(v, WiktionarySection):
-                break
-            idx += 1
-
+        orig_len = len(self.nodes)
         nodes = []
-        for x in range(idx):
+        while len(self.nodes) and not isinstance(self.nodes[0], WiktionarySection):
             nodes.append(self.nodes.pop(0))
 
         return nodes
+
+    def get_child_sections(self, start_level):
+        """
+        Returns a list of all direct child sections
+        This is different than just calling get_sections(self._level+1),
+        because this will find sections with even if they're deeper than level+1
+        """
+        child_sections = []
+        all_sections = self.get_sections(include_lead=False)
+
+        top_level = 0
+        for section in all_sections:
+            heading = next(section.ifilter_headings(recursive=False))
+            if not start_level:
+                start_level = heading.level
+                continue
+
+            if heading.level <= start_level:
+                continue
+
+            if not top_level:
+                top_level = heading.level
+            if heading.level <= top_level:
+                top_level = heading.level
+                child_sections.append(section)
+
+        return child_sections
+
 
 
 # from .nodes.page import Page

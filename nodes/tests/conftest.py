@@ -34,6 +34,7 @@ sample_page = """==Spanish==
 # {{lb|es|Spain}} [[adj2]], [[adj3]]
 
 ===Noun===
+{{es-noun}}
 
 # [[noun1]]
 

@@ -25,12 +25,9 @@ from .language import LanguageSection
 
 
 class NymSense(WiktionaryNode):
-    def __init__(self, text, name, parent, nym_type=None, lang_id=None):
+    def __init__(self, text, name, parent, nym_type=None):
         super().__init__(text, name, parent)
 
-        self.lang_id = (
-            lang_id if lang_id else self.get_ancestor_value("lang_id", "ERROR")
-        )
         self.sense = None
 
         if nym_type:
