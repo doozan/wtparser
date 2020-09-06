@@ -19,8 +19,6 @@ import re
 from ..utils import parse_anything, get_template_depth, template_aware_splitlines
 from ..constants import ALL_NYMS, NYM_ORDER, TAG_TO_NYM, ALL_NYM_TAGS
 from . import WiktionaryNode
-from .language import LanguageSection
-
 from .defitem import DefinitionItem
 from .nymline import NymLine
 

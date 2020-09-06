@@ -20,12 +20,11 @@ Expects line like:
 #: {{nymtemplate}}
 """
 
+from .defitem import DefinitionItem
+from .nymsense import NymSense
 from ..constants import NYM_TO_TAG
 from ..utils import parse_anything
-from .defitem import DefinitionItem
-from .nymsection import NymSection
-from .nymsense import NymSense
-from .language import LanguageSection
+from ..sections.nymsection import NymSection
 
 
 class NymLine(DefinitionItem):

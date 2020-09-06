@@ -17,12 +17,9 @@
 import os
 import re
 
-from ..utils import parse_anything, template_aware_split, template_aware_splitlines
 from . import WiktionaryNode
-
 from .wordlink import WordLink
-from .language import LanguageSection
-
+from ..utils import parse_anything, template_aware_split, template_aware_splitlines
 
 class NymSense(WiktionaryNode):
     def __init__(self, text, name, parent, nym_type=None):
@@ -33,7 +30,7 @@ class NymSense(WiktionaryNode):
         if nym_type:
             self._type = nym_type
         else:
-            from .nymsection import NymSection
+            from ..sections.nymsection import NymSection
 
             ancestor = self.get_ancestor(NymSection)
             self._type = ancestor.name if ancestor is not None else "ERROR"

@@ -16,15 +16,15 @@
 
 from ..utils import parse_anything
 from .. import parse, parse_page, parse_language
-from ..nodes import WiktionarySection
-from ..nodes.page import Page
-from ..nodes.language import LanguageSection
-from ..nodes.word import WordSection
+from ..sections import WiktionarySection
+from ..sections.page import Page
+from ..sections.language import LanguageSection
+from ..sections.nymsection import NymSection
+from ..sections.word import WordSection
 from ..nodes.definition import Definition
 from ..nodes.defitem import DefinitionItem
 from ..nodes.nymline import NymLine
 from ..nodes.wordlink import WordLink
-from ..nodes.nymsection import NymSection
 from ..nodes.nymsense import NymSense
 from ..wtcode import WTcode
 

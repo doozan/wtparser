@@ -23,9 +23,9 @@ Currently handles word definition and nym sections
 import re
 
 from . import WiktionarySection
-from ..utils import parse_anything, template_aware_splitlines
-from .definition import Definition
 from .language import LanguageSection
+from ..utils import parse_anything, template_aware_splitlines
+from ..nodes.definition import Definition
 
 
 class WordSection(WiktionarySection):

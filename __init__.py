@@ -33,9 +33,9 @@ def parse_as(target, text, parent, **kwargs):
     return target(parse(text, **kwargs), parent=parent)
 
 def parse_page(text, title, parent, **kwargs):
-    from .nodes.page import Page
+    from .sections.page import Page
     return Page(parse(text, **kwargs), name=title, parent=parent)
 
 def parse_language(text, parent=None, **kwargs):
-    from .nodes.language import LanguageSection
+    from .sections.language import LanguageSection
     return parse_as(LanguageSection, text, parent=parent, **kwargs)

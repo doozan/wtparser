@@ -18,10 +18,10 @@ import os
 import re
 
 # import wiktionaryparser
+from . import WiktionarySection
+from ..nodes.nymsense import NymSense
 from ..constants import ALL_NYMS
 from ..utils import parse_anything, template_aware_splitlines
-from .nymsense import NymSense
-from . import WiktionarySection
 
 
 def get_nym_sense(line):

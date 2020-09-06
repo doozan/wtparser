@@ -81,14 +81,14 @@ class WTcode(Wikicode):
 
 
 
-# from .nodes.page import Page
-from .nodes import WiktionarySection
-from .nodes.language import LanguageSection
-from .nodes.word import WordSection
+from .sections import WiktionarySection
+from .sections.language import LanguageSection
+from .sections.word import WordSection
+from .sections.nymsection import NymSection
+
 from .nodes.definition import Definition
 from .nodes.defitem import DefinitionItem
 from .nodes.nymline import NymLine
-from .nodes.nymsection import NymSection
 from .nodes.nymsense import NymSense
 from .nodes.wordlink import WordLink
 

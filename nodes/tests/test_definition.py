@@ -17,7 +17,7 @@
 import pytest
 from ..definition import Definition
 from ..nymsense import NymSense
-from ..nymsection import NymSection
+from ...sections.nymsection import NymSection
 from ...utils import parse_anything
 
 def test_definition(word):

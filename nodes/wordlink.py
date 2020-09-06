@@ -22,7 +22,6 @@ import re
 import json
 
 from . import WiktionaryNode
-from .language import LanguageSection
 from ..utils import parse_anything
 
 # from ..parse import parse as wtparse
