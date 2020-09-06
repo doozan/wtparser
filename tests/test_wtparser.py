@@ -85,7 +85,7 @@ def test_filter():
     page = Page(wikt, "myword")
     assert str(page) == orig_text
 
-    page = parse_page(orig_text, "myword", parent=None)
+    page = parse_page(orig_text, "myword")
     assert str(page) == orig_text
 
     wikt = parse(page)
@@ -120,9 +120,9 @@ def test_filter():
     assert len(wikt.filter_senses()) == 1
 
 
-def test_ifilter(err):
+def test_ifilter():
 
-    page = parse_page(orig_text, "test", err)
+    page = parse_page(orig_text, "test")
     assert len(list(page.ifilter(recursive=False, forcetype=LanguageSection, matches=lambda x: hasattr(x, 'name') and x.name=="Spanish"))) == 1
 
     assert len(list(page.ifilter(forcetype=WiktionarySection, matches=lambda x: hasattr(x, 'name') and x.name=="Adjective"))) == 1
@@ -132,9 +132,9 @@ def test_ifilter(err):
     assert len(list(page.ifilter(recursive=False, forcetype=WiktionarySection, matches=lambda x: hasattr(x, 'name') and x.name=="Synonyms"))) == 0
 
 
-def test_parse(err):
+def test_parse():
 
-    page = parse_page(orig_text, "test", err)
+    page = parse_page(orig_text, "test")
 
     def attr_is(obj, attr, value):
         return hasattr(obj, attr) and getattr(obj ,attr) == value

@@ -34,10 +34,10 @@ class NymLine(DefinitionItem):
     """
     @classmethod
     def from_items(cls, tmpl_name, lang_id, items, name, parent):
-        item = cls(None, name, parent)
-        text = "#: " + item.items_to_nymtemplate(tmpl_name, lang_id, items) + "\n"
-        item._parse_data(text)
-        return item
+        self = cls(None, name, parent)
+        text = "#: " + self.items_to_nymtemplate(tmpl_name, lang_id, items) + "\n"
+        self._parse_data(text)
+        return self
 
     @classmethod
     def from_nymsense(cls, nymsense, name, parent):
@@ -173,7 +173,17 @@ class NymLine(DefinitionItem):
                 elif k == "gloss":
                     if "q" not in item or not item["q"]:
                         params.append(f"q{idx-1}={item[k]}")
+                        print("ERRR:", self.__class__, "using_gloss_as_qualifier", self._parent._parent._parent.name)
                         self.flag_problem("using_gloss_as_qualifier", item)
+
+                        print("parent probs:", self._parent.problems)
+                        for child in self._parent._children:
+                            for node in child.nodes:
+                                if node is self:
+                                    print("me")
+                                else:
+                                    print(node.__class__)
+
                     else:
                         self.flag_problem("gloss_and_qualifier", item)
                 else:

@@ -17,8 +17,7 @@
 import mwparserfromhell
 import pytest
 
-from ... import parse_page
-
+from . import parse_page
 
 sample_page = """==Spanish==
 
@@ -45,23 +44,9 @@ sample_page = """==Spanish==
 #: {{syn|es|verbsyn1|verbsyn2|q2=blah}}
 """
 
-class ErrorHandler():
-    def __init__(self):
-        self.problems = {}
-
-    def flag_problem(self, problem, *data):
-        self.problems[problem] = self.problems.get(problem, []) + [data]
-
-    def clear_problems(self):
-        self.problems = {}
-
 @pytest.fixture()
-def err():
-    return ErrorHandler()
-
-@pytest.fixture()
-def page(err):
-    return parse_page(sample_page, "myword", parent=err)
+def page():
+    return parse_page(sample_page, "myword")
 
 @pytest.fixture()
 def language(page):
@@ -91,3 +76,6 @@ def nymsense(nymsection):
 def wordlink(nymsense):
     return next(nymsense.ifilter_defs(recursive=False))
 
+@pytest.fixture()
+def nymline(page):
+    return next(page.ifilter_nymlines())

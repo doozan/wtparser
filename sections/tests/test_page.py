@@ -16,17 +16,21 @@
 
 import pytest
 
-class ErrorHandler():
-    def __init__(self):
-        self.problems = {}
+from ... import parse
+from ..pos import PosSection
+from ...wtnodes.nymsense import NymSense
 
-    def flag_problem(self, problem, *data):
-        self.problems[problem] = self.problems.get(problem, []) + [data]
+def test_errors(page, language, nymsection, nymline):
 
-    def clear_problems(self):
-        self.problems = {}
+    assert page.problems == {}
 
-@pytest.fixture()
-def err():
-    return ErrorHandler()
+    language.flag_problem("lang")
+    assert "lang" in page.problems.keys()
+
+    nymsection.flag_problem("nym")
+    assert "nym" in page.problems.keys()
+
+    nymline.flag_problem("nymline")
+    assert "nymline" in page.problems.keys()
+
 

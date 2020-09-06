@@ -32,9 +32,9 @@ parse = utils.parse_anything
 def parse_as(target, text, parent, **kwargs):
     return target(parse(text, **kwargs), parent=parent)
 
-def parse_page(text, title, parent, **kwargs):
+def parse_page(text, title, **kwargs):
     from .sections.page import Page
-    return Page(parse(text, **kwargs), name=title, parent=parent)
+    return Page(parse(text, **kwargs), name=title)
 
 def parse_language(text, parent=None, **kwargs):
     from .sections.language import LanguageSection

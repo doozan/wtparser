@@ -19,7 +19,7 @@ from .language import LanguageSection
 
 
 class Page(WiktionarySection):
-    def __init__(self, wikt, parent, name=None):
+    def __init__(self, wikt, name=None):
         self._level = 1
         self._name = name
-        super().__init__(wikt, parent, parse_header=False, section_handler=LanguageSection)
+        super().__init__(wikt, None, parse_header=False, section_handler=LanguageSection)

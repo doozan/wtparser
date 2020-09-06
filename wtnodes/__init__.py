@@ -14,6 +14,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # import logging
+import copy
 import re
 from itertools import chain
 
@@ -64,34 +65,24 @@ class WiktionaryNode(Node):
 
     @property
     def lang_id(self):
-        if hasattr(self, "_lang_id"):
-            return self._lang_id
-
-        return self.get_ancestor_attr("_lang_id", "ERROR")
-
+        if not hasattr(self, "_lang_id"):
+            self._lang_id = self.get_ancestor_attr("_lang_id", "ERROR")
+        return self._lang_id
 
     def flag_problem(self, problem, *data):
         flag_problem = self.get_ancestor_attr("flag_problem")
         if flag_problem:
-            #print("ERROR:", problem, data, self.__class__)
-            return flag_problem(problem, *data)
-        else:
-            #raise ValueError(problem, data)
-            print("UNHANDLED ERROR:", problem, data, self.__class__)
+            flag_problem(problem, data)
 
-#        self.problems[problem] = self.problems.get(problem, []) + [data]
+        if not hasattr(self, "_problems"):
+            self._problems = {}
+        self._problems[problem] = self._problems.get(problem, []) + [data]
 
     @property
     def problems(self):
-        problems = self.get_ancestor_attr("problems")
-        if problems is not None:
-            return problems
-        else:
-            raise ValueError("No ancestor found to provide 'problems'", self.__class__)
-
-    def is_good(self):
-        return True
-        return self._err.is_good()
+        if not hasattr(self, "_problems"):
+            self._problems = {}
+        return self._problems
 
     def get_ancestor(self, target):
         """Returns the nearest ancestor of class ``target``"""

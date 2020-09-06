@@ -33,8 +33,8 @@ def test_simple(language, nymsection):
 # def 4
 """
 
-    wiki = parse(orig_text, skip_style_tags=True)
-    pos = PosSection(wiki, parent=language)
+    wikt = parse(orig_text, skip_style_tags=True)
+    pos = PosSection(wikt, parent=language)
 
     assert str(pos) == orig_text
     assert pos.name == "Noun"
@@ -64,8 +64,8 @@ def test_simple2(language, nymsection):
 * stuff
 """
 
-    wiki = parse(orig_text, skip_style_tags=True)
-    pos = PosSection(wiki, parent=language)
+    wikt = parse(orig_text, skip_style_tags=True)
+    pos = PosSection(wikt, parent=language)
 
     synonyms = next(pos.ifilter_nyms(recursive=False, matches="Synonyms"))
     nymsense = next(synonyms.ifilter_senses(recursive=False))
@@ -105,8 +105,8 @@ def test_sense_matching(language):
 * {{l|es|syn5}}
 """
 
-    wiki = parse(orig_text, skip_style_tags=True)
-    pos = PosSection(wiki, parent=language)
+    wikt = parse(orig_text, skip_style_tags=True)
+    pos = PosSection(wikt, parent=language)
     word = pos.filter_words()[0]
 
     defs = word.filter_defs()
@@ -129,7 +129,7 @@ def test_sense_matching(language):
     assert word.get_defs_matching_sense(senses[2].sense)[0] == defs[2]
 
 
-def test_sense_matching_multi(language,err):
+def test_sense_matching_multi(language):
     orig_text="""===Noun===
 {{es-noun}}
 
@@ -141,11 +141,11 @@ def test_sense_matching_multi(language,err):
 * {{sense|word2}} {{l|es|syn1}}
 """
 
-    wiki = parse(orig_text, skip_style_tags=True)
-    pos = PosSection(wiki, parent=language)
+    wikt = parse(orig_text, skip_style_tags=True)
+    pos = PosSection(wikt, parent=language)
     word = pos.filter_words()[0]
 
-    assert sorted(err.problems.keys()) == []
+    assert sorted(language.problems.keys()) == []
     sense = next(pos.ifilter_senses())
 
     assert sense.sense == "word2"
@@ -167,8 +167,8 @@ def xtest_add_sense(language):
 * {{l|es|syn5}}
 """
 
-    wiki = parse(orig_text, skip_style_tags=True)
-    pos = PosSection(wiki, parent=language)
+    wikt = parse(orig_text, skip_style_tags=True)
+    pos = PosSection(wikt, parent=language)
     word = pos.filter_words()[0]
 
     defs = word.filter_defs()
