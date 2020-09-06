@@ -25,7 +25,7 @@ __license__ = "GPL3"
 __version__ = "0.1.0"
 __email__ = "wiktionary@doozan.com"
 
-from . import (nodes, utils, wtcode)
+from . import (wtnodes, sections, utils, wtcode)
 
 parse = utils.parse_anything
 

@@ -25,7 +25,7 @@ import re
 from . import WiktionarySection
 from .language import LanguageSection
 from ..utils import parse_anything, template_aware_splitlines
-from ..nodes.definition import Definition
+from ..wtnodes.definition import Definition
 
 
 class WordSection(WiktionarySection):

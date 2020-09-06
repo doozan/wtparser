@@ -43,7 +43,7 @@ class WTcode(Wikicode):
         # NOTE: there may be some [[Category]] items after the sections
         # This could be optimized to search in reverse, since there are probably
         # fewer sections than there are other nodes
-        from wtparser.nodes import WiktionarySection
+        from wtparser.wtnodes import WiktionarySection
 
         orig_len = len(self.nodes)
         nodes = []
@@ -86,11 +86,11 @@ from .sections.language import LanguageSection
 from .sections.word import WordSection
 from .sections.nymsection import NymSection
 
-from .nodes.definition import Definition
-from .nodes.defitem import DefinitionItem
-from .nodes.nymline import NymLine
-from .nodes.nymsense import NymSense
-from .nodes.wordlink import WordLink
+from .wtnodes.definition import Definition
+from .wtnodes.defitem import DefinitionItem
+from .wtnodes.nymline import NymLine
+from .wtnodes.nymsense import NymSense
+from .wtnodes.wordlink import WordLink
 
 WTcode._build_filter_methods(
     sections=WiktionarySection,

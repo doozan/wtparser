@@ -17,7 +17,7 @@
 import re
 from itertools import chain
 
-from ..nodes import WiktionaryNode
+from ..wtnodes import WiktionaryNode
 from ..utils import parse_anything, template_aware_splitlines
 
 def get_section_type(title, default):

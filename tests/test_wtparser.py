@@ -21,11 +21,11 @@ from ..sections.page import Page
 from ..sections.language import LanguageSection
 from ..sections.nymsection import NymSection
 from ..sections.word import WordSection
-from ..nodes.definition import Definition
-from ..nodes.defitem import DefinitionItem
-from ..nodes.nymline import NymLine
-from ..nodes.wordlink import WordLink
-from ..nodes.nymsense import NymSense
+from ..wtnodes.definition import Definition
+from ..wtnodes.defitem import DefinitionItem
+from ..wtnodes.nymline import NymLine
+from ..wtnodes.wordlink import WordLink
+from ..wtnodes.nymsense import NymSense
 from ..wtcode import WTcode
 
 

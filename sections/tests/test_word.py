@@ -18,7 +18,7 @@ import pytest
 
 from ... import parse
 from ..word import WordSection
-from ...nodes.nymsense import NymSense
+from ...wtnodes.nymsense import NymSense
 
 def test_simple(language, nymsection):
 
