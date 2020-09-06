@@ -19,12 +19,15 @@ from itertools import chain
 
 import mwparserfromhell
 from mwparserfromhell.nodes import Node
+from mwparserfromhell.wikicode import Wikicode
+#from ..wtcode import WTcode
 from ..utils import parse_anything, template_aware_splitlines
 
 from mwparserfromhell.nodes import Template
 
 class WiktionaryNode(Node):
     def __init__(self, text, name, parent):
+
         self._text = text
         self._name = name
         self._parent = parent
@@ -63,7 +66,7 @@ class WiktionaryNode(Node):
     def flag_problem(self, problem, *data):
         flag_problem = self.get_ancestor_attr("flag_problem")
         if flag_problem:
-            print("ERROR:", problem, data, self.__class__)
+            #print("ERROR:", problem, data, self.__class__)
             return flag_problem(problem, *data)
         else:
             #raise ValueError(problem, data)
@@ -252,7 +255,7 @@ class WiktionaryNode(Node):
 
 from ..sections import WiktionarySection
 from ..sections.language import LanguageSection
-from ..sections.word import WordSection
+from ..sections.pos import PosSection
 from ..sections.nymsection import NymSection
 from .definition import Definition
 from .defitem import DefinitionItem
@@ -263,7 +266,7 @@ from .wordlink import WordLink
 WiktionaryNode._build_filter_methods(
     sections=WiktionarySection,
     languages=LanguageSection,
-    words=WordSection,
+    pos=PosSection,
     defs=Definition,
     defitems=DefinitionItem,
     nymlines=NymLine,

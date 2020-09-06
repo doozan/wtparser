@@ -23,14 +23,14 @@ from ..utils import parse_anything, template_aware_splitlines
 def get_section_type(title, default):
 
     from ..constants import ALL_LANGUAGES, ALL_POS, ALL_NYMS
-    from .word import WordSection
+    from .pos import PosSection
     from .language import LanguageSection
     from .nymsection import NymSection
 
     if title in ALL_LANGUAGES:
         return LanguageSection
     elif title in ALL_POS:
-        return WordSection
+        return PosSection
     elif title in ALL_NYMS:
         return NymSection
     else:

@@ -23,6 +23,11 @@ __all__ = [
 
 from mwparserfromhell.utils import parse_anything as mwparse_anything
 
+def parse_anything(value, **params):
+    from .wtcode import WTcode
+
+    return WTcode(mwparse_anything(value, **params))
+
 
 def get_template_depth(text, start_depth=0):
     """
@@ -83,45 +88,3 @@ def template_aware_iterator(iterator, delimiter=""):
 
     if len(template):
         yield delimiter.join(template)
-
-
-def get_target_def(self, nym_sense):
-    """
-        Select the best target definition from *defs* for *nym_sense*
-        Returns the first matching definition, searching all defs in the following order:
-            nym_sense == def.senseid
-            nym_sense == def.first_word
-            nym_sense in def.words
-
-        If none of the above match, returns the first definition
-        """
-
-    target_defs = None
-    if nym_sense == "":
-        target_defs = self.defs
-    else:
-        target_defs = self.get_defs_matching_senseid(nym_sense)
-        if target_defs:
-            self.flag_problem("automatch_senseid")
-        else:
-            target_defs = self.get_defs_matching_sense(nym_sense)
-            if target_defs:
-                self.flag_problem("automatch_sense")
-            else:
-                target_defs = self.get_defs_matching_text(nym_sense)
-                if target_defs:
-                    self.flag_problem("automatch_sense_text")
-                else:
-                    self.flag_problem("unmatched_sense")
-    #                        target_defs=[self.defs[0]]
-
-    if len(target_defs) > 1:
-        self.flag_problem("sense_matches_multiple_defs")
-
-    return target_defs[0]
-
-
-def parse_anything(value, **params):
-    from .wtcode import WTcode
-
-    return WTcode(mwparse_anything(value, **params))

@@ -17,7 +17,7 @@
 import pytest
 
 from ... import parse
-from ..word import WordSection
+from ..pos import PosSection
 from ...wtnodes.nymsense import NymSense
 
 def test_simple(language, nymsection):
@@ -41,7 +41,7 @@ def test_simple(language, nymsection):
 """
 
     wiki = parse(orig_text, skip_style_tags=True)
-    word = WordSection(wiki, parent=language)
+    word = PosSection(wiki, parent=language)
 
     assert str(word) == orig_text
     assert word.name == "Noun"
@@ -93,7 +93,7 @@ def test_sense_matching(language):
 """
 
     wiki = parse(orig_text, skip_style_tags=True)
-    word = WordSection(wiki, parent=language)
+    word = PosSection(wiki, parent=language)
 
     defs = word.filter_defs()
     assert defs[0] == "# {{lb|es|sense1}} [[word1]], [[word2]] {{gloss|gloss1}}\n"
@@ -128,7 +128,7 @@ def test_sense_matching_multi(language,err):
 """
 
     wiki = parse(orig_text, skip_style_tags=True)
-    word = WordSection(wiki, parent=language)
+    word = PosSection(wiki, parent=language)
 
     assert sorted(err.problems.keys()) == []
     sense = next(word.ifilter_senses())
@@ -153,7 +153,7 @@ def test_add_sense(language):
 """
 
     wiki = parse(orig_text, skip_style_tags=True)
-    word = WordSection(wiki, parent=language)
+    word = PosSection(wiki, parent=language)
 
     defs = word.filter_defs()
     assert defs[0] == "# {{lb|es|sense1}} [[word1]], [[word2]] {{gloss|gloss1}}\n"

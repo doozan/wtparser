@@ -20,7 +20,7 @@ from ..sections import WiktionarySection
 from ..sections.page import Page
 from ..sections.language import LanguageSection
 from ..sections.nymsection import NymSection
-from ..sections.word import WordSection
+from ..sections.pos import PosSection
 from ..wtnodes.definition import Definition
 from ..wtnodes.defitem import DefinitionItem
 from ..wtnodes.nymline import NymLine
@@ -98,8 +98,8 @@ def test_filter():
     assert len(wikt.filter(forcetype=LanguageSection)) == 3
     assert len(wikt.filter_languages()) == 3
 
-    assert len(wikt.filter(forcetype=WordSection)) == 3
-    assert len(wikt.filter_words()) == 3
+    assert len(wikt.filter(forcetype=PosSection)) == 3
+    assert len(wikt.filter_pos()) == 3
 
     assert len(wikt.filter(forcetype=Definition)) == 4
     assert len(wikt.filter_defs()) == 4
@@ -127,7 +127,7 @@ def test_ifilter(err):
 
     assert len(list(page.ifilter(forcetype=WiktionarySection, matches=lambda x: hasattr(x, 'name') and x.name=="Adjective"))) == 1
     assert len(list(page.ifilter(forcetype=WiktionarySection, matches=lambda x: hasattr(x, 'name') and x.name=="Synonyms"))) == 1
-    assert len(list(page.ifilter(forcetype=WordSection))) == 3
+    assert len(list(page.ifilter(forcetype=PosSection))) == 3
     assert len(list(page.ifilter(recursive=False, forcetype=WiktionarySection, matches=lambda x: hasattr(x, 'name') and x.name=="Adjective"))) == 0
     assert len(list(page.ifilter(recursive=False, forcetype=WiktionarySection, matches=lambda x: hasattr(x, 'name') and x.name=="Synonyms"))) == 0
 
@@ -151,11 +151,11 @@ def test_parse(err):
 #            print(i, child.__class__, node.__class__, node.name)
     assert len(spanish._children) == 4
 
-    adj_text = str(next(spanish.ifilter_words(recursive=False, matches=lambda x: name_is(x, "Adjective"))))
-    noun_text = str(next(spanish.ifilter_words(recursive=False, matches=lambda x: name_is(x, "Noun"))))
-    verb_text = str(next(spanish.ifilter_words(recursive=False, matches=lambda x: name_is(x, "Verb"))))
+    adj_text = str(next(spanish.ifilter_pos(recursive=False, matches=lambda x: name_is(x, "Adjective"))))
+    noun_text = str(next(spanish.ifilter_pos(recursive=False, matches=lambda x: name_is(x, "Noun"))))
+    verb_text = str(next(spanish.ifilter_pos(recursive=False, matches=lambda x: name_is(x, "Verb"))))
 
-    noun = next(spanish.ifilter_words(recursive=False, matches=lambda x: name_is(x, "Noun")))
+    noun = next(spanish.ifilter_pos(recursive=False, matches=lambda x: name_is(x, "Noun")))
     assert str(noun) == "===Noun===\n\n{{es-noun|m}}\n\n# [[noun1]]\n\n====Synonyms====\n* [[nounsyn1]] (blah1)\n* {{l|es|nounsyn2}} {{q|blah2}}\n\n"
     assert noun == noun_text
 
@@ -163,12 +163,12 @@ def test_parse(err):
     nym_text = "====Synonyms====\n* [[nounsyn1]] (blah1)\n* {{l|es|nounsyn2}} {{q|blah2}}\n\n"
     assert nymsection == nym_text
 
-    adj = next(spanish.ifilter_words(recursive=False, matches=lambda x: name_is(x, "Adjective")))
+    adj = next(spanish.ifilter_pos(recursive=False, matches=lambda x: name_is(x, "Adjective")))
     assert adj.name == "Adjective"
     assert adj._level == 3
     assert len(adj.filter_defs(recursive=False)) == 2
 
-    noun = next(spanish.ifilter_words(recursive=False, matches="Noun"))
+    noun = next(spanish.ifilter_pos(recursive=False, matches="Noun"))
     assert len(noun.filter_defs(recursive=False)) == 1
     noundef = next(noun.ifilter_defs(recursive=False))
 
@@ -197,7 +197,7 @@ def test_parse(err):
         == "* {{l|es|newsyn}} {{q|blah1}}\n* {{l|es|nounsyn2}} {{q|blah2}}"
     )
 
-    adj = next(spanish.ifilter_words(recursive=False, matches="Verb"))
+    adj = next(spanish.ifilter_pos(recursive=False, matches="Verb"))
     assert adj.name == "Verb"
     assert adj._level == 3
     assert len(adj.filter_defs(recursive=False)) == 1
@@ -238,7 +238,7 @@ From {{der|es|la|grege}}, singular ablative of {{m|la|grex}}.
     entry = parse_language(orig_text, skip_style_tags=True)
 
 #    print_children(entry)
-#    for word in entry.ifilter_words():
+#    for word in entry.ifilter_pos():
 #        print("def")
 
 #    raise ValueError()
@@ -260,7 +260,7 @@ def test_modify_section_during_iteration():
 
     entry = parse_language(orig_text, skip_style_tags=True)
 
-    for word in entry.ifilter_words():
+    for word in entry.ifilter_pos():
         all_defs = word.filter_defs(recursive=False)
         all_nyms = word.filter_nyms(matches="Synonyms")
         for nym in all_nyms:
@@ -310,7 +310,7 @@ From an earlier {{m|es||*ruino}}, from {{m|es|ruina}}, or from a {{inh|es|VL.|-}
 
     entry = parse_language(orig_text, skip_style_tags=True)
 
-    for word in entry.ifilter_words():
+    for word in entry.ifilter_pos():
         all_defs = word.filter_defs(recursive=False)
         print(word.name)
         assert len(all_defs) > 0
@@ -361,5 +361,5 @@ def test_deep_subsections():
 """
 
     entry = parse_language(orig_text, skip_style_tags=True)
-    word = entry.filter_words()[0]
+    word = entry.filter_pos()[0]
     assert "Synonyms" in word._sections

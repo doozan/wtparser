@@ -28,7 +28,7 @@ from ..utils import parse_anything, template_aware_splitlines
 from ..wtnodes.definition import Definition
 
 
-class WordSection(WiktionarySection):
+class PosSection(WiktionarySection):
     def __init__(self, wikt, parent=None):
         super().__init__(wikt, parent, parse_data=False)
         self._parse_data(wikt)

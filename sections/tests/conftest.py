@@ -69,11 +69,11 @@ def language(page):
 
 @pytest.fixture()
 def word(language):
-    return next(language.ifilter_words(recursive=False, matches="Adjective"))
+    return next(language.ifilter_pos(recursive=False, matches="Adjective"))
 
 @pytest.fixture()
 def word_with_nymsection(language):
-    return next(language.ifilter_words(recursive=False, matches="Noun"))
+    return next(language.ifilter_pos(recursive=False, matches="Noun"))
 
 @pytest.fixture()
 def definition(word):

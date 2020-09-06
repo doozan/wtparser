@@ -83,7 +83,7 @@ class WTcode(Wikicode):
 
 from .sections import WiktionarySection
 from .sections.language import LanguageSection
-from .sections.word import WordSection
+from .sections.pos import PosSection
 from .sections.nymsection import NymSection
 
 from .wtnodes.definition import Definition
@@ -95,7 +95,7 @@ from .wtnodes.wordlink import WordLink
 WTcode._build_filter_methods(
     sections=WiktionarySection,
     languages=LanguageSection,
-    words=WordSection,
+    pos=PosSection,
     defs=Definition,
     defitems=DefinitionItem,
     nymlines=NymLine,
