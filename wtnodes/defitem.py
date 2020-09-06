@@ -25,6 +25,3 @@ from ..utils import parse_anything
 class DefinitionItem(WiktionaryNode):
     def __init__(self, text, name, parent):
         super().__init__(text, name, parent)
-
-        if text:
-            self._children = [parse_anything(text)]

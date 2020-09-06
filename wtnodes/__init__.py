@@ -26,7 +26,7 @@ from ..utils import parse_anything, template_aware_splitlines
 from mwparserfromhell.nodes import Template
 
 class WiktionaryNode(Node):
-    def __init__(self, text, name, parent):
+    def __init__(self, text, name, parent, parse_data=True):
 
         self._text = text
         self._name = name
@@ -44,6 +44,13 @@ class WiktionaryNode(Node):
     #        logname = ".".join(tree)
 
     #        self._err = ErrorHandler()
+
+
+        if text is not None and parse_data:
+            self._parse_data(text)
+
+    def _parse_data(self, text):
+        self._children = [ parse_anything(text) ]
 
     def __children__(self):
         return self._children
@@ -179,6 +186,105 @@ class WiktionaryNode(Node):
                 sub = WiktionaryNode._get_children(child, contexts, restrict, code)
                 yield from sub
 
+    def _prepare_line(self, line):
+        """Hook to modify line before it's passed to the parser"""
+        return line
+
+    def _parse_list(self, text):
+        """
+        Generic line-by-line parser
+        """
+
+        current_item = []
+        unhandled = []
+
+        in_header = True
+        in_footer = False
+        self._heading_found = False
+
+        for line in template_aware_splitlines(text, True):
+            line = self._prepare_line(line)
+
+            in_header = self._is_header(line) if in_header else False
+
+            if in_header or in_footer:
+                unhandled.append(line)
+
+            elif re.match(r"\s+$", line):
+                if current_item:
+                    current_item.append(line)
+                else:
+                    unhandled.append(line)
+
+            elif current_item and self._is_still_item(line):
+                current_item.append(line)
+
+            elif self._is_new_item(line):
+                if len(unhandled):
+                    self.add_text(unhandled)
+                    unhandled = []
+
+                if len(current_item):
+                    self.add_item(current_item)
+                    current_item = []
+
+                current_item.append(line)
+
+            elif self._is_footer(line):
+                in_footer=True
+                unhandled.append(line)
+
+            # Unexpected text
+            else:
+                if current_item:
+                    self.add_item(current_item)
+                    current_item = []
+
+                if not self._handle_other(line):
+                    unhandled.append(line)
+
+        if current_item:
+            self.add_item(current_item)
+            current_item = []
+        elif len(unhandled):
+            self.add_text(unhandled)
+            unparsed = []
+
+
+    def _is_header(self, line):
+
+        if re.match(r"\s+$", line):
+            return True
+
+        if not self._heading_found and re.match(r"\s*==", line):
+            self._heading_found=True
+            return True
+
+        return False
+
+
+    def _is_footer(self, line):
+
+        re_endings = [ r"\[\[\s*Category\s*:" r"==[^=]+==", r"----" ]
+        template_endings = [ "c", "C", "top", "topics", "categorize", "catlangname", "catlangcode", "cln", "DEFAULTSORT" ]
+        re_endings += [ r"\{\{\s*"+item+r"\s*\|" for item in template_endings ]
+        endings = "|".join(re_endings)
+
+        if re.match(fr"\s*({endings})", line):
+            return True
+        return False
+
+    def _is_new_item(self, line):
+        return False
+
+    def _is_still_item(self, line):
+        return False
+
+    def _handle_other(self, line):
+        self.flag_problem("unhandled_line", line)
+        return False
+
+
     @staticmethod
     def _build_matcher(matches, flags):
         """Helper for :meth:`_indexed_ifilter` and others.
@@ -257,6 +363,8 @@ from ..sections import WiktionarySection
 from ..sections.language import LanguageSection
 from ..sections.pos import PosSection
 from ..sections.nymsection import NymSection
+
+from .word import Word
 from .definition import Definition
 from .defitem import DefinitionItem
 from .nymline import NymLine
@@ -267,6 +375,7 @@ WiktionaryNode._build_filter_methods(
     sections=WiktionarySection,
     languages=LanguageSection,
     pos=PosSection,
+    words=Word,
     defs=Definition,
     defitems=DefinitionItem,
     nymlines=NymLine,

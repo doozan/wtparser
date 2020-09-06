@@ -34,10 +34,7 @@ def has_text(text):
 
 class WordLink(WiktionaryNode):
     def __init__(self, text, name, parent):
-        super().__init__(text, name, parent)
         self._has_changed = False
-
-        self._children = []
 
         self._text = text
 
@@ -47,7 +44,7 @@ class WordLink(WiktionaryNode):
         self.gloss = []
         self.trailing = None
 
-        self._parse_data(text)
+        super().__init__(text, name, parent)
 
     def __unicode__(self):
         if self._has_changed:

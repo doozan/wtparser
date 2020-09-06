@@ -166,11 +166,12 @@ def test_parse(err):
     adj = next(spanish.ifilter_pos(recursive=False, matches=lambda x: name_is(x, "Adjective")))
     assert adj.name == "Adjective"
     assert adj._level == 3
-    assert len(adj.filter_defs(recursive=False)) == 2
+    adj_word = adj.filter_words(recursive=False)[0]
+    assert len(adj_word.filter_defs(recursive=False)) == 2
 
     noun = next(spanish.ifilter_pos(recursive=False, matches="Noun"))
-    assert len(noun.filter_defs(recursive=False)) == 1
-    noundef = next(noun.ifilter_defs(recursive=False))
+    assert len(noun.filter_defs()) == 1
+    noundef = next(noun.ifilter_defs())
 
     assert str(noundef).strip() == "# [[noun1]]"
 
@@ -200,7 +201,7 @@ def test_parse(err):
     adj = next(spanish.ifilter_pos(recursive=False, matches="Verb"))
     assert adj.name == "Verb"
     assert adj._level == 3
-    assert len(adj.filter_defs(recursive=False)) == 1
+    assert len(adj.filter_defs()) == 1
 
 
 def test_grey():
@@ -310,7 +311,8 @@ From an earlier {{m|es||*ruino}}, from {{m|es|ruina}}, or from a {{inh|es|VL.|-}
 
     entry = parse_language(orig_text, skip_style_tags=True)
 
-    for word in entry.ifilter_pos():
+    for pos in entry.ifilter_pos():
+        word = pos.filter_words(recursive=False)[0]
         all_defs = word.filter_defs(recursive=False)
         print(word.name)
         assert len(all_defs) > 0

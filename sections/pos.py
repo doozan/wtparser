@@ -25,74 +25,42 @@ import re
 from . import WiktionarySection
 from .language import LanguageSection
 from ..utils import parse_anything, template_aware_splitlines
-from ..wtnodes.definition import Definition
+from ..wtnodes.word import Word
 
 
 class PosSection(WiktionarySection):
-    def __init__(self, wikt, parent=None):
-        super().__init__(wikt, parent, parse_data=False)
-        self._parse_data(wikt)
+    """ Parses a Part Of Speech section into Word nodes:
+    ===Noun===
+    {{es-noun}}
 
-    def _is_header(self, line):
+    #def 1
+    # def2
 
-        if re.match(r"\s+$", line):
-            return True
+    {{es-noun|f=worda}}
 
-        if line.startswith("==") and not self._heading_found:
-            self._heading_found=True
-            return True
+    #def 3
+    """
+#    def __init__(self, wikt, parent=None):
+#        super().__init__(wikt, parent, parse_data=False)
 
-        if self._is_headword(line):
-            return True
-
-        return False
-
-    def _is_headword(self, line):
+    def _is_new_item(self, line):
         # Header can contain a headword template {{head* or {{lang-*
         tmpl_prefix = [ "head", self.lang_id + "-" ]
         if re.match(r"\s*{{\s*("+ "|".join(tmpl_prefix) + ")", line): # }}
             return True
         return False
 
-    def _is_new_item(self, line):
-        if line.startswith("# ") or line.startswith("#{"):
-            return True
-        return False
-
     def _is_still_item(self, line):
-        if line.startswith("# ") or line.startswith("#{"):
-            return False
-        elif line.startswith("#"):
-            return True
-        return False
-
-    def _handle_other(self, line):
-
-        # Word declaration
-        if self._is_headword(line):
-
-            # Some articles list multiple parts of speech or etymology without breaking them into sections.
-            # If we encounter a new declaration, flag it for manual review
-            self.flag_problem("word_has_multiple_headwords", line)
-            return False
-
-        else:
-            return super()._handle_other(line)
+        return line.startswith("#")
 
     def add_item(self, lines):
         """
-        Creates a new Definition from the supplied text
-        Returns an array [ leading_newlines, Definition, trailing_newlines ]
+        Creates a new Word from the supplied text
         """
         self.add_text(self.pop_leading_newlines(lines))
 
         trailing_newlines = self.pop_trailing_newlines(lines)
-        item = Definition("".join(lines), len(self._children) + 1, parent=self)
+        item = Word("".join(lines), len(self._children) + 1, parent=self)
         self._children.append(parse_anything(item))
 
         self.add_text(trailing_newlines)
-
-    def get_defs_matching_sense(self, nym_sense):
-        return self.filter_defs(
-            recursive=False, matches=lambda d: d.has_sense(nym_sense)
-        )

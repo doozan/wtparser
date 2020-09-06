@@ -34,11 +34,9 @@ class NymLine(DefinitionItem):
     """
     @classmethod
     def from_items(cls, tmpl_name, lang_id, items, name, parent):
-        # This is sloppy and fragile and depends on special handling in __init__
-        # and knowledge of DefinitionItem.__init__
         item = cls(None, name, parent)
-        item._text = "#: " + item.items_to_nymtemplate(tmpl_name, lang_id, items) + "\n"
-        item._children = [ parse_anything(item._text) ]
+        text = "#: " + item.items_to_nymtemplate(tmpl_name, lang_id, items) + "\n"
+        item._parse_data(text)
         return item
 
     @classmethod
@@ -53,29 +51,25 @@ class NymLine(DefinitionItem):
 
         if not len(items):
             parent.flag_problem("nymsense_is_empty", nymsense)
-#            raise ValueError("No items found in nymsense", nymsense)
 
         return cls.from_items(tmpl_name, lang_id, items, name, parent)
 
-    def __init__(self, text, name, parent):
-        super().__init__(text, name, parent)
-        if text:
-            self._parse_data()
+    def _parse_data(self, text):
+        self._children = [ parse_anything(text) ]
 
-    def _parse_data(self):
-        if not self._text.startswith("#:"):
-            self.flag_problem("unexpected_line_start", self._text)
+        if not text.startswith("#:"):
+            self.flag_problem("unexpected_line_start", text)
 
         # Verify there's only one template
         templates = self.filter_templates(recursive=False)
         if not len(templates):
             self.flag_problem("no_template")
+            return
         elif len(templates) > 2:
             self.flag_problem("too_many_templates")
 
         self.type = templates[0].name
 
-        # TODO: parse nym type from template
         # TODO: ensure there's no other text on the line
 
     def add_nymsense(self, nymsense):

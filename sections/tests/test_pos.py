@@ -25,6 +25,30 @@ def test_simple(language, nymsection):
     orig_text = """===Noun===
 {{es-noun|f}}
 
+# def 1; def2
+# def 3
+
+{{es-noun|m}}
+
+# def 4
+"""
+
+    wiki = parse(orig_text, skip_style_tags=True)
+    pos = PosSection(wiki, parent=language)
+
+    assert str(pos) == orig_text
+    assert pos.name == "Noun"
+
+    len(pos.filter_words(recursive=False)) == 2
+    assert str(pos.filter_words(recursive=False)[0]).strip() == "{{es-noun|f}}\n\n# def 1; def2\n# def 3"
+    assert str(pos.filter_words(recursive=False)[1]).strip() == "{{es-noun|m}}\n\n# def 4"
+
+
+def test_simple2(language, nymsection):
+
+    orig_text = """===Noun===
+{{es-noun|f}}
+
 # {{lb|es|art}} [[caricature]] (pictorial representation of someone for comic effect)
 # {{lb|es|colloquial|Mexico}} [[animated cartoon]] (''specially in plural'')
 
@@ -41,25 +65,14 @@ def test_simple(language, nymsection):
 """
 
     wiki = parse(orig_text, skip_style_tags=True)
-    word = PosSection(wiki, parent=language)
+    pos = PosSection(wiki, parent=language)
 
-    assert str(word) == orig_text
-    assert word.name == "Noun"
-
-
-    assert (
-        str(word.filter_defs(recursive=False)[0]).strip()
-        == "# {{lb|es|art}} [[caricature]] (pictorial representation of someone for comic effect)"
-    )
-    assert (
-        str(word.filter_defs(recursive=False)[1]).strip()
-        == "# {{lb|es|colloquial|Mexico}} [[animated cartoon]] (''specially in plural'')"
-    )
-
-    synonyms = next(word.ifilter_nyms(recursive=False, matches="Synonyms"))
+    synonyms = next(pos.ifilter_nyms(recursive=False, matches="Synonyms"))
     nymsense = next(synonyms.ifilter_senses(recursive=False))
     assert nymsense == "* {{sense|caricature}} {{l|es|dibujo}}\n"
     assert nymsense.sense == "caricature"
+
+    word = pos.filter_words(recursive=False)[0]
 
     assert len(word.get_defs_matching_sense(nymsense.sense)) == 1
     d = word.get_defs_matching_sense(nymsense.sense)[0]
@@ -93,14 +106,15 @@ def test_sense_matching(language):
 """
 
     wiki = parse(orig_text, skip_style_tags=True)
-    word = PosSection(wiki, parent=language)
+    pos = PosSection(wiki, parent=language)
+    word = pos.filter_words()[0]
 
     defs = word.filter_defs()
     assert defs[0] == "# {{lb|es|sense1}} [[word1]], [[word2]] {{gloss|gloss1}}\n"
     assert defs[1] == "# {{lb|es|sense2}} [[word3]]\n"
     assert defs[2] == "# [[word4]]\n"
 
-    senses = word.filter_senses()
+    senses = pos.filter_senses()
     assert senses[0] == "* {{sense|sense1}} {{l|es|syn1}}, {{l|es|syn2}}\n"
     assert senses[0].sense == "sense1"
     assert senses[1] == "* {{sense|sense2}} {{l|es|syn3}}\n"
@@ -128,16 +142,17 @@ def test_sense_matching_multi(language,err):
 """
 
     wiki = parse(orig_text, skip_style_tags=True)
-    word = PosSection(wiki, parent=language)
+    pos = PosSection(wiki, parent=language)
+    word = pos.filter_words()[0]
 
     assert sorted(err.problems.keys()) == []
-    sense = next(word.ifilter_senses())
+    sense = next(pos.ifilter_senses())
 
     assert sense.sense == "word2"
     assert len(word.get_defs_matching_sense("word2")) == 2
 
 
-def test_add_sense(language):
+def xtest_add_sense(language):
     orig_text="""===Noun===
 {{es-noun}}
 
@@ -153,14 +168,15 @@ def test_add_sense(language):
 """
 
     wiki = parse(orig_text, skip_style_tags=True)
-    word = PosSection(wiki, parent=language)
+    pos = PosSection(wiki, parent=language)
+    word = pos.filter_words()[0]
 
     defs = word.filter_defs()
     assert defs[0] == "# {{lb|es|sense1}} [[word1]], [[word2]] {{gloss|gloss1}}\n"
     assert defs[1] == "# {{lb|es|sense2}} [[word3]]\n"
     assert defs[2] == "# [[word4]]\n"
 
-    senses = word.filter_senses()
+    senses = pos.filter_senses()
     assert senses[0] == "* {{sense|sense1}} {{l|es|syn1}}, {{l|es|syn2}}\n"
     assert senses[0].sense == "sense1"
     assert senses[1] == "* {{sense|sense2}} {{l|es|syn3}}\n"
@@ -212,5 +228,6 @@ def test_add_sense(language):
 * {{l|es|guiri}} {{qualifier|Spain}}
 #: {{syn|es|gabacho|q1=Spain, Mexico|guiri|q2=Spain}}
 """
+
 
 

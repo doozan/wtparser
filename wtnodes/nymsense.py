@@ -23,9 +23,9 @@ from ..utils import parse_anything, template_aware_split, template_aware_splitli
 
 class NymSense(WiktionaryNode):
     def __init__(self, text, name, parent, nym_type=None):
-        super().__init__(text, name, parent)
 
         self.sense = None
+        super().__init__(text, name, parent)
 
         if nym_type:
             self._type = nym_type
@@ -35,7 +35,6 @@ class NymSense(WiktionaryNode):
             ancestor = self.get_ancestor(NymSection)
             self._type = ancestor.name if ancestor is not None else "ERROR"
 
-        self._parse_data(text)
 
     def _parse_data(self, text):
         self._children = []

@@ -25,7 +25,6 @@ from .nymline import NymLine
 
 class Definition(WiktionaryNode):
     def __init__(self, text, name, parent):
-        super().__init__(text, name, parent)
         self._lines = []
 
         self.sense_ids = []
@@ -33,12 +32,11 @@ class Definition(WiktionaryNode):
         self.sense_words = set()
 
         self.nymlines = {}
+        super().__init__(text, name, parent)
 
-        self._parse_data()
-
-    def _parse_data(self):
-
-        for line in template_aware_splitlines(self._text, True):
+    def _parse_data(self, text):
+        self._children = []
+        for line in template_aware_splitlines(text, True):
             self._parse_item(line)
 
     def _parse_item(self, line):

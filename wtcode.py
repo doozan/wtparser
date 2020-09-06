@@ -86,6 +86,7 @@ from .sections.language import LanguageSection
 from .sections.pos import PosSection
 from .sections.nymsection import NymSection
 
+from .wtnodes.word import Word
 from .wtnodes.definition import Definition
 from .wtnodes.defitem import DefinitionItem
 from .wtnodes.nymline import NymLine
@@ -96,6 +97,7 @@ WTcode._build_filter_methods(
     sections=WiktionarySection,
     languages=LanguageSection,
     pos=PosSection,
+    words=Word,
     defs=Definition,
     defitems=DefinitionItem,
     nymlines=NymLine,
