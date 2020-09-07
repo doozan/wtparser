@@ -69,20 +69,32 @@ class WiktionaryNode(Node):
             self._lang_id = self.get_ancestor_attr("_lang_id", "ERROR")
         return self._lang_id
 
-    def flag_problem(self, problem, *data):
+    def flag_problem(self, problem, *data, from_child=False):
         flag_problem = self.get_ancestor_attr("flag_problem")
         if flag_problem:
-            flag_problem(problem, data)
+            flag_problem(problem, data, from_child=True)
+
+        if not from_child:
+            if not hasattr(self, "_local_problems"):
+                self._local_problems = {}
+            self._local_problems[problem] = self._local_problems.get(problem, []) + [data]
 
         if not hasattr(self, "_problems"):
             self._problems = {}
         self._problems[problem] = self._problems.get(problem, []) + [data]
+
 
     @property
     def problems(self):
         if not hasattr(self, "_problems"):
             self._problems = {}
         return self._problems
+
+    @property
+    def local_problems(self):
+        if not hasattr(self, "_local_problems"):
+            self._local_problems = {}
+        return self._local_problems
 
     def get_ancestor(self, target):
         """Returns the nearest ancestor of class ``target``"""
