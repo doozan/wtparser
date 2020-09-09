@@ -189,8 +189,7 @@ class Definition(WiktionaryNode):
         return len(self._children)
 
     def has_sense(self, sense):
-        # TODO: search in gloss and individual words?
-        for sense in re.split(r',|;| |\|', sense):
+        for sense in re.split(r'[\W_]+', sense):
             if (
                 sense != "" and
                 sense not in self.sense_ids
@@ -201,19 +200,19 @@ class Definition(WiktionaryNode):
         return True
 
     def has_sense_id(self, sense):
-        for sense in re.split(r',|;| |\|', sense):
+        for sense in re.split(r'[\W_]+', sense):
             if not sense in self.sense_ids:
                 return False
         return True
 
     def has_sense_label(self, sense):
-        for sense in re.split(r',|;| |\|', sense):
+        for sense in re.split(r'[\W_]+', sense):
             if not sense in self.sense_labels:
                 return False
         return True
 
     def has_sense_word(self, sense):
-        for sense in re.split(r',|;| |\|', sense):
+        for sense in re.split(r'[\W_]+', sense):
             if not sense in self.sense_words:
                 return False
         return True
@@ -257,21 +256,3 @@ class Definition(WiktionaryNode):
                 self.flag_problem("senseid_no_value", template)
             else:
                 self.sense_ids.append(str(template.get("2")))
-
-    def add_nymsense(self, nymsense, no_merge=False):
-        # TODO: Ensure nymsense has items
-        #
-
-        if self.has_nym(nymsense._type) and not no_merge and not "FIXME" in str(self.get_nym(nymsense._type)):
-            self.flag_problem("both_nym_line_and_section")
-            nymline = self.get_nym(nymsense._type)
-            nymline.add_nymsense(nymsense)
-        else:
-            nymline = NymLine.from_nymsense(nymsense, name="1", parent=self)
-            line = str(nymline)
-            if no_merge:
-                line = re.sub("\n", f" <!-- FIXME, MATCH SENSE: '{nymsense.sense}' -->\n", line)
-            self.add_nymline(line, smart_position=True, no_merge=no_merge)
-
-        if len(nymline) > 200:
-            self.flag_problem("long_nymline")

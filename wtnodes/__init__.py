@@ -72,7 +72,7 @@ class WiktionaryNode(Node):
     def flag_problem(self, problem, *data, from_child=False):
         flag_problem = self.get_ancestor_attr("flag_problem")
         if flag_problem:
-            flag_problem(problem, data, from_child=True)
+            flag_problem(problem, *data, from_child=True)
 
         if not from_child:
             if not hasattr(self, "_local_problems"):
@@ -157,6 +157,14 @@ class WiktionaryNode(Node):
                     child.nodes[i] = new[0]
                     for item in reversed(new[1:]):
                         child.nodes.insert(i+1, item)
+                    return
+        raise ValueError("item not found")
+
+    def insert_after(self, target, new):
+        for child in self._children:
+            for i, node in enumerate(child.nodes):
+                if node is target:
+                    child.nodes.insert(i+1, new)
                     return
         raise ValueError("item not found")
 

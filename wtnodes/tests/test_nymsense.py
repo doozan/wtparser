@@ -45,4 +45,9 @@ def test_qualifiers():
     orig_text="* {{l|es|word1}} {{qualifier|q1, q2}}\n"
     nymsense = NymSense(orig_text, name="1", parent=None)
 
-    assert str(nymsense) == orig_text
+
+def test_sense():
+    orig_text="* {{s|hand}} {{l|es|saeta}}, {{l|es|manecilla}}" 
+    nymsense = NymSense(orig_text, name="1", parent=None)
+
+    assert nymsense.sense == "hand"

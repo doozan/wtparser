@@ -29,14 +29,20 @@ from ..utils import parse_anything
 
 # Consider the presence of any non-whitespace or separator to be text
 def has_text(text):
-    return re.search(r"[^\s,;]", text)
+    return re.search(r"[^\s,;:.]", text)
 
 
 class WordLink(WiktionaryNode):
-    def __init__(self, text, name, parent):
+    def __init__(self, text, name, parent, skip_templates=None):
+        """ skip_templates is an optional list of templates that should be
+        removed/ignored during processing.  It's used by nymsense to prevent
+        wordlink from using gloss when nymsense has already used that gloss
+        in place of a sense
+        """
         self._has_changed = False
 
         self._text = text
+        self._skip_templates = skip_templates
 
         # Link is a dict containing, at mininum, "target" and, optionally, "tr" and "alt" values
         self._link = {}
@@ -127,7 +133,7 @@ class WordLink(WiktionaryNode):
         """
 
         # Special handling for "See [[Thesaurus:entry]]." items
-        res = re.match(r"See \[\[(Thesaurus:[^\]]+)\]\]\.?\s*$", text)
+        res = re.match(r"(?:{{s(?:ense)?|[^}]+}})?\s*See \[\[(Thesaurus:[^\]]+)\]\]\.?\s*$", text)
         if res:
             self._link = {"target": res.group(1)}
             return
@@ -155,7 +161,9 @@ class WordLink(WiktionaryNode):
         wikt = parse_anything(text, skip_style_tags=True)
 
         for template in wikt.filter_templates(recursive=False):
-            if template.name in templates:
+            if self._skip_templates and str(template.name) in self._skip_templates:
+                wikt.remove(template)
+            elif template.name in templates:
                 response["templates"].append(template)
                 wikt.remove(template)
 
@@ -186,7 +194,7 @@ class WordLink(WiktionaryNode):
 
     def extract_qualifiers(self, text):
         res = self.extract_templates_and_patterns(
-            ["i", "q", "qual", "qualifier"], [r"\(([^)]*)\)"], text
+            ["lb", "lbl", "label", "i", "q", "qual", "qualifier"], [r"\(([^)]*)\)"], text
         )
         q = []
 
@@ -200,8 +208,12 @@ class WordLink(WiktionaryNode):
             self.flag_problem("qualifier_text_and_template")
 
         for item in res["templates"]:
-            for x in item.params:
-                q.append(str(x))
+            if item.name in ["label", "lb", "lbl"]:
+                # TODO: support special separator values "_", "and", "or"
+                # probably not needed here, but when q[] is reassembled into text
+                q += [ str(x) for x in item.params if x.name not in ["1", "sort", "nocat"] ]
+            else:
+                q += [ str(x) for x in item.params ]
 
         q += [
             self.stripformat(x)
@@ -236,8 +248,8 @@ class WordLink(WiktionaryNode):
                     self.flag_problem("link_wrong_lang")
                 links.append(template)
 
-            # Tags that can be ignored
-            elif template.name in [ "g", "rfgender", "sense" ]:
+            elif str(template.name) in [ "g", "rfgender" ] \
+                 or str(template.name) in self._skip_templates:
                 pass
 
             else:
@@ -302,7 +314,7 @@ class WordLink(WiktionaryNode):
         if has_text_links:
             sources.append("text")
         if len(sources) > 1:
-            self.flag_problem("link_has_" + "_and_".join(sources))
+            self.flag_problem("link_has_" + "_and_".join(sources), text)
 
         text = " ".join([self.stripformat(x) for x in text.split(" ")])
         if "|" in text:

@@ -72,13 +72,6 @@ class NymLine(DefinitionItem):
 
         # TODO: ensure there's no other text on the line
 
-    def add_nymsense(self, nymsense):
-        items = [wordlink.item for wordlink in nymsense.filter_wordlinks()]
-        if not len(items):
-            self.flag_problem("no_items_in_nymsense", nymsense)
-            return
-        self.add(items)
-
     def add_nymline(self, nymline):
         # TODO: check that lang_id and template type match
         self.add(nymline.items)
@@ -173,17 +166,7 @@ class NymLine(DefinitionItem):
                 elif k == "gloss":
                     if "q" not in item or not item["q"]:
                         params.append(f"q{idx-1}={item[k]}")
-                        print("ERRR:", self.__class__, "using_gloss_as_qualifier", self._parent._parent._parent.name)
                         self.flag_problem("using_gloss_as_qualifier", item)
-
-                        print("parent probs:", self._parent.problems)
-                        for child in self._parent._children:
-                            for node in child.nodes:
-                                if node is self:
-                                    print("me")
-                                else:
-                                    print(node.__class__)
-
                     else:
                         self.flag_problem("gloss_and_qualifier", item)
                 else:

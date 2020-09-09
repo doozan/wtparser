@@ -58,9 +58,3 @@ class Word(WiktionaryNode):
     def add_item(self, lines):
         item = Definition("".join(lines), name=len(self._children), parent=self)
         self._children.append(parse_anything(item))
-
-    def get_defs_matching_sense(self, nym_sense):
-        return self.filter_defs(
-            recursive=False, matches=lambda d: d.has_sense(nym_sense)
-        )
-

@@ -106,3 +106,31 @@ class WiktionarySection(WiktionaryNode):
         if title in self._sections:
             self.flag_problem("duplicate_section", title)
         self._sections[title] = self._sections.get(title, []) + [item]
+
+
+    def raise_subsections(self):
+
+        if not self._parent:
+            raise ValueError("No parent to move subsections to")
+
+        # Everything after the first WiktionarySection is subsection stuff
+        # that should be re-parented
+        found = False
+        for i, child in enumerate(self._children):
+            for node in child.nodes:
+                if isinstance(node, WiktionarySection):
+                    found=True
+                    break
+            if found:
+                break
+        if not found:
+            raise ValueError("no subsections found")
+
+        new_parent = self._parent
+        new_children = self._children[i:]
+        for child in reversed(new_children):
+            # TODO: Change header level on item and sub-items
+            if hasattr(child, "_level"):
+                child._level = self._level
+            child._parent = new_parent
+            new_parent.insert_after(self, child)

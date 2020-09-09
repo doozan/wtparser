@@ -39,23 +39,32 @@ class NymSense(WiktionaryNode):
     def _parse_data(self, text):
         self._children = []
         wikt = parse_anything(text)
-        sense_templates = wikt.filter_templates(matches=lambda x: x.name in ["s", "sense"])
-        if len(sense_templates):
-            if len(sense_templates)>1:
-                self.flag_problem("nymsense_has_multi_templates", text)
+        templates = wikt.filter_templates(matches=lambda x: x.name in ["s", "sense"])
 
-            senses = [ str(p.value) for t in sense_templates for p in t.params ]
+        if not templates:
+            if re.match(r"(\*\s*){{gl(oss)?\|", text):
+                self.flag_problem("autofix_gloss_as_sense", text)
+                templates = wikt.filter_templates(matches=lambda x: x.name in ["gl", "gloss"])
+
+        if templates:
+            senses = set( str(p.value) for t in templates for p in t.params )
             self.sense = "|".join(senses)
         else:
             self.sense = ""
 
-        for line in template_aware_splitlines(text, True):
+        skip_templates = set( str(t.name) for t in templates )
+
+        for line in template_aware_splitlines(str(wikt), True):
             if line.strip() == "":
                 self.add_text(line)
             else:
-                self.add_line(line)
+                self.add_line(line, skip_templates)
 
-    def add_line(self, line):
+        items = [wordlink.item for wordlink in self.filter_wordlinks()]
+        if not len(items):
+            self.flag_problem("no_links_in_nymsense", self)
+
+    def add_line(self, line, skip_templates=None):
         """
         Parses a line of words defined within wiki tags
         If a line has multiple words, they must be comma separated
@@ -86,7 +95,7 @@ class NymSense(WiktionaryNode):
                 self.flag_problem("empty_item_in_list", line_text)
 
             # TODO: Better counter
-            item = WordLink(text, name=len(self._children) + 1, parent=self)
+            item = WordLink(text, name=len(self._children) + 1, parent=self, skip_templates=skip_templates)
             self._children.append(parse_anything(item))
 
         if trailing_whitespace:

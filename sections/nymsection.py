@@ -26,7 +26,7 @@ from ..utils import parse_anything, template_aware_splitlines
 
 def get_nym_sense(line):
     sense = ""
-    res = re.match(r"\*\s*{{s(?:ense)?\|([^{}]+)}}\s*", line)
+    res = re.match(r"\*?\s*{{(?:s|sense|gl|gloss)?\|([^{}]+)}}\s*", line)
     sense = res.group(1) if res else ""
     return sense
 
@@ -58,7 +58,10 @@ class NymSection(WiktionarySection):
                 return True
         return False
 
-    def add_item(self, items):
-        item = NymSense("".join(items), name=len(self._children) + 1, parent=self)
+    def add_item(self, lines):
+        trailing_newlines = self.pop_trailing_newlines(lines)
+        item = NymSense("".join(lines), name=len(self._children) + 1, parent=self)
         self._children.append(parse_anything(item))
+        if len(trailing_newlines):
+            self._children.append(parse_anything(trailing_newlines))
         return item
