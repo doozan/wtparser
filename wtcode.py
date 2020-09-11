@@ -84,7 +84,7 @@ class WTcode(Wikicode):
 from .sections import WiktionarySection
 from .sections.language import LanguageSection
 from .sections.pos import PosSection
-from .sections.nymsection import NymSection
+from .sections.nym import NymSection
 
 from .wtnodes.word import Word
 from .wtnodes.definition import Definition

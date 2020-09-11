@@ -373,7 +373,7 @@ class WiktionaryNode(Node):
 from ..sections import WiktionarySection
 from ..sections.language import LanguageSection
 from ..sections.pos import PosSection
-from ..sections.nymsection import NymSection
+from ..sections.nym import NymSection
 
 from .word import Word
 from .definition import Definition

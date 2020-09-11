@@ -25,7 +25,7 @@ def get_section_type(title, default):
     from ..constants import ALL_LANGUAGES, ALL_POS, ALL_NYMS
     from .pos import PosSection
     from .language import LanguageSection
-    from .nymsection import NymSection
+    from .nym import NymSection
 
     if title in ALL_LANGUAGES:
         return LanguageSection

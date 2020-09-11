@@ -24,7 +24,7 @@ from .defitem import DefinitionItem
 from .nymsense import NymSense
 from ..constants import NYM_TO_TAG
 from ..utils import parse_anything
-from ..sections.nymsection import NymSection
+from ..sections.nym import NymSection
 
 
 class NymLine(DefinitionItem):

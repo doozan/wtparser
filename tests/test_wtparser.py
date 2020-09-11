@@ -19,7 +19,7 @@ from .. import parse, parse_page, parse_language
 from ..sections import WiktionarySection
 from ..sections.page import Page
 from ..sections.language import LanguageSection
-from ..sections.nymsection import NymSection
+from ..sections.nym import NymSection
 from ..sections.pos import PosSection
 from ..wtnodes.definition import Definition
 from ..wtnodes.defitem import DefinitionItem

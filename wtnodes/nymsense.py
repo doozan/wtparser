@@ -30,7 +30,7 @@ class NymSense(WiktionaryNode):
         if nym_type:
             self._type = nym_type
         else:
-            from ..sections.nymsection import NymSection
+            from ..sections.nym import NymSection
 
             ancestor = self.get_ancestor(NymSection)
             self._type = ancestor.name if ancestor is not None else "ERROR"
