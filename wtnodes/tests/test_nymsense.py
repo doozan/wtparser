@@ -40,6 +40,9 @@ def test_complex():
     assert len(nymsense.filter_wordlinks()) == 6
     assert str(nymsense) == orig_text
 
+    wordlinks = nymsense.filter_wordlinks()
+    assert wordlinks[0] == "{{sense|stingy}} {{l|es|tacaño|g=m}}"
+    assert wordlinks[1] == " {{l|es|tacaña|g=f}}"
 
 def test_qualifiers():
     orig_text="* {{l|es|word1}} {{qualifier|q1, q2}}\n"
@@ -51,3 +54,17 @@ def test_sense():
     nymsense = NymSense(orig_text, name="1", parent=None)
 
     assert nymsense.sense == "hand"
+
+def test_multisense():
+    orig_text="""\
+* {{l|es|frío}} {{g|m}} (Cuba, colloquial)
+* {{l|es|heladera}} {{g|f}} (Argentina, Paraguay, Uruguay)
+* {{l|es|nevera}} {{g|f}} (Colombia, Dominican Republic, Puerto Rico, Spain, Venezuela)
+"""
+
+    nymsense = NymSense(orig_text, name="1", parent=None)
+    assert str(nymsense) == orig_text
+
+    wordlinks = nymsense.filter_wordlinks()
+    assert wordlinks[0] == "{{l|es|frío}} {{g|m}} (Cuba, colloquial)\n"
+

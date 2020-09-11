@@ -42,9 +42,9 @@ class NymSense(WiktionaryNode):
         templates = wikt.filter_templates(matches=lambda x: x.name in ["s", "sense"])
 
         if not templates:
-            if re.match(r"(\*\s*){{gl(oss)?\|", text):
+            templates = wikt.filter_templates(matches=lambda x: x.name in ["gl", "gloss"])
+            if templates:
                 self.flag_problem("autofix_gloss_as_sense", text)
-                templates = wikt.filter_templates(matches=lambda x: x.name in ["gl", "gloss"])
 
         if templates:
             senses = set( str(p.value) for t in templates for p in t.params )

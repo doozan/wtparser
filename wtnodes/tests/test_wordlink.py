@@ -32,3 +32,6 @@ def test_wordlink():
     wordlink = WordLink("word {{q|q1, q2}} (q3)", name="1", parent=None)
     assert wordlink.item == { "target": "word", "q": "q1, q2, q3" }
     # TODO: Check for duplicate sources flag
+
+    wordlink = WordLink("{{l|es|frío}} {{g|m}} (Cuba, colloquial)", name="1", parent=None)
+    assert wordlink.item == { "target": "frío", "q": "Cuba, colloquial" }
