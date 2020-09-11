@@ -19,30 +19,20 @@ This handles links to wiktionary words including the link, qualifier, and gloss
 """
 
 import re
-import json
 
 from . import WiktionaryNode
 from ..utils import parse_anything
 
-# from ..parse import parse as wtparse
-# from wiktionaryparser import parse as wtparse
-
 # Consider the presence of any non-whitespace or separator to be text
 def has_text(text):
-    return re.search(r"[^\s,;:.]", text)
+    return re.search(r"[^\s,;:.']", text)
 
 
 class WordLink(WiktionaryNode):
-    def __init__(self, text, name, parent, skip_templates=None):
-        """ skip_templates is an optional list of templates that should be
-        removed/ignored during processing.  It's used by nymsense to prevent
-        wordlink from using gloss when nymsense has already used that gloss
-        in place of a sense
-        """
+    def __init__(self, text, name, parent):
         self._has_changed = False
 
         self._text = text
-        self._skip_templates = skip_templates
 
         # Link is a dict containing, at mininum, "target" and, optionally, "tr" and "alt" values
         self._link = {}
@@ -161,9 +151,7 @@ class WordLink(WiktionaryNode):
         wikt = parse_anything(text, skip_style_tags=True)
 
         for template in wikt.filter_templates(recursive=False):
-            if self._skip_templates and str(template.name) in self._skip_templates:
-                wikt.remove(template)
-            elif template.name in templates:
+            if template.name in templates:
                 response["templates"].append(template)
                 wikt.remove(template)
 
@@ -219,7 +207,7 @@ class WordLink(WiktionaryNode):
             self.stripformat(x)
             for items in res["patterns"]
             for item in items
-            for x in item.split(",")
+            for x in self.stripformat(item).split(",")
         ]
 
         if "|" in "_".join(q):
@@ -248,8 +236,7 @@ class WordLink(WiktionaryNode):
                     self.flag_problem("link_wrong_lang")
                 links.append(template)
 
-            elif str(template.name) in [ "g", "rfgender" ] \
-                 or str(template.name) in self._skip_templates:
+            elif str(template.name) in [ "g", "rfgender" ]:
                 pass
 
             else:

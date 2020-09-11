@@ -49,8 +49,9 @@ Blah
 # [[noun1]]
 
 ====Synonyms====
-* [[nounsyn1]] (blah1)
-* {{l|es|nounsyn2}} {{q|blah2}}
+* {{sense|noun1}} {{l|es|nounsyn1}}
+* [[nounsyn2]] (noun1)
+* {{l|es|nounsyn3}} {{gloss|noun1}}
 
 ===Verb===
 {{es-verb|verb|er}}
@@ -110,14 +111,14 @@ def test_filter():
     assert len(wikt.filter(forcetype=NymLine)) == 2
     assert len(wikt.filter_nymlines()) == 2
 
-    assert len(wikt.filter(forcetype=WordLink)) == 2
-    assert len(wikt.filter_wordlinks()) == 2
+    assert len(wikt.filter(forcetype=WordLink)) == 3
+    assert len(wikt.filter_wordlinks()) == 3
 
     assert len(wikt.filter(forcetype=NymSection)) == 1
     assert len(wikt.filter_nyms()) == 1
 
-    assert len(wikt.filter(forcetype=NymSense)) == 1
-    assert len(wikt.filter_senses()) == 1
+    assert len(wikt.filter(forcetype=NymSense)) == 3
+    assert len(wikt.filter_senses()) == 3
 
 
 def test_ifilter():
@@ -156,11 +157,11 @@ def test_parse():
     verb_text = str(next(spanish.ifilter_pos(recursive=False, matches=lambda x: name_is(x, "Verb"))))
 
     noun = next(spanish.ifilter_pos(recursive=False, matches=lambda x: name_is(x, "Noun")))
-    assert str(noun) == "===Noun===\n\n{{es-noun|m}}\n\n# [[noun1]]\n\n====Synonyms====\n* [[nounsyn1]] (blah1)\n* {{l|es|nounsyn2}} {{q|blah2}}\n\n"
+    assert str(noun) == "===Noun===\n\n{{es-noun|m}}\n\n# [[noun1]]\n\n====Synonyms====\n* {{sense|noun1}} {{l|es|nounsyn1}}\n* [[nounsyn2]] (noun1)\n* {{l|es|nounsyn3}} {{gloss|noun1}}\n\n"
     assert noun == noun_text
 
     nymsection = next(noun.ifilter_nyms(matches=lambda x: name_is(x, "Synonyms")))
-    nym_text = "====Synonyms====\n* [[nounsyn1]] (blah1)\n* {{l|es|nounsyn2}} {{q|blah2}}\n\n"
+    nym_text = "====Synonyms====\n* {{sense|noun1}} {{l|es|nounsyn1}}\n* [[nounsyn2]] (noun1)\n* {{l|es|nounsyn3}} {{gloss|noun1}}\n\n"
     assert nymsection == nym_text
 
     adj = next(spanish.ifilter_pos(recursive=False, matches=lambda x: name_is(x, "Adjective")))
@@ -177,26 +178,26 @@ def test_parse():
 
     assert len(noun.filter_nyms(recursive=False)) == 1
     synonyms = next(noun.ifilter_nyms(recursive=False, matches="Synonyms"))
-    assert len(synonyms.filter_senses(recursive=False)) == 1
+    assert len(synonyms.filter_senses(recursive=False)) == 3
 
-    nymsense = next(synonyms.ifilter_senses(recursive=False))
-    assert nymsense.strip() == "* [[nounsyn1]] (blah1)\n* {{l|es|nounsyn2}} {{q|blah2}}"
+    nymsenses = synonyms.filter_senses(recursive=False)
+    assert len(nymsenses) == 3
 
-    wl_from_section = synonyms.filter_wordlinks(recursive=True)
-    assert len(wl_from_section) == 2
+    nymsense = nymsenses[1]
+    assert nymsense.strip() == "* [[nounsyn2]] (noun1)"
+
+    all_wordlinks = synonyms.filter_wordlinks(recursive=True)
+    assert len(all_wordlinks) == 3
 
     wordlinks = nymsense.filter_wordlinks(recursive=False)
-    assert len(wordlinks) == 2
+    assert len(wordlinks) == 1
     wordlink = wordlinks[0]
-    assert wordlink.strip() == "[[nounsyn1]] (blah1)"
+    assert wordlink.strip() == "[[nounsyn2]] (noun1)"
     wordlink.link = "newsyn"
-    assert wordlink.strip() == "{{l|es|newsyn}} {{q|blah1}}"
+    assert wordlink.strip() == "{{l|es|newsyn}} {{q|noun1}}"
 
     #assert nymsense.make_tag() == "{{syn|es|newsyn|q1=blah1|nounsyn2|q2=blah2}}"
-    assert (
-        nymsense.strip()
-        == "* {{l|es|newsyn}} {{q|blah1}}\n* {{l|es|nounsyn2}} {{q|blah2}}"
-    )
+    assert nymsense.strip() == "* {{l|es|newsyn}} {{q|noun1}}"
 
     adj = next(spanish.ifilter_pos(recursive=False, matches="Verb"))
     assert adj.name == "Verb"

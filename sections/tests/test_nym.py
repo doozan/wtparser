@@ -166,8 +166,6 @@ def test_badline(language):
     wiki = parse(orig_text, skip_style_tags=True)
     nymsection = NymSection(wiki, parent=language)
 
-    print(nymsection.problems)
-
     assert sorted(nymsection.problems.keys()) == sorted(["autofix_bad_nymline"])
 
 
@@ -200,4 +198,22 @@ def xtest_table():
     assert nymsection.nyms[0].tag == None
 
     assert sorted(expected_flags) == sorted(err.errors.keys())
+
+
+def test_multisense2():
+    orig_text="""\
+===Synonyms===
+* {{l|es|frío}} {{g|m}} (Cuba, colloquial)
+* {{l|es|heladera}} {{g|f}} (Argentina, Paraguay, Uruguay)
+* {{l|es|nevera}} {{g|f}} (Colombia, Dominican Republic, Puerto Rico, Spain, Venezuela)
+"""
+
+    wiki = parse(orig_text, skip_style_tags=True)
+    nym = NymSection(wiki, parent=None)
+    assert str(nym) == orig_text
+
+    wordlinks = nym.filter_wordlinks()
+    assert wordlinks[0] == "{{l|es|frío}} {{g|m}} (Cuba, colloquial)"
+    assert wordlinks[1] == "{{l|es|heladera}} {{g|f}} (Argentina, Paraguay, Uruguay)"
+
 

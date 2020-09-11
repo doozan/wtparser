@@ -220,26 +220,29 @@ class WiktionaryNode(Node):
 
             if in_header or in_footer:
                 unhandled.append(line)
+                continue
 
-            elif re.match(r"\s+$", line):
+            if re.match(r"\s+$", line):
                 if current_item:
                     current_item.append(line)
                 else:
                     unhandled.append(line)
+                continue
 
-            elif current_item and self._is_still_item(line):
-                current_item.append(line)
+            if current_item:
+                if self._is_still_item(line):
+                    current_item.append(line)
+                    continue
+                else:
+                    self.add_item(current_item)
+                    current_item = []
 
-            elif self._is_new_item(line):
+            if self._is_new_item(line):
                 if len(unhandled):
                     self.add_text(unhandled)
                     unhandled = []
 
-                if len(current_item):
-                    self.add_item(current_item)
-                    current_item = []
-
-                current_item.append(line)
+                current_item = [line]
 
             elif self._is_footer(line):
                 in_footer=True

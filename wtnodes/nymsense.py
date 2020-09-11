@@ -19,7 +19,7 @@ import re
 
 from . import WiktionaryNode
 from .wordlink import WordLink
-from ..utils import parse_anything, template_aware_split, template_aware_splitlines
+from ..utils import parse_anything, nest_aware_split, template_aware_split, template_aware_splitlines
 
 class NymSense(WiktionaryNode):
     def __init__(self, text, name, parent, nym_type=None):
@@ -37,55 +37,86 @@ class NymSense(WiktionaryNode):
 
 
     def _parse_data(self, text):
+        """
+        Accepts single line with optional sense tag
+        * {{sense|text}} {{l|es|word1}}
+
+        or, multiline with no sense
+        * [[word1]], [[word2]]
+        * [[word3]]
+        """
+
         self._children = []
-        wikt = parse_anything(text)
-        templates = wikt.filter_templates(matches=lambda x: x.name in ["s", "sense"])
+        text = self.store_line_start(text)
 
-        if not templates:
-            templates = wikt.filter_templates(matches=lambda x: x.name in ["gl", "gloss"])
-            if templates:
-                self.flag_problem("autofix_gloss_as_sense", text)
+        trailing = []
+        self.sense, source, raw_sense = self.parse_sense(text)
+        if source == "gloss":
+            self.flag_problem("autofix_gloss_as_sense")
+        if raw_sense:
+            sense_text = re.escape(raw_sense)
+            res = re.match(fr"(.*?)({sense_text})(.*?)(\s*)$", text, re.DOTALL)
+            if not res:
+                raise ValueError(f"Can't find '{sense_text}' in: {text}")
 
-        if templates:
-            senses = set( str(p.value) for t in templates for p in t.params )
-            self.sense = "|".join(senses)
-        else:
-            self.sense = ""
+            before_sense = res.group(1)
+            sense = res.group(2)
+            after_sense = res.group(3)
+            if res.group(4):
+                trailing.insert(0,res.group(4))
 
-        skip_templates = set( str(t.name) for t in templates )
-
-        for line in template_aware_splitlines(str(wikt), True):
-            if line.strip() == "":
-                self.add_text(line)
+            if after_sense and after_sense.strip():
+                if before_sense and after_sense.strip():
+                    raise ValueError("boop", )
+                    self.flag_problem("sense_in_middle", sense, text)
+                    text = before_sense + after_sense
+                    self.add_text(sense)
+                else:
+                    text = after_sense
+                    self.add_text(before_sense+sense)
             else:
-                self.add_line(line, skip_templates)
+                text = before_sense
+                trailing.insert(0, sense+after_sense)
+
+
+        first = True
+        for line in template_aware_splitlines(text, True):
+            if first:
+                first=False
+            else:
+                line = self.store_line_start(line)
+
+            res = re.match("(.*?)(\s*)$", line, re.DOTALL)
+            if res.group(1):
+                self.add_list(res.group(1))
+            if res.group(2):
+                self.add_text(res.group(2))
+
+        if trailing:
+            self.add_text(trailing)
 
         items = [wordlink.item for wordlink in self.filter_wordlinks()]
         if not len(items):
             self.flag_problem("no_links_in_nymsense", self)
 
-    def add_line(self, line, skip_templates=None):
-        """
-        Parses a line of words defined within wiki tags
-        If a line has multiple words, they must be comma separated
-        """
-
-        # Match lines starting with '*' then whitespace then possible '{'
-        res = re.match(r"(\*\s*)([^*].*?)(\s*)$", line)
+    def store_line_start(self, line):
+        """ Put the beginning of the line into _children and return the remainder """
+        start_pattern = r"\*\s*"
+        res = re.match(f"({start_pattern})(.*)", line, re.DOTALL)
         if not res:
-            self.flag_problem("unexpected_line_start", line)
-            self.add_text(line)
-            return
+            raise ValueError("Line does not start with expected pattern")
+        self.add_text(res.group(1))
+        return res.group(2)
 
-        start_text = res.group(1)
-        line_text = res.group(2)
-        trailing_whitespace = res.group(3)
 
-        # TODO: Handle sense tags?
-        self.add_text(start_text)
-        first = True
+    def add_list(self, line):
+        """
+        Parses a list of words defined within wiki tags
+        If a list has multiple words, they must be comma separated
+        """
 
-        for text in template_aware_split(line_text, ","):
+        first=True
+        for text in nest_aware_split(line, [("{{","}}"), ("(", ")")], ","):
             if first:
                 first = False
             else:
@@ -95,8 +126,51 @@ class NymSense(WiktionaryNode):
                 self.flag_problem("empty_item_in_list", line_text)
 
             # TODO: Better counter
-            item = WordLink(text, name=len(self._children) + 1, parent=self, skip_templates=skip_templates)
+            item = WordLink(text, name=len(self._children) + 1, parent=self)
             self._children.append(parse_anything(item))
 
-        if trailing_whitespace:
-            self.add_text(trailing_whitespace)
+#        if trailing_whitespace:
+#            self.add_text(trailing_whitespace)
+
+    @staticmethod
+    def parse_sense(line):
+        """ Detects the sense, if any, in a nym line
+
+        Returns a tuple (sense, source, raw_sense) where sense is the sense detected,
+        and source is "template" or "gloss" depending on where the sense was found and
+        raw_sense is the text contining the source plus any surrounding template/parentheses
+        """
+        wikt = parse_anything(line)
+
+        templates = wikt.filter_templates(matches=lambda x: x.name in ["s", "sense"])
+
+        sense = ""
+        source = None
+        raw_sense = None
+
+        if templates:
+            source = "template"
+        else:
+            templates = wikt.filter_templates(matches=lambda x: x.name in ["gl", "gloss"])
+            if templates:
+                source = "gloss"
+#                self.flag_problem("autofix_gloss_as_sense", line)
+#            if not templates:
+#                # Match text inside parentheses ()
+#                res = re.search(r"\(([^)]+?)\)", line)
+#                if res:
+#                    source = res.group(0)
+##                    self.flag_problem("autofix_parenthetical_as_sense", line)
+#                    sense = res.group(1).strip("'").strip('"')
+
+        if templates:
+#            if len(templates) > 1:
+#                pass
+##                self.flag_problem("multiple_sense_templates", line)
+
+            raw_sense = str(templates[0])
+            senses = set( str(p.value) for p in templates[0].params )
+            sense = "|".join(senses)
+
+        return (sense, source, raw_sense)
+

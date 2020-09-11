@@ -18,13 +18,11 @@ from ... import parse
 from ..nymsense import NymSense
 
 def test_simple():
-    orig_text="""* {{sense|word}} {{l|es|otherword}}\n"""
-    expected_text = "{{syn|es|otherword}}"
-    expected_flags = []
+    orig_text="* {{sense|word}} {{l|es|otherword}}\n"
 
     nymsense = NymSense(orig_text, name="1", parent=None)
-    assert len(nymsense.filter_wordlinks()) == 1
     assert str(nymsense) == orig_text
+    assert len(nymsense.filter_wordlinks()) == 1
 
 
 def test_complex():
@@ -35,19 +33,18 @@ def test_complex():
     assert len(nymsense.filter_wordlinks()) == 4
     assert str(nymsense) == line1
 
-    orig_text = "".join([line1, line2])
-    nymsense = NymSense(orig_text, name="1", parent=None)
-    assert len(nymsense.filter_wordlinks()) == 6
-    assert str(nymsense) == orig_text
-
-    wordlinks = nymsense.filter_wordlinks()
-    assert wordlinks[0] == "{{sense|stingy}} {{l|es|tacaño|g=m}}"
-    assert wordlinks[1] == " {{l|es|tacaña|g=f}}"
+#    orig_text = "".join([line1, line2])
+#    nymsense = NymSense(orig_text, name="1", parent=None)
+#    assert len(nymsense.filter_wordlinks()) == 6
+#    assert str(nymsense) == orig_text
+#
+#    wordlinks = nymsense.filter_wordlinks()
+#    assert wordlinks[0] == "{{sense|stingy}} {{l|es|tacaño|g=m}}"
+#    assert wordlinks[1] == "{{l|es|tacaña|g=f}}"
 
 def test_qualifiers():
     orig_text="* {{l|es|word1}} {{qualifier|q1, q2}}\n"
     nymsense = NymSense(orig_text, name="1", parent=None)
-
 
 def test_sense():
     orig_text="* {{s|hand}} {{l|es|saeta}}, {{l|es|manecilla}}" 
@@ -55,16 +52,11 @@ def test_sense():
 
     assert nymsense.sense == "hand"
 
-def test_multisense():
-    orig_text="""\
-* {{l|es|frío}} {{g|m}} (Cuba, colloquial)
-* {{l|es|heladera}} {{g|f}} (Argentina, Paraguay, Uruguay)
-* {{l|es|nevera}} {{g|f}} (Colombia, Dominican Republic, Puerto Rico, Spain, Venezuela)
-"""
-
+def test_stripping():
+    orig_text = "* {{sense|soft drink}} {{l|es|bebida|g=f}} (''Chile''), {{l|es|gaseosa|g=f}} (''Colombia, El Salvador, Spain'')"
     nymsense = NymSense(orig_text, name="1", parent=None)
-    assert str(nymsense) == orig_text
 
     wordlinks = nymsense.filter_wordlinks()
-    assert wordlinks[0] == "{{l|es|frío}} {{g|m}} (Cuba, colloquial)\n"
+    assert wordlinks[0].qualifiers == ["Chile"]
+    assert wordlinks[1].qualifiers == ["Colombia", "El Salvador", "Spain"]
 
