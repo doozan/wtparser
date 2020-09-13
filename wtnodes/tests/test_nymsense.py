@@ -22,7 +22,7 @@ def test_simple():
 
     nymsense = NymSense(orig_text, name="1", parent=None)
     assert str(nymsense) == orig_text
-    assert len(nymsense.filter_wordlinks()) == 1
+    assert len(nymsense.filter_decoratedlinks()) == 1
 
 
 def test_complex():
@@ -30,17 +30,17 @@ def test_complex():
     line2="*{{sense|stingy}} {{l|es|hijo de puta|g=m}}, {{l|es|hija de puta|g=f}}\n"
 
     nymsense = NymSense(line1, name="1", parent=None)
-    assert len(nymsense.filter_wordlinks()) == 4
+    assert len(nymsense.filter_decoratedlinks()) == 4
     assert str(nymsense) == line1
 
 #    orig_text = "".join([line1, line2])
 #    nymsense = NymSense(orig_text, name="1", parent=None)
-#    assert len(nymsense.filter_wordlinks()) == 6
+#    assert len(nymsense.filter_decoratedlinks()) == 6
 #    assert str(nymsense) == orig_text
 #
-#    wordlinks = nymsense.filter_wordlinks()
-#    assert wordlinks[0] == "{{sense|stingy}} {{l|es|tacaño|g=m}}"
-#    assert wordlinks[1] == "{{l|es|tacaña|g=f}}"
+#    decoratedlinks = nymsense.filter_decoratedlinks()
+#    assert decoratedlinks[0] == "{{sense|stingy}} {{l|es|tacaño|g=m}}"
+#    assert decoratedlinks[1] == "{{l|es|tacaña|g=f}}"
 
 def test_qualifiers():
     orig_text="* {{l|es|word1}} {{qualifier|q1, q2}}\n"
@@ -56,7 +56,7 @@ def test_stripping():
     orig_text = "* {{sense|soft drink}} {{l|es|bebida|g=f}} (''Chile''), {{l|es|gaseosa|g=f}} (''Colombia, El Salvador, Spain'')"
     nymsense = NymSense(orig_text, name="1", parent=None)
 
-    wordlinks = nymsense.filter_wordlinks()
-    assert wordlinks[0].qualifiers == ["Chile"]
-    assert wordlinks[1].qualifiers == ["Colombia", "El Salvador", "Spain"]
+    decoratedlinks = nymsense.filter_decoratedlinks()
+    assert decoratedlinks[0].qualifiers == ["Chile"]
+    assert decoratedlinks[1].qualifiers == ["Colombia", "El Salvador", "Spain"]
 

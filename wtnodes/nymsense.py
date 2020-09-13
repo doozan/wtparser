@@ -18,7 +18,7 @@ import os
 import re
 
 from . import WiktionaryNode
-from .wordlink import WordLink
+from .decoratedlink import DecoratedLink
 from ..utils import parse_anything, nest_aware_split, template_aware_split, template_aware_splitlines
 
 class NymSense(WiktionaryNode):
@@ -95,7 +95,7 @@ class NymSense(WiktionaryNode):
         if trailing:
             self.add_text(trailing)
 
-        items = [wordlink.item for wordlink in self.filter_wordlinks()]
+        items = [decoratedlink.item for decoratedlink in self.filter_decoratedlinks()]
         if not len(items):
             self.flag_problem("no_links_in_nymsense", self)
 
@@ -126,7 +126,7 @@ class NymSense(WiktionaryNode):
                 self.flag_problem("empty_item_in_list", line_text)
 
             # TODO: Better counter
-            item = WordLink(text, name=len(self._children) + 1, parent=self)
+            item = DecoratedLink(text, name=len(self._children) + 1, parent=self)
             self._children.append(parse_anything(item))
 
 #        if trailing_whitespace:

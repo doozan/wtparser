@@ -24,7 +24,7 @@ from ..sections.pos import PosSection
 from ..wtnodes.definition import Definition
 from ..wtnodes.defitem import DefinitionItem
 from ..wtnodes.nymline import NymLine
-from ..wtnodes.wordlink import WordLink
+from ..wtnodes.decoratedlink import DecoratedLink
 from ..wtnodes.nymsense import NymSense
 from ..wtcode import WTcode
 
@@ -111,8 +111,8 @@ def test_filter():
     assert len(wikt.filter(forcetype=NymLine)) == 2
     assert len(wikt.filter_nymlines()) == 2
 
-    assert len(wikt.filter(forcetype=WordLink)) == 3
-    assert len(wikt.filter_wordlinks()) == 3
+    assert len(wikt.filter(forcetype=DecoratedLink)) == 3
+    assert len(wikt.filter_decoratedlinks()) == 3
 
     assert len(wikt.filter(forcetype=NymSection)) == 1
     assert len(wikt.filter_nyms()) == 1
@@ -186,15 +186,15 @@ def test_parse():
     nymsense = nymsenses[1]
     assert nymsense.strip() == "* [[nounsyn2]] (noun1)"
 
-    all_wordlinks = synonyms.filter_wordlinks(recursive=True)
-    assert len(all_wordlinks) == 3
+    all_decoratedlinks = synonyms.filter_decoratedlinks(recursive=True)
+    assert len(all_decoratedlinks) == 3
 
-    wordlinks = nymsense.filter_wordlinks(recursive=False)
-    assert len(wordlinks) == 1
-    wordlink = wordlinks[0]
-    assert wordlink.strip() == "[[nounsyn2]] (noun1)"
-    wordlink.link = "newsyn"
-    assert wordlink.strip() == "{{l|es|newsyn}} {{q|noun1}}"
+    decoratedlinks = nymsense.filter_decoratedlinks(recursive=False)
+    assert len(decoratedlinks) == 1
+    decoratedlink = decoratedlinks[0]
+    assert decoratedlink.strip() == "[[nounsyn2]] (noun1)"
+    decoratedlink.link = "newsyn"
+    assert decoratedlink.strip() == "{{l|es|newsyn}} {{q|noun1}}"
 
     #assert nymsense.make_tag() == "{{syn|es|newsyn|q1=blah1|nounsyn2|q2=blah2}}"
     assert nymsense.strip() == "* {{l|es|newsyn}} {{q|noun1}}"

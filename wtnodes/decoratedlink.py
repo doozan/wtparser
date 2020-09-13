@@ -15,20 +15,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-This handles links to wiktionary words including the link, qualifier, and gloss
+A Link to exactly one wiktionary page, including the link, qualifiers, and gloss
 """
+
+# TODO Use Link as an object instead of a dict, move link setter to Link
 
 import re
 
 from . import WiktionaryNode
 from ..utils import parse_anything
+from .link import Link
 
-# Consider the presence of any non-whitespace or separator to be text
-def has_text(text):
-    return re.search(r"[^\s,;:.']", text)
-
-
-class WordLink(WiktionaryNode):
+class DecoratedLink(WiktionaryNode):
     def __init__(self, text, name, parent):
         self._has_changed = False
 
@@ -134,11 +132,6 @@ class WordLink(WiktionaryNode):
 
         if not link or link == {}:
             self.flag_problem("missing_link", text)
-        else:
-            if "[" in link["target"]:
-                self.flag_problem("link_has_bracket", link["target"])
-            if "{" in link["target"]:
-                self.flag_problem("link_has_brace", link["target"])
 
         self._link = link
         self.qualifiers = qualifiers
@@ -181,8 +174,16 @@ class WordLink(WiktionaryNode):
         return text.strip()
 
     def extract_qualifiers(self, text):
+        pattern = r"""(?x)
+        \'*         # formatting quotes
+        \(          # opening (
+        ([^)]*)     # contents
+        \)          # closing )
+        \'*         # formatting quotes
+        """
+
         res = self.extract_templates_and_patterns(
-            ["lb", "lbl", "label", "i", "q", "qual", "qualifier"], [r"\(([^)]*)\)"], text
+            ["lb", "lbl", "label", "i", "q", "qual", "qualifier"], [pattern], text
         )
         q = []
 
@@ -225,90 +226,7 @@ class WordLink(WiktionaryNode):
         return (gloss, res["text"])
 
     def get_link(self, text):
-
-        links = []
-        wikt = parse_anything(text, skip_style_tags=True)
-
-        templates = wikt.filter_templates(recursive=False)
-        for template in templates:
-            if template.name in ["l", "link"]:
-                if template.get("1") != self.lang_id:
-                    self.flag_problem("link_wrong_lang")
-                links.append(template)
-
-            elif str(template.name) in [ "g", "rfgender" ]:
-                pass
-
-            else:
-                self.flag_problem("link_unexpected_template", text)
-
-            wikt.remove(template)
-
-        text_outside_templates = str(wikt)
-        has_text_outside_templates = has_text(text_outside_templates)
-
-        if len(links) == 1 and not has_text_outside_templates:
-            _convert = {
-                "2": "target",
-                "3": "alt",
-                "4": "gloss",
-                "t": "gloss",
-                "tr": "tr",
-            }
-            return {
-                new: str(links[0].get(old))
-                for old, new in _convert.items()
-                if links[0].has(old) and str(links[0].get(old)).strip() != ""
-            }
-
-        if len(links) > 2:
-            self.flag_problem("link_multiple_templates")
-
-        # If there's anything except a solitary template, strip all templates to text and process
-        # the line as a text link. Flag if any information is lost in the process
-        wikt = parse_anything(text, skip_style_tags=True)
-        for template in wikt.filter_templates(recursive=False):
-            if template.name in ["l", "link"]:
-                for p in ["3", "4", "t", "tr"]:
-                    if template.has(p) and template.get(p).strip() != "":
-                        self.flag_problem(f"link_has_param_{p}", str(template))
-                name = template.get("2")
-                wikt.replace(template, name)
-            else:
-                wikt.remove(template)
-
-        text = re.sub(r"\s+", " ", str(wikt)).strip()
-
-        # Replace "[[word|fancy word]]" with "word"
-        orig_text = text
-        remaining_text = text_outside_templates
-        for match in re.findall(r"\[\[[^[\]]+\]\]", text):
-            target = re.escape(match)
-            replacement, junk, extra = match[2:].strip("]]").partition("|")
-            if extra:
-                self.flag_problem(f"bracket_has_alt", match)
-            text = re.sub(target, replacement, text)
-            remaining_text = re.sub(target, "", remaining_text)
-
-        has_bracketed_text = text != orig_text
-        has_text_links = has_text(remaining_text)
-
-        sources = []
-        if len(links):
-            sources.append("template")
-        if has_bracketed_text:
-            sources.append("brackets")
-        if has_text_links:
-            sources.append("text")
-        if len(sources) > 1:
-            self.flag_problem("link_has_" + "_and_".join(sources), text)
-
-        text = " ".join([self.stripformat(x) for x in text.split(" ")])
-        if "|" in text:
-            self.flag_problem("link_has_pipe", text)
-            text = text.split("|", 1)[0]
-
-        if text == "":
-            return None
-
-        return {"target": text}
+        link = Link(text, name="1", parent=self)
+#        return link
+        d = { item: getattr(link, item) for item in ["target", "alt", "tr", "gloss"] if getattr(link,item) }
+        return d

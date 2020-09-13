@@ -77,6 +77,9 @@ def nest_aware_splitlines(text, nests, keepends=False):
 def nest_aware_split(text, nests, delimiter):
     return nest_aware_iterator(text.split(delimiter), nests, delimiter)
 
+def nest_aware_resplit(text, nests, pattern, *args, **kwargs):
+    return nest_aware_iterator(re.split(pattern, text, *args, **kwargs), nests, delimiter)
+
 def template_aware_iterator(iterator, delimiter=""):
     results = []
     template = []

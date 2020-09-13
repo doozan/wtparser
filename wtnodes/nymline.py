@@ -44,9 +44,9 @@ class NymLine(DefinitionItem):
         tmpl_name = NYM_TO_TAG[nymsense.get_ancestor(NymSection).name]
         lang_id = nymsense.lang_id
         items = [
-            wordlink.item
-            for wordlink in nymsense.filter_wordlinks()
-            if "target" in wordlink.item
+            decoratedlink.item
+            for decoratedlink in nymsense.filter_decoratedlinks()
+            if "target" in decoratedlink.item
         ]
 
         if not len(items):

@@ -383,7 +383,7 @@ from .definition import Definition
 from .defitem import DefinitionItem
 from .nymline import NymLine
 from .nymsense import NymSense
-from .wordlink import WordLink
+from .decoratedlink import DecoratedLink
 
 WiktionaryNode._build_filter_methods(
     sections=WiktionarySection,
@@ -395,7 +395,7 @@ WiktionaryNode._build_filter_methods(
     nymlines=NymLine,
     nyms=NymSection,
     senses=NymSense,
-    wordlinks=WordLink,
+    decoratedlinks=DecoratedLink,
     templates=Template,
     #    arguments=Argument, comments=Comment, external_links=ExternalLink,
     #    headings=Heading, html_entities=HTMLEntity, tags=Tag, templates=Template,

@@ -73,7 +73,7 @@ def nymsense(nymsection):
     return next(nymsection.ifilter_senses(recursive=False))
 
 @pytest.fixture()
-def wordlink(nymsense):
+def decoratedlink(nymsense):
     return next(nymsense.ifilter_defs(recursive=False))
 
 @pytest.fixture()

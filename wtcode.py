@@ -91,7 +91,7 @@ from .wtnodes.definition import Definition
 from .wtnodes.defitem import DefinitionItem
 from .wtnodes.nymline import NymLine
 from .wtnodes.nymsense import NymSense
-from .wtnodes.wordlink import WordLink
+from .wtnodes.decoratedlink import DecoratedLink
 
 WTcode._build_filter_methods(
     sections=WiktionarySection,
@@ -103,5 +103,5 @@ WTcode._build_filter_methods(
     nymlines=NymLine,
     nyms=NymSection,
     senses=NymSense,
-    wordlinks=WordLink,
+    decoratedlinks=DecoratedLink,
 )

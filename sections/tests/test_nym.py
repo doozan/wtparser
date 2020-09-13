@@ -56,8 +56,8 @@ def test_simple(language):
     nymsection = NymSection(wiki, parent=language)
 
     assert nymsection.name == "Synonyms"
-    wordlinks = nymsection.filter_wordlinks()
-    assert len(wordlinks) == 1
+    decoratedlinks = nymsection.filter_decoratedlinks()
+    assert len(decoratedlinks) == 1
     assert len(nymsection.filter_senses(recursive=False)) == 1
     nymsense = next(nymsection.ifilter_senses(recursive=False))
     assert nymsense.sense == "word"
@@ -78,8 +78,8 @@ def test_complex(language):
     wiki = parse(orig_text, skip_style_tags=True)
     nymsection = NymSection(wiki, parent=language)
     assert nymsection.name == "Synonyms"
-    wordlinks = nymsection.filter_wordlinks()
-    assert len(wordlinks) == 5
+    decoratedlinks = nymsection.filter_decoratedlinks()
+    assert len(decoratedlinks) == 5
     nymsense = next(nymsection.ifilter_senses(recursive=False))
     assert nymsense.sense == ""
 #    assert nymsense.make_tag() == expected_text
@@ -95,8 +95,8 @@ def test_multiline(language):
     wiki = parse(orig_text, skip_style_tags=True)
     nymsection = NymSection(wiki, parent=language)
     assert nymsection.name == "Synonyms"
-    wordlinks = nymsection.filter_wordlinks()
-    assert len(wordlinks) == 5
+    decoratedlinks = nymsection.filter_decoratedlinks()
+    assert len(decoratedlinks) == 5
     nymsense = next(nymsection.ifilter_senses(recursive=False))
     assert nymsense.sense == ""
     #assert nymsense.make_tag() == expected_text
@@ -212,8 +212,8 @@ def test_multisense2():
     nym = NymSection(wiki, parent=None)
     assert str(nym) == orig_text
 
-    wordlinks = nym.filter_wordlinks()
-    assert wordlinks[0] == "{{l|es|frío}} {{g|m}} (Cuba, colloquial)"
-    assert wordlinks[1] == "{{l|es|heladera}} {{g|f}} (Argentina, Paraguay, Uruguay)"
+    decoratedlinks = nym.filter_decoratedlinks()
+    assert decoratedlinks[0] == "{{l|es|frío}} {{g|m}} (Cuba, colloquial)"
+    assert decoratedlinks[1] == "{{l|es|heladera}} {{g|f}} (Argentina, Paraguay, Uruguay)"
 
 
