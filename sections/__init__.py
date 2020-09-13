@@ -90,11 +90,13 @@ class WiktionarySection(WiktionaryNode):
             self.add_section(parse_anything(nodes), section_handler)
 
     def add_section(self, section, section_handler=None):
+        from .unknown import UnknownSection
+
         title = get_section_title(section)
         section_type = (
             section_handler
             if section_handler
-            else get_section_type(title, WiktionarySection)
+            else get_section_type(title, UnknownSection)
         )
 
         item = section_type(section, parent=self)

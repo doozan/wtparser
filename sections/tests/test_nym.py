@@ -157,7 +157,7 @@ def test_subsections(language):
     wiki = parse(orig_text, skip_style_tags=True)
     nymsection = NymSection(wiki, parent=language)
 
-    assert sorted(nymsection.problems.keys()) == sorted(["unexpected_section", "unhandled_line"])
+    assert sorted(nymsection.problems.keys()) == sorted(["unexpected_section"])
 
 def test_badline(language):
     orig_text = """===Synonyms===
@@ -216,4 +216,45 @@ def test_multisense2():
     assert decoratedlinks[0] == "{{l|es|frío}} {{g|m}} (Cuba, colloquial)"
     assert decoratedlinks[1] == "{{l|es|heladera}} {{g|f}} (Argentina, Paraguay, Uruguay)"
 
+
+def test_parenthesis():
+    orig_text="""\
+===Synonyms===
+* (''boiling''): {{l|es|ebullición}}
+* (''liveliness''): {{l|es|ánimo}}, {{l|es|fogosidad}}, {{l|es|viveza}}
+* (''animosity''): {{l|es|ardor}}, {{l|es|enemistad}}, {{l|es|hostilidad}}
+* (''zeal''): {{l|es|celo}}
+* (''vehemence''): {{l|es|ahínco}}, {{l|es|eficacia}}
+"""
+
+    wiki = parse(orig_text, skip_style_tags=True)
+    nym = NymSection(wiki, parent=None)
+    assert str(nym) == orig_text
+
+    senses = nym.filter_senses(recursive=False)
+    assert len(senses) == 5
+
+def test_complex_multiline():
+    orig_text="""\
+====Synonyms====
+* {{sense|sense1}}
+*: {{l|es|a}}
+*: {{l|es|b}}
+*: {{l|es|c}}
+* {{sense|sense2}}
+*: {{l|es|d}}
+*: {{l|es|e}}
+*: {{l|es|f}}
+"""
+
+    wiki = parse(orig_text, skip_style_tags=True)
+    nym = NymSection(wiki, parent=None)
+    assert str(nym) == orig_text
+
+    senses = nym.filter_senses(recursive=False)
+    assert len(senses) == 2
+    sense = senses[0]
+    assert sense.sense == "sense1"
+    sense = senses[1]
+    assert sense.sense == "sense2"
 

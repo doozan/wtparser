@@ -25,26 +25,20 @@ class Word(WiktionaryNode):
     """
     Parses a section containing a headword declaration followed by definitions:
     {{head-noun}}
+    {{wikipedia|lang=es}}
 
     # def 1
     #: blah
     # def2
     """
 
-#    def __init__(self, text, name, parent):
-#        super().__init__(text, name, parent)
-
     def _parse_data(self, text):
         self._children = []
         self._parse_list(text)
 
-    def _is_header(self, line):
-
-        if re.match(r"\s+$", line):
-            return True
-
-        if not self._heading_found and re.match(r"\s*{{", line):
-            self._heading_found=True
+    def _is_header_extra(self, line):
+        # Any bare templates are part of the header
+        if re.match(r"\s*{{", line):
             return True
 
         return False

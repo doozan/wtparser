@@ -40,8 +40,6 @@ class PosSection(WiktionarySection):
 
     #def 3
     """
-#    def __init__(self, wikt, parent=None):
-#        super().__init__(wikt, parent, parse_data=False)
 
     def _is_new_item(self, line):
         # Header can contain a headword template {{head* or {{lang-*
@@ -51,6 +49,8 @@ class PosSection(WiktionarySection):
         return False
 
     def _is_still_item(self, line):
+        if self._is_filler_line(line):
+            return True
         return line.startswith("#")
 
     def add_item(self, lines):

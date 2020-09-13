@@ -27,12 +27,15 @@ from ..utils import parse_anything, template_aware_splitlines
 from mwparserfromhell.nodes import Template
 
 class WiktionaryNode(Node):
+    header_templates = [ "wikipedia" ]
+
     def __init__(self, text, name, parent, parse_data=True):
 
         self._text = text
         self._name = name
         self._parent = parent
         self._children = []
+
 
     #        self._logname = parent._logname+"."+str(name) if parent else str(name)
     #        self.log = logging.getLogger(self._logname)
@@ -265,23 +268,38 @@ class WiktionaryNode(Node):
             unparsed = []
 
 
+    def _is_filler_line(self, line):
+        if self.header_templates:
+            re_templates = [ r"\{\{\s*"+item+r"\s*\|" for item in self.header_templates ] #}}
+            pattern = "(" + "|".join(re_templates) + ")"
+
+            if re.match(pattern, line):
+                return True
+        return False
+
     def _is_header(self, line):
 
         if re.match(r"\s+$", line):
             return True
 
-        if not self._heading_found and re.match(r"\s*==", line):
+        if not self._heading_found and re.match(r"\s*==*[^=]+==*", line):
             self._heading_found=True
             return True
 
-        return False
+        if self._is_filler_line(line):
+            return True
 
+        return self._is_header_extra(line)
+
+    def _is_header_extra(self, line):
+        """Override this to catch additional header items"""
+        return False
 
     def _is_footer(self, line):
 
         re_endings = [ r"\[\[\s*Category\s*:" r"==[^=]+==", r"----" ]
         template_endings = [ "c", "C", "top", "topics", "categorize", "catlangname", "catlangcode", "cln", "DEFAULTSORT" ]
-        re_endings += [ r"\{\{\s*"+item+r"\s*\|" for item in template_endings ]
+        re_endings += [ r"\{\{\s*"+item+r"\s*\|" for item in template_endings ] #}}
         endings = "|".join(re_endings)
 
         if re.match(fr"\s*({endings})", line):

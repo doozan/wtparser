@@ -47,10 +47,17 @@ def test_qualifiers():
     nymsense = NymSense(orig_text, name="1", parent=None)
 
 def test_sense():
-    orig_text="* {{s|hand}} {{l|es|saeta}}, {{l|es|manecilla}}" 
+    orig_text="* {{s|hand}} {{l|es|saeta}}, {{l|es|manecilla}}"
     nymsense = NymSense(orig_text, name="1", parent=None)
-
     assert nymsense.sense == "hand"
+
+    orig_text = "* (''boiling''): {{l|es|ebullición}}\n"
+    nymsense = NymSense(orig_text, name="1", parent=None)
+    assert nymsense.sense == "boiling"
+
+    orig_text = "* {{gloss|boiling}} {{l|es|ebullición}}\n"
+    nymsense = NymSense(orig_text, name="1", parent=None)
+    assert nymsense.sense == "boiling"
 
 def test_stripping():
     orig_text = "* {{sense|soft drink}} {{l|es|bebida|g=f}} (''Chile''), {{l|es|gaseosa|g=f}} (''Colombia, El Salvador, Spain'')"

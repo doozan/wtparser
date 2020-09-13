@@ -45,6 +45,8 @@ class NymSection(WiktionarySection):
         return False
 
     def _is_still_item(self, line):
+        if line.startswith("*:"):
+            return True
         if line.startswith("*"):
             sense = NymSense.parse_sense(line)[0]
             # Anything with a declared sense is its own item

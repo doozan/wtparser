@@ -25,6 +25,7 @@ from .nymline import NymLine
 
 class Definition(WiktionaryNode):
     def __init__(self, text, name, parent):
+        print(f"New def: '{text}'")
         self._lines = []
 
         self.sense_ids = []

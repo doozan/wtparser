@@ -69,3 +69,61 @@ def test_simple(language, nymsection):
         str(word.filter_defs(recursive=False)[1]).strip()
         == "# {{lb|es|colloquial|Mexico}} [[animated cartoon]] (''specially in plural'')"
     )
+
+def test_extra_header(language):
+    orig_text="""\
+===Noun===
+{{es-noun|f|-}}
+
+# [[word1]]
+# [[word2]]
+"""
+    wiki = parse(orig_text, skip_style_tags=True)
+    pos = PosSection(wiki, parent=language)
+
+    assert str(pos) == orig_text
+    assert pos.name == "Noun"
+
+    defs = pos.filter_defs()
+    assert len(defs) == 2
+
+
+    orig_text="""\
+===Noun===
+{{wikipedia|lang=es}}
+{{es-noun|f|-}}
+
+# [[word1]]
+# [[word2]]
+"""
+    wiki = parse(orig_text, skip_style_tags=True)
+    pos = PosSection(wiki, parent=language)
+
+    assert str(pos) == orig_text
+    assert pos.name == "Noun"
+
+    defs = pos.filter_defs()
+    assert len(defs) == 2
+
+
+    orig_text="""\
+===Noun===
+{{es-noun|f|-}}
+{{wikipedia|lang=es}}
+
+# [[word1]]
+# [[word2]]
+"""
+    wiki = parse(orig_text, skip_style_tags=True)
+    pos = PosSection(wiki, parent=language)
+
+    assert str(pos) == orig_text
+    assert pos.name == "Noun"
+
+    words = pos.filter_words()
+    print(f"Word: '{words[0]}'")
+
+
+    defs = pos.filter_defs()
+    assert len(defs) == 2
+

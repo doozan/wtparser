@@ -53,6 +53,8 @@ class NymSense(WiktionaryNode):
         self.sense, source, raw_sense = self.parse_sense(text)
         if source == "gloss":
             self.flag_problem("autofix_gloss_as_sense")
+        elif source == "text":
+            self.flag_problem("autofix_parenthetical_as_sense")
         if raw_sense:
             sense_text = re.escape(raw_sense)
             res = re.match(fr"(.*?)({sense_text})(.*?)(\s*)$", text, re.DOTALL)
@@ -155,13 +157,24 @@ class NymSense(WiktionaryNode):
             if templates:
                 source = "gloss"
 #                self.flag_problem("autofix_gloss_as_sense", line)
-#            if not templates:
-#                # Match text inside parentheses ()
-#                res = re.search(r"\(([^)]+?)\)", line)
-#                if res:
-#                    source = res.group(0)
-##                    self.flag_problem("autofix_parenthetical_as_sense", line)
-#                    sense = res.group(1).strip("'").strip('"')
+            if not templates:
+                # Match text inside parentheses () at start of line
+                pattern = r"""(?x)
+                \*?             # Opening * (optional)
+                \s*             # leading whitespace
+                (?:\'{2,})?     # two or more ' marks for formatting (optional)
+                \(              # opening (
+                ([^)]*)         # contents
+                \)              # closing )
+                \:*             # : (optional)
+                (?:\'{2,})?     # two or more ' marks for formatting (optional)
+                """
+                res = re.match(pattern, line)
+                if res:
+                    source = "text"
+                    raw_sense = res.group(0)
+#                    self.flag_problem("autofix_parenthetical_as_sense", line)
+                    sense = res.group(1).strip("'").strip('"')
 
         if templates:
 #            if len(templates) > 1:
