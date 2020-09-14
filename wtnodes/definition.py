@@ -25,7 +25,6 @@ from .nymline import NymLine
 
 class Definition(WiktionaryNode):
     def __init__(self, text, name, parent):
-        print(f"New def: '{text}'")
         self._lines = []
 
         self.sense_ids = []
@@ -219,7 +218,8 @@ class Definition(WiktionaryNode):
         return True
 
     def add_sense_words(self, line):
-        stripped = re.sub(r'[\W_]+', ' ', line)
+        stripped = re.sub(r'(\[\[|\]\])', '', line)
+        stripped = re.sub(r'[\W_]+', ' ', stripped)
         self.sense_words |= set(stripped.split(' '))
         if "" in self.sense_words:
             self.sense_words.remove("")

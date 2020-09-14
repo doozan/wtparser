@@ -199,3 +199,9 @@ def test_has_sense(word):
     defstr = "# {{lb|es|Bolivia|Chile|Colombia|Peru}} having a protruding belly.\n"
     d = Definition(defstr, name="test", parent=word)
     assert d.has_sense("having a protruding belly")
+
+    defstr = "# {{lb|es|rare}} [[domestic]] [[staff]], [[servant]]s"
+    d = Definition(defstr, name="test", parent=word)
+    assert d.has_sense("servants")
+
+
