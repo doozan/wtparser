@@ -45,9 +45,9 @@ def test_decoratedlink():
     decoratedlink = DecoratedLink(" [[word|altword]] (blah)", name="1", parent=None)
     assert decoratedlink.item == { "target": "word", "alt": "altword", "q": "blah" }
 
-    #decoratedlink = DecoratedLink(" [[nym5|more stuff]] (blah5) ", name="1", parent=None)
-    #assert decoratedlink.item == { "target": "nym5", "alt": "mare stuff", "gloss": "blah5" }
-
     decoratedlink = DecoratedLink(" ''(qualifier)'' {{l|es|word}} ", name="1", parent=None)
     assert decoratedlink.item == { "target": "word", "q": "qualifier" }
+
+    decoratedlink = DecoratedLink("¿{{l|es|de dónde es usted}}? {{qualifier|polite}}", name="1", parent=None)
+    assert decoratedlink.item == { "target": "de dónde es usted", "alt":"¿de dónde es usted?", "q": "polite" }
 

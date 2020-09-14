@@ -111,24 +111,54 @@ class Link(WiktionaryNode):
 
     @staticmethod
     def is_single_template(text):
+        """Text is considered to be a single template if:
+        1) it has exactly one link template
+        2) it has no other, non-ignorable templates
+        3) there is no text outside the link template, except for (optional) prefix and suffix text
+        """
 
-        wikt = parse_anything(text, skip_style_tags=True)
-        if len(list(wikt.ifilter_templates(recursive=False, matches=lambda x: x.name in Link.LINK_TEMPLATES))) != 1:
+        wikt = parse_anything(text)
+
+        # Exactly one link template
+        links = wikt.filter_templates(recursive=False, matches=lambda x: x.name in Link.LINK_TEMPLATES)
+        if len(links) != 1:
             return False
 
+        # No non-link, non-ignorable templates
         expected_templates = Link.LINK_TEMPLATES + Link.IGNORE_TEMPLATES
         if any(wikt.ifilter_templates(recursive=False, matches=lambda x: x.name not in expected_templates)):
             return False
 
-        for template in wikt.filter_templates(recursive=False):
+        # No text outside template except prefix and suffix text
+        # remove ignorable templates
+        for template in wikt.ifilter_templates(recursive=False, matches=lambda x: x.name in Link.IGNORE_TEMPLATES):
             wikt.remove(template)
+
+        d = Link.template_to_dict(wikt)
+        wikt.remove(d["raw"])
 
         return not re.search(Link.NOT_FILLER, str(wikt))
 
     @staticmethod
-    def template_to_dict(text):
+    def get_valid_template_prefix(text):
+        return text
+
+    @staticmethod
+    def get_valid_template_trail(text):
+        return text
+
+    @staticmethod
+    def get_valid_bracket_prefix(text):
+        return text
+
+    @staticmethod
+    def get_valid_bracket_trail(text):
+        return text
+
+    @staticmethod
+    def template_to_dict(template):
         """ Returns link dict from the first link template encountered in text """
-        wikt = parse_anything(text, skip_style_tags=True)
+        wikt = parse_anything(template, skip_style_tags=True)
         link = next(wikt.ifilter_templates(recursive=False, matches=lambda x: x.name in Link.LINK_TEMPLATES))
         _convert = {
             "2": "target",
@@ -137,7 +167,24 @@ class Link(WiktionaryNode):
             "t": "gloss",
             "tr": "tr",
         }
-        return { new: str(link.get(old)) for old, new in _convert.items() if link.has(old) and str(link.get(old)).strip() }
+
+        d = { new: str(link.get(old)) for old, new in _convert.items() if link.has(old) and str(link.get(old)).strip() }
+
+        # Check for prefix/trail text attached to the link
+        # prefix{{template|stuff}}trail
+        # If any exists, use it to build alt-text with the contents of the template
+        pattern = r"(?P<prefix>[^\s]*)(?P<link>" + re.escape(str(link)) + r")(?P<trail>[^\s]*)"
+        res = re.search(pattern, str(template))
+        prefix = Link.get_valid_template_prefix(res.group('prefix')) if res.group('prefix') else ""
+        trail = Link.get_valid_template_trail(res.group('trail')) if res.group('trail') else ""
+
+        if "alt" not in d and (prefix or trail):
+            d["alt"] = prefix + d["target"] + trail
+            d["raw"] = prefix + str(link) + trail
+        else:
+            d["raw"] = str(link)
+
+        return d
 
     @staticmethod
     def is_single_bracket(text):
@@ -169,21 +216,19 @@ class Link(WiktionaryNode):
         if not res:
             raise ValueError("brackets not found in", text)
         link, junk, alt = res.group('contents').partition("|")
-        prefix = res.group('prefix')
-        trail = res.group('trail')
+        prefix = Link.get_valid_bracket_prefix(res.group('prefix')) if res.group('prefix') else ""
+        trail = Link.get_valid_bracket_trail(res.group('trail')) if res.group('trail') else ""
 
         if not prefix and not trail and not alt:
             return { "target": link }
 
-        if not alt:
-            return { "target": link, "alt": prefix+link+trail }
-
         if not prefix and not trail:
             return { "target": link, "alt": alt }
 
-        # TODO What does wiktionary do when mixed?
-        self.flag_problem("bracket_has_alt_and_prefix_or_trail")
-        return { "target": link, "alt": prefix+link+trail }
+        if not alt:
+            return { "target": link, "alt": prefix+link+trail }
+
+        return { "target": link, "alt": alt }
 
     @staticmethod
     def bracket_to_text(text):
