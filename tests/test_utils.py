@@ -1,9 +1,9 @@
-from ..utils import template_aware_split
+from ..utils import template_aware_split, nest_aware_resplit
 
 def test_template_aware_split():
 
     orig_text = "{{t|q1, q2}}"
-    items = list(template_aware_split(orig_text, ","))
+    items = list(template_aware_split(",", orig_text))
     assert len(items) == 1
     assert items[0] == orig_text
 
@@ -33,5 +33,29 @@ def test_template_aware_split():
 # assert d._template_depth == 0
 # d.add("}} }} }}")
 # assert d._template_depth == 0
+
+def test_nest_aware_resplit():
+    line = "{{blah|blah, blah}} blah, blah; blah / blah (blah,blah)"
+    res = list(nest_aware_resplit(r"[\/,;]", line, [("{{","}}"), ("(", ")")]))
+    assert res == [("{{blah|blah, blah}} blah", ","), (" blah", ";"), (" blah ", "/"), (" blah (blah,blah)", "")]
+
+    line = "blah, blah; blah / blah"
+    res = list(nest_aware_resplit(r"([\/,;])", line, [("{{","}}"), ("(", ")")]))
+    assert res == [("blah", ","), (" blah", ";"), (" blah ", "/"), (" blah", "")]
+
+    line = "blah, blah"
+    res = list(nest_aware_resplit(r"([\/,;])", line, [("{{","}}"), ("(", ")")]))
+    assert res == [("blah", ","), (" blah", "")]
+
+    line = "* {{sense|sense1}} {{l|es|syn1}}, {{l|es|syn2}}\n"
+    res = list(nest_aware_resplit(r"([\/,;])", line, [("{{","}}"), ("(", ")")]))
+    assert res == [('* {{sense|sense1}} {{l|es|syn1}}', ','), (' {{l|es|syn2}}\n', '')]
+
+
+    line = "blah, blah"
+    res = list(nest_aware_resplit(r"([\/,;])", line, [("{{","}}"), ("(", ")")]))
+    for text, delim in res:
+        print(f"text '{text}'")
+        print(f"delim '{delim}'")
 
 

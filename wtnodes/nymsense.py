@@ -19,7 +19,7 @@ import re
 
 from . import WiktionaryNode
 from .decoratedlink import DecoratedLink
-from ..utils import parse_anything, nest_aware_split, template_aware_split, template_aware_splitlines
+from ..utils import parse_anything, nest_aware_resplit, template_aware_split, template_aware_splitlines
 
 class NymSense(WiktionaryNode):
     def __init__(self, text, name, parent, nym_type=None):
@@ -88,7 +88,7 @@ class NymSense(WiktionaryNode):
             else:
                 line = self.store_line_start(line)
 
-            res = re.match("(.*?)(\s*)$", line, re.DOTALL)
+            res = re.match(r"(.*?)(\s*)$", line, re.DOTALL)
             if res.group(1):
                 self.add_list(res.group(1))
             if res.group(2):
@@ -103,7 +103,7 @@ class NymSense(WiktionaryNode):
 
     def store_line_start(self, line):
         """ Put the beginning of the line into _children and return the remainder """
-        start_pattern = r"\*\s*"
+        start_pattern = r"\*[\*:]*\s*"
         res = re.match(f"({start_pattern})(.*)", line, re.DOTALL)
         if not res:
             raise ValueError("Line does not start with expected pattern")
@@ -117,14 +117,13 @@ class NymSense(WiktionaryNode):
         If a list has multiple words, they must be comma separated
         """
 
-        first=True
-        for text in nest_aware_split(line, [("{{","}}"), ("(", ")")], ","):
-            if first:
-                first = False
-            else:
-                self.add_text(",")
+        prev_delimiter = None
+        for text,delimiter in nest_aware_resplit(r"[\/,;]", line, [("{{","}}"), ("(", ")")]):
+            if prev_delimiter is not None:
+                self.add_text(prev_delimiter)
+            prev_delimiter = delimiter
             if text == "":
-                self.add_text(",")
+                self.add_text(delimiter)
                 self.flag_problem("empty_item_in_list", line_text)
 
             # TODO: Better counter

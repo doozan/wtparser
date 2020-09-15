@@ -22,12 +22,12 @@ __all__ = [
 ]
 
 from mwparserfromhell.utils import parse_anything as mwparse_anything
+import re
 
 def parse_anything(value, **params):
     from .wtcode import WTcode
 
     return WTcode(mwparse_anything(value, **params))
-
 
 def get_template_depth(text, start_depth=0):
     """
@@ -36,7 +36,6 @@ def get_template_depth(text, start_depth=0):
     """
 
     return get_nest_depth(text, "{{", "}}", start_depth=start_depth)
-
 
 def get_nest_depth(text, opener, closer, start_depth=0):
     """ Returns the level of depth inside ```start``` at the end of the line
@@ -64,48 +63,6 @@ def get_nest_depth(text, opener, closer, start_depth=0):
 
     return depth
 
-
-def template_aware_splitlines(text, keepends=False):
-    return nest_aware_iterator(text.splitlines(keepends), [("{{","}}")])
-
-def template_aware_split(text, delimiter):
-    return nest_aware_iterator(text.split(delimiter), [("{{","}}")], delimiter)
-
-def nest_aware_splitlines(text, nests, keepends=False):
-    return nest_aware_iterator(text.splitlines(keepends), nests)
-
-def nest_aware_split(text, nests, delimiter):
-    return nest_aware_iterator(text.split(delimiter), nests, delimiter)
-
-def nest_aware_resplit(text, nests, pattern, *args, **kwargs):
-    return nest_aware_iterator(re.split(pattern, text, *args, **kwargs), nests, delimiter)
-
-def template_aware_iterator(iterator, delimiter=""):
-    results = []
-    template = []
-    template_depth = 0
-
-    for item in iterator:
-        if template_depth:
-            template.append(item)
-            template_depth = get_template_depth(item, template_depth)
-            if template_depth:
-                continue
-            else:
-                item = delimiter.join(template)
-                template = []
-
-        else:
-            template_depth = get_template_depth(item, template_depth)
-            if template_depth:
-                template = [item]
-                continue
-
-        yield item
-
-    if len(template):
-        yield delimiter.join(template)
-
 def nest_aware_iterator(iterator, nests, delimiter=""):
     results = []
     items = []
@@ -122,3 +79,43 @@ def nest_aware_iterator(iterator, nests, delimiter=""):
 
     if len(items):
         yield delimiter.join(items)
+
+def nest_aware_resplit(pattern, text, nests):
+
+    if not pattern.startswith("("):
+        pattern = "(" + pattern + ")"
+
+    results = []
+    items = []
+    depth = {}
+
+    it = iter(re.split(pattern, text, re.DOTALL))
+    for item in it:
+        delimiter = next(it,"")
+        items.append(item)
+        depth = { nest:get_nest_depth(item, nest[0], nest[1], depth.get(nest, 0)) for nest in nests }
+        if any(depth.values()):
+            items.append(delimiter)
+            continue
+
+        yield ("".join(items), delimiter)
+        items = []
+
+    if len(items):
+        yield delimiter.join(items)
+
+def nest_aware_splitlines(text, nests, keepends=False):
+    return nest_aware_iterator(text.splitlines(keepends), nests)
+
+def nest_aware_split(delimiter, text, nests):
+    return nest_aware_iterator(text.split(delimiter), nests, delimiter)
+
+def template_aware_splitlines(text, keepends=False):
+    return nest_aware_iterator(text.splitlines(keepends), [("{{","}}")])
+
+def template_aware_split(delimiter, text):
+    return nest_aware_iterator(text.split(delimiter), [("{{","}}")], delimiter)
+
+def template_aware_resplit(pattern, text):
+    return nest_aware_resplit(pattern, text, [("{{","}}")])
+
