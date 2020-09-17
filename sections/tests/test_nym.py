@@ -58,8 +58,8 @@ def test_simple(language):
     assert nymsection.name == "Synonyms"
     decoratedlinks = nymsection.filter_decoratedlinks()
     assert len(decoratedlinks) == 1
-    assert len(nymsection.filter_senses(recursive=False)) == 1
-    nymsense = next(nymsection.ifilter_senses(recursive=False))
+    assert len(nymsection.filter_nymsenses(recursive=False)) == 1
+    nymsense = next(nymsection.ifilter_nymsenses(recursive=False))
     assert nymsense.sense == "word"
     #assert nymsense.make_tag() == expected_text
 
@@ -80,7 +80,7 @@ def test_complex(language):
     assert nymsection.name == "Synonyms"
     decoratedlinks = nymsection.filter_decoratedlinks()
     assert len(decoratedlinks) == 5
-    nymsense = next(nymsection.ifilter_senses(recursive=False))
+    nymsense = next(nymsection.ifilter_nymsenses(recursive=False))
     assert nymsense.sense == ""
 #    assert nymsense.make_tag() == expected_text
 
@@ -97,7 +97,7 @@ def test_multiline(language):
     assert nymsection.name == "Synonyms"
     decoratedlinks = nymsection.filter_decoratedlinks()
     assert len(decoratedlinks) == 5
-    nymsense = next(nymsection.ifilter_senses(recursive=False))
+    nymsense = next(nymsection.ifilter_nymsenses(recursive=False))
     assert nymsense.sense == ""
     #assert nymsense.make_tag() == expected_text
 
@@ -111,7 +111,7 @@ def test_multisense(language):
     wiki = parse(orig_text, skip_style_tags=True)
     nymsection = NymSection(wiki, parent=language)
     assert nymsection.name == "Synonyms"
-    senses = nymsection.filter_senses()
+    senses = nymsection.filter_nymsenses()
     assert len(senses) == 3
 
     assert senses[0] == "* {{sense|sense1}} {{l|es|syn1}}, {{l|es|syn2}}\n"
@@ -128,7 +128,7 @@ def test_sense_breaks(language):
     wiki = parse(orig_text, skip_style_tags=True)
     nymsection = NymSection(wiki, parent=language)
     assert nymsection.name == "Synonyms"
-    senses = nymsection.filter_senses()
+    senses = nymsection.filter_nymsenses()
     assert len(senses) == 2
 
     assert senses[0] == "* {{l|es|word1}}\n* {{l|es|word2}}\n"
@@ -142,7 +142,7 @@ def test_qualifiers(language):
     wiki = parse(orig_text, skip_style_tags=True)
     nymsection = NymSection(wiki, parent=language)
     assert nymsection.name == "Synonyms"
-    senses = nymsection.filter_senses()
+    senses = nymsection.filter_nymsenses()
     assert len(senses) == 1
 
     assert senses[0] == "* {{l|es|word1}} {{qualifier|q1, q2}}\n"
@@ -231,7 +231,7 @@ def test_parenthesis():
     nym = NymSection(wiki, parent=None)
     assert str(nym) == orig_text
 
-    senses = nym.filter_senses(recursive=False)
+    senses = nym.filter_nymsenses(recursive=False)
     assert len(senses) == 5
 
 def test_complex_multiline():
@@ -251,7 +251,7 @@ def test_complex_multiline():
     nym = NymSection(wiki, parent=None)
     assert str(nym) == orig_text
 
-    senses = nym.filter_senses(recursive=False)
+    senses = nym.filter_nymsenses(recursive=False)
     assert len(senses) == 2
     sense = senses[0]
     assert sense.sense == "sense1"

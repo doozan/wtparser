@@ -135,7 +135,7 @@ class Link(WiktionaryNode):
             wikt.remove(template)
 
         d = Link.template_to_dict(wikt)
-        wikt.remove(d["raw"])
+        wikt.remove(d["consumed"])
 
         return not re.search(Link.NOT_FILLER, str(wikt))
 
@@ -180,9 +180,9 @@ class Link(WiktionaryNode):
 
         if "alt" not in d and (prefix or trail):
             d["alt"] = prefix + d["target"] + trail
-            d["raw"] = prefix + str(link) + trail
+            d["consumed"] = prefix + str(link) + trail
         else:
-            d["raw"] = str(link)
+            d["consumed"] = str(link)
 
         return d
 

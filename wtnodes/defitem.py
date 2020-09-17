@@ -21,7 +21,5 @@ This handles lines in definitions
 from . import WiktionaryNode
 from ..utils import parse_anything
 
-
 class DefinitionItem(WiktionaryNode):
-    def __init__(self, text, name, parent):
-        super().__init__(text, name, parent)
+    pass

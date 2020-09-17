@@ -58,15 +58,15 @@ def test_simple(language, nymsection):
 #            print(child.__class__, node.__class__)
 
 
-    defs = word.filter_defs(recursive=False)
+    defs = word.filter_wordsenses(recursive=False)
     assert len(defs) == 2
 
     assert (
-        str(word.filter_defs(recursive=False)[0]).strip()
+        str(word.filter_wordsenses(recursive=False)[0]).strip()
         == "# {{lb|es|art}} [[caricature]] (pictorial representation of someone for comic effect)"
     )
     assert (
-        str(word.filter_defs(recursive=False)[1]).strip()
+        str(word.filter_wordsenses(recursive=False)[1]).strip()
         == "# {{lb|es|colloquial|Mexico}} [[animated cartoon]] (''specially in plural'')"
     )
 
@@ -84,7 +84,7 @@ def test_extra_header(language):
     assert str(pos) == orig_text
     assert pos.name == "Noun"
 
-    defs = pos.filter_defs()
+    defs = pos.filter_wordsenses()
     assert len(defs) == 2
 
 
@@ -102,7 +102,7 @@ def test_extra_header(language):
     assert str(pos) == orig_text
     assert pos.name == "Noun"
 
-    defs = pos.filter_defs()
+    defs = pos.filter_wordsenses()
     assert len(defs) == 2
 
 
@@ -124,6 +124,6 @@ def test_extra_header(language):
     print(f"Word: '{words[0]}'")
 
 
-    defs = pos.filter_defs()
+    defs = pos.filter_wordsenses()
     assert len(defs) == 2
 

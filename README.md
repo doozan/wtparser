@@ -3,11 +3,17 @@ This expands mwparserfromhell with capabilities for parsing English Wiktionary e
 It's primarily used by dictionary builder to generate dictionaries from Wiktionary.
 It's also used by wikibot for replacing nym sections with their corresponding definition templates.
 
-New features:
+Page
 
-* Categories
-* Language
-* Word
-* Definitions
-* Nym Sections
+Language
+    Pos
+        Word (should this be Definition)
+            WordSense (should be defsense?)
+                DefinitionItem (gloss?)
+                NymLine
+    Nyms
+        NymSense
+            NymLines
+                DecoratedLink
+                    Link
 

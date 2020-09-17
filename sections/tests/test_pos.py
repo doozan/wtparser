@@ -68,7 +68,7 @@ def test_simple2(language, nymsection):
     pos = PosSection(wikt, parent=language)
 
     synonyms = next(pos.ifilter_nyms(recursive=False, matches="Synonyms"))
-    nymsense = next(synonyms.ifilter_senses(recursive=False))
+    nymsense = next(synonyms.ifilter_nymsenses(recursive=False))
     assert nymsense == "* {{sense|caricature}} {{l|es|dibujo}}\n"
     assert nymsense.sense == "caricature"
 
@@ -109,12 +109,12 @@ def test_sense_matching(language):
     pos = PosSection(wikt, parent=language)
     word = pos.filter_words()[0]
 
-    defs = word.filter_defs()
+    defs = word.filter_wordsenses()
     assert defs[0] == "# {{lb|es|sense1}} [[word1]], [[word2]] {{gloss|gloss1}}\n"
     assert defs[1] == "# {{lb|es|sense2}} [[word3]]\n"
     assert defs[2] == "# [[word4]]\n"
 
-    senses = pos.filter_senses()
+    senses = pos.filter_nymsenses()
     assert senses[0] == "* {{sense|sense1}} {{l|es|syn1}}, {{l|es|syn2}}\n"
     assert senses[0].sense == "sense1"
     assert senses[1] == "* {{sense|sense2}} {{l|es|syn3}}\n"
@@ -146,7 +146,7 @@ def test_sense_matching_multi(language):
     word = pos.filter_words()[0]
 
     assert sorted(language.problems.keys()) == []
-    sense = next(pos.ifilter_senses())
+    sense = next(pos.ifilter_nymsenses())
 
     assert sense.sense == "word2"
 #    assert len(word.get_defs_matching_sense("word2")) == 2
@@ -171,12 +171,12 @@ def xtest_add_sense(language):
     pos = PosSection(wikt, parent=language)
     word = pos.filter_words()[0]
 
-    defs = word.filter_defs()
+    defs = word.filter_wordsenses()
     assert defs[0] == "# {{lb|es|sense1}} [[word1]], [[word2]] {{gloss|gloss1}}\n"
     assert defs[1] == "# {{lb|es|sense2}} [[word3]]\n"
     assert defs[2] == "# [[word4]]\n"
 
-    senses = pos.filter_senses()
+    senses = pos.filter_nymsenses()
     assert senses[0] == "* {{sense|sense1}} {{l|es|syn1}}, {{l|es|syn2}}\n"
     assert senses[0].sense == "sense1"
     assert senses[1] == "* {{sense|sense2}} {{l|es|syn3}}\n"
@@ -191,11 +191,11 @@ def xtest_add_sense(language):
 #    assert word.get_defs_matching_sense(senses[2].sense)[0] == defs[2]
 
 
-    all_defs = word.filter_defs(recursive=False)
+    all_defs = word.filter_wordsenses(recursive=False)
     all_nyms = word.filter_nyms(matches="Synonyms")
 
     for nym in all_nyms:
-        senses = nym.filter_senses()
+        senses = nym.filter_nymsenses()
         for nymsense in senses:
             defs = word.get_defs_matching_sense(nymsense.sense)
             if not len(defs):

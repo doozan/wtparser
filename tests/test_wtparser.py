@@ -21,7 +21,7 @@ from ..sections.page import Page
 from ..sections.language import LanguageSection
 from ..sections.nym import NymSection
 from ..sections.pos import PosSection
-from ..wtnodes.definition import Definition
+from ..wtnodes.wordsense import WordSense
 from ..wtnodes.defitem import DefinitionItem
 from ..wtnodes.nymline import NymLine
 from ..wtnodes.decoratedlink import DecoratedLink
@@ -102,8 +102,8 @@ def test_filter():
     assert len(wikt.filter(forcetype=PosSection)) == 3
     assert len(wikt.filter_pos()) == 3
 
-    assert len(wikt.filter(forcetype=Definition)) == 4
-    assert len(wikt.filter_defs()) == 4
+    assert len(wikt.filter(forcetype=WordSense)) == 4
+    assert len(wikt.filter_wordsenses()) == 4
 
     assert len(wikt.filter(forcetype=DefinitionItem)) == 6
     assert len(wikt.filter_defitems()) == 6
@@ -118,7 +118,7 @@ def test_filter():
     assert len(wikt.filter_nyms()) == 1
 
     assert len(wikt.filter(forcetype=NymSense)) == 3
-    assert len(wikt.filter_senses()) == 3
+    assert len(wikt.filter_nymsenses()) == 3
 
 
 def test_ifilter():
@@ -168,19 +168,19 @@ def test_parse():
     assert adj.name == "Adjective"
     assert adj._level == 3
     adj_word = adj.filter_words(recursive=False)[0]
-    assert len(adj_word.filter_defs(recursive=False)) == 2
+    assert len(adj_word.filter_wordsenses(recursive=False)) == 2
 
     noun = next(spanish.ifilter_pos(recursive=False, matches="Noun"))
-    assert len(noun.filter_defs()) == 1
-    noundef = next(noun.ifilter_defs())
+    assert len(noun.filter_wordsenses()) == 1
+    noundef = next(noun.ifilter_wordsenses())
 
     assert str(noundef).strip() == "# [[noun1]]"
 
     assert len(noun.filter_nyms(recursive=False)) == 1
     synonyms = next(noun.ifilter_nyms(recursive=False, matches="Synonyms"))
-    assert len(synonyms.filter_senses(recursive=False)) == 3
+    assert len(synonyms.filter_nymsenses(recursive=False)) == 3
 
-    nymsenses = synonyms.filter_senses(recursive=False)
+    nymsenses = synonyms.filter_nymsenses(recursive=False)
     assert len(nymsenses) == 3
 
     nymsense = nymsenses[1]
@@ -202,7 +202,7 @@ def test_parse():
     adj = next(spanish.ifilter_pos(recursive=False, matches="Verb"))
     assert adj.name == "Verb"
     assert adj._level == 3
-    assert len(adj.filter_defs()) == 1
+    assert len(adj.filter_wordsenses()) == 1
 
 
 def test_grey():
@@ -263,10 +263,10 @@ def test_modify_section_during_iteration():
     entry = parse_language(orig_text, skip_style_tags=True)
 
     for word in entry.ifilter_pos():
-        all_defs = word.filter_defs(recursive=False)
+        all_defs = word.filter_wordsenses(recursive=False)
         all_nyms = word.filter_nyms(matches="Synonyms")
         for nym in all_nyms:
-            senses = nym.filter_senses()
+            senses = nym.filter_nymsenses()
             for nymsense in senses:
                 defs = word.get_defs_matching_sense(nymsense.sense)
                 if not len(defs):
@@ -314,12 +314,12 @@ From an earlier {{m|es||*ruino}}, from {{m|es|ruina}}, or from a {{inh|es|VL.|-}
 
     for pos in entry.ifilter_pos():
         word = pos.filter_words(recursive=False)[0]
-        all_defs = word.filter_defs(recursive=False)
+        all_defs = word.filter_wordsenses(recursive=False)
         print(word.name)
         assert len(all_defs) > 0
         all_nyms = word.filter_nyms(matches="Synonyms")
         for nym in all_nyms:
-            senses = nym.filter_senses()
+            senses = nym.filter_nymsenses()
             for nymsense in senses:
                 defs = word.get_defs_matching_sense(nymsense.sense)
                 if not len(defs):

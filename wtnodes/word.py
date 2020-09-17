@@ -18,7 +18,7 @@ import os
 import re
 
 from . import WiktionaryNode
-from .definition import Definition
+from .wordsense import WordSense
 from ..utils import parse_anything, template_aware_split, template_aware_splitlines
 
 class Word(WiktionaryNode):
@@ -36,12 +36,26 @@ class Word(WiktionaryNode):
         self._children = []
         self._parse_list(text)
 
-    def _is_header_extra(self, line):
-        # Any bare templates are part of the header
-        if re.match(r"\s*{{", line):
-            return True
+    def _parse_header(self, lines):
+        """Find and parse the headword declaration"""
+        self.add_text(lines)
+        self.headword = None
 
-        return False
+        for line in lines:
+            res = re.match(r"\s*{{\s*([^|}]+)*", line)
+            if not res:
+                continue
+
+            tmpl_name = res.group(1).strip()
+            if self._is_headword(tmpl_name):
+                self.add_headword(line)
+
+        if not self.headword:
+            self.flag_problem("headword_missing")
+
+    def _is_header_extra(self, line):
+        # Consider any bare template to be part of the header
+        return re.match(r"\s*{{", line)
 
     def _is_new_item(self, line):
         return re.match(r"\s*# ", line)
@@ -50,5 +64,49 @@ class Word(WiktionaryNode):
         return re.match(r"\s*#[^ ]", line)
 
     def add_item(self, lines):
-        item = Definition("".join(lines), name=len(self._children), parent=self)
+        item = WordSense("".join(lines), name=len(self._children), parent=self)
         self._children.append(parse_anything(item))
+
+    _headwords = {
+        "es-adj",
+        "es-adj-inv",
+        "es-adv",
+        "es-diacritical mark",
+        "es-interj",
+        "es-letter",
+        "es-noun",
+        "es-past participle",
+        "es-phrase",
+        "es-proper noun",
+        "es-punctuation mark",
+        "es-suffix",
+        "es-verb"
+        }
+
+    def _is_headword(self, name):
+        """Returns True if ```name``` is a headword template"""
+        if name == "head":
+            return True
+
+        # TODO Get parent language and use that for matching headword
+        return name in self._headwords
+
+    def add_headword(self, line):
+        templates = parse_anything(line).filter_templates(recursive=False)
+        if not len(templates):
+            raise ValueError(f"No template found in '{line}'")
+        if len(templates)>1:
+            self.flag_problem("headword_multiple_templates", self.headword, line)
+
+        if self.headword and self.headword != templates[0]:
+            self.flag_problem("multiple_headwords", self.headword, line)
+
+        # TODO Warn if headword type doesn't match parent POS
+        self.headword = templates[0]
+
+#    @property
+    def get_details(self):
+        item = {
+            "pos": self._parent.name
+        }
+        return item

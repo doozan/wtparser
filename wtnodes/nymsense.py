@@ -35,7 +35,6 @@ class NymSense(WiktionaryNode):
             ancestor = self.get_ancestor(NymSection)
             self._type = ancestor.name if ancestor is not None else "ERROR"
 
-
     def _parse_data(self, text):
         """
         Accepts single line with optional sense tag
@@ -50,16 +49,16 @@ class NymSense(WiktionaryNode):
         text = self.store_line_start(text)
 
         trailing = []
-        self.sense, source, raw_sense = self.parse_sense(text)
+        self.sense, source, consumed = self.parse_sense(text)
         if source == "gloss":
             self.flag_problem("autofix_gloss_as_sense")
         elif source == "text":
             self.flag_problem("autofix_parenthetical_as_sense")
-        if raw_sense:
-            sense_text = re.escape(raw_sense)
-            res = re.match(fr"(.*?)({sense_text})(.*?)(\s*)$", text, re.DOTALL)
+        if consumed:
+            consumed_text = re.escape(consumed)
+            res = re.match(fr"(.*?)({consumed_text})(.*?)(\s*)$", text, re.DOTALL)
             if not res:
-                raise ValueError(f"Can't find '{sense_text}' in: {text}")
+                raise ValueError(f"Can't find '{consumed_text}' in: {text}")
 
             before_sense = res.group(1)
             sense = res.group(2)
@@ -69,7 +68,6 @@ class NymSense(WiktionaryNode):
 
             if after_sense and after_sense.strip():
                 if before_sense and after_sense.strip():
-                    raise ValueError("boop", )
                     self.flag_problem("sense_in_middle", sense, text)
                     text = before_sense + after_sense
                     self.add_text(sense)
@@ -137,9 +135,10 @@ class NymSense(WiktionaryNode):
     def parse_sense(line):
         """ Detects the sense, if any, in a nym line
 
-        Returns a tuple (sense, source, raw_sense) where sense is the sense detected,
-        and source is "template" or "gloss" depending on where the sense was found and
-        raw_sense is the text contining the source plus any surrounding template/parentheses
+        Returns a tuple (sense, source, consumed)
+        sense is the sense detected
+        source is "template", "gloss", or "text" and
+        consumed is the portion of the line consumed by the detected sense
         """
         wikt = parse_anything(line)
 
@@ -147,7 +146,7 @@ class NymSense(WiktionaryNode):
 
         sense = ""
         source = None
-        raw_sense = None
+        consumed = None
 
         if templates:
             source = "template"
@@ -171,7 +170,7 @@ class NymSense(WiktionaryNode):
                 res = re.match(pattern, line)
                 if res:
                     source = "text"
-                    raw_sense = res.group(0)
+                    consumed = res.group(0)
 #                    self.flag_problem("autofix_parenthetical_as_sense", line)
                     sense = res.group(1).strip("'").strip('"')
 
@@ -180,9 +179,9 @@ class NymSense(WiktionaryNode):
 #                pass
 ##                self.flag_problem("multiple_sense_templates", line)
 
-            raw_sense = str(templates[0])
+            consumed = str(templates[0])
             senses = set( str(p.value) for p in templates[0].params )
             sense = "|".join(senses)
 
-        return (sense, source, raw_sense)
+        return (sense, source, consumed)
 

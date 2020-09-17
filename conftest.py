@@ -61,8 +61,8 @@ def word_with_nymsection(language):
     return next(language.ifilter_pos(recursive=False, matches="Noun"))
 
 @pytest.fixture()
-def definition(word):
-    return next(word.ifilter_defs(recursive=False))
+def wordsense(word):
+    return next(word.ifilter_wordsenses(recursive=False))
 
 @pytest.fixture()
 def nymsection(word_with_nymsection):
@@ -70,11 +70,11 @@ def nymsection(word_with_nymsection):
 
 @pytest.fixture()
 def nymsense(nymsection):
-    return next(nymsection.ifilter_senses(recursive=False))
+    return next(nymsection.ifilter_nymsenses(recursive=False))
 
 @pytest.fixture()
 def decoratedlink(nymsense):
-    return next(nymsense.ifilter_defs(recursive=False))
+    return next(nymsense.ifilter_decoratedlinks(recursive=False))
 
 @pytest.fixture()
 def nymline(page):

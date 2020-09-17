@@ -23,7 +23,7 @@ from .defitem import DefinitionItem
 from .nymline import NymLine
 
 
-class Definition(WiktionaryNode):
+class WordSense(WiktionaryNode):
     def __init__(self, text, name, parent):
         self._lines = []
 
@@ -41,15 +41,8 @@ class Definition(WiktionaryNode):
 
     def _parse_item(self, line):
 
-        # buffer anything that comes before the "# [[def]]" line
-        # But flag it as unhandled
-        if not len(self._children):
-            if line.startswith("# ") or line.startswith("#{"):
-                self.parse_hash(line)
-            else:
-                if line.strip() != "":
-                    self.flag_problem("text_before_def", line)
-                self.parse_unhandled(line)
+        if line.startswith("# ") or line.startswith("#{"):
+            self.parse_hash(line)
 
         # Index any existing nym tags
         elif line.startswith("#:"):

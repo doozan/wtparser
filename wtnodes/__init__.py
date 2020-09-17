@@ -219,7 +219,11 @@ class WiktionaryNode(Node):
         for line in template_aware_splitlines(text, True):
             line = self._prepare_line(line)
 
-            in_header = self._is_header(line) if in_header else False
+            if in_header:
+                in_header = self._is_header(line)
+                if not in_header and unhandled:
+                    self._parse_header(unhandled)
+                    unhandled = []
 
             if in_header or in_footer:
                 unhandled.append(line)
@@ -295,6 +299,9 @@ class WiktionaryNode(Node):
         """Override this to catch additional header items"""
         return False
 
+    def _parse_header(self, lines):
+        self.add_text(lines)
+
     def _is_footer(self, line):
 
         re_endings = [ r"\[\[\s*Category\s*:" r"==[^=]+==", r"----" ]
@@ -315,7 +322,6 @@ class WiktionaryNode(Node):
     def _handle_other(self, line):
         self.flag_problem("unhandled_line", line)
         return False
-
 
     @staticmethod
     def _build_matcher(matches, flags):
@@ -397,7 +403,7 @@ from ..sections.pos import PosSection
 from ..sections.nym import NymSection
 
 from .word import Word
-from .definition import Definition
+from .wordsense import WordSense
 from .defitem import DefinitionItem
 from .nymline import NymLine
 from .nymsense import NymSense
@@ -408,11 +414,11 @@ WiktionaryNode._build_filter_methods(
     languages=LanguageSection,
     pos=PosSection,
     words=Word,
-    defs=Definition,
+    wordsenses=WordSense,
     defitems=DefinitionItem,
     nymlines=NymLine,
     nyms=NymSection,
-    senses=NymSense,
+    nymsenses=NymSense,
     decoratedlinks=DecoratedLink,
     templates=Template,
     #    arguments=Argument, comments=Comment, external_links=ExternalLink,
