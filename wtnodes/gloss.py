@@ -21,5 +21,5 @@ This handles lines in definitions
 from . import WiktionaryNode
 from ..utils import parse_anything
 
-class DefinitionItem(WiktionaryNode):
+class Gloss(WiktionaryNode):
     pass

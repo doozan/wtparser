@@ -20,14 +20,14 @@ Expects line like:
 #: {{nymtemplate}}
 """
 
-from .defitem import DefinitionItem
+from .gloss import Gloss
 from .nymsense import NymSense
 from ..constants import NYM_TO_TAG
 from ..utils import parse_anything
 from ..sections.nym import NymSection
+from . import WiktionaryNode
 
-
-class NymLine(DefinitionItem):
+class NymLine(WiktionaryNode):
     """
     Handles "nym" lines in definitions:
     #: {{syn|es|word|word2}}

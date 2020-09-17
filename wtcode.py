@@ -88,7 +88,7 @@ from .sections.nym import NymSection
 
 from .wtnodes.word import Word
 from .wtnodes.wordsense import WordSense
-from .wtnodes.defitem import DefinitionItem
+from .wtnodes.gloss import Gloss
 from .wtnodes.nymline import NymLine
 from .wtnodes.nymsense import NymSense
 from .wtnodes.decoratedlink import DecoratedLink
@@ -99,7 +99,7 @@ WTcode._build_filter_methods(
     pos=PosSection,
     words=Word,
     wordsenses=WordSense,
-    defitems=DefinitionItem,
+    glosses=Gloss,
     nymlines=NymLine,
     nyms=NymSection,
     nymsenses=NymSense,

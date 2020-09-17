@@ -22,7 +22,7 @@ from ..sections.language import LanguageSection
 from ..sections.nym import NymSection
 from ..sections.pos import PosSection
 from ..wtnodes.wordsense import WordSense
-from ..wtnodes.defitem import DefinitionItem
+from ..wtnodes.gloss import Gloss
 from ..wtnodes.nymline import NymLine
 from ..wtnodes.decoratedlink import DecoratedLink
 from ..wtnodes.nymsense import NymSense
@@ -105,8 +105,8 @@ def test_filter():
     assert len(wikt.filter(forcetype=WordSense)) == 4
     assert len(wikt.filter_wordsenses()) == 4
 
-    assert len(wikt.filter(forcetype=DefinitionItem)) == 6
-    assert len(wikt.filter_defitems()) == 6
+    assert len(wikt.filter(forcetype=Gloss)) == 4
+    assert len(wikt.filter_glosses()) == 4
 
     assert len(wikt.filter(forcetype=NymLine)) == 2
     assert len(wikt.filter_nymlines()) == 2

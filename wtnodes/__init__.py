@@ -404,7 +404,7 @@ from ..sections.nym import NymSection
 
 from .word import Word
 from .wordsense import WordSense
-from .defitem import DefinitionItem
+from .gloss import Gloss
 from .nymline import NymLine
 from .nymsense import NymSense
 from .decoratedlink import DecoratedLink
@@ -415,7 +415,7 @@ WiktionaryNode._build_filter_methods(
     pos=PosSection,
     words=Word,
     wordsenses=WordSense,
-    defitems=DefinitionItem,
+    glosses=Gloss,
     nymlines=NymLine,
     nyms=NymSection,
     nymsenses=NymSense,

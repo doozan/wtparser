@@ -19,7 +19,7 @@ import re
 from ..utils import parse_anything, get_template_depth, template_aware_splitlines
 from ..constants import ALL_NYMS, NYM_ORDER, TAG_TO_NYM, ALL_NYM_TAGS
 from . import WiktionaryNode
-from .defitem import DefinitionItem
+from .gloss import Gloss
 from .nymline import NymLine
 
 
@@ -59,8 +59,13 @@ class WordSense(WiktionaryNode):
                 self.flag_problem("unexpected_text", line)
             self.parse_unhandled(line)
 
+    def add_gloss(self, line):
+        item = Gloss(line, name=len(self._children) + 1, parent=self)
+        self._children.append(parse_anything(item))
+        return item
+
     def add_defitem(self, line):
-        item = DefinitionItem(line, name=len(self._children) + 1, parent=self)
+        item = WiktionaryNode(line, name=len(self._children) + 1, parent=self)
         self._children.append(parse_anything(item))
         return item
 
@@ -111,7 +116,7 @@ class WordSense(WiktionaryNode):
             )
         )
 
-        self.add_defitem(line)
+        self.add_gloss(line)
 
     def parse_hashcolon(self, line):
         res = re.match(r"#:\s*{{(" + "|".join(ALL_NYM_TAGS) + r")\|[^{}]+}}", line,)
