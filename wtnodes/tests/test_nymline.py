@@ -43,4 +43,3 @@ def test_nymline():
     nymline = NymLine("* {{syn|es|syn|syn2|Thesaurus:word}}\n", name="2", parent=None)
     nymline.add(newitem)
     assert nymline == "* {{syn|es|syn|syn2|syn3|alt3=alter3|tr3=tran3|q3=qual3|Thesaurus:word}}\n"
-

@@ -7,13 +7,13 @@ Page
 
 Language
     Pos
-        Word (should this be Definition)
-            WordSense (should be defsense?)
-                DefinitionItem (gloss?)
+        Word
+            WordSense
+                Gloss
                 NymLine
+                Unhandled -> WiktionaryNodes (should be defitem?)
     Nyms
         NymSense
-            NymLines
-                DecoratedLink
-                    Link
+            DecoratedLink
+                Link
 

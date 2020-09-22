@@ -20,6 +20,7 @@ import re
 from . import WiktionaryNode
 from .wordsense import WordSense
 from ..utils import parse_anything, template_aware_split, template_aware_splitlines
+from ..constants import ALL_POS
 
 class Word(WiktionaryNode):
     """
@@ -58,16 +59,20 @@ class Word(WiktionaryNode):
         return re.match(r"\s*{{", line)
 
     def _is_new_item(self, line):
-        return re.match(r"\s*# ", line)
+        return re.match(r"\s*[#]+[^#:*]", line)
 
     def _is_still_item(self, line):
-        return re.match(r"\s*#[^ ]", line)
+        return re.match(r"\s*[#]+[:*]", line)
 
     def add_item(self, lines):
         item = WordSense("".join(lines), name=len(self._children), parent=self)
         self._children.append(parse_anything(item))
 
+    # TODO Create per-language definitions for this stuff
     _headwords = {
+        "en-interj",
+        "pt-proper noun",
+
         "es-adj",
         "es-adj-inv",
         "es-adv",
@@ -104,9 +109,43 @@ class Word(WiktionaryNode):
         # TODO Warn if headword type doesn't match parent POS
         self.headword = templates[0]
 
-#    @property
-    def get_details(self):
-        item = {
-            "pos": self._parent.name
-        }
+    @property
+    def details(self):
+
+        item = {}
+        item["pos"] = re.sub(r"\s*[0-9]*$", "", self._parent.name)
+        item["shortpos"] = ALL_POS.get(item["pos"], "unknown")
+
+        if not self.headword:
+            return item
+
+        targets = {}
+        if self.headword.name == "head":
+            targets = {
+                "g": ["g", "gen", "g1"],
+                "g2": ["g2"],
+                "g3": ["g3"],
+                "pos_category": ["2"]
+                 }
+
+        elif self.headword.name in ["es-noun", "es-proper noun"]:
+            targets = {
+                "g": ["1", "g", "gen", "g1"],
+                "g2": ["g2"],
+                "g3": ["g3"],
+                "plural": ["2"]
+                 }
+
+        for k,params in targets.items():
+            for p in params:
+                if self.headword.has(p):
+                    item[k] = str(self.headword.get(p).value)
+
+        genders = []
+        for g in ["g", "g2", "g3"]:
+            gender = item.get(g, "").replace("-", "")
+            if gender and gender not in genders:
+                genders += gender
+            item["gender"] = "".join(genders)
+
         return item

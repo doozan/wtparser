@@ -89,6 +89,28 @@ def test_senes(word):
 
     # sense =  "s1|s2"
 
+def test_nymline_syn(word):
+    text = """\
+# [[word]]
+#: {{syn|syn1}}
+"""
+
+    d = WordSense(text, name="test", parent=word)
+    nymlines = d.filter_nymlines()
+    assert len(nymlines) == 1
+    assert nymlines[0] == "#: {{syn|syn1}}\n"
+
+def test_nymline_synonyms(word):
+    text = """\
+# [[word]]
+#: {{synonyms|syn1}}
+"""
+
+    d = WordSense(text, name="test", parent=word)
+    nymlines = d.filter_nymlines()
+    assert len(nymlines) == 1
+    assert nymlines[0] == "#: {{synonyms|syn1}}\n"
+
 
 def xtest_insert_nym_after(word):
 

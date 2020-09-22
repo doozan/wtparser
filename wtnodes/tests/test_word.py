@@ -127,3 +127,24 @@ def test_extra_header(language):
     defs = pos.filter_wordsenses()
     assert len(defs) == 2
 
+
+def test_subsenses(language):
+    orig_text = """\
+===Verb===
+{{es-verb|sac|ar|pret=saqué}}
+
+# {{lb|es|reflexive}} to [[obtain]], [[receive]]
+## {{lb|es|reflexive}} to [[win]], get, obtain (a prize, award)
+##: {{ux|es|Él '''se sacó''' el gordo.|He '''won''' first prize.}}
+## {{lb|es|reflexive}} to receive, get, be [[inflict]]ed with
+##: {{ux|es|'''Me saqué''' un puñetazo|'''I received''' a punch.}}
+##: {{syn|es|syn1}}
+"""
+    wiki = parse(orig_text, skip_style_tags=True)
+    pos = PosSection(wiki, parent=language)
+
+    glosses = pos.filter_glosses()
+    assert len(glosses) == 3
+
+    nyms = pos.filter_nymlines()
+    assert len(nyms) == 1

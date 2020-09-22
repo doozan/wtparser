@@ -27,6 +27,8 @@ class WordSense(WiktionaryNode):
     def __init__(self, text, name, parent):
         self._lines = []
 
+        self.gloss = None
+
         self.sense_ids = []
         self.sense_labels = []
         self.sense_words = set()
@@ -41,18 +43,18 @@ class WordSense(WiktionaryNode):
 
     def _parse_item(self, line):
 
-        if line.startswith("# ") or line.startswith("#{"):
+        if re.match(r"\s*[#]+[^#:*]", line):
             self.parse_hash(line)
 
         # Index any existing nym tags
-        elif line.startswith("#:"):
+        elif re.match(r"\s*[#]+[:]", line):
             self.parse_hashcolon(line)
 
-        elif line.startswith("#*"):
+        elif re.match(r"\s*[#]+[*]", line):
             self.parse_hashstar(line)
 
-        elif line.startswith("##"):
-            self.parse_hashhash(line)
+#        elif line.startswith("##"):
+#            self.parse_hashhash(line)
 
         else:
             if line.strip() != "":
@@ -60,8 +62,12 @@ class WordSense(WiktionaryNode):
             self.parse_unhandled(line)
 
     def add_gloss(self, line):
+        if self.gloss:
+            self.flag_problem("multiple_gloss", self.gloss, line)
+
         item = Gloss(line, name=len(self._children) + 1, parent=self)
         self._children.append(parse_anything(item))
+        self.gloss = item
         return item
 
     def add_defitem(self, line):
@@ -78,7 +84,7 @@ class WordSense(WiktionaryNode):
         of the same type already exists, and prevents future additions
         from being merged into the new entry
         """
-        res = re.match(r"#:\s*{{(" + "|".join(ALL_NYM_TAGS) + r")\|[^{}]+}}", line)
+        res = re.match(r"[#]+[:]\s*{{(" + "|".join(ALL_NYM_TAGS) + r")\|[^{}]+}}", line)
         if not res:
             self.flag_problem("nymline_missing_syn_tag", line)
             return
@@ -119,7 +125,7 @@ class WordSense(WiktionaryNode):
         self.add_gloss(line)
 
     def parse_hashcolon(self, line):
-        res = re.match(r"#:\s*{{(" + "|".join(ALL_NYM_TAGS) + r")\|[^{}]+}}", line,)
+        res = re.match(r"[#]+[:]\s*{{(" + "|".join(ALL_NYM_TAGS) + r")\|[^{}]+}}", line)
         if res:
             self.add_nymline(line)
             return

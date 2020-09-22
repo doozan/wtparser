@@ -20,9 +20,10 @@ Expects line like:
 #: {{nymtemplate}}
 """
 
+import re
 from .gloss import Gloss
 from .nymsense import NymSense
-from ..constants import NYM_TO_TAG
+from ..constants import NYM_TO_TAG, TAG_TO_NYM
 from ..utils import parse_anything
 from ..sections.nym import NymSection
 from . import WiktionaryNode
@@ -55,9 +56,10 @@ class NymLine(WiktionaryNode):
         return cls.from_items(tmpl_name, lang_id, items, name, parent)
 
     def _parse_data(self, text):
+#        self.add_text(text)
         self._children = [ parse_anything(text) ]
 
-        if not text.startswith("#:"):
+        if not re.match("[#]+[:]", text):
             self.flag_problem("unexpected_line_start", text)
 
         # Verify there's only one template
@@ -68,7 +70,7 @@ class NymLine(WiktionaryNode):
         elif len(templates) > 2:
             self.flag_problem("too_many_templates")
 
-        self.type = templates[0].name
+        self.type = TAG_TO_NYM[str(templates[0].name)]
 
         # TODO: ensure there's no other text on the line
 

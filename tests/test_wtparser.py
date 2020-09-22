@@ -366,3 +366,190 @@ def test_deep_subsections():
     entry = parse_language(orig_text, skip_style_tags=True)
     word = entry.filter_pos()[0]
     assert "Synonyms" in word._sections
+
+def test_bien():
+
+    orig_text="""\
+==Spanish==
+
+===Adverb===
+{{es-adv}}
+
+# [[well]] {{gloss|adverbial form of {{m|es|bueno}}}}
+#:{{uxi|es|Toca '''bien''' el piano.|He plays the piano well.}}
+#: {{ant|es|mal}}
+# [[well]], [[fine]], [[okay]] {{gloss|state of being satisfied with the status quo}}
+#{{uxi|es|hasta aquí todo bien|so far so good}}
+# [[properly]]
+# [[willingly]]
+# [[very]]
+# [[as well]]
+#:{{uxi|es|'''Bien''' podrías acabar con ello temprano.|You might '''as well''' get it over with early.}}
+"""
+    entry = parse_language(orig_text, skip_style_tags=True)
+    senses = entry.filter_wordsenses()
+    # The #{{ux line should be detected as a sense, but should also flag an error for using the {{ux}}
+    assert len(senses) == 7
+
+    glosses = entry.filter_glosses()
+    assert len(glosses) == 7
+    assert glosses[1].strip() == "# [[well]], [[fine]], [[okay]] {{gloss|state of being satisfied with the status quo}}"
+
+def test_single():
+
+    orig_text="""\
+==Spanish==
+
+===Etymology===
+Borrowed from {{bor|es|en|single}}. {{doublet|es|sendos}}.
+
+===Noun 1===
+{{es-noun|m}}
+
+# {{l|en|single}} {{gloss|song released}}
+
+===Noun 2===
+{{es-noun|mf}}
+
+# {{l|en|single}}, single person
+"""
+    entry = parse_language(orig_text, skip_style_tags=True)
+    words = entry.filter_words()
+
+def test_chino():
+
+    orig_text="""\
+==Spanish==
+
+===Pronunciation===
+* {{es-IPA}}
+* {{audio|es|LL-Q1321 (spa)-Millars-chino.wav|Audio (Spain)}}
+* {{rhymes|es|ino}}
+
+===Etymology 1===
+From {{af|es|China|-o}}.
+
+====Adjective====
+{{es-adj|f=china}}
+
+# [[Chinese]]
+
+====Noun====
+{{es-noun|m|f=china}}
+
+# [[Chinese]] person
+# {{lb|es|Latin America}} (pejorative) Any [[Oriental]] person in general: [[Chinese]], [[Japanese]], [[Korean]], [[Vietnamese]], [[Mongolian]], etc.
+#: {{ux|es|Juan y el '''chino''' son amigos.|Juan and the Japanese guy are friends.}}
+{{es-noun|m}}
+# [[Chinese]] {{gloss|language}}
+# {{lb|es|colloquial}} An [[incomprehensible]] language
+# {{lb|es|colloquial|Cuba|uncountable}} [[chickenpox]]
+#: {{syn|es|varicela}}
+# {{lb|es|colloquial}} A Chinese-run establishment
+## a Chinese [[restaurant]]
+##: {{syn|es|chifa}}
+## {{lb|es|Spain}} [[variety store]] ([[pound shop]], [[dollar store]]) owned by a Chinese immigrant
+##: {{syn|es|bazar chino}}
+# {{lb|es|colloquial|Spain}} [[heroin]] taken by [[chase the dragon|chasing the dragon]]
+
+{{C|es|Recreational drugs}}
+
+====Usage notes====
+*{{sense|variety store}} Often more used in the plural form with the same meaning. They are called ''chinos'' because Chinese citizens own almost all the [[variety store]]s in Spain.
+
+=====Hyponyms=====
+{{col2|es|{{l|es|shanghaiano}}|{{l|es|pekinés}}
+}}
+
+=====Derived terms=====
+{{der3|es|achinado|achinar|antichino|berro chino|caja china|chino mandarín|chino tuerto|col china|cuento chino|damas chinas|engañar como a un chino|esto es chino para mí|fumar como chino en quiebra|gota china|naranjo chino|repollo chino|rosa china|tablero chino|taco chino|tinta china|trabajo de chinos}}
+
+===Etymology 2===
+Use of {{m|es|enchinar|t=to pave}}, from {{m|es|en-}} + {{m|es|china}}.
+
+====Adjective====
+{{es-adj|f=china}}
+
+# [[curly]]
+
+====Noun====
+{{es-noun|m|f=china}}
+
+# someone with [[curly]] hair
+
+===Etymology 3===
+From {{der|es|qu|-}}/{{der|es|qwe-kch|čína||servant girl}}
+
+===Noun===
+{{es-noun|m}}
+
+# {{lb|es|Colombia}} [[kid]]
+
+=====Related terms=====
+* {{l|es|enchinar}}
+
+===Further reading===
+* {{R:DRAE}}
+"""
+    wikt = parse_language(orig_text) #, skip_style_tags=True)
+    words = wikt.filter_words()
+    for word in words:
+        for sense in word.ifilter_wordsenses():
+            print(sense.gloss)
+    assert len(words) == 5
+
+def test_jonathan():
+    orig_text="""\
+==Spanish==
+
+=== Etymology ===
+Borrowed from {{borrowed|es|en|Jonathan}}
+
+=== Pronunciation ===
+
+* {{es-IPA|yónatan}}
+
+=== Proper noun ===
+{{es-proper noun|m|g=m|gen=m}}
+
+# {{given name|pt|male|eq=Jonathan|from=English}}
+"""
+    wikt = parse_language(orig_text) #, skip_style_tags=True)
+    words = wikt.filter_words()
+    for word in words:
+        for sense in word.ifilter_wordsenses():
+            print(sense.gloss)
+    assert len(words) == 5
+
+
+
+def test_chapo():
+    orig_text="""\
+==Spanish==
+
+===Etymology 1===
+
+====Verb====
+{{head|es|verb form}}
+# {{es-verb form of|person=third-person|number=singular|tense=preterit|mood=indicative|ending=ar|chapar}}
+
+===Etymology 2===
+Borrowed from {{bor|es|fr|chapeau}}, from {{der|es|VL.|*cappellus}}. Doublet of the inherited {{doublet|es|capillo|notext=1}}, and of {{m|es|capelo}} (from Italian), as well as {{m|es|chapeo}}, also from the French word.
+
+===Pronunciation===
+* {{es-IPA}}
+
+===Interjection===
+{{es-interj}}
+
+# {{non-gloss definition|Used to express [[appreciation]]}}; [[hat tip]]
+#: '''''Chapó''', señor.''
+"""
+
+    wikt = parse_language(orig_text)
+    words = wikt.filter_words()
+    for word in words:
+        for sense in word.ifilter_wordsenses():
+            print(sense.gloss)
+    assert len(words) == 2
+

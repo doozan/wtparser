@@ -18,8 +18,50 @@
 This handles lines in definitions
 """
 
+import re
 from . import WiktionaryNode
 from ..utils import parse_anything
 
 class Gloss(WiktionaryNode):
-    pass
+    """Handles gloss lines:
+    # {{lb|es|Spain}} to [[run]]
+    """
+
+    def handle_leading_anchors(self, text):
+        templates = [ "anchor", "s", "senseid" ]
+        re_templates = "|".join(templates)
+        while re.match(r'\s*{{\s*(' + re_templates + ')\s*\|', text):
+            wikt = parse_anything(text)
+            template = next(wikt.ifilter_templates(recursive=False, matches=lambda x: x.name in templates))
+            re_template = re.escape(str(template))
+            text = re.sub(rf"^\s*{re_template}[:]?\s*", lambda x: self.add_text(x.group(0)), str(wikt))
+
+        return text
+
+    def handle_leading_labels(self, text):
+        templates = ["label", "lb", "lbl", "indtr"]
+        re_templates = "|".join(templates)
+        while re.match(r'\s*{{\s*(' + re_templates + ')\s*\|', text):
+            wikt = parse_anything(text)
+            template = next(wikt.ifilter_templates(recursive=False, matches=lambda x: x.name in templates))
+
+            qualifiers = [ str(p) for p in template.params if p.name != "1" and str(p.name).isdigit() ]
+            if "sort" in template.params:
+                qualifiers = sorted(qualifiers)
+            self.qualifiers += qualifiers
+
+            re_template = re.escape(str(template))
+            text = re.sub(rf"^\s*{re_template}[:,;]?\s*", lambda x: self.add_text(x.group(0)), str(wikt))
+
+        return text
+
+    def _parse_data(self, text):
+        self.qualifiers = []
+        self.data = ""
+
+        pattern = r"(?P<start>\s*\#+\s*)(?P<data>.*)"
+        res = re.match(pattern, text, re.DOTALL)
+        self.add_text(res.group('start'))
+        data = self.handle_leading_anchors(res.group('data'))
+        self.data = self.handle_leading_labels(data)
+        self.add_text(self.data)

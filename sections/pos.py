@@ -43,7 +43,7 @@ class PosSection(WiktionarySection):
 
     def _is_new_item(self, line):
         # Header can contain a headword template {{head* or {{lang-*
-        tmpl_prefix = [ "head", self.lang_id + "-" ]
+        tmpl_prefix = [ "head", self.lang_id + "-", "..-" ]
         if re.match(r"\s*{{\s*("+ "|".join(tmpl_prefix) + ")", line): # }}
             return True
         return False

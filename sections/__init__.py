@@ -27,9 +27,12 @@ def get_section_type(title, default):
     from .language import LanguageSection
     from .nym import NymSection
 
+    all_pos = "|".join(ALL_POS.keys())
+    pos_pattern = f"{all_pos}\s*[0-9]*$"
+
     if title in ALL_LANGUAGES:
         return LanguageSection
-    elif title in ALL_POS:
+    elif re.match(pos_pattern, title):
         return PosSection
     elif title in ALL_NYMS:
         return NymSection
@@ -40,7 +43,7 @@ def get_section_type(title, default):
 
 def get_section_title(section):
     heading = next(iter(section.filter_headings(recursive=False)))
-    return heading.strip("=")
+    return heading.strip("=").strip()
 
 
 class WiktionarySection(WiktionaryNode):
@@ -64,7 +67,7 @@ class WiktionarySection(WiktionaryNode):
         if parse_header:
             self.heading = next(iter(wikt.filter_headings(recursive=False)))
             self._level = int(self.heading.count("=") / 2)
-            self._name = self.heading.strip("=")
+            self._name = self.heading.strip("=").strip()
 
         #        self._logname = parent._logname+"."+self._name if parent else self._name
         #        self.log = logging.getLogger(self._logname)

@@ -27,7 +27,11 @@ from ..utils import parse_anything, template_aware_splitlines
 from mwparserfromhell.nodes import Template
 
 class WiktionaryNode(Node):
-    header_templates = [ "wikipedia" ]
+
+    # List of "standalone" templates that may appear between a section heading
+    # the actual content of that section
+    header_templates = [ "wikipedia", "attention" ]
+    header_links = [ "File:" ]
 
     def __init__(self, text, name, parent, parse_data=True):
 
@@ -54,7 +58,7 @@ class WiktionaryNode(Node):
             self._parse_data(text)
 
     def _parse_data(self, text):
-        self._children = [ parse_anything(text) ]
+        self.add_text(text)
 
     def __children__(self):
         return self._children
@@ -274,11 +278,19 @@ class WiktionaryNode(Node):
 
     def _is_filler_line(self, line):
         if self.header_templates:
-            re_templates = [ r"\{\{\s*"+item+r"\s*\|" for item in self.header_templates ] #}}
-            pattern = "(" + "|".join(re_templates) + ")"
+            re_items = [ r"\{\{\s*"+item+r"\s*\|" for item in self.header_templates ] #}}
+            pattern = "(" + "|".join(re_items) + ")"
 
             if re.match(pattern, line):
                 return True
+
+        if self.header_links:
+            re_items = [ r"\[\[\s*"+item+r"" for item in self.header_links ]
+            pattern = "(" + "|".join(re_items) + ")"
+
+            if re.match(pattern, line):
+                return True
+
         return False
 
     def _is_header(self, line):
