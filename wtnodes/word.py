@@ -19,8 +19,10 @@ import re
 
 from . import WiktionaryNode
 from .wordsense import WordSense
+from .gloss import Gloss
 from ..utils import parse_anything, template_aware_split, template_aware_splitlines
 from ..constants import ALL_POS
+
 
 class Word(WiktionaryNode):
     """
@@ -33,43 +35,9 @@ class Word(WiktionaryNode):
     # def2
     """
 
-    def _parse_data(self, text):
-        self._children = []
-        self._parse_list(text)
 
-    def _parse_header(self, lines):
-        """Find and parse the headword declaration"""
-        self.add_text(lines)
-        self.headword = None
-
-        for line in lines:
-            res = re.match(r"\s*{{\s*([^|}]+)*", line)
-            if not res:
-                continue
-
-            tmpl_name = res.group(1).strip()
-            if self._is_headword(tmpl_name):
-                self.add_headword(line)
-
-        if not self.headword:
-            self.flag_problem("headword_missing")
-
-    def _is_header_extra(self, line):
-        # Consider any bare template to be part of the header
-        return re.match(r"\s*{{", line)
-
-    def _is_new_item(self, line):
-        return re.match(r"\s*[#]+[^#:*]", line)
-
-    def _is_still_item(self, line):
-        return re.match(r"\s*[#]+[:*]", line)
-
-    def add_item(self, lines):
-        item = WordSense("".join(lines), name=len(self._children), parent=self)
-        self._children.append(parse_anything(item))
-
-    # TODO Create per-language definitions for this stuff
     _headwords = {
+        "head",
         "en-interj",
         "pt-proper noun",
 
@@ -88,26 +56,45 @@ class Word(WiktionaryNode):
         "es-verb"
         }
 
-    def _is_headword(self, name):
-        """Returns True if ```name``` is a headword template"""
-        if name == "head":
-            return True
+    _labels = { "term-label", "tlb" }
 
-        # TODO Get parent language and use that for matching headword
-        return name in self._headwords
+    def _parse_data(self, text):
+        self.qualifiers = []
+        self._children = []
+        self._parse_list(text)
 
-    def add_headword(self, line):
-        templates = parse_anything(line).filter_templates(recursive=False)
-        if not len(templates):
-            raise ValueError(f"No template found in '{line}'")
-        if len(templates)>1:
-            self.flag_problem("headword_multiple_templates", self.headword, line)
+    def _parse_header(self, lines):
+        """Find and parse the headword declaration"""
+        self.add_text(lines)
+        self.headword = None
 
-        if self.headword and self.headword != templates[0]:
-            self.flag_problem("multiple_headwords", self.headword, line)
+        wikt = parse_anything(lines)
+        headwords = wikt.filter_templates(matches = lambda x: str(x.name) in self._headwords)
+        if not len(headwords):
+            self.flag_problem("headword_missing")
+        else:
+            # TODO Warn if headword type doesn't match parent POS
+            if len(headwords)>1:
+                self.flag_problem("multiple_headwords")
+            self.headword = headwords[-1]
 
-        # TODO Warn if headword type doesn't match parent POS
-        self.headword = templates[0]
+        labels = wikt.filter_templates(matches = lambda x: str(x.name) in self._labels)
+        for label in labels:
+            self.qualifiers += Gloss.get_label_qualifiers(label)
+
+    def _is_header_extra(self, line):
+        # Consider any bare template to be part of the header
+        return re.match(r"\s*{{", line)
+
+    def _is_new_item(self, line):
+        return re.match(r"\s*[#]+[^#:*]", line)
+
+    def _is_still_item(self, line):
+        return re.match(r"\s*[#]+[:*]", line)
+
+    def add_item(self, lines):
+        item = WordSense("".join(lines), name=len(self._children), parent=self)
+        self._children.append(parse_anything(item))
 
     @property
     def details(self):
@@ -115,6 +102,7 @@ class Word(WiktionaryNode):
         item = {}
         item["pos"] = re.sub(r"\s*[0-9]*$", "", self._parent.name)
         item["shortpos"] = ALL_POS.get(item["pos"], "unknown")
+        item["qualifiers"] = self.qualifiers
 
         if not self.headword:
             return item

@@ -30,8 +30,8 @@ class WiktionaryNode(Node):
 
     # List of "standalone" templates that may appear between a section heading
     # the actual content of that section
-    header_templates = [ "wikipedia", "attention" ]
-    header_links = [ "File:" ]
+    header_templates = [ "wikipedia", "attention", "slim-wikipedia", "enum" ]
+    header_links = [ "File:", "Image:" ]
 
     def __init__(self, text, name, parent, parse_data=True):
 

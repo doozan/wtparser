@@ -242,7 +242,7 @@ class WordSense(WiktionaryNode):
             self.sense_labels += [
                 str(p.value)
                 for p in template.params
-                if p.name.isdigit and int(str(p.name)) > 1
+                if str(p.name).isdigit() and int(str(p.name)) > 1
             ]
 
     def add_sense_ids(self, templates):

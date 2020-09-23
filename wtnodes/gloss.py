@@ -27,6 +27,13 @@ class Gloss(WiktionaryNode):
     # {{lb|es|Spain}} to [[run]]
     """
 
+    @staticmethod
+    def get_label_qualifiers(template):
+        qualifiers = [ str(p) for p in template.params if p.name != "1" and str(p.name).isdigit() ]
+        if "sort" in template.params:
+            qualifiers = sorted(qualifiers)
+        return qualifiers
+
     def handle_leading_anchors(self, text):
         templates = [ "anchor", "s", "senseid" ]
         re_templates = "|".join(templates)
@@ -45,10 +52,7 @@ class Gloss(WiktionaryNode):
             wikt = parse_anything(text)
             template = next(wikt.ifilter_templates(recursive=False, matches=lambda x: x.name in templates))
 
-            qualifiers = [ str(p) for p in template.params if p.name != "1" and str(p.name).isdigit() ]
-            if "sort" in template.params:
-                qualifiers = sorted(qualifiers)
-            self.qualifiers += qualifiers
+            self.qualifiers += self.get_label_qualifiers(template)
 
             re_template = re.escape(str(template))
             text = re.sub(rf"^\s*{re_template}[:,;]?\s*", lambda x: self.add_text(x.group(0)), str(wikt))

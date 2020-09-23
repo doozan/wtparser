@@ -122,7 +122,7 @@ class NymSense(WiktionaryNode):
             prev_delimiter = delimiter
             if text == "":
                 self.add_text(delimiter)
-                self.flag_problem("empty_item_in_list", line_text)
+                self.flag_problem("empty_item_in_list", line)
 
             # TODO: Better counter
             item = DecoratedLink(text, name=len(self._children) + 1, parent=self)
