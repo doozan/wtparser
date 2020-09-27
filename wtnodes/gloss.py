@@ -28,34 +28,48 @@ class Gloss(WiktionaryNode):
     """
 
     @staticmethod
-    def get_label_qualifiers(template):
-        qualifiers = [ str(p) for p in template.params if p.name != "1" and str(p.name).isdigit() ]
-        if "sort" in template.params:
-            qualifiers = sorted(qualifiers)
-        return qualifiers
+    def get_label_qualifiers(t):
+        return [ str(p) for p in t.params if p.name != "1" and str(p.name).isdigit() ]
 
-    def handle_leading_anchors(self, text):
-        templates = [ "anchor", "s", "senseid" ]
-        re_templates = "|".join(templates)
+    @staticmethod
+    def get_indtr_qualifiers(t):
+        types = {
+            "intr": "intransitive",
+            "ditr": "ditransitive",
+            "cop": "copulative",
+            "aux": "auxiliary",
+        }
+        q = [ str(v) for k,v in types.items() if t.has(k) ]
+        if not q:
+            q = [ "transitive" ]
+
+        return q
+
+    _anchors = { "anchor", "s", "senseid" }
+    _labels = { "label", "lb", "lbl" }
+    _indtr = { "indtr" }
+    _all_leading_templates = _anchors | _labels | _indtr
+
+    def consume_leading_templates(self, text):
+        """Process leading anchor and label templates
+
+        Returns remainder of line"""
+
+        re_templates = "|".join(map(re.escape, self._all_leading_templates))
         while re.match(r'\s*{{\s*(' + re_templates + ')\s*\|', text):
             wikt = parse_anything(text)
-            template = next(wikt.ifilter_templates(recursive=False, matches=lambda x: x.name in templates))
+            template = next(wikt.ifilter_templates(recursive=False))
+
+            if template.name.strip() in self._labels:
+                self.qualifiers += self.get_label_qualifiers(template)
+
+            # Scrape basic verb qualifiers from indtr, but don't parse/strip them
+            elif template.name.strip() in self._indtr:
+                self.qualifiers += self.get_indtr_qualifiers(template)
+                return text
+
             re_template = re.escape(str(template))
             text = re.sub(rf"^\s*{re_template}[:]?\s*", lambda x: self.add_text(x.group(0)), str(wikt))
-
-        return text
-
-    def handle_leading_labels(self, text):
-        templates = ["label", "lb", "lbl", "indtr"]
-        re_templates = "|".join(templates)
-        while re.match(r'\s*{{\s*(' + re_templates + ')\s*\|', text):
-            wikt = parse_anything(text)
-            template = next(wikt.ifilter_templates(recursive=False, matches=lambda x: x.name in templates))
-
-            self.qualifiers += self.get_label_qualifiers(template)
-
-            re_template = re.escape(str(template))
-            text = re.sub(rf"^\s*{re_template}[:,;]?\s*", lambda x: self.add_text(x.group(0)), str(wikt))
 
         return text
 
@@ -66,6 +80,5 @@ class Gloss(WiktionaryNode):
         pattern = r"(?P<start>\s*\#+\s*)(?P<data>.*)"
         res = re.match(pattern, text, re.DOTALL)
         self.add_text(res.group('start'))
-        data = self.handle_leading_anchors(res.group('data'))
-        self.data = self.handle_leading_labels(data)
+        self.data = self.consume_leading_templates(res.group('data'))
         self.add_text(self.data)

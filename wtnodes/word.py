@@ -78,6 +78,12 @@ class Word(WiktionaryNode):
                 self.flag_problem("multiple_headwords")
             self.headword = headwords[-1]
 
+
+        # TODO: How should qualifiers be parsed?
+        # it's sloppy to call into Gloss
+        # it's redundant to have label parsing code in Gloss and enwiktionary_templates
+        # but it's silly to require enwiktionary_templates in here (or is it?)
+
         labels = wikt.filter_templates(matches = lambda x: str(x.name) in self._labels)
         for label in labels:
             self.qualifiers += Gloss.get_label_qualifiers(label)
@@ -103,37 +109,43 @@ class Word(WiktionaryNode):
         item["pos"] = re.sub(r"\s*[0-9]*$", "", self._parent.name)
         item["shortpos"] = ALL_POS.get(item["pos"], "unknown")
         item["qualifiers"] = self.qualifiers
+        item["gender"] = self.gender
+#        item["lemma"] = self.lemma
+#        item["plural"] = self.lemma
 
-        if not self.headword:
-            return item
-
-        targets = {}
         if self.headword.name == "head":
-            targets = {
-                "g": ["g", "gen", "g1"],
-                "g2": ["g2"],
-                "g3": ["g3"],
-                "pos_category": ["2"]
-                 }
-
-        elif self.headword.name in ["es-noun", "es-proper noun"]:
-            targets = {
-                "g": ["1", "g", "gen", "g1"],
-                "g2": ["g2"],
-                "g3": ["g3"],
-                "plural": ["2"]
-                 }
-
-        for k,params in targets.items():
-            for p in params:
-                if self.headword.has(p):
-                    item[k] = str(self.headword.get(p).value)
-
-        genders = []
-        for g in ["g", "g2", "g3"]:
-            gender = item.get(g, "").replace("-", "")
-            if gender and gender not in genders:
-                genders += gender
-            item["gender"] = "".join(genders)
+            item["pos_category"] = str(self.headword.get(2))
 
         return item
+
+    @property
+    def gender(self):
+        if not self.headword:
+            return None
+
+        targets = []
+        if self.headword.name == "head":
+            targets = [
+                ["g", "gen", "g1"],
+                ["g2"],
+                ["g3"],
+                ]
+
+        # FIXME: hardcoded language id
+        elif self.headword.name in ["es-noun", "es-proper noun"]:
+            targets = [
+                ["1", "g", "gen", "g1"],
+                ["g2"],
+                ["g3"],
+                ]
+
+        genders = []
+        for params in targets:
+            gender = None
+            for p in params:
+                if self.headword.has(p):
+                    gender = str(self.headword.get(p).value).replace("-", "")
+            if gender and gender not in genders:
+                genders += gender
+
+        return "".join(genders)
