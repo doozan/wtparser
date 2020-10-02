@@ -20,7 +20,7 @@ import re
 from . import WiktionaryNode
 from .wordsense import WordSense
 from .gloss import Gloss
-from ..utils import parse_anything, template_aware_split, template_aware_splitlines
+from ..utils import parse_anything, template_aware_split, template_aware_splitlines, get_label_qualifiers
 from ..constants import ALL_POS
 
 
@@ -35,7 +35,7 @@ class Word(WiktionaryNode):
     # def2
     """
 
-
+    # FIXME: hardcoded language keys
     _headwords = {
         "head",
         "en-interj",
@@ -44,12 +44,16 @@ class Word(WiktionaryNode):
         "es-adj",
         "es-adj-inv",
         "es-adv",
+        "es-conjunction",
         "es-diacritical mark",
         "es-interj",
+        "es-interjection",
         "es-letter",
         "es-noun",
         "es-past participle",
         "es-phrase",
+        "es-prefix",
+        "es-proverb",
         "es-proper noun",
         "es-punctuation mark",
         "es-suffix",
@@ -78,15 +82,9 @@ class Word(WiktionaryNode):
                 self.flag_problem("multiple_headwords")
             self.headword = headwords[-1]
 
-
-        # TODO: How should qualifiers be parsed?
-        # it's sloppy to call into Gloss
-        # it's redundant to have label parsing code in Gloss and enwiktionary_templates
-        # but it's silly to require enwiktionary_templates in here (or is it?)
-
         labels = wikt.filter_templates(matches = lambda x: str(x.name) in self._labels)
         for label in labels:
-            self.qualifiers += Gloss.get_label_qualifiers(label)
+            self.qualifiers += get_label_qualifiers(label)
 
     def _is_header_extra(self, line):
         # Consider any bare template to be part of the header
@@ -103,49 +101,103 @@ class Word(WiktionaryNode):
         self._children.append(parse_anything(item))
 
     @property
-    def details(self):
-
-        item = {}
-        item["pos"] = re.sub(r"\s*[0-9]*$", "", self._parent.name)
-        item["shortpos"] = ALL_POS.get(item["pos"], "unknown")
-        item["qualifiers"] = self.qualifiers
-        item["gender"] = self.gender
-#        item["lemma"] = self.lemma
-#        item["plural"] = self.lemma
-
-        if self.headword.name == "head":
-            item["pos_category"] = str(self.headword.get(2))
-
-        return item
+    def pos(self):
+        return re.sub(r"\s*[0-9]*$", "", self._parent.name.strip())
 
     @property
-    def gender(self):
-        if not self.headword:
-            return None
+    def pos_category(self):
+        if self.headword is None:
+            return ""
+        return str(self.headword.get(2)) if self.headword.name == "head" else ""
 
-        targets = []
-        if self.headword.name == "head":
-            targets = [
-                ["g", "gen", "g1"],
-                ["g2"],
-                ["g3"],
-                ]
+    @property
+    def shortpos(self):
+        return ALL_POS.get(self.pos, "unknown")
 
-        # FIXME: hardcoded language id
-        elif self.headword.name in ["es-noun", "es-proper noun"]:
-            targets = [
-                ["1", "g", "gen", "g1"],
-                ["g2"],
-                ["g3"],
-                ]
+    gender_sources = {
+        "head": {
+            "g": ["g", "gen", "g1"],
+            "g2": ["g2"],
+            "g3": ["g3"],
+        },
+        "es-noun": {
+            "g": ["1", "g", "gen", "g1"],
+            "g2": ["g2"],
+            "g3": ["g3"],
+        },
+        "es-proper noun": {
+            "g": ["1", "g", "gen", "g1"],
+            "g2": ["g2"],
+            "g3": ["g3"],
+        },
+    }
 
-        genders = []
-        for params in targets:
-            gender = None
-            for p in params:
-                if self.headword.has(p):
-                    gender = str(self.headword.get(p).value).replace("-", "")
-            if gender and gender not in genders:
-                genders += gender
+    form_sources = {
+        "es-adj": {
+            "m": ["m"],
+            "f": ["f", "f2"],
+            "pl": ["pl", "pl2"],
+            "mpl": ["mpl", "mpl2"],
+            "fpl": ["fpl", "fpl2"]
+        },
+        "es-noun": {
+            "m": ["m", "m2"],
+            "f": ["f", "f2"],
+            "pl": [2, "pl2"],
+            "mpl": ["mpl", "mpl2"],
+            "fpl": ["fpl", "fpl2"]
+        },
+        "es-proper noun": {
+            "m": ["m", "m2"],
+            "f": ["f", "f2"],
+            "pl": [2, "pl2"],
+            "mpl": ["mpl", "mpl2"],
+            "fpl": ["fpl", "fpl2"]
+        },
+    }
 
-        return "".join(genders)
+    @property
+    def genders(self):
+        if self.headword is None:
+            return []
+        t = self.headword
+        sources = self.gender_sources.get(str(t.name))
+        if not sources:
+            return []
+
+        res = {}
+        for k,params in sources.items():
+            for param in params:
+                if t.has(param):
+                    res[k] = res.get(k, []) + [str(t.get(param).value)]
+
+        return [ v[0] for v in res.values() ]
+
+    @property
+    def forms(self):
+        if self.headword is None:
+            return {}
+
+        t = self.headword
+        sources = self.form_sources.get(str(t.name))
+        if not sources:
+            return {}
+
+        res = {}
+        for k,params in sources.items():
+            for param in params:
+                if t.has(param):
+                    res[k] = res.get(k, []) + [str(t.get(param).value)]
+
+        return res
+
+#    @property
+#    def lemma(self):
+#        if not self.headword:
+#            return None
+
+#        if self.headword.name == "es-conj":
+
+
+
+

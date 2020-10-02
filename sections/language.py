@@ -26,11 +26,12 @@ from ..constants import ALL_LANGUAGES
 class LanguageSection(WiktionarySection):
     def __init__(self, wikt, parent):
 
-        # TODO: Fix this mess
-        self._parent = parent
+        # Set self._lang_id before processing anything else so child sections can
+        # query for it as needed during their creation
         heading = next(iter(wikt.filter_headings(recursive=False)))
-        lang = heading.strip("=")
+        lang = heading.strip("=").strip()
         if lang not in ALL_LANGUAGES:
+            self._parent = parent
             self.flag_problem("unknown_language", lang)
             self._lang_id = "ERROR_NOLANG"
         else:

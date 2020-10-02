@@ -20,16 +20,12 @@ This handles lines in definitions
 
 import re
 from . import WiktionaryNode
-from ..utils import parse_anything
+from ..utils import parse_anything, get_label_qualifiers
 
 class Gloss(WiktionaryNode):
     """Handles gloss lines:
     # {{lb|es|Spain}} to [[run]]
     """
-
-    @staticmethod
-    def get_label_qualifiers(t):
-        return [ str(p) for p in t.params if p.name != "1" and str(p.name).isdigit() ]
 
     @staticmethod
     def get_indtr_qualifiers(t):
@@ -56,12 +52,12 @@ class Gloss(WiktionaryNode):
         Returns remainder of line"""
 
         re_templates = "|".join(map(re.escape, self._all_leading_templates))
-        while re.match(r'\s*{{\s*(' + re_templates + ')\s*\|', text):
+        while re.match(r'\s*{{\s*(' + re_templates + r')\s*\|', text):
             wikt = parse_anything(text)
             template = next(wikt.ifilter_templates(recursive=False))
 
             if template.name.strip() in self._labels:
-                self.qualifiers += self.get_label_qualifiers(template)
+                self.qualifiers += get_label_qualifiers(template)
 
             # Scrape basic verb qualifiers from indtr, but don't parse/strip them
             elif template.name.strip() in self._indtr:

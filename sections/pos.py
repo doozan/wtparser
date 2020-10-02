@@ -40,9 +40,9 @@ class PosSection(WiktionarySection):
 
     #def 3
     """
-
     def _is_new_item(self, line):
         # Header can contain a headword template {{head* or {{lang-*
+        # FIXME: get language specific templates from someplace
         tmpl_prefix = [ "head", self.lang_id + "-", "..-" ]
         if re.match(r"\s*{{\s*("+ "|".join(tmpl_prefix) + ")", line): # }}
             return True

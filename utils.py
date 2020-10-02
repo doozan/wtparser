@@ -119,3 +119,5 @@ def template_aware_split(delimiter, text):
 def template_aware_resplit(pattern, text):
     return nest_aware_resplit(pattern, text, [("{{","}}")])
 
+def get_label_qualifiers(t):
+    return [ str(p) for p in t.params if p.name != "1" and str(p.name).isdigit() ]

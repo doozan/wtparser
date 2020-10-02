@@ -20,7 +20,6 @@ from itertools import chain
 
 import mwparserfromhell
 from mwparserfromhell.nodes import Node
-from mwparserfromhell.wikicode import Wikicode
 #from ..wtcode import WTcode
 from ..utils import parse_anything, template_aware_splitlines
 
@@ -268,7 +267,10 @@ class WiktionaryNode(Node):
                 if not self._handle_other(line):
                     unhandled.append(line)
 
-        if current_item:
+        if in_header and unhandled:
+            self._parse_header(unhandled)
+            unhandled = []
+        elif current_item:
             self.add_item(current_item)
             current_item = []
         elif len(unhandled):
