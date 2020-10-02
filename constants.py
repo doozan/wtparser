@@ -14,12 +14,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import wiktionaryparser
 
-ALL_LANGUAGES = {
-    "English": "en",
-    "Spanish": "es",
-}
+from .languages import languages as LANGID_TO_NAME
+
+ALL_LANGUAGES = { v:k for k,v in LANGID_TO_NAME.items() }
 
 # Nyms will be inserted into definitions according to the order here
 # The first tag listed will be used when creating nym tags
@@ -56,7 +54,7 @@ ALL_POS = {
     "Classifier": "classifier",
     "Clitic": "clitic",
     "Combining form": "affix",
-    "Conjugation": "conjugation",
+#    "Conjugation": "conjugation",
     "Conjunction": "conj",
     "Contraction": "contraction",
     "Counter": "counter",
