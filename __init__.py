@@ -29,13 +29,13 @@ from . import (wtnodes, sections, utils, wtcode)
 
 parse = utils.parse_anything
 
-def parse_as(target, text, parent, **kwargs):
-    return target(parse(text, **kwargs), parent=parent)
+#def parse_as(target, text, parent, **kwargs):
+#    return target(parse(text, **kwargs), parent=parent)
 
-def parse_page(text, title, **kwargs):
+def parse_page(text, title, parent, **kwargs):
     from .sections.page import Page
-    return Page(parse(text, **kwargs), name=title)
+    return Page(parse(text, **kwargs), title, parent)
 
-def parse_language(text, parent=None, **kwargs):
-    from .sections.language import LanguageSection
-    return parse_as(LanguageSection, text, parent=parent, **kwargs)
+#def parse_language(text, title, parent=None, **kwargs):
+#    from .sections.language import LanguageSection
+#    return parse_as(LanguageSection, title, text, parent=parent, **kwargs)

@@ -14,12 +14,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from . import WiktionarySection
-from .language import LanguageSection
+import pytest
+from ..gloss import Gloss
+from ...utils import parse_anything
 
-
-class Page(WiktionarySection):
-    def __init__(self, wikt, title, parent=None):
-        self._level = 1
-        self._name = title
-        super().__init__(wikt, parent, parse_header=False, section_handler=LanguageSection)
+def test_simple(word):
+    text = "# {{lb|es|Mexico|slang}} {{lb|es|transitive}} to [[contribute]]; to [[bring]]."
+    gloss = Gloss(text, name="1", parent=word)
+    assert gloss.qualifiers == ["Mexico", "slang", "transitive"]

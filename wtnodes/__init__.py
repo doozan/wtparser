@@ -75,6 +75,19 @@ class WiktionaryNode(Node):
             self._lang_id = self.get_ancestor_attr("_lang_id", "ERROR")
         return self._lang_id
 
+    @property
+    def lang(self):
+        if not hasattr(self, "_lang"):
+            self._lang = self.get_ancestor_attr("_lang", "ERROR")
+        return self._lang
+
+    @property
+    def page_title(self):
+        from ..sections.page import Page
+        if not hasattr(self, "_page_title"):
+            self._page_title = self.get_ancestor(Page)._name
+        return self._page_title
+
     def flag_problem(self, problem, *data, from_child=False):
         flag_problem = self.get_ancestor_attr("flag_problem")
         if flag_problem:

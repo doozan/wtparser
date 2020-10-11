@@ -20,8 +20,10 @@ Currently handles words
 """
 
 from . import WiktionarySection
-from ..constants import ALL_LANGUAGES
+from ..constants import ALL_LANGUAGE_NAMES
+#from ..languages import languages
 
+from importlib import import_module
 
 class LanguageSection(WiktionarySection):
     def __init__(self, wikt, parent):
@@ -30,11 +32,20 @@ class LanguageSection(WiktionarySection):
         # query for it as needed during their creation
         heading = next(iter(wikt.filter_headings(recursive=False)))
         lang = heading.strip("=").strip()
-        if lang not in ALL_LANGUAGES:
+        if lang not in ALL_LANGUAGE_NAMES:
             self._parent = parent
             self.flag_problem("unknown_language", lang)
             self._lang_id = "ERROR_NOLANG"
+            self._lang = None
         else:
-            self._lang_id = ALL_LANGUAGES[lang]
+            lang_id = ALL_LANGUAGE_NAMES[lang]
+            self._lang_id = lang_id
+
+            # Each language can have a config file in languages/id with configuration
+            # and functions for parsing language-specific templates
+            try:
+                self._lang = import_module(f".languages.{lang_id}", "enwiktionary_parser").Data
+            except ModuleNotFoundError:
+                pass
 
         super().__init__(wikt, parent)

@@ -22,7 +22,7 @@ from ..utils import parse_anything, template_aware_splitlines
 
 def get_section_type(title, default):
 
-    from ..constants import ALL_LANGUAGES, ALL_POS, ALL_NYMS
+    from ..constants import ALL_LANGUAGE_NAMES, ALL_POS, ALL_NYMS
     from .pos import PosSection
     from .language import LanguageSection
     from .nym import NymSection
@@ -30,7 +30,7 @@ def get_section_type(title, default):
     all_pos = "|".join(ALL_POS.keys())
     pos_pattern = f"{all_pos}\s*[0-9]*$"
 
-    if title in ALL_LANGUAGES:
+    if title in ALL_LANGUAGE_NAMES:
         return LanguageSection
     elif re.match(pos_pattern, title):
         return PosSection

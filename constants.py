@@ -15,9 +15,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from .languages import languages as LANGID_TO_NAME
+from .languages import all_ids as language_constants
 
-ALL_LANGUAGES = { v:k for k,v in LANGID_TO_NAME.items() }
+ALL_LANGUAGE_IDS = language_constants.languages
+ALL_LANGUAGE_NAMES = { v:k for k,v in ALL_LANGUAGE_IDS.items() }
 
 # Nyms will be inserted into definitions according to the order here
 # The first tag listed will be used when creating nym tags

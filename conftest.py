@@ -46,7 +46,7 @@ sample_page = """==Spanish==
 
 @pytest.fixture()
 def page():
-    return parse_page(sample_page, "myword")
+    return parse_page(sample_page, "myword", parent=None)
 
 @pytest.fixture()
 def language(page):

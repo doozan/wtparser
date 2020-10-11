@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from ..utils import parse_anything
-from .. import parse, parse_page, parse_language
+from .. import parse_page
 from ..sections import WiktionarySection
 from ..sections.page import Page
 from ..sections.language import LanguageSection
@@ -86,10 +86,10 @@ def test_filter():
     page = Page(wikt, "myword")
     assert str(page) == orig_text
 
-    page = parse_page(orig_text, "myword")
+    page = parse_page(orig_text, "myword", parent=None)
     assert str(page) == orig_text
 
-    wikt = parse(page)
+    wikt = parse_anything(page)
     assert str(wikt) == orig_text
 
     # Make sure we can find everything from the top node
@@ -123,7 +123,7 @@ def test_filter():
 
 def test_ifilter():
 
-    page = parse_page(orig_text, "test")
+    page = parse_page(orig_text, "test", parent=None)
     assert len(list(page.ifilter(recursive=False, forcetype=LanguageSection, matches=lambda x: hasattr(x, 'name') and x.name=="Spanish"))) == 1
 
     assert len(list(page.ifilter(forcetype=WiktionarySection, matches=lambda x: hasattr(x, 'name') and x.name=="Adjective"))) == 1
@@ -135,7 +135,7 @@ def test_ifilter():
 
 def test_parse():
 
-    page = parse_page(orig_text, "test")
+    page = parse_page(orig_text, "test", parent=None)
 
     def attr_is(obj, attr, value):
         return hasattr(obj, attr) and getattr(obj ,attr) == value
@@ -237,7 +237,7 @@ From {{der|es|la|grege}}, singular ablative of {{m|la|grex}}.
 * {{sense|animals}} {{l|es|ganado}}, {{l|es|hato}}, {{l|es|parvada}}, {{l|es|manada}}, {{l|es|jauría}}, {{l|es|cardumen}}, {{l|es|enjambre}}
 """
 
-    entry = parse_language(orig_text, skip_style_tags=True)
+    entry = parse_page(orig_text, "test", parent=None, skip_style_tags=True)
 
 #    print_children(entry)
 #    for word in entry.ifilter_pos():
@@ -260,7 +260,7 @@ def test_modify_section_during_iteration():
 * {{sense|sense2}} {{l|es|syn2}}
 """
 
-    entry = parse_language(orig_text, skip_style_tags=True)
+    entry = parse_page(orig_text, "test", parent=None, skip_style_tags=True)
 
     for word in entry.ifilter_pos():
         all_defs = word.filter_wordsenses(recursive=False)
@@ -310,7 +310,7 @@ From an earlier {{m|es||*ruino}}, from {{m|es|ruina}}, or from a {{inh|es|VL.|-}
 """
 
 
-    entry = parse_language(orig_text, skip_style_tags=True)
+    entry = parse_page(orig_text, "test", parent=None, skip_style_tags=True)
 
     for pos in entry.ifilter_pos():
         word = pos.filter_words(recursive=False)[0]
@@ -363,7 +363,7 @@ def test_deep_subsections():
 
 """
 
-    entry = parse_language(orig_text, skip_style_tags=True)
+    entry = parse_page(orig_text, "test", parent=None, skip_style_tags=True)
     word = entry.filter_pos()[0]
     assert "Synonyms" in word._sections
 
@@ -386,7 +386,7 @@ def test_bien():
 # [[as well]]
 #:{{uxi|es|'''Bien''' podrías acabar con ello temprano.|You might '''as well''' get it over with early.}}
 """
-    entry = parse_language(orig_text, skip_style_tags=True)
+    entry = parse_page(orig_text, "test", parent=None, skip_style_tags=True)
     senses = entry.filter_wordsenses()
     # The #{{ux line should be detected as a sense, but should also flag an error for using the {{ux}}
     assert len(senses) == 7
@@ -413,5 +413,5 @@ Borrowed from {{bor|es|en|single}}. {{doublet|es|sendos}}.
 
 # {{l|en|single}}, single person
 """
-    entry = parse_language(orig_text, skip_style_tags=True)
+    entry = parse_page(orig_text, "test", parent=None, skip_style_tags=True)
     words = entry.filter_words()

@@ -23,7 +23,6 @@ from .gloss import Gloss
 from ..utils import parse_anything, template_aware_split, template_aware_splitlines, get_label_qualifiers
 from ..constants import ALL_POS
 
-
 class Word(WiktionaryNode):
     """
     Parses a section containing a headword declaration followed by definitions:
@@ -35,45 +34,25 @@ class Word(WiktionaryNode):
     # def2
     """
 
-    # FIXME: hardcoded language keys
-    _headwords = {
-        "head",
-        "en-interj",
-        "pt-proper noun",
-
-        "es-adj",
-        "es-adj-inv",
-        "es-adv",
-        "es-conjunction",
-        "es-diacritical mark",
-        "es-interj",
-        "es-interjection",
-        "es-letter",
-        "es-noun",
-        "es-past participle",
-        "es-phrase",
-        "es-prefix",
-        "es-proverb",
-        "es-proper noun",
-        "es-punctuation mark",
-        "es-suffix",
-        "es-verb"
-        }
-
     _labels = { "term-label", "tlb" }
 
     def _parse_data(self, text):
+        self.headword = None
         self.qualifiers = []
         self._children = []
         self._parse_list(text)
 
+    def match_headword(self, template):
+        return \
+            str(template.name) == "head" \
+            or (self.lang and self.lang.match_headword(template))
+
     def _parse_header(self, lines):
         """Find and parse the headword declaration"""
         self.add_text(lines)
-        self.headword = None
 
         wikt = parse_anything(lines)
-        headwords = wikt.filter_templates(matches = lambda x: str(x.name) in self._headwords)
+        headwords = wikt.filter_templates(matches=self.match_headword)
         if not len(headwords):
             self.flag_problem("headword_missing")
         else:
@@ -114,90 +93,16 @@ class Word(WiktionaryNode):
     def shortpos(self):
         return ALL_POS.get(self.pos, "unknown")
 
-    gender_sources = {
-        "head": {
-            "g": ["g", "gen", "g1"],
-            "g2": ["g2"],
-            "g3": ["g3"],
-        },
-        "es-noun": {
-            "g": ["1", "g", "gen", "g1"],
-            "g2": ["g2"],
-            "g3": ["g3"],
-        },
-        "es-proper noun": {
-            "g": ["1", "g", "gen", "g1"],
-            "g2": ["g2"],
-            "g3": ["g3"],
-        },
-    }
-
-    form_sources = {
-        "es-adj": {
-            "m": ["m"],
-            "f": ["f", "f2"],
-            "pl": ["pl", "pl2"],
-            "mpl": ["mpl", "mpl2"],
-            "fpl": ["fpl", "fpl2"]
-        },
-        "es-noun": {
-            "m": ["m", "m2"],
-            "f": ["f", "f2"],
-            "pl": [2, "pl2"],
-            "mpl": ["mpl", "mpl2"],
-            "fpl": ["fpl", "fpl2"]
-        },
-        "es-proper noun": {
-            "m": ["m", "m2"],
-            "f": ["f", "f2"],
-            "pl": [2, "pl2"],
-            "mpl": ["mpl", "mpl2"],
-            "fpl": ["fpl", "fpl2"]
-        },
-    }
-
     @property
     def genders(self):
-        if self.headword is None:
-            return []
-        t = self.headword
-        sources = self.gender_sources.get(str(t.name))
-        if not sources:
+        if self.headword is None or self.lang is None:
             return []
 
-        res = {}
-        for k,params in sources.items():
-            for param in params:
-                if t.has(param):
-                    res[k] = res.get(k, []) + [str(t.get(param).value)]
-
-        return [ v[0] for v in res.values() ]
+        return self.lang.get_genders(self.headword)
 
     @property
     def forms(self):
-        if self.headword is None:
+        if self.headword is None or self.lang is None:
             return {}
 
-        t = self.headword
-        sources = self.form_sources.get(str(t.name))
-        if not sources:
-            return {}
-
-        res = {}
-        for k,params in sources.items():
-            for param in params:
-                if t.has(param):
-                    res[k] = res.get(k, []) + [str(t.get(param).value)]
-
-        return res
-
-#    @property
-#    def lemma(self):
-#        if not self.headword:
-#            return None
-
-#        if self.headword.name == "es-conj":
-
-
-
-
+        return self.lang.get_forms(self.headword, self.page_title)
