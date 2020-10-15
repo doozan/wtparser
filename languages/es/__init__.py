@@ -106,6 +106,9 @@ class Data(LanguageData):
             else:
                 params["fpl"] = [ params["f"][0] + "s" ]
 
+        if "m" not in params and "mpl" in params and "pl" not in params:
+            params["pl"] = params.pop("mpl")
+
         if "pl" not in params:
             params["pl"] = [ title + "s" ]
 
@@ -222,14 +225,16 @@ class Data(LanguageData):
         if genders[0] in ["m","f"]:
             iters.insert(0, ("pl", plurals, genders[0]))
 
+        # Expand any default plurals (may result in more than one item)
         for target, plurals, gender in iters:
+            expanded_plurals = []
             for plural in plurals:
                 if plural is None or plural in ["1", "+"]:
-                    plural = cls.make_plural_noun(title, gender)
-                    if plural and len(plural) > 1:
-                        print("ERROR: dropping plural", title, template)
-                        plural = plural[0] # Possibly dropping stuff, but very unlikely
+                    expanded_plurals += cls.make_plural_noun(title, gender)
+                else:
+                    expanded_plurals.append(plural)
 
+            for plural in expanded_plurals:
                 if plural in ["?", "!", "~", "-"]: # No plural
                     plural = None
 
@@ -245,11 +250,11 @@ class Data(LanguageData):
     @classmethod
     def make_plural_noun(cls, singular, gender):
         if not singular:
-            return None
+            return []
 
         singular = singular.strip()
         if not singular:
-            return None
+            return []
 
         if " " in singular:
             res = re.match(
@@ -258,7 +263,7 @@ class Data(LanguageData):
             if res:
                 pl = cls.make_plural_noun(res.group(1), gender)
                 if not pl:
-                    return None
+                    return []
                 first = pl[0]
                 second = res.group(2)
                 return [first + second]
@@ -267,12 +272,12 @@ class Data(LanguageData):
                 if len(words) == 2:
                     pl = cls.make_plural_noun(words[0], gender)
                     if not pl:
-                        return None
+                        return []
                     noun = pl[0]
                     adj = cls.adjective_forms(words[1], gender)
                     if not adj:
                         # raise ValueError("No adjective forms for", words[1], gender)
-                        return None
+                        return []
 
                     if gender == "m" and "mp" in adj:
                         return [noun + " " + adj["mp"]]
@@ -359,7 +364,7 @@ class Data(LanguageData):
         ):
             return [singular + "s"]
 
-        return None
+        return []
 
 
     # This is a bug-for-bug implementation of wiktionary Module:es-headword adjective_forms
