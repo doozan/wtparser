@@ -41,7 +41,11 @@ class LanguageData():
         return str(template.name) in cls.headwords
 
     @classmethod
-    def get_genders(cls, template):
+    def get_genders(cls, word):
+        template = word.headword
+        if template is None:
+            return None
+
         sources = cls.gender_sources.get(str(template.name))
         if not sources:
             return []
@@ -55,7 +59,11 @@ class LanguageData():
         return [ v[0] for v in res.values() ]
 
     @classmethod
-    def get_forms(cls, template, title):
+    def get_forms(cls, word):
+        template = word.headword
+        if template is None:
+            return None
+
         sources = cls.form_sources.get(str(template.name))
         if not sources:
             return None

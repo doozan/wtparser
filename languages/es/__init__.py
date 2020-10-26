@@ -19,6 +19,9 @@ Data and utilities for processing Spanish sections of enwiktionary
 """
 
 import re
+import sys
+
+from .paradigms import paradigms
 from .. import LanguageData
 
 class Data(LanguageData):
@@ -83,18 +86,33 @@ class Data(LanguageData):
         return word.translate(cls._stresstab)
 
     @classmethod
-    def get_forms(cls, template, title):
+    def get_forms(cls, word):
+        template = word.headword
+        if template is None:
+            return {}
+
         if str(template.name) == "es-noun":
-            return cls.get_noun_forms(template, title)
+            return cls.get_noun_forms(word)
 
-        if str(template.name) == "es-adj":
-            return cls.get_adjective_forms(template, title)
+        elif str(template.name) == "es-adj":
+            return cls.get_adjective_forms(word)
 
-        return super().get_forms(template, title)
+        elif str(template.name) == "es-verb":
+            return cls.get_verb_forms(word)
+
+        return super().get_forms(word)
 
 
     @classmethod
-    def get_adjective_forms(cls, template, title):
+    def get_adjective_forms(cls, word):
+        template = word.headword
+        if template is None:
+            return {}
+
+        title = word.page_title
+        if not title:
+            return {}
+
         params = cls.get_template_params(template)
         for k in [ "f", "pl", "mpl", "fpl" ]:
             if isinstance(params.get(k), str):
@@ -119,8 +137,8 @@ class Data(LanguageData):
         params = {}
         param_lists = {}
         for param in template.params:
-            name = str(param.name)
-            value = str(param.value)
+            name = str(param.name).strip()
+            value = str(param.value).strip()
 
             res = re.match(r"(.+?)[1-9]+$", str(param.name))
             if res:
@@ -140,7 +158,15 @@ class Data(LanguageData):
 
     @classmethod
     # This is a loose interpretation of Module:es-headword
-    def get_noun_forms(cls, template, title):
+    def get_noun_forms(cls, word):
+        template = word.headword
+        if template is None:
+            return {}
+
+        title = word.page_title
+        if not title:
+            return {}
+
         params = cls.get_template_params(template)
         # convert params that can be lists or a single value to lists
         for k in [ "f", "m", "pl", "mpl", "fpl" ]:
@@ -411,3 +437,81 @@ class Data(LanguageData):
         if singular[-2:] in ["án", "és", "ín"]:
             stem = singular[:-2] + cls.unstress(singular[-2]) + singular[-1]
             return {"ms": singular, "mp": stem + "es", "fs": stem + "a", "fp": stem + "as"}
+
+    @classmethod
+    def get_verb_forms(cls, word):
+        """
+        Instead of putting conjugation patterns in the es-verb template, Spanish
+        verbs have a separate "Conjugation" section with es-conj templates
+        """
+        if not word:
+            return {}
+
+        template = word.headword
+        if template is None:
+            return {}
+
+        if not template.has(2) or not str(template.get(2)).strip():
+            return {}
+        ending = "-" + str(template.get(2)).strip()
+
+        matcher = lambda x: callable(getattr(x, "filter_sections", None)) and \
+                any(x.filter_sections(matches=lambda y: y.name.strip() == "Conjugation"))
+        ancestor = word if matcher(word) else word.get_matching_ancestor(matcher)
+        if not ancestor:
+            print("No conjugations", word.page_title, file=sys.stderr)
+            return {}
+
+        all_forms = {}
+        for conjugation in ancestor.ifilter_sections(matches=lambda x: x.name.strip() == "Conjugation"):
+            for t in conjugation.ifilter_templates(matches=lambda x: x.name.strip().startswith("es-conj")):
+                pattern = None
+                if t.has("p"):
+                    pattern = str(t.get("p").value)
+                stems = [ str(p.value).strip() for p in t.params if str(p.name).isdigit() ]
+
+                for formtype, forms in cls.do_conjugate(stems, ending, pattern).items():
+                    formtype = str(formtype)
+                    for form in forms:
+                        if not form:
+                            continue
+                        if formtype not in all_forms:
+                            all_forms[formtype] = [form]
+                        elif form not in all_forms[formtype]:
+                            all_forms[formtype].append(form)
+
+        return all_forms
+
+    @classmethod
+    def do_conjugate(self, stems, ending, pattern):
+
+        # This has to be a deep copy, since we're overwriting values
+        data = {k:v for k, v in paradigms[ending]['']['patterns'].items()}
+
+        # Layer pattern data over base data
+        if pattern:
+            pattern_data = paradigms[ending][pattern]
+
+            if 'replacement' in pattern_data:
+                for pk,pv in pattern_data['replacement'].items():
+                    for dk,dv in data.items():
+                        if dv:
+                            data[dk] = dv.replace(str(pk), pv)
+
+            for pk,pv in pattern_data['patterns'].items():
+                if pv == '-':
+                    data[pk] = None
+                else:
+                    data[pk] = pv
+
+        for dk,dv in data.items():
+            if dv:
+                if len(stems):
+                    for sk, sv in enumerate(stems,1):
+                        dv = dv.replace(str(sk), sv)
+                data[dk] = [ k.strip() for k in dv.split(',') ]
+            else:
+                data[dk] = [ None ]
+
+        return data
+

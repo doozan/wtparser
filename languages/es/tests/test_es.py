@@ -165,3 +165,22 @@ From {{der|es|la|attentō}}.
     template = next(word.ifilter_templates(matches=lambda x: "es-verb" in x.name.strip()))
     forms = Data.get_forms(word)
     assert len(forms) == 73
+
+
+def test_get_verb_forms_noconjugation():
+
+    data = """\
+==Spanish==
+
+===Verb===
+{{es-verb|atent|ar|pres=atiento}}
+
+# {{lb|es|intransitive}} to commit a violent or criminal [[attack]], to [[strike]]
+"""
+
+    wikt = parse_page(data, "atentar", None)
+    word = next(wikt.ifilter_words())
+    template = next(word.ifilter_templates(matches=lambda x: "es-verb" in x.name.strip()))
+    forms = Data.get_forms(word)
+    assert forms == {}
+

@@ -137,6 +137,17 @@ class WiktionaryNode(Node):
 
         return default
 
+    def get_matching_ancestor(self, matches):
+        """
+        Returns nearest ancestor satisfying the matches function
+        """
+        ancestor = self._parent
+        while ancestor is not None:
+            if matches(ancestor):
+                return ancestor
+            ancestor = ancestor._parent if hasattr(ancestor, "_parent") else None
+        return None
+
     def add_text(self, lines):
         if not lines:
             return

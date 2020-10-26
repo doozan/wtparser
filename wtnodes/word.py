@@ -98,11 +98,11 @@ class Word(WiktionaryNode):
         if self.headword is None or self.lang is None:
             return []
 
-        return self.lang.get_genders(self.headword)
+        return self.lang.get_genders(self)
 
     @property
     def forms(self):
         if self.headword is None or self.lang is None:
             return {}
 
-        return self.lang.get_forms(self.headword, self.page_title)
+        return self.lang.get_forms(self)
