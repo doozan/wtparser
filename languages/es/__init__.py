@@ -133,29 +133,6 @@ class Data(LanguageData):
 
         return {k:params[k] for k in ["f", "pl","fpl"] if k in params}
 
-    @staticmethod
-    def get_template_params(template):
-        params = {}
-        param_lists = {}
-        for param in template.params:
-            name = str(param.name).strip()
-            value = str(param.value).strip()
-
-            res = re.match(r"(.+?)[1-9]+$", str(param.name))
-            if res:
-                k = res.group(1)
-                if k not in param_lists:
-                    if k in params:
-                        param_lists[k] = [params[k], value]
-                    else:
-                        param_lists[k] = [value]
-                else:
-                    param_lists[k].append(value)
-            else:
-                params[name] = value
-
-        return {**params, **param_lists}
-
 
     @classmethod
     # This is a loose interpretation of Module:es-headword
@@ -633,6 +610,9 @@ class Data(LanguageData):
                 if len(stems):
                     for sk, sv in enumerate(stems,1):
                         dv = dv.replace(str(sk), sv)
+
+                # Remove any stray placeholders in case there weren't enough stems provided
+                dv = re.sub(r'[0-9]', '', dv)
                 data[dk] = [ k.strip() for k in dv.split(',') ]
             else:
                 data[dk] = [ None ]

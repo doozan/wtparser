@@ -168,6 +168,27 @@ From {{der|es|la|attentō}}.
     forms = Data.get_forms(word)
     assert len(forms) == 188
 
+def test_get_verb_rogar():
+
+    data = """\
+==Spanish==
+
+===Verb===
+{{es-verb|rog|ar|pres=ruego|pret=rogué}}
+
+# to [[beg]], [[entreat]], [[implore]], [[pray]]
+
+====Conjugation====
+{{es-conj-ar|p=-gar o-ue|r|combined=1}}
+"""
+
+    wikt = parse_page(data, "rogar", None)
+    word = next(wikt.ifilter_words())
+    template = next(word.ifilter_templates(matches=lambda x: "es-verb" in x.name.strip()))
+    forms = Data.get_forms(word)
+
+    assert forms["1"] == {"rogar"}
+
 
 def test_get_verb_forms_noconjugation():
 

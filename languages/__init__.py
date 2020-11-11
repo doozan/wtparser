@@ -16,6 +16,8 @@
 
 __all__ = ["es"]
 
+import re
+
 class LanguageData():
     headwords = {}
     gender_sources = {
@@ -24,16 +26,6 @@ class LanguageData():
             "g2": ["g2"],
             "g3": ["g3"],
       },
-    }
-
-    form_sources = {
-    #    "es-adj": {
-    #        "m": ["m"],
-    #        "f": ["f", "f2", "f3"],
-    #        "pl": ["pl", "pl2", "pl3"],
-    #        "mpl": ["mpl", "mpl2", "mpl2"],
-    #        "fpl": ["fpl", "fpl2", "mpl3"]
-    #    },
     }
 
     @classmethod
@@ -64,14 +56,54 @@ class LanguageData():
         if template is None:
             return None
 
-        sources = cls.form_sources.get(str(template.name))
-        if not sources:
-            return None
+        if str(template.name) == "head":
+            return cls.get_head_forms(word)
+
+    @classmethod
+    def get_head_forms(cls, word):
+        template = word.headword
+        if template is None:
+            return {}
+
+        params = cls.get_template_params(template)
 
         res = {}
-        for k,params in sources.items():
-            for param in params:
-                if template.has(param):
-                    res[k] = res.get(k, []) + [str(template.get(param).value).strip()]
+        offset=3
+        while str(offset+1) in params:
+            formtype = params[str(offset)]
+            form = params[str(offset+1)]
+            offset += 2
+
+            if not form.strip():
+                continue
+
+            if formtype not in res:
+                res[formtype] = [form]
+            else:
+                res[formtype].append(form)
 
         return res
+
+    @staticmethod
+    def get_template_params(template):
+        params = {}
+        param_lists = {}
+        for param in template.params:
+            name = str(param.name).strip()
+            value = str(param.value).strip()
+
+            res = re.match(r"([^0-9]+?)[1-9]+$", str(param.name))
+            if res:
+                k = res.group(1)
+                if k not in param_lists:
+                    if k in params:
+                        param_lists[k] = [params[k], value]
+                    else:
+                        param_lists[k] = [value]
+                else:
+                    param_lists[k].append(value)
+            else:
+                params[name] = value
+
+        return {**params, **param_lists}
+
