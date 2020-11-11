@@ -69,6 +69,10 @@ def test_get_adj_forms():
     word = make_word("torpón", "{{es-adj|f=torpona|mpl=torpones}}")
     assert Data.get_forms(word) == {"pl":["torpones"], "f":["torpona"], "fpl":["torponas"]}
 
+    # es-adj-sup works, too
+    word = make_word("testo", "{{es-adj-sup|f=testa}}")
+    assert Data.get_forms(word) == {"pl":["testos"], "f":["testa"], "fpl":["testas"]}
+
 
 def test_get_noun_forms():
     # Explicit plural

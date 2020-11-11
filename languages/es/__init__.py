@@ -29,6 +29,7 @@ class Data(LanguageData):
 
     headwords = {
         "es-adj",
+        "es-adj-sup",
         "es-adj-inv",
         "es-adv",
         "es-conjunction",
@@ -95,7 +96,7 @@ class Data(LanguageData):
         if str(template.name) == "es-noun":
             return cls.get_noun_forms(word)
 
-        elif str(template.name) == "es-adj":
+        elif str(template.name) in ["es-adj", "es-adj-sup"]:
             return cls.get_adjective_forms(word)
 
         elif str(template.name) == "es-verb":
