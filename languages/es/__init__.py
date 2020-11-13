@@ -104,6 +104,17 @@ class Data(LanguageData):
 
         return super().get_forms(word)
 
+    @classmethod
+    def get_form_sources(cls, word):
+        template = word.headword
+        if template is None:
+            return []
+
+        elif str(template.name) == "es-verb":
+            return cls.get_verb_form_sources(word)
+
+        return [template]
+
 
     @classmethod
     def get_adjective_forms(cls, word):
@@ -418,6 +429,29 @@ class Data(LanguageData):
             return {"ms": singular, "mp": stem + "es", "fs": stem + "a", "fp": stem + "as"}
 
     @classmethod
+    def get_verb_form_sources(cls, word):
+        if not word or not word.headword:
+            return []
+        return [word.headword] + list(cls.get_conjugation_templates(word))
+
+    @classmethod
+    def get_conjugation_templates(cls, word):
+        """ Find all conjugation templates for word """
+
+        # Find the nearest ancestor with a Conjugation section
+        matcher = lambda x: callable(getattr(x, "filter_sections", None)) and \
+                any(x.filter_sections(matches=lambda y: y.name.strip().startswith("Conjugation")))
+        ancestor = word.get_matching_ancestor(matcher)
+        if not ancestor:
+            if " " not in word.page_title and not word.page_title.endswith("se"):
+                print("\nNo conjugations", word.page_title, file=sys.stderr)
+            return []
+
+        for conjugation in ancestor.ifilter_sections(matches=lambda x: x.name.strip().startswith("Conjugation")):
+            for t in conjugation.ifilter_templates(matches=lambda x: x.name.strip().startswith("es-conj")):
+                yield t
+
+    @classmethod
     def get_verb_forms(cls, word):
         """
         Instead of putting conjugation patterns in the es-verb template, Spanish
@@ -444,55 +478,54 @@ class Data(LanguageData):
             return {}
 
         all_forms = {}
-        for conjugation in ancestor.ifilter_sections(matches=lambda x: x.name.strip().startswith("Conjugation")):
-            for t in conjugation.ifilter_templates(matches=lambda x: x.name.strip().startswith("es-conj")):
-                pattern = None
-                reflexive = t.has("ref")
-                if t.has("p"):
-                    pattern = str(t.get("p").value)
-                stems = [ str(p.value).strip() for p in t.params if str(p.name).isdigit() ]
+        for t in cls.get_conjugation_templates(word):
+            pattern = None
+            reflexive = t.has("ref")
+            if t.has("p"):
+                pattern = str(t.get("p").value)
+            stems = [ str(p.value).strip() for p in t.params if str(p.name).isdigit() ]
 
-                inflections = cls.inflect(stems, ending, pattern, reflexive)
-                combined = cls.inflect_combined(inflections, ending, pattern, reflexive)
+            inflections = cls.inflect(stems, ending, pattern, reflexive)
+            combined = cls.inflect_combined(inflections, ending, pattern, reflexive)
 
-                for formtype, forms in combined.items():
-                    for form in forms:
-                        if formtype not in inflections:
-                            inflections[formtype] = set()
-                        inflections[formtype].add(form)
+            for formtype, forms in combined.items():
+                for form in forms:
+                    if formtype not in inflections:
+                        inflections[formtype] = set()
+                    inflections[formtype].add(form)
 
-                        if "_acc_" not in formtype:
-                            continue
+                    if "_acc_" not in formtype:
+                        continue
 
-                        formtype = formtype.replace("_acc_", "_acc-dat_")
+                    formtype = formtype.replace("_acc_", "_acc-dat_")
 
-                        if formtype not in inflections:
-                            inflections[formtype] = set()
+                    if formtype not in inflections:
+                        inflections[formtype] = set()
 
-                        for indirect_pronoun in [ "lo", "la", "los", "las" ]:
-                            if form[-2:] == "le":
-                                form_modified = form[:-2] + "se" + indirect_pronoun
-                            elif form[-3:] == "les":
-                                form_modified = form[:-3] + "se" + indirect_pronoun
-                            else:
-                                form_modified = form + indirect_pronoun
+                    for indirect_pronoun in [ "lo", "la", "los", "las" ]:
+                        if form[-2:] == "le":
+                            form_modified = form[:-2] + "se" + indirect_pronoun
+                        elif form[-3:] == "les":
+                            form_modified = form[:-3] + "se" + indirect_pronoun
+                        else:
+                            form_modified = form + indirect_pronoun
 
-                            # if original form is unstressed (eg, it only had two vowels: dame), add stress
-                            if not re.match("[áéíóú]", form_modified):
-                                form_modified = cls.create_accented_form(form_modified)
-                            inflections[formtype].add(form_modified)
-
+                        # if original form is unstressed (eg, it only had two vowels: dame), add stress
+                        if not re.match("[áéíóú]", form_modified):
+                            form_modified = cls.create_accented_form(form_modified)
+                        inflections[formtype].add(form_modified)
 
 
-                for formtype, forms in inflections.items():
-                    formtype = str(formtype)
-#                    formtype = "conj"
-                    for form in forms:
-                        if not form:
-                            continue
-                        if formtype not in all_forms:
-                            all_forms[formtype] = set()
-                        all_forms[formtype].add(form)
+
+            for formtype, forms in inflections.items():
+                formtype = str(formtype)
+#                formtype = "conj"
+                for form in forms:
+                    if not form:
+                        continue
+                    if formtype not in all_forms:
+                        all_forms[formtype] = set()
+                    all_forms[formtype].add(form)
 
         return all_forms
 

@@ -106,3 +106,10 @@ class Word(WiktionaryNode):
             return {}
 
         return self.lang.get_forms(self)
+
+    @property
+    def form_sources(self):
+        if self.headword is None or self.lang is None:
+            return []
+
+        return self.lang.get_form_sources(self)

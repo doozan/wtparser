@@ -141,6 +141,27 @@ def test_get_verb_forms1():
     assert forms['inf_acc_1'] == {'tenerme'}
     assert sorted(forms['inf_acc-dat_1']) == sorted(['tenérmelos', 'tenérmela', 'tenérmelas', 'tenérmelo'])
 
+def test_get_form_sources():
+
+    data = """\
+==Spanish==
+
+===Verb===
+{{es-verb|ten|er|pres=tengo|pret=tuve}}
+
+# {{lb|es|transitive}} to [[have]], [[possess]] {{gloss|literally}}
+
+====Conjugation====
+{{es-conj-er||p=tener|combined=1}}
+"""
+
+    wikt = parse_page(data, "tener", None)
+    word = next(wikt.ifilter_words())
+    assert Data.get_form_sources(word) == ["{{es-verb|ten|er|pres=tengo|pret=tuve}}", "{{es-conj-er||p=tener|combined=1}}"]
+    word = make_word("testo", "{{es-noun|m|f=testa}}")
+    assert Data.get_form_sources(word) == ["{{es-noun|m|f=testa}}"]
+
+
 def test_get_verb_forms2():
 
     data = """\
