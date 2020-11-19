@@ -162,6 +162,33 @@ def test_get_form_sources():
     assert Data.get_form_sources(word) == ["{{es-noun|m|f=testa}}"]
 
 
+def test_get_verb_forms_dar():
+
+    data = """\
+==Spanish==
+
+===Etymology 1===
+From {{der|es|la|attentō}}.
+
+===Verb===
+{{es-verb|d|ar|pres=doy|pret=di}}
+
+# {{lb|es|transitive}} to [[give]], to [[give out]]
+
+====Conjugation====
+{{es-conj-ar|p=dar|d|combined=1}}
+{{es-conj-ar|p=dar|d|combined=1|ref=yes}}
+"""
+
+    wikt = parse_page(data, "dar", None)
+    word = next(wikt.ifilter_words())
+    template = next(word.ifilter_templates(matches=lambda x: "es-verb" in x.name.strip()))
+    forms = Data.get_forms(word)
+    assert len(forms) == 177
+
+    assert forms["imp_f2s_acc_3"] == {'dela', 'delo', 'dese'}
+    assert forms["imp_f2s_acc-dat_3"] == {'déselas', 'désela', 'déselo', 'déselos'}
+
 def test_get_verb_forms2():
 
     data = """\
@@ -191,7 +218,7 @@ From {{der|es|la|attentō}}.
     word = next(wikt.ifilter_words())
     template = next(word.ifilter_templates(matches=lambda x: "es-verb" in x.name.strip()))
     forms = Data.get_forms(word)
-    assert len(forms) == 188
+    assert len(forms) == 180
 
 def test_get_verb_rogar():
 

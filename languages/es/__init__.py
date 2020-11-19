@@ -490,11 +490,19 @@ class Data(LanguageData):
 
             for formtype, forms in combined.items():
                 for form in forms:
+                    if not form:
+                        continue
+
+
                     if formtype not in inflections:
                         inflections[formtype] = set()
                     inflections[formtype].add(form)
 
                     if "_acc_" not in formtype:
+                        continue
+                    if form[-2:] in [ "lo", "la" ]:
+                        continue
+                    if form[-3:] in ["los", "las"]:
                         continue
 
                     formtype = formtype.replace("_acc_", "_acc-dat_")
@@ -679,7 +687,7 @@ class Data(LanguageData):
 
         for paradigm, paradigm_data in combined.items():
             for form in forms.get(paradigm_data["index"]):
-                if reflexive:
+                if reflexive and form.endswith("se"):
                     form = form[:-2]
                 for aspect in aspects:
                     for k2, pronoun_table in enumerate(paradigm_data[aspect],1):
