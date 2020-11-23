@@ -82,7 +82,7 @@ class Link(WiktionaryNode):
             self.target = text.strip()
 
         if not self.target:
-            self.flag_problem("no_link_target")
+            self.flag_problem("fixme_no_link_target")
         else:
             pattern = "[" + re.escape("[]{}()#$!/_:,;") + "]"
             if re.search(pattern, self.target):
