@@ -51,6 +51,9 @@ def test_nest_aware_resplit():
     res = list(nest_aware_resplit(r"([\/,;])", line, [("{{","}}"), ("(", ")")]))
     assert res == [('* {{sense|sense1}} {{l|es|syn1}}', ','), (' {{l|es|syn2}}\n', '')]
 
+    line = "blah (blah"
+    res = list(nest_aware_resplit(r"([\/,;])", line, [("{{","}}"), ("(", ")")]))
+    assert res == [("blah (blah", "")]
 
     line = "blah, blah"
     res = list(nest_aware_resplit(r"([\/,;])", line, [("{{","}}"), ("(", ")")]))

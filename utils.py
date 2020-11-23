@@ -102,7 +102,7 @@ def nest_aware_resplit(pattern, text, nests):
         items = []
 
     if len(items):
-        yield delimiter.join(items)
+        yield (delimiter.join(items), "")
 
 def nest_aware_splitlines(text, nests, keepends=False):
     return nest_aware_iterator(text.splitlines(keepends), nests)
