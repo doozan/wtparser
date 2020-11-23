@@ -104,7 +104,10 @@ class NymSense(WiktionaryNode):
         start_pattern = r"\*[\*:]*\s*"
         res = re.match(f"({start_pattern})(.*)", line, re.DOTALL)
         if not res:
-            raise ValueError("Line does not start with expected pattern")
+            self.flag_problem("unparsable_nymsense", line)
+            self.add_text(line)
+            return ""
+
         self.add_text(res.group(1))
         return res.group(2)
 
