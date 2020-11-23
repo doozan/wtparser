@@ -81,9 +81,12 @@ class Link(WiktionaryNode):
             text = self.brackets_to_text(text)
             self.target = text.strip()
 
-        pattern = "[" + re.escape("[]{}()#$!/_:,;") + "]"
-        if re.search(pattern, self.target):
-            self.flag_problem("link_has_unexpected_characters", self.target)
+        if not self.target:
+            self.flag_problem("no_link_target")
+        else:
+            pattern = "[" + re.escape("[]{}()#$!/_:,;") + "]"
+            if re.search(pattern, self.target):
+                self.flag_problem("link_has_unexpected_characters", self.target)
 
     def parse_template(self, text):
         for k,v in self.template_to_dict(text).items():
