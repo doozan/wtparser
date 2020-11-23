@@ -78,7 +78,7 @@ class WiktionaryNode(Node):
     @property
     def lang(self):
         if not hasattr(self, "_lang"):
-            self._lang = self.get_ancestor_attr("_lang", "ERROR")
+            self._lang = self.get_ancestor_attr("_lang", None)
         return self._lang
 
     @property
