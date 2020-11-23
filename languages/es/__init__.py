@@ -34,6 +34,7 @@ class Data(LanguageData):
         "es-adv",
         "es-conjunction",
         "es-diacritical mark",
+        "es-intj",
         "es-interj",
         "es-interjection",
         "es-letter",
