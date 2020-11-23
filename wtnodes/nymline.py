@@ -103,9 +103,8 @@ class NymLine(WiktionaryNode):
                 thesaurus.append(items.pop(idx))
 
         if len(thesaurus) > 1:
-            raise ValueError(
-                "Nym template only supports one Thesaurus: entry", thesaurus
-            )
+            self.flag_problem("multi_thesaurus", thesaurus)
+            thesaurus = thesaurus[:1]
 
         items += thesaurus
 
