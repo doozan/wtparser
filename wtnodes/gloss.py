@@ -54,7 +54,9 @@ class Gloss(WiktionaryNode):
         re_templates = "|".join(map(re.escape, self._all_leading_templates))
         while re.match(r'\s*{{\s*(' + re_templates + r')\s*\|', text):
             wikt = parse_anything(text)
-            template = next(wikt.ifilter_templates(recursive=False))
+            template = next(wikt.ifilter_templates(recursive=False), None)
+            if template is None:
+                break
 
             if template.name.strip() in self._labels:
                 self.qualifiers += get_label_qualifiers(template)
