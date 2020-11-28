@@ -32,18 +32,26 @@ class Data(LanguageData):
         "es-adj-sup",
         "es-adj-inv",
         "es-adv",
+        "es-adverb",
         "es-conjunction",
         "es-diacritical mark",
+        "es-int",
         "es-intj",
         "es-interj",
         "es-interjection",
         "es-letter",
         "es-noun",
         "es-past participle",
+        "es-past-participle",
         "es-phrase",
         "es-prefix",
+        "es-prep",
+        "es-preposition",
+        "es-pronoun",
         "es-proverb",
+        "es-prop",
         "es-proper noun",
+        "es-proper-noun",
         "es-punctuation mark",
         "es-suffix",
         "es-verb"
@@ -65,10 +73,22 @@ class Data(LanguageData):
             "g2": ["g2"],
             "g3": ["g3"],
         },
+        "es-proper-noun": {
+            "g": ["1", "g", "gen", "g1"],
+            "g2": ["g2"],
+            "g3": ["g3"],
+        },
     }
 
     form_sources = {
         "es-proper noun": {
+            "m": ["m", "m2", "m3"],
+            "f": ["f", "f2", "f3"],
+            "pl": ["pl", "pl2", "pl3"],
+            "mpl": ["mpl", "mpl2", "mpl2"],
+            "fpl": ["fpl", "fpl2", "mpl3"]
+        },
+        "es-proper-noun": {
             "m": ["m", "m2", "m3"],
             "f": ["f", "f2", "f3"],
             "pl": ["pl", "pl2", "pl3"],
