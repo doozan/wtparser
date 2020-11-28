@@ -54,7 +54,7 @@ class Word(WiktionaryNode):
         wikt = parse_anything(lines)
         headwords = wikt.filter_templates(matches=self.match_headword)
         if not len(headwords):
-            self.flag_problem("headword_missing")
+            self.flag_problem("missing_headword", [self._parent.name, lines])
         else:
             # TODO Warn if headword type doesn't match parent POS
             if len(headwords)>1:

@@ -78,7 +78,6 @@ class NymSense(WiktionaryNode):
                 text = before_sense
                 trailing.insert(0, sense+after_sense)
 
-
         first = True
         for line in template_aware_splitlines(text, True):
             if first:
@@ -159,13 +158,13 @@ class NymSense(WiktionaryNode):
                 source = "gloss"
 #                self.flag_problem("autofix_gloss_as_sense", line)
             if not templates:
-                # Match text inside parentheses () at start of line
+                # Match text inside parentheses () at start of line unless it contains a template
                 pattern = r"""(?x)
                 \*?             # Opening * (optional)
                 \s*             # leading whitespace
                 (?:\'{2,})?     # two or more ' marks for formatting (optional)
                 \(              # opening (
-                ([^)]*)         # contents
+                ([^{})]*)         # contents
                 \)              # closing )
                 \:*             # : (optional)
                 (?:\'{2,})?     # two or more ' marks for formatting (optional)
@@ -179,8 +178,7 @@ class NymSense(WiktionaryNode):
 
         if templates:
 #            if len(templates) > 1:
-#                pass
-##                self.flag_problem("multiple_sense_templates", line)
+#                self.flag_problem("multiple_sense_templates", line)
 
             consumed = str(templates[0])
             senses = set( str(p.value) for p in templates[0].params )

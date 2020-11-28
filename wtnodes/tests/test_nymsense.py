@@ -25,6 +25,8 @@ def test_simple():
     assert len(nymsense.filter_decoratedlinks()) == 1
 
 
+
+
 def test_complex():
     line1="*{{sense|stingy}} {{l|es|tacaño|g=m}}, {{l|es|tacaña|g=f}}, {{l|es|pesetero|g=m}}, {{l|es|pesetera|g=f}}\n"
     line2="*{{sense|stingy}} {{l|es|hijo de puta|g=m}}, {{l|es|hija de puta|g=f}}\n"
@@ -32,6 +34,18 @@ def test_complex():
     nymsense = NymSense(line1, name="1", parent=None)
     assert len(nymsense.filter_decoratedlinks()) == 4
     assert str(nymsense) == line1
+
+    line = "* ({{l|en|self-denial|self-}}){{l|en|denial}}"
+    nymsense = NymSense(line, name="1", parent=None)
+    links = nymsense.filter_decoratedlinks()
+    assert len(links) == 1
+    link = links[0]
+    assert link.link == "self-denial"
+    assert link.gloss == ""
+
+
+
+
 
 #    orig_text = "".join([line1, line2])
 #    nymsense = NymSense(orig_text, name="1", parent=None)
