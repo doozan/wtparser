@@ -35,13 +35,13 @@ def test_complex():
     assert len(nymsense.filter_decoratedlinks()) == 4
     assert str(nymsense) == line1
 
-    line = "* ({{l|en|self-denial|self-}}){{l|en|denial}}"
+    line = "* {{l|en|self-denial|self-}}{{l|en|denial}}"
     nymsense = NymSense(line, name="1", parent=None)
     links = nymsense.filter_decoratedlinks()
     assert len(links) == 1
     link = links[0]
-    assert link.link == "self-denial"
-    assert link.gloss == ""
+    assert link.link == {"target": "self-denial"}
+    assert link.gloss == []
 
 
 

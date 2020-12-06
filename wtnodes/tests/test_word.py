@@ -164,6 +164,6 @@ def test_verb_forms(language):
     pos = PosSection(wiki, parent=language)
 
     word = next(pos.ifilter_words())
-    assert len(word.forms) == 188
+    assert len(word.forms) == 180
 
 
