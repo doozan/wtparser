@@ -29,6 +29,7 @@ class Data(LanguageData):
 
     headwords = {
         "es-adj",
+        "es-adj-form",
         "es-adj-sup",
         "es-adj-inv",
         "es-adv",
@@ -54,7 +55,8 @@ class Data(LanguageData):
         "es-proper-noun",
         "es-punctuation mark",
         "es-suffix",
-        "es-verb"
+        "es-verb",
+        "es-verb-form"
     }
 
     gender_sources = {
