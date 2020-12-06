@@ -29,8 +29,53 @@ class WiktionaryNode(Node):
 
     # List of "standalone" templates that may appear between a section heading
     # the actual content of that section
-    header_templates = [ "wikipedia", "attention", "slim-wikipedia", "enum" ]
-    header_links = [ "File:", "Image:" ]
+    ignore_templates = [
+        "attention",
+        "c",
+        "C",
+        "categorize",
+        "catlangname",
+        "catlangcode",
+        "checksense",
+        "cln",
+        "DEFAULTSORT",
+        "element",
+        "enum",
+        "hot word",
+        "IPA",
+        "multiple images",
+        "no entry",
+        "number box",
+        "phrasebook",
+        "picdic",
+        "picdiclabel",
+        "picdiclabel/new",
+        "rfd",
+        "rfe",
+        "rfi",
+        "rfinfl",
+        "rfp",
+        "rfquote",
+        "rfv",
+        "root",
+        "slim-wikipedia",
+        "top",
+        "topic",
+        "topics",
+        "was fwotd",
+        "wikidata",
+        "wikipedia",
+        "Wikipedia",
+        "wikiversity",
+        "wp",
+        ]
+    re_items = [ r"\{\{\s*"+item+r"\s*\|" for item in ignore_templates ] #}}
+    ignore_template_pattern = re.compile("(" + "|".join(re_items) + ")")
+
+    ignore_links = [ "Category:", "File:", "Image:" ]
+    re_items = [ r"\[\[\s*"+item+r"" for item in ignore_links ]
+    ignore_link_pattern = re.compile("(" + "|".join(re_items) + ")")
+
 
     def __init__(self, text, name, parent, parse_data=True):
 
@@ -303,19 +348,11 @@ class WiktionaryNode(Node):
 
 
     def _is_filler_line(self, line):
-        if self.header_templates:
-            re_items = [ r"\{\{\s*"+item+r"\s*\|" for item in self.header_templates ] #}}
-            pattern = "(" + "|".join(re_items) + ")"
+        if self.ignore_template_pattern and re.match(self.ignore_template_pattern, line):
+            return True
 
-            if re.match(pattern, line):
-                return True
-
-        if self.header_links:
-            re_items = [ r"\[\[\s*"+item+r"" for item in self.header_links ]
-            pattern = "(" + "|".join(re_items) + ")"
-
-            if re.match(pattern, line):
-                return True
+        if self.ignore_link_pattern and re.match(self.ignore_link_pattern, line):
+            return True
 
         return False
 
@@ -342,9 +379,10 @@ class WiktionaryNode(Node):
 
     def _is_footer(self, line):
 
-        re_endings = [ r"\[\[\s*Category\s*:" r"==[^=]+==", r"----" ]
-        template_endings = [ "c", "C", "top", "topics", "categorize", "catlangname", "catlangcode", "cln", "DEFAULTSORT" ]
-        re_endings += [ r"\{\{\s*"+item+r"\s*\|" for item in template_endings ] #}}
+        if self._is_filler_line(line):
+            return True
+
+        re_endings = [ r"==[^=]+==", r"----" ]
         endings = "|".join(re_endings)
 
         if re.match(fr"\s*({endings})", line):
@@ -358,6 +396,10 @@ class WiktionaryNode(Node):
         return False
 
     def _handle_other(self, line):
+        if self._is_filler_line(line):
+            self.add_text(unhandled)
+            return True
+
         self.flag_problem("unhandled_line", line)
         return False
 
