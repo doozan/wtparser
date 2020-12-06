@@ -91,7 +91,7 @@ class Word(WiktionaryNode):
 
     @property
     def shortpos(self):
-        return ALL_POS.get(self.pos, "unknown")
+        return ALL_POS.get(self.pos, self.pos)
 
     @property
     def genders(self):
