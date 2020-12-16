@@ -33,7 +33,11 @@ class LanguageData():
         return str(template.name) in cls.headwords
 
     @classmethod
-    def get_genders(cls, word):
+    def get_gender_and_number(cls, word):
+        """ Returns an array of gender-number values
+        See https://en.wiktionary.org/wiki/Module:gender_and_number for details
+        """
+
         template = word.headword
         if template is None:
             return None

@@ -149,21 +149,3 @@ def test_subsenses(language):
     nyms = pos.filter_nymlines()
     assert len(nyms) == 1
 
-def test_verb_forms(language):
-    orig_text = """\
-===Verb===
-{{es-verb|sac|ar|pret=saqué}}
-
-# {{lb|es|reflexive}} to [[obtain]], [[receive]]
-
-====Conjugation====
-{{es-conj-ar|sa|p=-car|combined=1}}
-
-"""
-    wiki = parse(orig_text, skip_style_tags=True)
-    pos = PosSection(wiki, parent=language)
-
-    word = next(pos.ifilter_words())
-    assert len(word.forms) == 180
-
-
