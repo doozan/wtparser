@@ -121,7 +121,7 @@ class DecoratedLink(WiktionaryNode):
         """
 
         # Special handling for "See [[Thesaurus:entry]]." items
-        res = re.match(r"(?:{{s(?:ense)?|[^}]+}})?\s*See \[\[(Thesaurus:[^\]]+)\]\]\.?\s*$", text)
+        res = re.match(r"(?:{{s(?:ense)?|[^}]+}})?(?:For more,)?\s*[sS]ee(?: also)? \[\[(Thesaurus:[^\]]+)\]\]\.?\s*$", text)
         if res:
             self._link = {"target": res.group(1)}
             return
