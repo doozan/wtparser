@@ -76,15 +76,21 @@ class Link(WiktionaryNode):
             self.target = text.strip()
 
         else:
-            self.flag_problem("link_is_complicated")
-            text = self.templates_to_text(text)
-            text = self.brackets_to_text(text)
-            self.target = text.strip()
+            unbracketed = self.brackets_to_text(text)
+            if self.is_only_text(unbracketed):
+                self.flag_problem("link_is_multi_brackets")
+                self.target = unbracketed.strip()
+
+            else:
+                self.flag_problem("link_is_complicated")
+                text = self.templates_to_text(text)
+                text = self.brackets_to_text(text)
+                self.target = text.strip()
 
         if not self.target:
             self.flag_problem("fixme_no_link_target")
         else:
-            pattern = "[" + re.escape("[]{}()#$!/_:,;") + "]"
+            pattern = "[" + re.escape("[]{}()#$!/_:;") + "]"
             if re.search(pattern, self.target):
                 self.flag_problem("link_has_unexpected_characters", self.target)
 
@@ -123,18 +129,18 @@ class Link(WiktionaryNode):
         wikt = parse_anything(text)
 
         # Exactly one link template
-        links = wikt.filter_templates(recursive=False, matches=lambda x: x.name in Link.LINK_TEMPLATES)
+        links = wikt.filter_templates(recursive=False, matches=lambda x: x.name.strip() in Link.LINK_TEMPLATES)
         if len(links) != 1:
             return False
 
         # No non-link, non-ignorable templates
         expected_templates = Link.LINK_TEMPLATES + Link.IGNORE_TEMPLATES
-        if any(wikt.ifilter_templates(recursive=False, matches=lambda x: x.name not in expected_templates)):
+        if any(wikt.ifilter_templates(recursive=False, matches=lambda x: x.name.strip() not in expected_templates)):
             return False
 
         # No text outside template except prefix and suffix text
         # remove ignorable templates
-        for template in wikt.ifilter_templates(recursive=False, matches=lambda x: x.name in Link.IGNORE_TEMPLATES):
+        for template in wikt.ifilter_templates(recursive=False, matches=lambda x: x.name.strip() in Link.IGNORE_TEMPLATES):
             wikt.remove(template)
 
         d = Link.template_to_dict(wikt)
@@ -162,7 +168,7 @@ class Link(WiktionaryNode):
     def template_to_dict(template):
         """ Returns link dict from the first link template encountered in text """
         wikt = parse_anything(template, skip_style_tags=True)
-        link = next(wikt.ifilter_templates(recursive=False, matches=lambda x: x.name in Link.LINK_TEMPLATES))
+        link = next(wikt.ifilter_templates(recursive=False, matches=lambda x: x.name.strip() in Link.LINK_TEMPLATES))
         _convert = {
             "2": "target",
             "3": "alt",
