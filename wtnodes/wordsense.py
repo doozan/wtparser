@@ -31,7 +31,6 @@ class WordSense(WiktionaryNode):
 
         self.sense_ids = []
         self.sense_labels = []
-        self.sense_words = set()
 
         self.nymlines = {}
         super().__init__(text, name, parent)
@@ -108,7 +107,6 @@ class WordSense(WiktionaryNode):
         self._children.append(parse_anything(line, skip_style_tags=True))
 
     def parse_hash(self, line):
-        self.add_sense_words(line[1:])
 
         wikt = parse_anything(line, skip_style_tags=True)
         self.add_sense_labels(
@@ -192,42 +190,6 @@ class WordSense(WiktionaryNode):
 
         return len(self._children)
 
-    def has_sense(self, sense):
-        for sense in re.split(r'[\W_]+', sense):
-            if (
-                sense != "" and
-                sense not in self.sense_ids
-                and sense not in self.sense_labels
-                and sense not in self.sense_words
-            ):
-                return False
-        return True
-
-    def has_sense_id(self, sense):
-        for sense in re.split(r'[\W_]+', sense):
-            if not sense in self.sense_ids:
-                return False
-        return True
-
-    def has_sense_label(self, sense):
-        for sense in re.split(r'[\W_]+', sense):
-            if not sense in self.sense_labels:
-                return False
-        return True
-
-    def has_sense_word(self, sense):
-        for sense in re.split(r'[\W_]+', sense):
-            if not sense in self.sense_words:
-                return False
-        return True
-
-    def add_sense_words(self, line):
-        stripped = re.sub(r'(\[\[|\]\])', '', line)
-        stripped = re.sub(r'[\W_]+', ' ', stripped)
-        self.sense_words |= set(stripped.split(' '))
-        if "" in self.sense_words:
-            self.sense_words.remove("")
-
     def add_sense_labels(self, templates):
         if not templates:
             return
@@ -240,7 +202,7 @@ class WordSense(WiktionaryNode):
                 self.flag_problem("sense_label_lang_mismatch", self.lang_id, template)
 
             self.sense_labels += [
-                str(p.value)
+                str(p.value).lower()
                 for p in template.params
                 if str(p.name).isdigit() and int(str(p.name)) > 1
             ]
@@ -260,4 +222,5 @@ class WordSense(WiktionaryNode):
             if not value:
                 self.flag_problem("senseid_no_value", template)
             else:
-                self.sense_ids.append(str(template.get("2")))
+                self.sense_ids.append(str(template.get("2")).lower())
+

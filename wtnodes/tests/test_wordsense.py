@@ -27,7 +27,6 @@ def test_wordsense(word):
     #assert d.is_good() == True
     assert d.sense_ids == ["blah"]
     assert d.sense_labels == []
-    assert sorted(d.sense_words) == sorted(["senseid", "es", "blah", "word1", "word2", "word3"])
 
     syn_section = NymSection(parse_anything("===Synonyms===\n* {{l|es|syn1}}\n"), parent=word)
 #    d.add_nymsense(syn_section.filter_nymsenses()[0])
@@ -66,20 +65,6 @@ def test_wordsense(word):
     d = WordSense("# {{senseid|en|word}} [[word]] (qualifier)", name="test", parent=word)
     assert d.sense_ids == ["word"]
     #assert sorted(err.errors.keys()) == sorted(["def_senseid_lang_mismatch"])
-
-
-def test_stripping(word):
-
-    d = WordSense("# [[word1]], [[word2]]; [[word3]]", name="test", parent=word)
-    assert d.has_sense("word1")
-    assert d.has_sense("word2")
-    assert d.has_sense("word1|word2")
-    assert d.has_sense("word1 word2")
-    assert d.has_sense("word2|word1")
-    assert d.has_sense("word2 word1")
-    assert d.has_sense("word3")
-    assert not d.has_sense("word4")
-    assert not d.has_sense("word")
 
 
 def test_senes(word):
@@ -187,43 +172,3 @@ def xtest_add_existing_nymsense_nomatch(nymsection,word):
 
     d.add_nymsense(sense2, no_merge=True)
     assert d == "# a [[word]], a [[word2]]; [[word3]]\n#: {{syn|es|syn1}}\n#: {{syn|es|syn2}} <!-- FIXME, MATCH SENSE: 'nomatch2' -->\n"
-
-def test_has_sense(word):
-
-    defstr = "# [[big deal]], [[fuss]], [[scene]]\n"
-    d = WordSense(defstr, name="test", parent=word)
-
-    assert not d.has_sense("nomatch")
-    assert d.has_sense("big deal")
-    assert d.has_sense("fuss")
-    assert d.has_sense("big deal fuss")
-    assert d.has_sense("big deal, fuss")
-    assert d.has_sense("big deal|fuss")
-
-
-    defstr = "# {{lb|es|botany}} [[bud]], [[shoot]]\n"
-    d = WordSense(defstr, name="test", parent=word)
-    assert d.has_sense("bud|shoot")
-
-
-    defstr = "# [[right]], [[right-hand]] {{gloss|direction}}\n"
-    d = WordSense(defstr, name="test", parent=word)
-    assert d.has_sense("right-hand")
-
-    defstr = "# {{lb|es|soccer}} [[football]] (ball)\n"
-    d = WordSense(defstr, name="test", parent=word)
-    assert d.has_sense("soccer ball")
-
-    defstr = "# [[hand]] {{gloss|of a clock}}\n"
-    d = WordSense(defstr, name="test", parent=word)
-    assert d.has_sense("hand")
-
-    defstr = "# {{lb|es|Bolivia|Chile|Colombia|Peru}} having a protruding belly.\n"
-    d = WordSense(defstr, name="test", parent=word)
-    assert d.has_sense("having a protruding belly")
-
-    defstr = "# {{lb|es|rare}} [[domestic]] [[staff]], [[servant]]s"
-    d = WordSense(defstr, name="test", parent=word)
-    assert d.has_sense("servants")
-
-
