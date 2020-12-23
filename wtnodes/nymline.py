@@ -157,7 +157,7 @@ class NymLine(WiktionaryNode):
         """
         params = [tmpl_name, lang_id]
         for idx, item in enumerate(items, 2):
-            params.append(item["target"])
+            params.append(item["target"].strip())
 
             for k,v in item.items():
                 if k in ["target"]:
