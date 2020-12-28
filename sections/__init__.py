@@ -13,31 +13,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# import logging
 import re
-from itertools import chain
 
 from ..wtnodes import WiktionaryNode
 from ..utils import parse_anything, template_aware_splitlines
 
 def get_section_type(title, default):
 
-    from ..constants import ALL_LANGUAGE_NAMES, ALL_POS, ALL_NYMS
     from .pos import PosSection
     from .language import LanguageSection
     from .nym import NymSection
+    from .etymology import EtymologySection
+    from .usage import UsageSection
 
-    all_pos = "|".join(ALL_POS.keys())
-    pos_pattern = f"{all_pos}\s*[0-9]*$"
-
-    if title in ALL_LANGUAGE_NAMES:
-        return LanguageSection
-    elif re.match(pos_pattern, title):
-        return PosSection
-    elif title in ALL_NYMS:
-        return NymSection
-    else:
-        return default
+    for section in [ LanguageSection, PosSection, NymSection, EtymologySection, UsageSection ]:
+        if section.matches_title(title):
+            return section
     return default
 
 
@@ -79,6 +70,10 @@ class WiktionarySection(WiktionaryNode):
         if parse_data:
             self._parse_data(wikt)
 
+    @classmethod
+    def matches_title(cls, title):
+        """ Returns True if title matches a section this class can handle """
+        raise ValueError("Classes must override this")
 
     def _parse_data(self, wikt):
 

@@ -20,8 +20,10 @@ Currently handles words
 """
 
 from . import WiktionarySection
-from ..constants import ALL_LANGUAGE_NAMES
-#from ..languages import languages
+from ..languages import all_ids as language_constants
+
+ALL_LANGUAGE_IDS = language_constants.languages
+ALL_LANGUAGE_NAMES = { v:k for k,v in ALL_LANGUAGE_IDS.items() }
 
 from importlib import import_module
 
@@ -49,3 +51,9 @@ class LanguageSection(WiktionarySection):
                 pass
 
         super().__init__(wikt, parent)
+
+    @classmethod
+    def matches_title(cls, title):
+        """ Returns True if title matches a section this class can handle """
+        return title.strip() in ALL_LANGUAGE_NAMES
+

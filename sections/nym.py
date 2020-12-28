@@ -20,11 +20,31 @@ import re
 # import wiktionaryparser
 from . import WiktionarySection
 from ..wtnodes.nymsense import NymSense
-from ..constants import ALL_NYMS
 from ..utils import parse_anything, template_aware_splitlines
 
+# Nyms will be inserted into definitions according to the order here
+# The first tag listed will be used when creating nym tags
+ALL_NYMS = {
+    "Synonyms": ["syn", "synonyms"],
+    "Antonyms": ["ant", "antonyms"],
+    "Hyperyms": ["hyper", "hypernyms"],
+    "Hyponyms": ["hypo", "hyponyms"],
+    "Meronyms": ["meronyms"],
+    "Holonyms": ["holonyms"],
+    "Troponyms": ["troponyms"],
+}
+NYM_ORDER = list(ALL_NYMS.keys())
+
+NYM_TO_TAG = {k: v[0] for k, v in ALL_NYMS.items()}
+TAG_TO_NYM = {k: v for v, tags in ALL_NYMS.items() for k in tags}
+ALL_NYM_TAGS = [ tag for tags in ALL_NYMS.values() for tag in tags ]
 
 class NymSection(WiktionarySection):
+    @classmethod
+    def matches_title(cls, title):
+        """ Returns True if title matches a section this class can handle """
+        return title.title().strip() in ALL_NYMS
+
     def __init__(self, wikt, parent=None):
         self._expected_sections = []
         super().__init__(wikt, parent)
@@ -62,3 +82,4 @@ class NymSection(WiktionarySection):
         if len(trailing):
             self._children.append(parse_anything(trailing))
         return item
+
