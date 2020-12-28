@@ -488,6 +488,7 @@ from .gloss import Gloss
 from .nymline import NymLine
 from .nymsense import NymSense
 from .decoratedlink import DecoratedLink
+from .link import Link
 
 WiktionaryNode._build_filter_methods(
     sections=WiktionarySection,
@@ -501,6 +502,7 @@ WiktionaryNode._build_filter_methods(
     nymsenses=NymSense,
     decoratedlinks=DecoratedLink,
     templates=Template,
+    links=Link,
     #    arguments=Argument, comments=Comment, external_links=ExternalLink,
     #    headings=Heading, html_entities=HTMLEntity, tags=Tag, templates=Template,
     #    text=Text, wikilinks=Wikilink)

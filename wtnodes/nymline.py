@@ -23,9 +23,8 @@ Expects line like:
 import re
 from .gloss import Gloss
 from .nymsense import NymSense
-from ..constants import NYM_TO_TAG, TAG_TO_NYM
+from ..sections.nym import NYM_TO_TAG, TAG_TO_NYM, NymSection
 from ..utils import parse_anything
-from ..sections.nym import NymSection
 from . import WiktionaryNode
 
 class NymLine(WiktionaryNode):

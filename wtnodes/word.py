@@ -21,7 +21,7 @@ from . import WiktionaryNode
 from .wordsense import WordSense
 from .gloss import Gloss
 from ..utils import parse_anything, template_aware_split, template_aware_splitlines, get_label_qualifiers
-from ..constants import ALL_POS
+from ..sections.pos import ALL_POS
 
 class Word(WiktionaryNode):
     """

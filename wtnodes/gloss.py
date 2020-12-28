@@ -42,7 +42,7 @@ class Gloss(WiktionaryNode):
         return q
 
     _anchors = { "anchor", "s", "senseid" }
-    _labels = { "label", "lb", "lbl" }
+    _labels = { "label", "lb", "lbl", "term-label" }
     _indtr = { "indtr" }
     _all_leading_templates = _anchors | _labels | _indtr
 

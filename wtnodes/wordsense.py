@@ -17,7 +17,7 @@
 import re
 
 from ..utils import parse_anything, get_template_depth, template_aware_splitlines
-from ..constants import ALL_NYMS, NYM_ORDER, TAG_TO_NYM, ALL_NYM_TAGS
+from ..sections.nym import ALL_NYMS, NYM_ORDER, TAG_TO_NYM, ALL_NYM_TAGS
 from . import WiktionaryNode
 from .gloss import Gloss
 from .nymline import NymLine
@@ -111,12 +111,12 @@ class WordSense(WiktionaryNode):
         wikt = parse_anything(line, skip_style_tags=True)
         self.add_sense_labels(
             wikt.filter_templates(
-                recursive=False, matches=lambda x: x.name in ["lb", "lbl", "label"]
+                recursive=False, matches=lambda x: x.name in ["lb", "lbl", "label", "term-label"]
             )
         )
         self.add_sense_ids(
             wikt.filter_templates(
-                recursive=False, matches=lambda x: x.name == "senseid"
+                recursive=False, matches=lambda x: x.name in ["anchor", "s", "senseid"]
             )
         )
 
@@ -215,12 +215,15 @@ class WordSense(WiktionaryNode):
             self.flag_problem("multiple_senseids", templates)
 
         for template in templates:
-            if template.get("1") != self.lang_id:
-                self.flag_problem("senseid_lang_mismatch", self.lang_id, template)
+            if template.name == "anchor":
+                self.sense_ids.append(str(template.get("1")).lower())
 
-            value = str(template.get("2"))
-            if not value:
-                self.flag_problem("senseid_no_value", template)
             else:
-                self.sense_ids.append(str(template.get("2")).lower())
+                if template.get("1") != self.lang_id:
+                    self.flag_problem("senseid_lang_mismatch", self.lang_id, template)
 
+                if not template.has("2"):
+                    self.flag_problem("senseid_no_value", template)
+                else:
+                    value = str(template.get("2"))
+                    self.sense_ids.append(str(template.get("2")).lower())
