@@ -481,6 +481,7 @@ from ..sections import WiktionarySection
 from ..sections.language import LanguageSection
 from ..sections.pos import PosSection
 from ..sections.nym import NymSection
+from ..sections.usage import UsageSection
 
 from .word import Word
 from .wordsense import WordSense
@@ -489,6 +490,8 @@ from .nymline import NymLine
 from .nymsense import NymSense
 from .decoratedlink import DecoratedLink
 from .link import Link
+from .usagenote import UsageNote
+from .etymology import Etymology
 
 WiktionaryNode._build_filter_methods(
     sections=WiktionarySection,
@@ -503,6 +506,8 @@ WiktionaryNode._build_filter_methods(
     decoratedlinks=DecoratedLink,
     templates=Template,
     links=Link,
+    usagenotes=UsageNote,
+    etymologies=Etymology,
     #    arguments=Argument, comments=Comment, external_links=ExternalLink,
     #    headings=Heading, html_entities=HTMLEntity, tags=Tag, templates=Template,
     #    text=Text, wikilinks=Wikilink)

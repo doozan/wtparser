@@ -18,6 +18,8 @@ This will parse a section containing Usage Notes
 """
 
 from . import WiktionarySection
+from ..wtnodes.usagenote import UsageNote
+from ..utils import parse_anything
 
 class UsageSection(WiktionarySection):
     """ Parses an Usage Notes section into text
@@ -29,3 +31,13 @@ class UsageSection(WiktionarySection):
     def matches_title(cls, title):
         """ Returns True if title matches a section this class can handle """
         return title.lower().strip() == "usage notes"
+
+    def _is_new_item(self, line):
+        return True
+
+    def _is_still_item(self, line):
+        return True
+
+    def add_item(self, lines):
+        item = UsageNote("".join(lines), len(self._children) + 1, parent=self)
+        self._children.append(parse_anything(item))

@@ -113,7 +113,7 @@ class PosSection(WiktionarySection):
     @classmethod
     def matches_title(cls, title):
         """ Returns True if title matches a section this class can handle """
-        return re.match(cls._pos_pattern, title.title())
+        return re.match(cls._pos_pattern, title.capitalize())
 
     def _is_new_item(self, line):
         # Header can contain a headword template {{head* or {{lang-*

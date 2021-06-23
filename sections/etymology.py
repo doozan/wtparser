@@ -18,6 +18,9 @@ This will parse a section containing a etymology
 """
 
 from . import WiktionarySection
+from ..wtnodes.etymology import Etymology
+from ..utils import parse_anything
+
 
 class EtymologySection(WiktionarySection):
     """ Parses an Etymology section into text
@@ -28,4 +31,15 @@ class EtymologySection(WiktionarySection):
     @classmethod
     def matches_title(cls, title):
         """ Returns True if title matches a section this class can handle """
-        return title.lower().strip() == "etymology"
+        return title.lower().strip().startswith("etymology")
+
+    def _is_new_item(self, line):
+        return True
+
+    def _is_still_item(self, line):
+        return True
+
+    def add_item(self, lines):
+        item = Etymology("".join(lines), len(self._children) + 1, parent=self)
+        self._children.append(parse_anything(item))
+

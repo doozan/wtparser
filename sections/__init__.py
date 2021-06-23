@@ -56,7 +56,7 @@ class WiktionarySection(WiktionaryNode):
             self._expected_sections = None
 
         if parse_header:
-            self.heading = next(iter(wikt.filter_headings(recursive=False)))
+            self.heading = next(wikt.ifilter_headings(recursive=False))
             self._level = int(self.heading.count("=") / 2)
             self._name = self.heading.strip("=").strip()
 
