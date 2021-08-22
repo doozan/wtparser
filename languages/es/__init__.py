@@ -124,7 +124,7 @@ class Data(LanguageData):
         ancestor = word.get_matching_ancestor(matcher)
         if not ancestor:
             if " " not in word.page_title and not word.page_title.endswith("se"):
-                print("\nNo conjugations", word.page_title, file=sys.stderr)
+                print("No conjugations", word.page_title, file=sys.stderr)
             return []
 
         for conjugation in ancestor.ifilter_sections(matches=lambda x: x.name.strip().startswith("Conjugation")):
