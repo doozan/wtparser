@@ -33,10 +33,10 @@ class UsageSection(WiktionarySection):
         return title.lower().strip() == "usage notes"
 
     def _is_new_item(self, line):
-        return True
+        return not self._is_filler_line(line)
 
     def _is_still_item(self, line):
-        return True
+        return not self._is_filler_line(line)
 
     def add_item(self, lines):
         item = UsageNote("".join(lines), len(self._children) + 1, parent=self)

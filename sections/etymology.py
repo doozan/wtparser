@@ -34,10 +34,10 @@ class EtymologySection(WiktionarySection):
         return title.lower().strip().startswith("etymology")
 
     def _is_new_item(self, line):
-        return True
+        return not self._is_filler_line(line)
 
     def _is_still_item(self, line):
-        return True
+        return not self._is_filler_line(line)
 
     def add_item(self, lines):
         item = Etymology("".join(lines), len(self._children) + 1, parent=self)

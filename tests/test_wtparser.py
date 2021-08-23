@@ -415,3 +415,94 @@ Borrowed from {{bor|es|en|single}}. {{doublet|es|sendos}}.
 """
     entry = parse_page(orig_text, "test", parent=None, skip_style_tags=True)
     words = entry.filter_words()
+
+
+def test_papa():
+
+    orig_text="""\
+==Spanish==
+{{wikipedia|Papa (desambiguación)|lang=es}}
+
+===Pronunciation===
+{{es-IPA}}
+
+===Etymology 1===
+Borrowed from {{bor|es|EL.|la|papas}}, from {{der|es|grc|πάπας|t=bishop, patriarch}}, variant of {{m|grc|πάππας|t=father}}.
+
+====Noun====
+{{es-noun|m}}
+
+# [[pope]] {{gloss|an honorary title of the Roman Catholic bishop of Rome}}
+
+=====Derived terms=====
+* {{l|es|antipapa}}
+* {{l|es|papista}}
+* {{l|es|más papista que el papa}}
+
+=====Related terms=====
+* {{l|es|papado}}
+* {{l|es|papal}}
+
+=====Descendants=====
+* {{desc|bor=1|tl|Papa}}
+
+===Etymology 2===
+Borrowed from {{bor|es|qu|papa}}.
+[[File:2010-06-19-supermarkt-by-RalfR-29.jpg|thumb|Papas]]
+
+====Noun====
+{{es-noun|f}}
+
+# {{lb|es|Latin America|Canary Islands|Andalusia}} [[potato]]
+#: {{syn|es|patata|q1=Spain}}
+
+=====Derived terms=====
+{{der3|es
+|papa a la huancaína
+|papas a la francesa
+|papas arrugadas
+|papas fritas
+|pelapapas
+|prensapapas
+|tortilla de papas
+|verlo el ojo a la papa}}
+
+===Etymology 3===
+From {{inh|es|la|pappa|t=food; used regarding children}}<ref>{{R:DRAE|entry=papa|id=RktMEkU|Rku5cvx|RkwcqJZ}}</ref><ref>{{R:DCECH}}</ref>.
+
+====Noun====
+{{es-noun|f}}
+
+# {{lb|es|childish|familiar}} very bland [[soup]], or more broadly, [[food]] in general
+# {{lb|es|figuratively}} [[nonsense]], [[trifle]], [[rubbish]]
+
+=====Derived terms=====
+* {{l|es|echar papas}}
+* {{l|es|paparrucha}}
+
+=====Related terms=====
+* {{l|es|papar}}
+
+===Further reading===
+* {{R:DRAE}}
+
+===References===
+<references/>
+
+{{C|es|Vegetables}}
+
+{{cln|es|nouns that have different meanings depending on their gender}}
+
+----
+"""
+    entry = parse_page(orig_text, "test", parent=None, skip_style_tags=True)
+    words = entry.filter_words()
+
+    assert len(words) == 3
+
+    etys = list(entry.ifilter_etymologies())
+    assert len(etys) == 3
+
+    assert etys[1] == "Borrowed from {{bor|es|qu|papa}}.\n"
+
+
