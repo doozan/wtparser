@@ -27,6 +27,7 @@ class Data(LanguageData):
 
     headwords = {
         "es-adj",
+        "es-adj-comp",
         "es-adj-form",
         "es-adj-sup",
         "es-adj-inv",
