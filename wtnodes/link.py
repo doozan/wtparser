@@ -178,6 +178,8 @@ class Link(WiktionaryNode):
         }
 
         d = { new: str(link.get(old)) for old, new in _convert.items() if link.has(old) and str(link.get(old)).strip() }
+        if "target" not in d:
+            d["target"] = ""
 
         # Check for prefix/trail text attached to the link
         # prefix{{template|stuff}}trail
