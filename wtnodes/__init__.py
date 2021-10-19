@@ -241,7 +241,15 @@ class WiktionaryNode(Node):
                 if node is target:
                     child.nodes.insert(i+1, new)
                     return
-        raise ValueError("item not found")
+        raise ValueError("item not found", self._name)
+
+    def insert_before(self, target, new):
+        for child in self._children:
+            for i, node in enumerate(child.nodes):
+                if node is target:
+                    child.nodes.insert(i, new)
+                    return
+        raise ValueError("item not found", self._name)
 
     @staticmethod
     def pop_leading_newlines(items):
@@ -482,6 +490,7 @@ from ..sections.language import LanguageSection
 from ..sections.pos import PosSection
 from ..sections.nym import NymSection
 from ..sections.usage import UsageSection
+from ..sections.etymology import EtymologySection
 
 from .word import Word
 from .wordsense import WordSense
@@ -496,6 +505,7 @@ from .etymology import Etymology
 WiktionaryNode._build_filter_methods(
     sections=WiktionarySection,
     languages=LanguageSection,
+    etymology_sections=EtymologySection,
     pos=PosSection,
     words=Word,
     wordsenses=WordSense,

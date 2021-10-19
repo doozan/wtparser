@@ -468,7 +468,6 @@ Borrowed from {{bor|es|qu|papa}}.
 |verlo el ojo a la papa}}
 
 ===Etymology 3===
-From {{inh|es|la|pappa|t=food; used regarding children}}<ref>{{R:DRAE|entry=papa|id=RktMEkU|Rku5cvx|RkwcqJZ}}</ref><ref>{{R:DCECH}}</ref>.
 
 ====Noun====
 {{es-noun|f}}
@@ -500,8 +499,10 @@ From {{inh|es|la|pappa|t=food; used regarding children}}<ref>{{R:DRAE|entry=papa
 
     assert len(words) == 3
 
-    etys = list(entry.ifilter_etymologies())
-    assert len(etys) == 3
+    assert len(entry.filter_etymology_sections()) == 3
+
+    etys = list(entry.filter_etymologies())
+    assert len(etys) == 2
 
     assert etys[1] == "Borrowed from {{bor|es|qu|papa}}.\n"
 
