@@ -56,9 +56,12 @@ class WiktionarySection(WiktionaryNode):
             self._expected_sections = None
 
         if parse_header:
-            self.heading = next(wikt.ifilter_headings(recursive=False))
-            self._level = int(self.heading.count("=") / 2)
-            self._name = self.heading.strip("=").strip()
+            heading = next(wikt.ifilter_headings(recursive=False))
+            self._level = int(heading.count("=") / 2)
+            self._name = heading.strip("=").strip()
+            if self.header != str(heading):
+                self.flag_problem("header_is_sloppy")
+            wikt.remove(heading)
 
         #        self._logname = parent._logname+"."+self._name if parent else self._name
         #        self.log = logging.getLogger(self._logname)
@@ -69,6 +72,17 @@ class WiktionarySection(WiktionaryNode):
 
         if parse_data:
             self._parse_data(wikt)
+
+
+    @property
+    def header(self):
+        return "="*self._level + self._name + "="*self._level
+
+    def __unicode__(self):
+        if self._level > 1:
+            return "".join([self.header] + list(map(str, self._children)))
+        else:
+            return "".join(list(map(str, self._children)))
 
     @classmethod
     def matches_title(cls, title):
@@ -108,6 +122,12 @@ class WiktionarySection(WiktionaryNode):
         self._sections[title] = self._sections.get(title, []) + [item]
 
 
+    def relevel(self, new_level):
+        self._level = new_level
+
+        for section in self.ifilter_sections(recursive=False):
+            section.relevel(new_level+1)
+
     def raise_subsections(self):
 
         if not self._parent:
@@ -126,11 +146,13 @@ class WiktionarySection(WiktionaryNode):
         if not found:
             raise ValueError("no subsections found")
 
+        sections = self.filter_sections(recursive=False)
+
         new_parent = self._parent
-        new_children = self._children[i:]
-        for child in reversed(new_children):
-            # TODO: Change header level on item and sub-items
-            if hasattr(child, "_level"):
-                child._level = self._level
+        while len(self._children) > i+1:
+            child = self._children.pop()
             child._parent = new_parent
             new_parent.insert_after(self, child)
+
+        for section in sections:
+            section.relevel(self._level)
