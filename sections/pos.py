@@ -42,7 +42,7 @@ ALL_POS = {
     "Contraction": "contraction",
     "Counter": "counter",
     "Declension": "declension",
-    "Determiner": "det",
+    "Determiner": "determiner",
     "Diacritical mark": "diacrit",
     "Enclitic Particle": "particle",
     "Gerund": "v",
