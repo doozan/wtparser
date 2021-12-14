@@ -98,6 +98,17 @@ class Data(LanguageData):
         },
     }
 
+
+    @classmethod
+    def get_forms(cls, word):
+        template = word.headword
+        if template is None:
+            return None
+
+        if str(template.name) == "head":
+            return cls.get_head_forms(word)
+
+
     @classmethod
     def get_form_sources(cls, word):
         template = word.headword
