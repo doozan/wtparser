@@ -122,12 +122,12 @@ def template_aware_resplit(pattern, text):
 def get_label_qualifiers(t):
     return [ str(p) for p in t.params if p.name != "1" and str(p.name).isdigit() ]
 
-"""
-Finds sections of data on a wiktionary page, with basic awareness
-of templates, html comments and <nowiki> tags
-"""
 
 def wiki_search(text, start, end=None, end_required=False, ignore_comments=False, ignore_nowiki=False, ignore_templates=False):
+    """
+    Finds sections of data on a wiktionary page, with basic awareness
+    of templates, html comments and <nowiki> tags
+    """
 
     in_comment = None
     in_nowiki = None
