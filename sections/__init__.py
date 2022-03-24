@@ -133,7 +133,7 @@ class WiktionarySection(WiktionaryNode):
         if not self._parent:
             raise ValueError("No parent to move subsections to")
 
-        # Everything after the first WiktionarySection is subsection stuff
+        # Everything from first WiktionarySection is subsection stuff
         # that should be re-parented
         found = False
         for i, child in enumerate(self._children):
@@ -149,7 +149,7 @@ class WiktionarySection(WiktionaryNode):
         sections = self.filter_sections(recursive=False)
 
         new_parent = self._parent
-        while len(self._children) > i+1:
+        while len(self._children) >= i+1:
             child = self._children.pop()
             child._parent = new_parent
             new_parent.insert_after(self, child)
