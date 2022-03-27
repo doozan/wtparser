@@ -123,18 +123,15 @@ def get_label_qualifiers(t):
     return [ str(p) for p in t.params if p.name != "1" and str(p.name).isdigit() ]
 
 
-def wiki_search(text, start, end=None, end_required=False, ignore_comments=False, ignore_nowiki=False, ignore_templates=False):
+def wiki_finditer(pattern, text, flags=0, ignore_comments=False, ignore_nowiki=False, ignore_templates=False):
     """
-    Finds sections of data on a wiktionary page, with basic awareness
+    matches pattern within wiki formatted text, with basic awareness
     of templates, html comments and <nowiki> tags
     """
 
     in_comment = None
     in_nowiki = None
     template_depth = []
-
-    if not end:
-        end_required = False
 
     separators = []
     if not ignore_comments:
@@ -144,24 +141,54 @@ def wiki_search(text, start, end=None, end_required=False, ignore_comments=False
     if not ignore_templates:
         separators += [r"(?<!\\)({{|}})"]
 
-    if start in separators:
+    if pattern in separators:
         raise ValueError(f"Invalid search value: {start}")
-    if end and end in separators:
-        raise ValueError(f"Invalid search value: {end}")
 
-    pattern = f"((?P<start>{start})"
-    if end:
-        pattern += f"|(?P<end>{end})"
-
-    pattern += "|(?P<sep>" + "|".join(separators) + "))"
+    if separators:
+        pattern = "(" + pattern + "|(?P<_sep>" + "|".join(separators) + "))"
 
     start_pos = None
-    for m in re.finditer(pattern, text, re.MULTILINE):
+    for m in re.finditer(pattern, text, flags):
 
-        if m.group('start'):
+        if not separators or not m.group('_sep'):
             if in_comment or in_nowiki or template_depth:
                 continue
+            yield m
 
+        elif in_comment and m.group('_sep') == "-->":
+            in_comment = None
+
+        elif in_nowiki and m.group('_sep') == "</nowiki>":
+            in_nowiki = None
+
+        elif not ignore_templates and (template_depth and m.group('_sep') == "}}"):
+            template_depth.pop()
+
+        elif not ignore_templates and m.group('_sep') == "{{":
+            template_depth.append(m)
+
+        elif not ignore_comments and m.group('_sep') == "<!--":
+            in_comment = m
+
+        elif not ignore_nowiki and m.group('_sep') == "<nowiki>":
+            in_nowiki = m
+
+def wiki_search(text, start, end=None, end_required=False, *args, **kwargs):
+    """ Returns matching substrings within text
+    If end is provided, returns text between matching start pattern and the end pattern
+    If end is not provided, returns text between start pattern and the next start pattern
+    """
+
+    pattern = f"(?P<start>{start})"
+    if end:
+        pattern += f"|(?P<end>{end})"
+    else:
+        end_required = False
+
+    start_pos = None
+    for m in wiki_finditer(pattern, text, re.MULTILINE, *args, **kwargs):
+
+        if m.group('start'):
             if start_pos and not end_required:
                 yield m.string[start_pos.start():m.start()]
                 start_pos = m
@@ -170,31 +197,12 @@ def wiki_search(text, start, end=None, end_required=False, ignore_comments=False
                 start_pos = m
 
         elif end and m.group('end'):
-            if in_comment or in_nowiki or template_depth:
-                continue
             if not start_pos:
                 continue
+
             yield m.string[start_pos.start():m.end()]
             start_pos = None
 
-        elif in_comment and m.group('sep') == "-->":
-            in_comment = None
-
-        elif in_nowiki and m.group('sep') == "</nowiki>":
-            in_nowiki = None
-
-        elif not ignore_templates and (template_depth and m.group('sep') == "}}"):
-            template_depth.pop()
-
-        elif not ignore_templates and m.group('sep') == "{{":
-            template_depth.append(m)
-
-        elif not ignore_comments and m.group('sep') == "<!--":
-            in_comment = m
-
-        elif not ignore_nowiki and m.group('sep') == "<nowiki>":
-            in_nowiki = m
 
     if start_pos and not end_required:
         yield m.string[start_pos.start():]
-
