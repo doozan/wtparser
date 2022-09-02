@@ -44,7 +44,7 @@ class Word(WiktionaryNode):
 
     def match_headword(self, template):
         return \
-            str(template.name) == "head" \
+            str(template.name) in ["head", "head-lite"] \
             or (self.lang and self.lang.match_headword(template))
 
     def _parse_header(self, lines):
