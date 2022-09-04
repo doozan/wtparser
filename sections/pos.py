@@ -63,7 +63,7 @@ ALL_POS = {
     "Numeral": "num",
     "Ordinal number": "onum",
     "Ordinal numeral": "onum",
-    "Participle": "v",
+    "Participle": "part",
     "Particle": "particle",
     "Phrase": "phrase",
     "Postposition": "postp",
