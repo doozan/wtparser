@@ -22,3 +22,10 @@ def test_simple(word):
     text = "# {{lb|es|Mexico|slang}} {{lb|es|transitive}} to [[contribute]]; to [[bring]]."
     gloss = Gloss(text, name="1", parent=word)
     assert gloss.qualifiers == ["Mexico", "slang", "transitive"]
+
+
+def test_ignore_categories(word):
+    text = "# {{c|es|test}} {{lb|es|military|nautical}} test"
+    gloss = Gloss(text, name="1", parent=word)
+    assert gloss.qualifiers == ["military", "nautical"]
+

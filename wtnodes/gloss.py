@@ -44,7 +44,8 @@ class Gloss(WiktionaryNode):
     _anchors = { "anchor", "s", "senseid" }
     _labels = { "label", "lb", "lbl", "term-label" }
     _indtr = { "indtr" }
-    _all_leading_templates = _anchors | _labels | _indtr
+    _categories = { "c", "C", "cat", "top", "topic", "topics", "categorize", "catlangname", "catlangcode", "cln", "DEFAULTSORT" }
+    _all_leading_templates = _anchors | _labels | _indtr | _categories
 
     def consume_leading_templates(self, text):
         """Process leading anchor and label templates
