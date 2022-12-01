@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 # -*- python-mode -*-
 
-import requests
+import csv
 import json
+import requests
 import urllib
 
 def expand_template(data):
@@ -10,17 +11,18 @@ def expand_template(data):
 
     res = requests.get( url )
     json_data = res.json()
-    return json.loads(json_data['expandtemplates']['wikitext'])
+    return json_data['expandtemplates']['wikitext']
 
 def main():
-    data = expand_template("{{#invoke:User:DTLHS/languages|export_languages|en}}")
+    #data = expand_template("{{#invoke:User:DTLHS/languages|export_languages|en}}")
+    data = expand_template("{{#invoke:list of languages, csv format|show}}")
 
-    shortdata = {}
-    for k,v in data.items():
-        if isinstance(v, dict):
-            shortdata[k] = v["1"]
-        else:
-            shortdata[k] = v[0]
+    lines = [line for line in data.splitlines() if line and not line.startswith("<pre")]
+    csvreader = csv.DictReader(lines, delimiter=';')
+
+#    line;code;canonical name;category;type;family code;family;sortkey?;autodetect?;exceptional?;script codes;other names;standard characters
+
+    shortdata = {r["code"]: r["canonical name"] for r in csvreader}
 
     print("languages =", json.dumps(shortdata, indent=4, sort_keys=True, ensure_ascii=False))
 
