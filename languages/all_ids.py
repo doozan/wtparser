@@ -1340,7 +1340,7 @@ ALL_LANG_IDS = {
     "chj": "Ojitlán Chinantec",
     "chk": "Chuukese",
     "chl": "Cahuilla",
-    "chm": "Eastern Mari",
+    "chm-pro": "Proto-Mari",
     "chn": "Chinook Jargon",
     "cho": "Choctaw",
     "chp": "Chipewyan",
@@ -2027,7 +2027,6 @@ ALL_LANG_IDS = {
     "fip": "Fipa",
     "fir": "Firan",
     "fit": "Meänkieli",
-    "fiu-fin-pro": "Proto-Finnic",
     "fiw": "Fiwaga",
     "fj": "Fijian",
     "fkk": "Kirya-Konzel",
@@ -4121,6 +4120,7 @@ ALL_LANG_IDS = {
     "mho": "Mashi",
     "mhp": "Balinese Malay",
     "mhq": "Mandan",
+    "mhr": "Eastern Mari",
     "mhs": "Buru (Indonesia)",
     "mht": "Mandahuaca",
     "mhu": "Taraon",
@@ -6761,7 +6761,6 @@ ALL_LANG_IDS = {
     "tmm": "Tai Thanh",
     "tmn": "Taman (Indonesia)",
     "tmo": "Temoq",
-    "tmp": "Tai Mène",
     "tmq": "Tumleo",
     "tms": "Tima",
     "tmt": "Tasmate",
@@ -7124,6 +7123,9 @@ ALL_LANG_IDS = {
     "urg": "Urigina",
     "urh": "Urhobo",
     "uri": "Urim",
+    "urj-fin-pro": "Proto-Finnic",
+    "urj-koo": "Old Komi",
+    "urj-kya": "Komi-Yazva",
     "urj-mdv-pro": "Proto-Mordvinic",
     "urj-prm-pro": "Proto-Permic",
     "urj-pro": "Proto-Uralic",
@@ -7587,7 +7589,7 @@ ALL_LANG_IDS = {
     "xkw": "Kembra",
     "xkx": "Karore",
     "xky": "Uma' Lasan",
-    "xkz": "Kurtop",
+    "xkz": "Kurtöp",
     "xla": "Kamula",
     "xlb": "Loup B",
     "xlc": "Lycian",
@@ -9927,7 +9929,7 @@ ALL_LANGS = {
     "Eastern Lawa": "lwl",
     "Eastern Magar": "mgp",
     "Eastern Maninkakan": "emk",
-    "Eastern Mari": "chm",
+    "Eastern Mari": "mhr",
     "Eastern Meohang": "emg",
     "Eastern Mnong": "mng",
     "Eastern Muria": "emu",
@@ -11424,6 +11426,7 @@ ALL_LANGS = {
     "Kombio": "xbi",
     "Komering": "kge",
     "Komi-Permyak": "koi",
+    "Komi-Yazva": "urj-kya",
     "Komi-Zyrian": "kpv",
     "Kominimung": "xoi",
     "Komo": "xom",
@@ -11630,7 +11633,7 @@ ALL_LANGS = {
     "Kurrama": "vku",
     "Kurti": "ktm",
     "Kurtjar": "gdj",
-    "Kurtop": "xkz",
+    "Kurtöp": "xkz",
     "Kurudu": "kjr",
     "Kurukh": "kru",
     "Kuruáya": "kyr",
@@ -13453,6 +13456,7 @@ ALL_LANGS = {
     "Old Kannada": "dra-okn",
     "Old Kentish Sign Language": "okl",
     "Old Khmer": "okz",
+    "Old Komi": "urj-koo",
     "Old Korean": "oko",
     "Old Leonese": "roa-ole",
     "Old Lithuanian": "olt",
@@ -13935,7 +13939,7 @@ ALL_LANGS = {
     "Proto-Eskimo": "esx-esk-pro",
     "Proto-Eskimo-Aleut": "esx-pro",
     "Proto-Fali": "alv-fli-pro",
-    "Proto-Finnic": "fiu-fin-pro",
+    "Proto-Finnic": "urj-fin-pro",
     "Proto-Gbe": "alv-gbe-pro",
     "Proto-Georgian-Zan": "ccs-gzn-pro",
     "Proto-Germanic": "gem-pro",
@@ -14005,6 +14009,7 @@ ALL_LANGS = {
     "Proto-Malayo-Sumbawan": "poz-msa-pro",
     "Proto-Mande": "dmn-pro",
     "Proto-Mangbetu": "csu-maa-pro",
+    "Proto-Mari": "chm-pro",
     "Proto-Masa": "cdc-mas-pro",
     "Proto-Mayan": "myn-pro",
     "Proto-Mazatec": "omq-maz-pro",
@@ -15042,7 +15047,6 @@ ALL_LANGS = {
     "Tai Laing": "tjl",
     "Tai Loi": "tlq",
     "Tai Long": "thi",
-    "Tai Mène": "tmp",
     "Tai Nüa": "tdd",
     "Tai Pao": "tpo",
     "Tai Thanh": "tmm",
@@ -21741,13 +21745,16 @@ ALT_LANGS = {
         "Curripaco"
     ],
     "Kurtokha": [
-        "Kurtop"
+        "Kurtöp"
+    ],
+    "Kurtop": [
+        "Kurtöp"
     ],
     "Kurtopkha": [
-        "Kurtop"
+        "Kurtöp"
     ],
-    "Kurtöp": [
-        "Kurtop"
+    "Kurtö": [
+        "Kurtöp"
     ],
     "Kuru": [
         "Japhug",
@@ -22947,6 +22954,9 @@ ALT_LANGS = {
     ],
     "Middle Adriatic": [
         "South Picene"
+    ],
+    "Middle Mongolian": [
+        "Middle Mongol"
     ],
     "Middle Tanana": [
         "Lower Tanana"
@@ -27856,6 +27866,9 @@ ALT_LANGS = {
     ],
     "Zhuǀ'hoan": [
         "Juǀ'hoan"
+    ],
+    "Zhâke": [
+        "Kurtöp"
     ],
     "Zinjero": [
         "Yemsa"
