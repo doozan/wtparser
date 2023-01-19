@@ -118,7 +118,8 @@ class NymLine(WiktionaryNode):
         # TODO: Verify template is a nym template
         return self.nymtemplate_to_items(template)
 
-    def nymtemplate_to_items(self, template):
+    @staticmethod
+    def nymtemplate_to_items(template):
         """
         Parses a Wikicode *nym template into targets with any available properties
         {{syn|es|word|q1=qual|word2|tr2=tr}}
@@ -133,16 +134,27 @@ class NymLine(WiktionaryNode):
             if i == 1:
                 continue
 
-            item = {
-                k: str(template.get(p).value)
-                for k, p in {
-                    "target": str(i),
-                    "alt": f"alt{i-1}",
-                    "tr": f"tr{i-1}",
-                    "q": f"q{i-1}",
-                }.items()
-                if template.has(p)
+            item = {"target": str(param.value) } | \
+            {
+                k: str(template.get(k).value)
+                for k in ["alt", "tr", "ts", "q", "qq", "lit", "pos", "g", "id", "sc", "tag"]
+                if i == 2 and template.has(k)
+            } | \
+            {
+                k: str(template.get(f"{k}{i-1}").value)
+                for k in ["alt", "tr", "ts", "q", "qq", "lit", "pos", "g", "id", "sc", "tag"]
+                if template.has(f"{k}{i-1}")
             }
+
+
+            target = item.get("target")
+            if "<" in target and ">" in target:
+                for inline_modifier in re.findall("<([^>]*?):(.*?)>", target):
+                    k = inline_modifier[0]
+                    v = inline_modifier[1]
+                    item[k] = v
+                target = re.sub("<.*?>", "", target).strip()
+                item["target"] = target
 
             res.append(item)
 

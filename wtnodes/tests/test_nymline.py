@@ -35,6 +35,8 @@ def test_nymline():
     assert item["q"] == "qual2"
     assert item["tr"] == "tran2"
 
+    assert items == [{'target': 'syn1', 'alt': 'alter1'}, {'target': 'syn2', 'tr': 'tran2', 'q': 'qual2'}]
+
     new_nymline = NymLine("* {{syn|es|syn3|alt1=alter3|q1=qual3|tr1=tran3}}\n", name="2", parent=None)
     newitem = new_nymline.items[0]
     nymline.add(newitem)
@@ -43,3 +45,8 @@ def test_nymline():
     nymline = NymLine("* {{syn|es|syn|syn2|Thesaurus:word}}\n", name="2", parent=None)
     nymline.add(newitem)
     assert nymline == "* {{syn|es|syn|syn2|syn3|alt3=alter3|tr3=tran3|q3=qual3|Thesaurus:word}}\n"
+
+    # inline modifiers
+    nymline = NymLine("* {{syn|es|syn1<alt:alter1>|syn2<q:qual2><tr:tran2>}}\n", name="1", parent=None)
+    items = nymline.items
+    assert items == [{'target': 'syn1', 'alt': 'alter1'}, {'target': 'syn2', 'tr': 'tran2', 'q': 'qual2'}]
