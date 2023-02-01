@@ -173,7 +173,7 @@ class NymLine(WiktionaryNode):
             for k,v in item.items():
                 if k in ["target"]:
                     continue
-                if k in ["alt", "tr", "q"] and v:
+                if k in ["alt", "tr", "q", "qq"] and v:
                     params.append(f"{k}{idx-1}={item[k]}")
                 elif k == "gloss":
                     if "q" not in item or not item["q"]:

@@ -225,5 +225,5 @@ class WordSense(WiktionaryNode):
                 if not template.has("2"):
                     self.flag_problem("senseid_no_value", template)
                 else:
-                    value = str(template.get("2"))
-                    self.sense_ids.append(str(template.get("2")).lower())
+                    value = str(template.get("2")).strip()
+                    self.sense_ids.append(value)
