@@ -17,9 +17,12 @@ def expand_template(data):
     return json_data['expandtemplates']['wikitext']
 
 def main():
-    #data = expand_template("{{#invoke:User:DTLHS/languages|export_languages|en}}")
-    data = expand_template("{{#invoke:list of languages, csv format|show}}")
-    lines = [line for line in data.splitlines() if line and not line.startswith("<pre")]
+    #response = expand_template("{{#invoke:User:DTLHS/languages|export_languages|en}}")
+    #response = expand_template("{{#invoke:JSON data|export_languages}}")
+    response = expand_template("{{#invoke:list of languages, csv format|show}}")
+
+    lines = [line for line in response.splitlines() if line and not line.startswith("<pre")]
+
 
     #with open("lang.data") as infile:
     #    lines = [line for line in infile if line and not line.startswith("<pre")]
@@ -27,6 +30,11 @@ def main():
     csvreader = csv.DictReader(lines, delimiter=';')
     data = {r["code"]: r["canonical name"] for r in csvreader}
     len_all_lang_ids = len(data)
+
+    if not data:
+        print("Unable to parse data: ", response, file=sys.stderr)
+        exit(1)
+
     print("ALL_LANG_IDS =", json.dumps(data, indent=4, sort_keys=True, ensure_ascii=False))
 
     csvreader = csv.DictReader(lines, delimiter=';')
