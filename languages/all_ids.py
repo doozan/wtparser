@@ -6519,7 +6519,7 @@ ALL_LANG_IDS = {
     "tao": "Yami",
     "tap": "Taabwa",
     "tar": "Central Tarahumara",
-    "tas": "Tay Boi",
+    "tas": "Tây Bồi",
     "tau": "Upper Tanana",
     "tav": "Tatuyo",
     "taw": "Tai",
@@ -15177,7 +15177,6 @@ ALL_LANGS = {
     "Taworta": "tbp",
     "Tawoyan": "twy",
     "Tawr Chin": "tcp",
-    "Tay Boi": "tas",
     "Tay Khang": "tnu",
     "Tayabas Ayta": "ayy",
     "Taymanitic": "sem-tay",
@@ -15568,6 +15567,7 @@ ALL_LANGS = {
     "Tzotzil": "tzo",
     "Tày": "tyz",
     "Tày Tac": "tyt",
+    "Tây Bồi": "tas",
     "Téén": "lor",
     "Tübatulabal": "tub",
     "U": "uuu",
@@ -26278,7 +26278,7 @@ ALT_LANGS = {
         "Tawr Chin"
     ],
     "Tay Boi Pidgin French": [
-        "Tay Boi"
+        "Tây Bồi"
     ],
     "Tayap": [
         "Taiap"
@@ -26917,7 +26917,7 @@ ALT_LANGS = {
         "Alviri-Vidari"
     ],
     "Vietnamese Pidgin French": [
-        "Tay Boi"
+        "Tây Bồi"
     ],
     "Virac": [
         "Southern Catanduanes Bicolano"
