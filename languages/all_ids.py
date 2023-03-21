@@ -3839,7 +3839,7 @@ ALL_LANG_IDS = {
     "lor": "Téén",
     "los": "Loniu",
     "lot": "Lotuko",
-    "lou": "Louisiana Creole French",
+    "lou": "Louisiana Creole",
     "lov": "Lopi",
     "low": "Tampias Lobu",
     "lox": "Loun",
@@ -11996,7 +11996,7 @@ ALL_LANGS = {
     "Lotud": "dtr",
     "Lotuko": "lot",
     "Lou": "loj",
-    "Louisiana Creole French": "lou",
+    "Louisiana Creole": "lou",
     "Loun": "lox",
     "Loup A": "xlo",
     "Loup B": "xlb",
@@ -21596,7 +21596,7 @@ ALT_LANGS = {
         "Kryts"
     ],
     "Kréyol": [
-        "Louisiana Creole French"
+        "Louisiana Creole"
     ],
     "Krüng": [
         "Kru'ng"
@@ -22235,8 +22235,8 @@ ALT_LANGS = {
     "Loucheux": [
         "Gwich'in"
     ],
-    "Louisiana Creole": [
-        "Louisiana Creole French"
+    "Louisiana Creole French": [
+        "Louisiana Creole"
     ],
     "Loven": [
         "Laven"
