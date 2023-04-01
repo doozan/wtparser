@@ -2243,7 +2243,6 @@ ALL_LANG_IDS = {
     "gml": "Middle Low German",
     "gmm": "Gbaya-Mbodomo",
     "gmn": "Gimnime",
-    "gmq-bot": "Westrobothnian",
     "gmq-gut": "Gutnish",
     "gmq-jmk": "Jamtish",
     "gmq-mno": "Middle Norwegian",
@@ -3701,6 +3700,7 @@ ALL_LANG_IDS = {
     "lgn": "Opuuo",
     "lgq": "Logba",
     "lgr": "Lengo",
+    "lgs": "Guinea-Bissau Sign Language",
     "lgt": "Pahi",
     "lgu": "Longgu",
     "lgz": "Ligenza",
@@ -5811,7 +5811,7 @@ ALL_LANG_IDS = {
     "roa-oan": "Navarro-Aragonese",
     "roa-oca": "Old Catalan",
     "roa-ole": "Old Leonese",
-    "roa-opt": "Old Portuguese",
+    "roa-opt": "Old Galician-Portuguese",
     "roa-orl": "Orléanais",
     "roa-poi": "Poitevin-Saintongeais",
     "roa-tar": "Tarantino",
@@ -7821,6 +7821,7 @@ ALL_LANG_IDS = {
     "ycl": "Lolopo",
     "ycn": "Yucuna",
     "ycp": "Chepya",
+    "ycr": "Yilan Creole",
     "yda": "Yanda",
     "yde": "Yangum Dey",
     "ydg": "Yidgha",
@@ -10387,6 +10388,7 @@ ALL_LANGS = {
     "Guinau": "awd-gnu",
     "Guinea Kpelle": "gkp",
     "Guinea-Bissau Creole": "pov",
+    "Guinea-Bissau Sign Language": "lgs",
     "Guinean Sign Language": "gus",
     "Guiqiong": "gqi",
     "Gujarati": "gu",
@@ -13447,6 +13449,7 @@ ALL_LANGS = {
     "Old English": "ang",
     "Old French": "fro",
     "Old Frisian": "ofs",
+    "Old Galician-Portuguese": "roa-opt",
     "Old Georgian": "oge",
     "Old Gujarati": "inc-ogu",
     "Old High German": "goh",
@@ -13475,7 +13478,6 @@ ALL_LANGS = {
     "Old Ossetic": "oos",
     "Old Persian": "peo",
     "Old Polish": "zlw-opl",
-    "Old Portuguese": "roa-opt",
     "Old Prussian": "prg",
     "Old Punjabi": "inc-opa",
     "Old Ruthenian": "zle-ort",
@@ -15974,7 +15976,6 @@ ALL_LANGS = {
     "Western Xiangxi Miao": "mmr",
     "Western Xwla Gbe": "xwl",
     "Western Yugur": "ybe",
-    "Westrobothnian": "gmq-bot",
     "Wewaw": "wea",
     "Weyewa": "wew",
     "White Gelao": "giw",
@@ -16200,6 +16201,7 @@ ALL_LANGS = {
     "Yidgha": "ydg",
     "Yidiny": "yii",
     "Yil": "yll",
+    "Yilan Creole": "ycr",
     "Yimas": "yee",
     "Yimchungru Naga": "yim",
     "Yinbaw Karen": "kvu",
@@ -27743,6 +27745,9 @@ ALT_LANGS = {
     ],
     "Yessan": [
         "Yessan-Mayo"
+    ],
+    "Yilan Creole Japanese": [
+        "Yilan Creole"
     ],
     "Yir Thangedl": [
         "Yir-Yoront"
