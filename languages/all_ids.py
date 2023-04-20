@@ -17190,9 +17190,6 @@ ALT_LANGS = {
     "Bali (Nigeria)": [
         "Bibaali"
     ],
-    "Balochi": [
-        "Baluchi"
-    ],
     "Balundu-Bima": [
         "Oroko"
     ],
@@ -19027,12 +19024,6 @@ ALT_LANGS = {
     ],
     "Eastern Atakapa": [
         "Atakapa"
-    ],
-    "Eastern Balochi": [
-        "Baluchi"
-    ],
-    "Eastern Baluchi": [
-        "Baluchi"
     ],
     "Eastern Franconian": [
         "East Franconian"
@@ -25855,12 +25846,6 @@ ALT_LANGS = {
     "Southern Arrernte": [
         "Lower Southern Aranda"
     ],
-    "Southern Balochi": [
-        "Baluchi"
-    ],
-    "Southern Baluchi": [
-        "Baluchi"
-    ],
     "Southern Bobo Madaré": [
         "Southern Bobo"
     ],
@@ -27088,6 +27073,9 @@ ALT_LANGS = {
     "Waorani": [
         "Huaorani"
     ],
+    "Waradgeri": [
+        "Wiradhuri"
+    ],
     "Warategáya": [
         "Sakirabiá"
     ],
@@ -27206,6 +27194,9 @@ ALT_LANGS = {
     "Wergaia": [
         "Wemba-Wemba"
     ],
+    "Weri-ari": [
+        "Wiradhuri"
+    ],
     "West Berawan": [
         "Berawan"
     ],
@@ -27231,12 +27222,6 @@ ALT_LANGS = {
     ],
     "Western Atakapa": [
         "Atakapa"
-    ],
-    "Western Balochi": [
-        "Baluchi"
-    ],
-    "Western Baluchi": [
-        "Baluchi"
     ],
     "Western Bété": [
         "Guiberoua Bété"
@@ -27310,6 +27295,9 @@ ALT_LANGS = {
     "Western rGyalrong": [
         "Horpa"
     ],
+    "Wiiratheri": [
+        "Wiradhuri"
+    ],
     "Wik-Muminh": [
         "Kugu-Muminh"
     ],
@@ -27333,6 +27321,30 @@ ALT_LANGS = {
     ],
     "Wipsi-Ni": [
         "Fakkanci"
+    ],
+    "Wiradhuray": [
+        "Wiradhuri"
+    ],
+    "Wiradjuri": [
+        "Wiradhuri"
+    ],
+    "Wiradyuri": [
+        "Wiradhuri"
+    ],
+    "Wiratheri": [
+        "Wiradhuri"
+    ],
+    "Wirradgerry": [
+        "Wiradhuri"
+    ],
+    "Wirradhuri": [
+        "Wiradhuri"
+    ],
+    "Wirradjerry": [
+        "Wiradhuri"
+    ],
+    "Wirrathuri": [
+        "Wiradhuri"
     ],
     "Witsuwit'en": [
         "Babine-Witsuwit'en"
@@ -27400,6 +27412,15 @@ ALT_LANGS = {
     ],
     "Wooeewoorong": [
         "Woiwurrung"
+    ],
+    "Wooradgery": [
+        "Wiradhuri"
+    ],
+    "Wooragurie": [
+        "Wiradhuri"
+    ],
+    "Wooratherie": [
+        "Wiradhuri"
     ],
     "Wororan": [
         "Worora"
