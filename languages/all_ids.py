@@ -3855,7 +3855,7 @@ ALL_LANG_IDS = {
     "lrg": "Laragia",
     "lri": "Marachi",
     "lrk": "Loarki",
-    "lrl": "Lari",
+    "lrl": "Larestani",
     "lrm": "Marama",
     "lrn": "Lorang",
     "lro": "Laro",
@@ -4606,6 +4606,7 @@ ALL_LANG_IDS = {
     "nai-mac": "Macoris",
     "nai-mdu-pro": "Proto-Maidun",
     "nai-miz-pro": "Proto-Mixe-Zoque",
+    "nai-mus-pro": "Proto-Muskogean",
     "nai-nao": "Naolan",
     "nai-nrs": "New River Shasta",
     "nai-nvy": "Northern Valley Yokuts",
@@ -11808,8 +11809,8 @@ ALL_LANGS = {
     "Laragia": "lrg",
     "Larantuka Malay": "lrt",
     "Lardil": "lbz",
+    "Larestani": "lrl",
     "Larevat": "lrv",
-    "Lari": "lrl",
     "Larike-Wakasihu": "alo",
     "Laro": "lro",
     "Larteh": "lar",
@@ -14031,6 +14032,7 @@ ALL_LANGS = {
     "Proto-Mumuye": "alv-mum-pro",
     "Proto-Munda": "mun-pro",
     "Proto-Munji-Yidgha": "ira-mny-pro",
+    "Proto-Muskogean": "nai-mus-pro",
     "Proto-Na-Dene": "xnd-pro",
     "Proto-Nahuan": "azc-nah-pro",
     "Proto-Nakh": "cau-nkh-pro",
@@ -16351,9 +16353,6 @@ ALL_LANGS = {
     "ǃXóõ": "nmn"
 }
 ALT_LANGS = {
-    " Malti": [
-        "Sawriya Paharia"
-    ],
     "'Auhelawa": [
         "Auhelawa"
     ],
@@ -16433,7 +16432,7 @@ ALT_LANGS = {
         "Achi"
     ],
     "Achomi": [
-        "Lari"
+        "Larestani"
     ],
     "Achuar-Shiwiar": [
         "Achuar"
@@ -22476,6 +22475,9 @@ ALT_LANGS = {
     ],
     "Maloese": [
         "Tamambo"
+    ],
+    "Malti": [
+        "Sawriya Paharia"
     ],
     "Malto": [
         "Kumarbhag Paharia",
