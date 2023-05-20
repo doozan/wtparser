@@ -1557,6 +1557,8 @@ ALL_LANG_IDS = {
     "cus-ash": "Ashraaf",
     "cus-hec-pro": "Proto-Highland East Cushitic",
     "cus-pro": "Proto-Cushitic",
+    "cus-som-pro": "Proto-Somaloid",
+    "cus-sou-pro": "Proto-South Cushitic",
     "cut": "Teutila Cuicatec",
     "cuu": "Tai Ya",
     "cuv": "Cuvok",
@@ -2198,6 +2200,7 @@ ALL_LANG_IDS = {
     "gie": "Guébie",
     "gig": "Goaria",
     "gih": "Githabul",
+    "gii": "Girirra",
     "gil": "Gilbertese",
     "gim": "Gimi (Goroka)",
     "gin": "Hinukh",
@@ -10296,6 +10299,7 @@ ALL_LANGS = {
     "Gimnime": "gmn",
     "Ginuman": "gnm",
     "Girawa": "bbr",
+    "Girirra": "gii",
     "Giryama": "nyf",
     "Githabul": "gih",
     "Gitua": "ggt",
@@ -14100,8 +14104,10 @@ ALL_LANGS = {
     "Proto-Siouan-Catawban": "nai-sca-pro",
     "Proto-Slavic": "sla-pro",
     "Proto-Sogdic": "ira-sgc-pro",
+    "Proto-Somaloid": "cus-som-pro",
     "Proto-Songhay": "son-pro",
     "Proto-Sotho-Tswana": "bnt-sts-pro",
+    "Proto-South Cushitic": "cus-sou-pro",
     "Proto-South Sulawesi": "poz-ssw-pro",
     "Proto-Southern Jê": "sai-sje-pro",
     "Proto-Southwestern Tai": "tai-swe-pro",
@@ -17985,6 +17991,12 @@ ALT_LANGS = {
     "Callaga": [
         "Abipon"
     ],
+    "Camaracoto": [
+        "Pemon"
+    ],
+    "Camaragoto": [
+        "Pemon"
+    ],
     "Cambeba": [
         "Omagua"
     ],
@@ -20747,6 +20759,9 @@ ALT_LANGS = {
     "Kamannaua": [
         "Katukina"
     ],
+    "Kamarakoto": [
+        "Pemon"
+    ],
     "Kamba (Kenya)": [
         "Kamba"
     ],
@@ -21146,6 +21161,9 @@ ALT_LANGS = {
     ],
     "Khinalugh": [
         "Khinalug"
+    ],
+    "Khodmooni": [
+        "Larestani"
     ],
     "Khoekhoegowab": [
         "Khoekhoe"
@@ -21883,9 +21901,6 @@ ALT_LANGS = {
     "Lakisamni": [
         "Delta Yokuts"
     ],
-    "Lakkja": [
-        "Lakkia"
-    ],
     "Lakwi": [
         "Lawi"
     ],
@@ -21970,6 +21985,9 @@ ALT_LANGS = {
     ],
     "Large Flowery Miao": [
         "A-Hmao"
+    ],
+    "Lari": [
+        "Larestani"
     ],
     "Lau Laka": [
         "Laka"
@@ -24127,6 +24145,9 @@ ALT_LANGS = {
     "Okere": [
         "Cherepon"
     ],
+    "Oki-no-Erabu": [
+        "Oki-No-Erabu"
+    ],
     "Okino-Erabu": [
         "Oki-No-Erabu"
     ],
@@ -24523,6 +24544,9 @@ ALT_LANGS = {
     "Pekava": [
         "Da'a Kaili"
     ],
+    "Pemón": [
+        "Pemon"
+    ],
     "Pepadun": [
         "Abung"
     ],
@@ -24790,6 +24814,9 @@ ALT_LANGS = {
     "Proto-Kukish": [
         "Proto-Kuki-Chin"
     ],
+    "Proto-Macro-Somali": [
+        "Proto-Somaloid"
+    ],
     "Proto-Maipuran": [
         "Proto-Arawak"
     ],
@@ -24804,6 +24831,12 @@ ALT_LANGS = {
     ],
     "Proto-Nisoic": [
         "Proto-Loloish"
+    ],
+    "Proto-Rift": [
+        "Proto-South Cushitic"
+    ],
+    "Proto-Sam": [
+        "Proto-Somaloid"
     ],
     "Proto-South Halmahera - West New Guinea": [
         "Proto-Halmahera-Cenderawasih"
@@ -26063,6 +26096,9 @@ ALT_LANGS = {
     "Taboyan": [
         "Tawoyan"
     ],
+    "Tacawit": [
+        "Tachawit"
+    ],
     "Tachelhit": [
         "Tashelhit"
     ],
@@ -26246,8 +26282,23 @@ ALT_LANGS = {
     "Tashlhiyt Berber": [
         "Tashelhit"
     ],
+    "Taulipang": [
+        "Pemon"
+    ],
+    "Taulipáng": [
+        "Pemon"
+    ],
     "Taurap": [
         "Burmeso"
+    ],
+    "Taurepan": [
+        "Pemon"
+    ],
+    "Taurepang": [
+        "Pemon"
+    ],
+    "Taurepán": [
+        "Pemon"
     ],
     "Tawaili": [
         "Ledo Kaili"
