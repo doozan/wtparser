@@ -1486,6 +1486,7 @@ ALL_LANG_IDS = {
     "crp-gep": "West Greenlandic Pidgin",
     "crp-mpp": "Macau Pidgin Portuguese",
     "crp-rsn": "Russenorsk",
+    "crp-tnw": "Tangwang",
     "crp-tpr": "Taimyr Pidgin Russian",
     "crq": "Iyo'wujwa Chorote",
     "crr": "Carolina Algonquian",
@@ -2802,7 +2803,7 @@ ALL_LANG_IDS = {
     "itm": "Itu Mbon Uzo",
     "ito": "Itonama",
     "itr": "Iteri",
-    "its": "Isekiri",
+    "its": "Itsekiri",
     "itt": "Maeng Itneg",
     "itv": "Itawit",
     "itw": "Ito",
@@ -3901,7 +3902,7 @@ ALL_LANG_IDS = {
     "lun": "Lunda",
     "luo": "Luo",
     "lup": "Lumbu",
-    "luq": "Lucumi",
+    "luq": "Lucumí",
     "lur": "Laura",
     "lus": "Mizo",
     "lut": "Lushootseed",
@@ -7549,9 +7550,11 @@ ALL_LANG_IDS = {
     "xgn-mgl": "Mongghul",
     "xgn-mgr": "Mangghuer",
     "xgn-pro": "Proto-Mongolic",
+    "xgn-rua": "Ruanruan",
     "xgr": "Garza",
     "xgu": "Unggumi",
     "xgw": "Guwa",
+    "xgx-tuh": "Tuyuhun",
     "xh": "Xhosa",
     "xha": "Harami",
     "xhc": "Hunnic",
@@ -10769,7 +10772,6 @@ ALL_LANGS = {
     "Isaurian": "und-isa",
     "Isconahua": "isc",
     "Isebe": "igo",
-    "Isekiri": "its",
     "Ishkashimi": "isk",
     "Isinai": "inn",
     "Isirawa": "srl",
@@ -10794,6 +10796,7 @@ ALL_LANGS = {
     "Itik": "itx",
     "Ito": "itw",
     "Itonama": "ito",
+    "Itsekiri": "its",
     "Itu Mbon Uzo": "itm",
     "Itundujia Mixtec": "mce",
     "Itzá": "itz",
@@ -12028,7 +12031,7 @@ ALL_LANGS = {
     "Lubu": "lcf",
     "Lubuagan Kalinga": "knb",
     "Luchazi": "lch",
-    "Lucumi": "luq",
+    "Lucumí": "luq",
     "Ludian": "lud",
     "Lufu": "ldq",
     "Luganda": "lg",
@@ -14340,6 +14343,7 @@ ALL_LANGS = {
     "Rotokas": "roo",
     "Rotuman": "rtm",
     "Roviana": "rug",
+    "Ruanruan": "xgn-rua",
     "Ruching Palaung": "pce",
     "Rudbari": "rdb",
     "Rufiji": "rui",
@@ -15135,6 +15139,7 @@ ALL_LANGS = {
     "Tangsa": "nst",
     "Tanguat": "tbs",
     "Tangut": "txg",
+    "Tangwang": "crp-tnw",
     "Tanimbili": "tbe",
     "Tanimuca-Retuarã": "tnc",
     "Tanjijili": "uji",
@@ -15571,6 +15576,7 @@ ALL_LANGS = {
     "Tuxináwa": "tux",
     "Tuxá": "tud",
     "Tuyuca": "tue",
+    "Tuyuhun": "xgx-tuh",
     "Twana": "twa",
     "Twendi": "twn",
     "Tyap": "kcg",
@@ -20244,6 +20250,9 @@ ALT_LANGS = {
     "Isamurongen": [
         "Ibatan"
     ],
+    "Isekiri": [
+        "Itsekiri"
+    ],
     "Isfahani": [
         "Kermanic"
     ],
@@ -20315,9 +20324,6 @@ ALT_LANGS = {
     ],
     "Itoreauhip": [
         "Itene"
-    ],
-    "Itsekiri": [
-        "Isekiri"
     ],
     "Itza": [
         "Itzá"
