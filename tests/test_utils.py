@@ -1,4 +1,4 @@
-from ..utils import template_aware_split, nest_aware_resplit, wiki_search
+from ..utils import template_aware_split, nest_aware_resplit, nest_aware_index, wiki_search
 
 def test_template_aware_split():
 
@@ -60,6 +60,18 @@ def test_nest_aware_resplit():
     for text, delim in res:
         print(f"text '{text}'")
         print(f"delim '{delim}'")
+
+
+    line = "[[w:Zora Neale Hurston|Zora Neale Hurston]], ''Their Eyes Were Watching God'', Harper (2000), page 107:"
+    nests = (("[[", "]]"), ("{{", "}}"), ("[http", "]")) #, (start, stop))
+    split_items = [
+            r"(?<![A-Z])(?<!Dr|Ms|Mr|Sr)\.\s",   # Break on . unless it's like J.D. or Mr.
+            r'["“‘:]',              # And quotes and colon
+    ]
+    pattern = "(" + "|".join(split_items) + ")"
+    res = list(nest_aware_resplit(pattern, line, nests))
+    print(res)
+    assert res == [('{{blah}}', '')]
 
 
 
@@ -232,3 +244,10 @@ after
     assert res == [['pre {{trans-top}} post', 'blah', '{{trans-mid}}', 'pre {{trans-bottom}} post']]
 
 
+def test_nest_aware_index():
+
+    assert nest_aware_index("X", "Xabc", [("{{","}}"), ("(", ")")]) == "Xabc".index("X")
+    assert nest_aware_index("X", "abcX", [("{{","}}"), ("(", ")")]) == "abcX".index("X")
+    assert nest_aware_index("X", "ab{{X}}cX", [("{{","}}"), ("(", ")")]) ==  8
+    assert nest_aware_index("X", "aXb{{X}}cX", [("{{","}}"), ("(", ")")]) == 1
+    assert nest_aware_index("X", "ab{{X}}c", [("{{","}}"), ("(", ")")]) == -1

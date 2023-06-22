@@ -80,7 +80,7 @@ def nest_aware_iterator(iterator, nests, delimiter=""):
     if len(items):
         yield delimiter.join(items)
 
-def nest_aware_resplit(pattern, text, nests):
+def nest_aware_resplit(pattern, text, nests, flags=re.DOTALL):
 
     if not pattern.startswith("("):
         pattern = "(" + pattern + ")"
@@ -89,7 +89,7 @@ def nest_aware_resplit(pattern, text, nests):
     items = []
     depth = {}
 
-    it = iter(re.split(pattern, text, re.DOTALL))
+    it = iter(re.split(pattern, text, flags))
     for item in it:
         delimiter = next(it,"")
         items.append(item)
@@ -109,6 +109,16 @@ def nest_aware_splitlines(text, nests, keepends=False):
 
 def nest_aware_split(delimiter, text, nests):
     return nest_aware_iterator(text.split(delimiter), nests, delimiter)
+
+def nest_aware_index(delimiter, text, nests):
+    part = next(nest_aware_split(delimiter, text, nests), None)
+    if len(part)==len(text):
+        return -1
+
+    return len(part)
+
+def nest_aware_contains(delimiter, text, nests):
+    return nest_aware_index(delimiter, text, nests) != -1
 
 def template_aware_splitlines(text, keepends=False):
     return nest_aware_iterator(text.splitlines(keepends), [("{{","}}")])
