@@ -74,6 +74,7 @@ ALL_POS = {
     "Preposition": "prep",
     "Pronoun": "pron",
     "Proper noun": "prop",
+    "Proper Noun": "prop",
     "Proverb": "proverb",
     "Punctuation mark": "punct",
     "Punctuation": "punct",
