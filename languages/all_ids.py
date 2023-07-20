@@ -390,6 +390,7 @@ ALL_LANG_IDS = {
     "art-nav": "Na'vi",
     "art-nox": "Noxilo",
     "art-una": "Unas",
+    "art-vlh": "High Valyrian",
     "aru": "Arua",
     "arv": "Arbore",
     "arw": "Arawak",
@@ -10546,6 +10547,7 @@ ALL_LANGS = {
     "Hibito": "hib",
     "Hidatsa": "hid",
     "Higaonon": "mba",
+    "High Valyrian": "art-vlh",
     "Highland Konjo": "kjk",
     "Highland Oaxaca Chontal": "chd",
     "Highland Popoluca": "poi",
@@ -20647,6 +20649,9 @@ ALT_LANGS = {
     "Juǀ'hoansi": [
         "Juǀ'hoan"
     ],
+    "Juǀʼhoan": [
+        "Juǀ'hoan"
+    ],
     "Jyarong": [
         "Situ"
     ],
@@ -23505,9 +23510,6 @@ ALT_LANGS = {
     "Nagamese": [
         "Naga Pidgin"
     ],
-    "Nahuat": [
-        "Pipil"
-    ],
     "Naiki": [
         "Southeastern Kolami"
     ],
@@ -23607,9 +23609,6 @@ ALT_LANGS = {
     ],
     "Nawa Sherpa": [
         "Naaba"
-    ],
-    "Nawat": [
-        "Pipil"
     ],
     "Nawo": [
         "Nauo"
@@ -24072,12 +24071,6 @@ ALT_LANGS = {
     ],
     "Nyuunga": [
         "Nyunga"
-    ],
-    "Náhuat": [
-        "Pipil"
-    ],
-    "Náwat": [
-        "Pipil"
     ],
     "Nêlêmwa": [
         "Kumak"
