@@ -7882,7 +7882,7 @@ ALL_LANG_IDS = {
     "yit": "Eastern Lalu",
     "yiu": "Awu",
     "yiv": "Northern Nisu",
-    "yix": "Axi Yi",
+    "yix": "Axi",
     "yiy": "Yir-Yoront",
     "yiz": "Azhe",
     "yka": "Yakan",
@@ -7906,7 +7906,7 @@ ALL_LANG_IDS = {
     "yll": "Yil",
     "ylm": "Limi",
     "yln": "Langnian Buyang",
-    "ylo": "Naluo Yi",
+    "ylo": "Naruo",
     "ylr": "Yalarnnga",
     "ylu": "Aribwaung",
     "yly": "Nyâlayu",
@@ -8676,7 +8676,7 @@ ALL_LANGS = {
     "Awutu": "afu",
     "Awyi": "auw",
     "Axamb": "ahb",
-    "Axi Yi": "yix",
+    "Axi": "yix",
     "Ayabadhu": "ayd",
     "Ayautla Mazatec": "vmy",
     "Ayere": "aye",
@@ -12914,7 +12914,6 @@ ALL_LANGS = {
     "Nali": "nss",
     "Nalik": "nal",
     "Nalu": "naj",
-    "Naluo Yi": "ylo",
     "Nalögo": "nlz",
     "Namakura": "nmk",
     "Namat": "nkm",
@@ -12952,6 +12951,7 @@ ALL_LANGS = {
     "Narragansett": "xnt",
     "Narua": "nru",
     "Narungga": "nnr",
+    "Naruo": "ylo",
     "Nasal": "nsy",
     "Nasarian": "nvh",
     "Nasioi": "nas",
@@ -17074,6 +17074,9 @@ ALT_LANGS = {
     "Awá": [
         "Guajá"
     ],
+    "Axi Yi": [
+        "Axi"
+    ],
     "Ayamaru": [
         "Maybrat"
     ],
@@ -19368,6 +19371,9 @@ ALT_LANGS = {
     "Gamilaroi": [
         "Gamilaraay"
     ],
+    "Gan Yi": [
+        "Naruo"
+    ],
     "Ganai": [
         "Kurnai"
     ],
@@ -19757,6 +19763,9 @@ ALT_LANGS = {
     "Hach t’an": [
         "Lacandon"
     ],
+    "Haen": [
+        "Hän"
+    ],
     "Hagei": [
         "Green Gelao"
     ],
@@ -20059,6 +20068,9 @@ ALT_LANGS = {
     ],
     "Huo'er": [
         "Horpa"
+    ],
+    "Hän-Kutchin": [
+        "Hän"
     ],
     "Hórsók": [
         "Horpa"
@@ -21805,6 +21817,9 @@ ALT_LANGS = {
     "Lalung": [
         "Tiwa"
     ],
+    "Laluo": [
+        "Naruo"
+    ],
     "Lama": [
         "Northern Bai",
         "Gur Lama",
@@ -23353,6 +23368,12 @@ ALT_LANGS = {
     ],
     "Nakanyare": [
         "Chamba Daka"
+    ],
+    "Naluo": [
+        "Naruo"
+    ],
+    "Naluo Yi": [
+        "Naruo"
     ],
     "Nama": [
         "Khoekhoe"
@@ -25381,6 +25402,12 @@ ALT_LANGS = {
     ],
     "Shuhi": [
         "Shixing"
+    ],
+    "Shui Yi": [
+        "Naruo"
+    ],
+    "Shuitian": [
+        "Naruo"
     ],
     "Shuitianhua": [
         "Laze"
