@@ -378,6 +378,7 @@ ALL_LANG_IDS = {
     "arq": "Algerian Arabic",
     "arr": "Arara-Karo",
     "ars": "Najdi Arabic",
+    "art-bel": "Belter Creole",
     "art-blk": "Bolak",
     "art-bsp": "Black Speech",
     "art-com": "Communicationssprache",
@@ -388,7 +389,6 @@ ALL_LANG_IDS = {
     "art-man": "Mandalorian",
     "art-mun": "Mundolinco",
     "art-nav": "Na'vi",
-    "art-nox": "Noxilo",
     "art-una": "Unas",
     "art-vlh": "High Valyrian",
     "aru": "Arua",
@@ -2713,12 +2713,12 @@ ALL_LANG_IDS = {
     "inc-mas": "Middle Assamese",
     "inc-mbn": "Middle Bengali",
     "inc-mgu": "Middle Gujarati",
-    "inc-mor": "Middle Oriya",
+    "inc-mor": "Middle Odia",
     "inc-oas": "Early Assamese",
     "inc-obn": "Old Bengali",
     "inc-ogu": "Old Gujarati",
     "inc-ohi": "Old Hindi",
-    "inc-oor": "Old Oriya",
+    "inc-oor": "Old Odia",
     "inc-opa": "Old Punjabi",
     "inc-ork": "Old Kamta",
     "inc-pra": "Prakrit",
@@ -5253,14 +5253,14 @@ ALL_LANG_IDS = {
     "opo": "Opao",
     "opt": "Opata",
     "opy": "Ofayé",
-    "or": "Oriya",
+    "or": "Odia",
     "ora": "Oroha",
     "ore": "Orejón",
     "org": "Oring",
     "orh": "Oroqen",
     "oro": "Orokolo",
     "orr": "Oruma",
-    "ort": "Adivasi Oriya",
+    "ort": "Adivasi Odia",
     "oru": "Ormuri",
     "orv": "Old East Slavic",
     "orw": "Oro Win",
@@ -8242,7 +8242,7 @@ ALL_LANGS = {
     "Adi": "adi",
     "Adioukrou": "adj",
     "Adithinngithigh": "dth",
-    "Adivasi Oriya": "ort",
+    "Adivasi Odia": "ort",
     "Adiwasi Garasia": "gas",
     "Adja": "ajg",
     "Adnyamathanha": "adt",
@@ -8949,6 +8949,7 @@ ALL_LANGS = {
     "Belizean Creole": "bzj",
     "Bella Coola": "blc",
     "Bellari": "brw",
+    "Belter Creole": "art-bel",
     "Bemba": "bem",
     "Bembe": "bmb",
     "Ben Tey": "dbt",
@@ -12574,7 +12575,7 @@ ALL_LANGS = {
     "Middle Mongol": "xng",
     "Middle Newar": "nwx",
     "Middle Norwegian": "gmq-mno",
-    "Middle Oriya": "inc-mor",
+    "Middle Odia": "inc-mor",
     "Middle Persian": "pal",
     "Middle Vietnamese": "mkh-mvi",
     "Middle Watut": "mpl",
@@ -13304,7 +13305,6 @@ ALL_LANGS = {
     "Nottoway": "ntw",
     "Nottoway-Meherrin": "nwy",
     "Novial": "nov",
-    "Noxilo": "art-nox",
     "Noy": "noy",
     "Nsari": "asj",
     "Nsenga": "nse",
@@ -13411,6 +13411,7 @@ ALL_LANGS = {
     "Ocotepec Mixtec": "mie",
     "Ocotlán Zapotec": "zac",
     "Od": "odk",
+    "Odia": "or",
     "Odiai": "bhf",
     "Odoodee": "kkc",
     "Odual": "odu",
@@ -13484,7 +13485,7 @@ ALL_LANGS = {
     "Old Novgorodian": "zle-ono",
     "Old Nubian": "onw",
     "Old Occitan": "pro",
-    "Old Oriya": "inc-oor",
+    "Old Odia": "inc-oor",
     "Old Ossetic": "oos",
     "Old Persian": "peo",
     "Old Polish": "zlw-opl",
@@ -13544,7 +13545,6 @@ ALL_LANGS = {
     "Oraon Sadri": "sdr",
     "Orejón": "ore",
     "Oring": "org",
-    "Oriya": "or",
     "Orizaba Nahuatl": "nlv",
     "Orléanais": "roa-orl",
     "Ormu": "orz",
@@ -17778,9 +17778,6 @@ ALT_LANGS = {
     "Bousbot": [
         "Franc-Comtois"
     ],
-    "Bova": [
-        "Calabrian Greek"
-    ],
     "Bowili": [
         "Tuwuli"
     ],
@@ -18147,9 +18144,6 @@ ALT_LANGS = {
     "Central Chaga": [
         "Vunjo"
     ],
-    "Central Dialects": [
-        "Kermanic"
-    ],
     "Central Diegueño": [
         "Kumeyaay"
     ],
@@ -18482,9 +18476,6 @@ ALT_LANGS = {
     ],
     "Cogi": [
         "Cogui"
-    ],
-    "Colognian": [
-        "Central Franconian"
     ],
     "Colonial Ch'olti'": [
         "Ch'olti'"
@@ -19133,9 +19124,6 @@ ALT_LANGS = {
     "Erima": [
         "Ogea"
     ],
-    "Erzgebirgisch": [
-        "East Central German"
-    ],
     "Essequibo Dutch": [
         "Skepi Creole Dutch"
     ],
@@ -19549,15 +19537,6 @@ ALT_LANGS = {
     "Great Andamanese creole": [
         "Mixed Great Andamanese"
     ],
-    "Grecanic": [
-        "Italiot Greek"
-    ],
-    "Grico": [
-        "Italiot Greek"
-    ],
-    "Griko": [
-        "Italiot Greek"
-    ],
     "Guadeloupean Creole": [
         "Antillean Creole"
     ],
@@ -19852,9 +19831,6 @@ ALT_LANGS = {
     "Henkha": [
         "Nyenkha"
     ],
-    "Hessian": [
-        "Rhine Franconian"
-    ],
     "Heve": [
         "Opata"
     ],
@@ -19884,9 +19860,6 @@ ALT_LANGS = {
     ],
     "Higgi": [
         "Kamwe"
-    ],
-    "High Prussian": [
-        "East Central German"
     ],
     "Highland Chontal": [
         "Highland Oaxaca Chontal"
@@ -20237,9 +20210,6 @@ ALT_LANGS = {
     ],
     "Isuwu": [
         "Isubu"
-    ],
-    "Italian Greek": [
-        "Calabrian Greek"
     ],
     "Itanga": [
         "Arara-Karo"
@@ -21738,9 +21708,6 @@ ALT_LANGS = {
     "Kååle": [
         "Welsh Romani"
     ],
-    "Kölsch": [
-        "Central Franconian"
-    ],
     "Küerik": [
         "Chulym"
     ],
@@ -22129,15 +22096,6 @@ ALT_LANGS = {
     "Lope": [
         "Awu"
     ],
-    "Lorraine Franconian": [
-        "Rhine Franconian"
-    ],
-    "Lorrainian": [
-        "Rhine Franconian"
-    ],
-    "Lothringisch": [
-        "Rhine Franconian"
-    ],
     "Loucheux": [
         "Gwich'in"
     ],
@@ -22196,9 +22154,6 @@ ALT_LANGS = {
     ],
     "Lunyore": [
         "Nyole (Kenya)"
-    ],
-    "Lusatian": [
-        "East Central German"
     ],
     "Lushai": [
         "Mizo"
@@ -22968,9 +22923,6 @@ ALT_LANGS = {
     "Missong": [
         "Mungbam"
     ],
-    "Mittelfränkisch": [
-        "Central Franconian"
-    ],
     "Mobango": [
         "Babango"
     ],
@@ -23105,9 +23057,6 @@ ALT_LANGS = {
     ],
     "Moré": [
         "Moore"
-    ],
-    "Moselle Franconian": [
-        "Central Franconian"
     ],
     "Mosetén": [
         "Tsimané"
@@ -23945,9 +23894,6 @@ ALT_LANGS = {
     "Oberfränkisch": [
         "East Franconian"
     ],
-    "Obersächsisch": [
-        "East Central German"
-    ],
     "Obo": [
         "Obo Manobo"
     ],
@@ -24161,9 +24107,6 @@ ALT_LANGS = {
     "Ourami": [
         "Gurani"
     ],
-    "Outzäpsersch": [
-        "Zipser German"
-    ],
     "Owens Valley Paiute": [
         "Mono (California)"
     ],
@@ -24208,12 +24151,6 @@ ALT_LANGS = {
     ],
     "Palar": [
         "Palor"
-    ],
-    "Palatinate German": [
-        "Rhine Franconian"
-    ],
-    "Palatine German": [
-        "Rhine Franconian"
     ],
     "Palembang Malay": [
         "Musi"
@@ -24406,9 +24343,6 @@ ALT_LANGS = {
     ],
     "Perthois": [
         "Champenois"
-    ],
-    "Pfälzisch": [
-        "Rhine Franconian"
     ],
     "Phalulo": [
         "Phalura"
@@ -24608,9 +24542,6 @@ ALT_LANGS = {
     "Proto-Amazonian Jê": [
         "Proto-Cerrado"
     ],
-    "Proto-Apache": [
-        "Proto-Apachean"
-    ],
     "Proto-Arawakan": [
         "Proto-Arawak"
     ],
@@ -24656,9 +24587,6 @@ ALT_LANGS = {
     "Proto-Huitotoan": [
         "Proto-Witotoan"
     ],
-    "Proto-Ijaw": [
-        "Proto-Ijoid"
-    ],
     "Proto-Jean": [
         "Proto-Jê"
     ],
@@ -24694,9 +24622,6 @@ ALT_LANGS = {
     ],
     "Proto-South Halmahera - West New Guinea": [
         "Proto-Halmahera-Cenderawasih"
-    ],
-    "Proto-Southern Athabaskan": [
-        "Proto-Apachean"
     ],
     "Proto-Ta-Arawakan": [
         "Proto-Ta-Arawak"
@@ -24799,9 +24724,6 @@ ALT_LANGS = {
     ],
     "Pyu (Papua New Guinea)": [
         "Pyu"
-    ],
-    "Pälzisch": [
-        "Rhine Franconian"
     ],
     "Pöjulu": [
         "Bari"
@@ -24933,12 +24855,6 @@ ALT_LANGS = {
     "Rhade": [
         "Rade"
     ],
-    "Rheinfränkisch": [
-        "Rhine Franconian"
-    ],
-    "Rhenish Franconian": [
-        "Rhine Franconian"
-    ],
     "Riang": [
         "Reang"
     ],
@@ -24953,9 +24869,6 @@ ALT_LANGS = {
     ],
     "Rifao": [
         "Nimoa"
-    ],
-    "Ripuarian": [
-        "Central Franconian"
     ],
     "Ritharngu": [
         "Ritarungo"
@@ -25419,9 +25332,6 @@ ALT_LANGS = {
     "Sidaba": [
         "Tshobdun"
     ],
-    "Siebenbürger Saxon": [
-        "Transylvanian Saxon"
-    ],
     "Sierra Leonean Creole": [
         "Krio"
     ],
@@ -25433,12 +25343,6 @@ ALT_LANGS = {
     ],
     "Siksika": [
         "Blackfoot"
-    ],
-    "Silesian": [
-        "East Central German"
-    ],
-    "Silesian German": [
-        "East Central German"
     ],
     "Siletz": [
         "Chetco-Tolowa"
@@ -26198,12 +26102,6 @@ ALT_LANGS = {
     "Tholo": [
         "Tanglang"
     ],
-    "Thuringian": [
-        "East Central German"
-    ],
-    "Thüringisch": [
-        "East Central German"
-    ],
     "Tiatinagua": [
         "Ese Ejja"
     ],
@@ -26565,12 +26463,6 @@ ALT_LANGS = {
     "Upper Lega": [
         "Lega-Shabunda",
         "Lega-Mwenga"
-    ],
-    "Upper Saxon": [
-        "East Central German"
-    ],
-    "Upper Saxon German": [
-        "East Central German"
     ],
     "Upper Tanudan Kalinga": [
         "Tanudan Kalinga"
@@ -27675,12 +27567,6 @@ ALT_LANGS = {
     ],
     "Zinjero": [
         "Yemsa"
-    ],
-    "Zipser": [
-        "Zipser German"
-    ],
-    "Zipserisch": [
-        "Zipser German"
     ],
     "Zo": [
         "Mak (Nigeria)"
