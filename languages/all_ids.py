@@ -7218,6 +7218,7 @@ ALL_LANG_IDS = {
     "vis": "Vishavan",
     "vit": "Viti",
     "viv": "Iduna",
+    "vjk": "Bajjika",
     "vka": "Kariyarra",
     "vki": "Ija-Zuba",
     "vkj": "Kujarge",
@@ -7428,7 +7429,7 @@ ALL_LANG_IDS = {
     "wra": "Warapu",
     "wrb": "Warluwara",
     "wrg": "Warungu",
-    "wrh": "Wiradhuri",
+    "wrh": "Wiradjuri",
     "wri": "Wariyangga",
     "wrk": "Garawa",
     "wrl": "Warlmanpa",
@@ -8762,6 +8763,7 @@ ALL_LANGS = {
     "Baissa Fali": "fah",
     "Bajan": "bjs",
     "Bajelani": "bjm",
+    "Bajjika": "vjk",
     "Baka": "bkc",
     "Bakairí": "bkq",
     "Bakaka": "bqz",
@@ -16030,7 +16032,7 @@ ALL_LANGS = {
     "Wintu": "wnw",
     "Winyé": "kst",
     "Wipi": "gdr",
-    "Wiradhuri": "wrh",
+    "Wiradjuri": "wrh",
     "Wiraféd": "wir",
     "Wirangu": "wgu",
     "Wiru": "wiu",
@@ -26754,7 +26756,7 @@ ALT_LANGS = {
         "Huaorani"
     ],
     "Waradgeri": [
-        "Wiradhuri"
+        "Wiradjuri"
     ],
     "Waray": [
         "Warray"
@@ -26869,7 +26871,7 @@ ALT_LANGS = {
         "Wemba-Wemba"
     ],
     "Weri-ari": [
-        "Wiradhuri"
+        "Wiradjuri"
     ],
     "West Berawan": [
         "Berawan"
@@ -26964,7 +26966,7 @@ ALT_LANGS = {
         "Horpa"
     ],
     "Wiiratheri": [
-        "Wiradhuri"
+        "Wiradjuri"
     ],
     "Wik-Muminh": [
         "Kugu-Muminh"
@@ -26991,28 +26993,28 @@ ALT_LANGS = {
         "Fakkanci"
     ],
     "Wiradhuray": [
-        "Wiradhuri"
+        "Wiradjuri"
     ],
-    "Wiradjuri": [
-        "Wiradhuri"
+    "Wiradhuri": [
+        "Wiradjuri"
     ],
     "Wiradyuri": [
-        "Wiradhuri"
+        "Wiradjuri"
     ],
     "Wiratheri": [
-        "Wiradhuri"
+        "Wiradjuri"
     ],
     "Wirradgerry": [
-        "Wiradhuri"
+        "Wiradjuri"
     ],
     "Wirradhuri": [
-        "Wiradhuri"
+        "Wiradjuri"
     ],
     "Wirradjerry": [
-        "Wiradhuri"
+        "Wiradjuri"
     ],
     "Wirrathuri": [
-        "Wiradhuri"
+        "Wiradjuri"
     ],
     "Witsuwit'en": [
         "Babine-Witsuwit'en"
@@ -27082,13 +27084,13 @@ ALT_LANGS = {
         "Woiwurrung"
     ],
     "Wooradgery": [
-        "Wiradhuri"
+        "Wiradjuri"
     ],
     "Wooragurie": [
-        "Wiradhuri"
+        "Wiradjuri"
     ],
     "Wooratherie": [
-        "Wiradhuri"
+        "Wiradjuri"
     ],
     "Wororan": [
         "Worora"
