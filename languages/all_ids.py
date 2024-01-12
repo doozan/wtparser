@@ -3989,7 +3989,7 @@ ALL_LANG_IDS = {
     "mce": "Itundujia Mixtec",
     "mcf": "Matsés",
     "mcg": "Mapoyo",
-    "mch": "Maquiritari",
+    "mch": "Ye'kwana",
     "mci": "Mese",
     "mcj": "Mvanip",
     "mck": "Mbunda",
@@ -12325,7 +12325,6 @@ ALL_LANGS = {
     "Mapoyo": "mcg",
     "Mapudungun": "arn",
     "Mapun": "sjm",
-    "Maquiritari": "mch",
     "Mara": "mec",
     "Mara Chin": "mrh",
     "Marachi": "lri",
@@ -16210,6 +16209,7 @@ ALL_LANGS = {
     "Yawuru": "ywr",
     "Yaygir": "xya",
     "Yazghulami": "yah",
+    "Ye'kwana": "mch",
     "Yei": "jei",
     "Yekhee": "ets",
     "Yekora": "ykr",
@@ -18702,7 +18702,7 @@ ALT_LANGS = {
         "Gciriku"
     ],
     "De'kwana": [
-        "Maquiritari"
+        "Ye'kwana"
     ],
     "Debri": [
         "Kadaru"
@@ -20016,6 +20016,9 @@ ALT_LANGS = {
     ],
     "Huaxteque": [
         "Wastek"
+    ],
+    "Huchnom": [
+        "Yuki"
     ],
     "Hui": [
         "Tsat"
@@ -22269,7 +22272,7 @@ ALT_LANGS = {
         "Bakung"
     ],
     "Maiongong": [
-        "Maquiritari"
+        "Ye'kwana"
     ],
     "Maituri": [
         "Rabha"
@@ -22289,7 +22292,7 @@ ALT_LANGS = {
         "Makayam"
     ],
     "Makiritare": [
-        "Maquiritari"
+        "Ye'kwana"
     ],
     "Maklere": [
         "Makalero"
@@ -22464,6 +22467,9 @@ ALT_LANGS = {
     ],
     "Mapuzugün": [
         "Mapudungun"
+    ],
+    "Maquiritari": [
+        "Ye'kwana"
     ],
     "Mara": [
         "Mara Chin"
@@ -25442,7 +25448,7 @@ ALT_LANGS = {
         "Swo"
     ],
     "So'to": [
-        "Maquiritari"
+        "Ye'kwana"
     ],
     "Sob": [
         "Sop"
@@ -27389,10 +27395,7 @@ ALT_LANGS = {
         "Yazghulami"
     ],
     "Ye'kuana": [
-        "Maquiritari"
-    ],
-    "Ye'kwana": [
-        "Maquiritari"
+        "Ye'kwana"
     ],
     "Ye-Maek": [
         "Maek"
@@ -27404,7 +27407,7 @@ ALT_LANGS = {
         "Buduma"
     ],
     "Yekuana": [
-        "Maquiritari"
+        "Ye'kwana"
     ],
     "Yela": [
         "Kela-Yela"
