@@ -1420,7 +1420,7 @@ ALL_LANG_IDS = {
     "cmt": "Camtho",
     "cna": "Changthang",
     "cnb": "Chinbon Chin",
-    "cnc": "Côông",
+    "cnc": "Cốông",
     "cng": "Northern Qiang",
     "cnh": "Lai",
     "cni": "Asháninka",
@@ -2890,9 +2890,9 @@ ALL_LANG_IDS = {
     "jio": "Jiamao",
     "jiq": "Khroskyabs",
     "jit": "Jita",
-    "jiu": "Youle Jinuo",
+    "jiu": "Youle Jino",
     "jiv": "Shuar",
-    "jiy": "Buyuan Jinuo",
+    "jiy": "Buyuan Jino",
     "jje": "Jeju",
     "jjr": "Zhár",
     "jka": "Kaera",
@@ -7873,11 +7873,11 @@ ALL_LANG_IDS = {
     "yim": "Yimchungru Naga",
     "yin": "Yinchia",
     "yip": "Pholo",
-    "yiq": "Miqie",
+    "yiq": "Micha",
     "yir": "North Awyu",
     "yis": "Yis",
     "yit": "Eastern Lalu",
-    "yiu": "Awu",
+    "yiu": "Lope",
     "yiv": "Northern Nisu",
     "yix": "Axi",
     "yiy": "Yir-Yoront",
@@ -8670,7 +8670,6 @@ ALL_LANGS = {
     "Awngi": "awn",
     "Awngthim": "gwm",
     "Awtuw": "kmn",
-    "Awu": "yiu",
     "Awun": "aww",
     "Awutu": "afu",
     "Awyi": "auw",
@@ -9291,7 +9290,7 @@ ALL_LANGS = {
     "Buwal": "bhs",
     "Buyeo": "xpy",
     "Buyu": "byi",
-    "Buyuan Jinuo": "jiy",
+    "Buyuan Jino": "jiy",
     "Bwa": "bww",
     "Bwaidoka": "bwd",
     "Bwala": "bnt-bwa",
@@ -9653,7 +9652,7 @@ ALL_LANGS = {
     "Cypriot Arabic": "acy",
     "Czech": "cs",
     "Czech Sign Language": "cse",
-    "Côông": "cnc",
+    "Cốông": "cnc",
     "Da'a Kaili": "kzf",
     "Daai Chin": "dao",
     "Daantanai'": "lni",
@@ -12009,6 +12008,7 @@ ALL_LANGS = {
     "Loo": "ldo",
     "Looma": "lom",
     "Lopa": "lop",
+    "Lope": "yiu",
     "Lopi": "lov",
     "Lopit": "lpx",
     "Lorang": "lrn",
@@ -12557,6 +12557,7 @@ ALL_LANGS = {
     "Miami": "mia",
     "Mian": "mpt",
     "Miani": "pla",
+    "Micha": "yiq",
     "Michif": "crg",
     "Michigamea": "cmm",
     "Michoacán Mazahua": "mmc",
@@ -12627,7 +12628,6 @@ ALL_LANGS = {
     "Minokok": "mqq",
     "Minriq": "mnq",
     "Mintil": "mzt",
-    "Miqie": "yiq",
     "Mirandese": "mwl",
     "Miraya Bikol": "rbl",
     "Mire": "mvh",
@@ -16272,7 +16272,7 @@ ALL_LANGS = {
     "Yorta Yorta": "xyy",
     "Yoruba": "yo",
     "Yosondúa Mixtec": "mpm",
-    "Youle Jinuo": "jiu",
+    "Youle Jino": "jiu",
     "Younuo Bunu": "buh",
     "Yout Wam": "ytw",
     "Yoy": "yoy",
@@ -22098,9 +22098,6 @@ ALT_LANGS = {
     "Longovicien": [
         "Lorrain"
     ],
-    "Lope": [
-        "Awu"
-    ],
     "Loucheux": [
         "Gwich'in"
     ],
@@ -22797,9 +22794,6 @@ ALT_LANGS = {
     ],
     "Miang": [
         "Bankon"
-    ],
-    "Micha": [
-        "Miqie"
     ],
     "Michahay": [
         "Kings River Yokuts"
