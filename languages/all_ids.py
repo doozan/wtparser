@@ -1240,7 +1240,7 @@ ALL_LANG_IDS = {
     "cao": "Chácobo",
     "cap": "Chipaya",
     "caq": "Car Nicobarese",
-    "car": "Galibi Carib",
+    "car": "Kari'na",
     "cas": "Tsimané",
     "cau-abz-pro": "Proto-Abkhaz-Abaza",
     "cau-ava-pro": "Proto-Avaro-Andian",
@@ -5848,6 +5848,7 @@ ALL_LANG_IDS = {
     "rro": "Roro",
     "rrt": "Arritinngithigh",
     "rsb": "Romano-Serbian",
+    "rsk": "Pannonian Rusyn",
     "rsl": "Russian Sign Language",
     "rsm": "Miriwoong Sign Language",
     "rtc": "Rungtu",
@@ -5857,7 +5858,7 @@ ALL_LANG_IDS = {
     "ru": "Russian",
     "rub": "Gungu",
     "ruc": "Ruuli",
-    "rue": "Rusyn",
+    "rue": "Carpathian Rusyn",
     "ruf": "Luguru",
     "rug": "Roviana",
     "ruh": "Ruga",
@@ -6175,13 +6176,11 @@ ALL_LANG_IDS = {
     "sis": "Siuslaw",
     "sit-bok": "Bokar",
     "sit-cha": "Chairel",
-    "sit-gkh": "Gokhy",
     "sit-hrs-pro": "Proto-Hrusish",
     "sit-jap": "Japhug",
     "sit-kha-pro": "Proto-Kham",
     "sit-liz": "Lizu",
     "sit-luu-pro": "Proto-Luish",
-    "sit-mor": "Moran",
     "sit-prn": "Puiron",
     "sit-pro": "Proto-Sino-Tibetan",
     "sit-sit": "Situ",
@@ -6557,11 +6556,13 @@ ALL_LANG_IDS = {
     "tbo": "Tawala",
     "tbp": "Taworta",
     "tbq-bdg-pro": "Proto-Bodo-Garo",
+    "tbq-gkh": "Gokhy",
     "tbq-kuk-pro": "Proto-Kuki-Chin",
     "tbq-lal-pro": "Proto-Lalo",
     "tbq-laz": "Laze",
     "tbq-lob-pro": "Proto-Lolo-Burmese",
     "tbq-lol-pro": "Proto-Loloish",
+    "tbq-mor": "Moran",
     "tbq-ngo": "Ngochang",
     "tbq-plg": "Pai-lang",
     "tbr": "Tumtum",
@@ -7975,7 +7976,7 @@ ALL_LANG_IDS = {
     "yss": "Yessan-Mayo",
     "ysy": "Sanie",
     "yta": "Talu",
-    "ytl": "Tanglang",
+    "ytl": "Toloza",
     "ytp": "Thopho",
     "ytw": "Yout Wam",
     "yty": "Yatay",
@@ -9356,6 +9357,7 @@ ALL_LANGS = {
     "Carolina Algonquian": "crr",
     "Carolinian": "cal",
     "Carpathian Romani": "rmc",
+    "Carpathian Rusyn": "rue",
     "Carrier": "crx",
     "Cashibo-Cacataibo": "cbr",
     "Cashinahua": "cbs",
@@ -10198,7 +10200,6 @@ ALL_LANGS = {
     "Galatian": "xga",
     "Galela": "gbi",
     "Galeya": "gar",
-    "Galibi Carib": "car",
     "Galice": "gce",
     "Galician": "gl",
     "Galindian": "xgl",
@@ -10342,7 +10343,7 @@ ALL_LANGS = {
     "Goguryeo": "zkg",
     "Gojri": "gju",
     "Gokana": "gkn",
-    "Gokhy": "sit-gkh",
+    "Gokhy": "tbq-gkh",
     "Gola": "gol",
     "Golin": "gvf",
     "Golpa": "lja",
@@ -11145,6 +11146,7 @@ ALL_LANGS = {
     "Karelian": "krl",
     "Karey": "kyd",
     "Kari": "kbj",
+    "Kari'na": "car",
     "Karingani": "kgn",
     "Karipuna": "kuq",
     "Karipúna": "kgm",
@@ -12740,7 +12742,7 @@ ALL_LANGS = {
     "Mor (Austronesian)": "mhz",
     "Mor (Papuan)": "moq",
     "Moraid": "msg",
-    "Moran": "sit-mor",
+    "Moran": "tbq-mor",
     "Morawa": "mze",
     "Morelos Nahuatl": "nhm",
     "Morerebi": "xmo",
@@ -13676,6 +13678,7 @@ ALL_LANGS = {
     "Pankararú": "paz",
     "Pankhu": "pkh",
     "Pannei": "pnc",
+    "Pannonian Rusyn": "rsk",
     "Panobo": "pno",
     "Panyjima": "pnw",
     "Panzaleo": "sai-pnz",
@@ -14377,7 +14380,6 @@ ALL_LANGS = {
     "Russenorsk": "crp-rsn",
     "Russian": "ru",
     "Russian Sign Language": "rsl",
-    "Rusyn": "rue",
     "Rutul": "rut",
     "Ruuli": "ruc",
     "Ruwund": "rnd",
@@ -15149,7 +15151,6 @@ ALL_LANGS = {
     "Tanggu": "tgu",
     "Tangkhul Naga": "nmf",
     "Tangko": "tkx",
-    "Tanglang": "ytl",
     "Tangoa": "tgp",
     "Tangsa": "nst",
     "Tanguat": "tbs",
@@ -15424,6 +15425,7 @@ ALL_LANGS = {
     "Tolaki": "lbw",
     "Tolomako": "tlm",
     "Tolowa": "tol",
+    "Toloza": "ytl",
     "Toma": "tod",
     "Tomadino": "tdi",
     "Tombelala": "ttp",
@@ -18074,23 +18076,29 @@ ALT_LANGS = {
     "Cari": [
         "Aka-Cari"
     ],
+    "Cari'na": [
+        "Kari'na"
+    ],
     "Carib": [
-        "Galibi Carib"
+        "Kari'na"
     ],
     "Caribbean Bhojpuri": [
         "Caribbean Hindustani"
     ],
     "Caribe": [
-        "Galibi Carib"
+        "Kari'na"
     ],
     "Carihona": [
         "Carijona"
+    ],
+    "Carina": [
+        "Kari'na"
     ],
     "Caritiana": [
         "Karitiâna"
     ],
     "Cariña": [
-        "Galibi Carib"
+        "Kari'na"
     ],
     "Carmeleno": [
         "Southern Ohlone"
@@ -19336,10 +19344,13 @@ ALT_LANGS = {
         "Kalkatungu"
     ],
     "Galibi": [
-        "Galibi Carib"
+        "Kari'na"
+    ],
+    "Galibi Carib": [
+        "Kari'na"
     ],
     "Galibí": [
-        "Galibi Carib"
+        "Kari'na"
     ],
     "Gallong": [
         "Galo"
@@ -20643,13 +20654,16 @@ ALT_LANGS = {
         "Qaqet"
     ],
     "Kali'na": [
-        "Galibi Carib"
+        "Kari'na"
     ],
     "Kalihna": [
-        "Galibi Carib"
+        "Kari'na"
+    ],
+    "Kalina": [
+        "Kari'na"
     ],
     "Kalinya": [
-        "Galibi Carib"
+        "Kari'na"
     ],
     "Kalispel": [
         "Montana Salish",
@@ -20829,6 +20843,9 @@ ALT_LANGS = {
     "Kari": [
         "Aka-Cari"
     ],
+    "Kari'nja": [
+        "Kari'na"
+    ],
     "Karihona": [
         "Carijona"
     ],
@@ -20861,6 +20878,9 @@ ALT_LANGS = {
     ],
     "Karuk": [
         "Karok"
+    ],
+    "Karìna": [
+        "Kari'na"
     ],
     "Kasaï Oriental": [
         "Indanga"
@@ -22031,6 +22051,9 @@ ALT_LANGS = {
     "Linngithig": [
         "Linngithigh"
     ],
+    "Lipho": [
+        "Lipo"
+    ],
     "Lisum": [
         "Rejang Kayan"
     ],
@@ -22265,6 +22288,9 @@ ALT_LANGS = {
     "Mainfränkisch": [
         "East Franconian"
     ],
+    "Mainland Carib": [
+        "Kari'na"
+    ],
     "Mainstream Kenyah": [
         "Bakung"
     ],
@@ -22481,7 +22507,7 @@ ALT_LANGS = {
         "Watam"
     ],
     "Maraworno": [
-        "Galibi Carib"
+        "Kari'na"
     ],
     "Maraîchin": [
         "Poitevin-Saintongeais"
@@ -22573,7 +22599,7 @@ ALT_LANGS = {
         "Lhao Vo"
     ],
     "Marworno": [
-        "Galibi Carib"
+        "Kari'na"
     ],
     "Masa": [
         "Masana"
@@ -25857,6 +25883,9 @@ ALT_LANGS = {
     "Tangkhul Naga": [
         "Somra"
     ],
+    "Tanglang": [
+        "Toloza"
+    ],
     "Tanii": [
         "Apatani"
     ],
@@ -26093,7 +26122,7 @@ ALT_LANGS = {
         "Temne"
     ],
     "Tholo": [
-        "Tanglang"
+        "Toloza"
     ],
     "Tiatinagua": [
         "Ese Ejja"
