@@ -2188,6 +2188,7 @@ ALL_LANG_IDS = {
     "ggu": "Gban",
     "ggw": "Gogodala",
     "gha": "Ghadames",
+    "ghc": "Classical Gaelic",
     "ghe": "Southern Ghale",
     "ghh": "Northern Ghale",
     "ghk": "Geko Karen",
@@ -2666,7 +2667,7 @@ ALL_LANG_IDS = {
     "ihb": "Pidgin Iha",
     "ihi": "Ihievbe",
     "ihp": "Iha",
-    "ii": "Sichuan Yi",
+    "ii": "Nuosu",
     "iir-nur-pro": "Proto-Nuristani",
     "iir-pro": "Proto-Indo-Iranian",
     "ijc": "Izon",
@@ -9566,6 +9567,7 @@ ALL_LANGS = {
     "Cishingini": "asg",
     "Citak": "txt",
     "Ciwogai": "tgd",
+    "Classical Gaelic": "ghc",
     "Classical Guaraní": "gn-cls",
     "Classical Mandaic": "myz",
     "Classical Mongolian": "cmg",
@@ -13349,6 +13351,7 @@ ALL_LANGS = {
     "Nunggubuyu": "nuy",
     "Nungon": "paa-nun",
     "Nungu": "rin",
+    "Nuosu": "ii",
     "Nupbikha": "npb",
     "Nupe": "nup",
     "Nusa Laut": "nul",
@@ -14721,7 +14724,6 @@ ALL_LANGS = {
     "Sibu Melanau": "sdx",
     "Sicanian": "sxc",
     "Sicel": "scx",
-    "Sichuan Yi": "ii",
     "Sicilian": "scn",
     "Siculo-Arabic": "sqr",
     "Sidamo": "sid",
@@ -20592,6 +20594,12 @@ ALT_LANGS = {
     "Dënesųłiné": [
         "Chipewyan"
     ],
+    "Early Modern Gaelic": [
+        "Classical Gaelic"
+    ],
+    "Early Modern Irish": [
+        "Classical Gaelic"
+    ],
     "East Ambae": [
         "Omba"
     ],
@@ -21939,6 +21947,9 @@ ALT_LANGS = {
     ],
     "Hianákoto": [
         "Carijona"
+    ],
+    "Hiberno-Scottish Gaelic": [
+        "Classical Gaelic"
     ],
     "Hiechware": [
         "Tshwa"
