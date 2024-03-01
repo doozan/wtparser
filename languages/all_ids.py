@@ -710,7 +710,7 @@ ALL_LANG_IDS = {
     "bez": "Kibena",
     "bfa": "Bari",
     "bfb": "Pauri Bareli",
-    "bfc": "Northern Bai",
+    "bfc": "Panyi Bai",
     "bfd": "Bafut",
     "bfe": "Betaf",
     "bff": "Bofi",
@@ -1460,8 +1460,6 @@ ALL_LANG_IDS = {
     "cpa": "Palantla Chinantec",
     "cpb": "Ucayali-Yurúa Ashéninka",
     "cpc": "Ajyíninka Apurucayali",
-    "cpe-mar": "Maroon Spirit Language",
-    "cpe-spp": "Samoan Plantation Pidgin",
     "cpg": "Cappadocian Greek",
     "cpi": "Chinese Pidgin English",
     "cpn": "Cherepon",
@@ -1488,8 +1486,11 @@ ALL_LANG_IDS = {
     "cro": "Crow",
     "crp-bip": "Basque-Icelandic Pidgin",
     "crp-gep": "West Greenlandic Pidgin",
+    "crp-mar": "Maroon Spirit Language",
     "crp-mpp": "Macau Pidgin Portuguese",
     "crp-rsn": "Russenorsk",
+    "crp-slb": "Solombala English",
+    "crp-spp": "Samoan Plantation Pidgin",
     "crp-tnw": "Tangwang",
     "crp-tpr": "Taimyr Pidgin Russian",
     "crq": "Iyo'wujwa Chorote",
@@ -1541,7 +1542,6 @@ ALL_LANG_IDS = {
     "ctn": "Chhintange",
     "cto": "Emberá-Catío",
     "ctp": "Western Highland Chatino",
-    "ctp-san": "San Juan Quiahije Chatino",
     "cts": "Northern Catanduanes Bicolano",
     "ctt": "Wayanad Chetti",
     "ctu": "Chol",
@@ -3003,7 +3003,10 @@ ALL_LANG_IDS = {
     "kbw": "Kaiep",
     "kbx": "Ap Ma",
     "kbz": "Duhwa",
-    "kca": "Khanty",
+    "kca-eas": "Eastern Khanty",
+    "kca-nor": "Northern Khanty",
+    "kca-pro": "Proto-Khanty",
+    "kca-sou": "Southern Khanty",
     "kcb": "Kawacha",
     "kcc": "Lubila",
     "kcd": "Ngkâlmpw Kanum",
@@ -4291,7 +4294,10 @@ ALL_LANG_IDS = {
     "mnp": "Min Bei",
     "mnq": "Minriq",
     "mnr": "Mono (California)",
-    "mns": "Mansi",
+    "mns-cen": "Central Mansi",
+    "mns-nor": "Northern Mansi",
+    "mns-pro": "Proto-Mansi",
+    "mns-sou": "Southern Mansi",
     "mnt": "Maykulan",
     "mnu": "Mer",
     "mnv": "Rennellese",
@@ -4598,14 +4604,11 @@ ALL_LANG_IDS = {
     "nah": "Nahuatl",
     "nai-ala": "Alazapa",
     "nai-bay": "Bayogoula",
-    "nai-bvy": "Buena Vista Yokuts",
     "nai-cal": "Calusa",
     "nai-chi": "Chiquimulilla",
     "nai-chu-pro": "Proto-Chumash",
     "nai-cig": "Ciguayo",
     "nai-ckn-pro": "Proto-Chinookan",
-    "nai-dly": "Delta Yokuts",
-    "nai-gsy": "Gashowu",
     "nai-guz": "Guazacapán",
     "nai-hit": "Hitchiti",
     "nai-ipa": "Ipai",
@@ -4614,7 +4617,6 @@ ALL_LANG_IDS = {
     "nai-kat": "Kathlamet",
     "nai-klp-pro": "Proto-Kalapuyan",
     "nai-knm": "Konomihu",
-    "nai-kry": "Kings River Yokuts",
     "nai-kum": "Kumeyaay",
     "nai-mac": "Macoris",
     "nai-mdu-pro": "Proto-Maidun",
@@ -4622,28 +4624,25 @@ ALL_LANG_IDS = {
     "nai-mus-pro": "Proto-Muskogean",
     "nai-nao": "Naolan",
     "nai-nrs": "New River Shasta",
-    "nai-nvy": "Northern Valley Yokuts",
     "nai-okw": "Okwanuchu",
     "nai-per": "Pericú",
     "nai-pic": "Picuris",
     "nai-plp-pro": "Proto-Plateau Penutian",
-    "nai-ply": "Palewyami",
     "nai-pom-pro": "Proto-Pomo",
     "nai-qng": "Quinigua",
     "nai-sca-pro": "Proto-Siouan-Catawban",
     "nai-sin": "Sinacantán",
     "nai-sln": "Salvadoran Lenca",
     "nai-spt": "Sahaptin",
-    "nai-svy": "Southern Valley Yokuts",
     "nai-tap": "Tapachultec",
     "nai-taw": "Tawasa",
     "nai-teq": "Tequistlatec",
     "nai-tip": "Tipai",
-    "nai-tky": "Tule-Kaweah Yokuts",
     "nai-tot-pro": "Proto-Totozoquean",
     "nai-tsi-pro": "Proto-Tsimshianic",
     "nai-utn-pro": "Proto-Utian",
     "nai-wai": "Waikuri",
+    "nai-wji": "Western Jicaque",
     "nai-yup": "Yupiltepeque",
     "naj": "Nalu",
     "nak": "Nakanai",
@@ -5074,7 +5073,7 @@ ALL_LANG_IDS = {
     "nuq": "Nukumanu",
     "nur": "Nuguria",
     "nus": "Nuer",
-    "nut": "Nung",
+    "nut": "Nùng",
     "nuu": "Ngbundu",
     "nuv": "Northern Nuni",
     "nuw": "Nguluwan",
@@ -5224,6 +5223,7 @@ ALL_LANG_IDS = {
     "omq-mxt-pro": "Proto-Mixtec",
     "omq-otp-pro": "Proto-Oto-Pamean",
     "omq-pro": "Proto-Oto-Manguean",
+    "omq-sjq": "San Juan Quiahije Chatino",
     "omq-tel": "Teposcolula Mixtec",
     "omq-teo": "Teojomulco Chatino",
     "omq-tri-pro": "Proto-Trique",
@@ -6181,6 +6181,7 @@ ALL_LANG_IDS = {
     "siq": "Sonia",
     "sir": "Siri",
     "sis": "Siuslaw",
+    "sit-bai-pro": "Proto-Bai",
     "sit-bok": "Bokar",
     "sit-cai": "Caijia",
     "sit-cha": "Chairel",
@@ -6566,15 +6567,16 @@ ALL_LANG_IDS = {
     "tbo": "Tawala",
     "tbp": "Taworta",
     "tbq-bdg-pro": "Proto-Bodo-Garo",
+    "tbq-blg": "Bailang",
     "tbq-gkh": "Gokhy",
     "tbq-kuk-pro": "Proto-Kuki-Chin",
     "tbq-lal-pro": "Proto-Lalo",
     "tbq-laz": "Laze",
     "tbq-lob-pro": "Proto-Lolo-Burmese",
     "tbq-lol-pro": "Proto-Loloish",
+    "tbq-mil": "Milang",
     "tbq-mor": "Moran",
     "tbq-ngo": "Ngochang",
-    "tbq-plg": "Pai-lang",
     "tbr": "Tumtum",
     "tbs": "Tanguat",
     "tbt": "Kitembo",
@@ -7125,11 +7127,9 @@ ALL_LANG_IDS = {
     "und-isa": "Isaurian",
     "und-jie": "Jie",
     "und-kas": "Kassite",
-    "und-mil": "Milang",
     "und-mmd": "Mimi of Decorse",
     "und-mmn": "Mimi of Nachtigal",
     "und-phi": "Philistine",
-    "und-wji": "Western Jicaque",
     "une": "Uneme",
     "ung": "Ngarinyin",
     "unk": "Enawené-Nawé",
@@ -7954,6 +7954,14 @@ ALL_LANG_IDS = {
     "yob": "Yoba",
     "yog": "Yogad",
     "yoi": "Yonaguni",
+    "yok-bvy": "Buena Vista Yokuts",
+    "yok-dly": "Delta Yokuts",
+    "yok-gsy": "Gashowu",
+    "yok-kry": "Kings River Yokuts",
+    "yok-nvy": "Northern Valley Yokuts",
+    "yok-ply": "Palewyami",
+    "yok-svy": "Southern Valley Yokuts",
+    "yok-tky": "Tule-Kaweah Yokuts",
     "yol": "Yola",
     "yom": "Yombe",
     "yon": "Yongkom",
@@ -8078,6 +8086,7 @@ ALL_LANG_IDS = {
     "zhx-lui": "Leizhou Min",
     "zhx-min-pro": "Proto-Min",
     "zhx-sht": "Shaozhou Tuhua",
+    "zhx-sic": "Sichuanese",
     "zhx-tai": "Taishanese",
     "zhx-teo": "Teochew",
     "zia": "Zia",
@@ -8768,6 +8777,7 @@ ALL_LANGS = {
     "Bai": "bdj",
     "Baibai": "bbf",
     "Baikeno": "bkx",
+    "Bailang": "tbq-blg",
     "Baima": "bqh",
     "Baimak": "bmx",
     "Bainouk-Gunyaamolo": "bcz",
@@ -9222,7 +9232,7 @@ ALL_LANGS = {
     "Budukh": "bdk",
     "Buduma": "bdm",
     "Budza": "bja",
-    "Buena Vista Yokuts": "nai-bvy",
+    "Buena Vista Yokuts": "yok-bvy",
     "Bugan": "bbh",
     "Bughotu": "bgt",
     "Buginese": "bug",
@@ -9414,6 +9424,7 @@ ALL_LANGS = {
     "Central Maewo": "mwo",
     "Central Mahuatlán Zapoteco": "zam",
     "Central Malay": "pse",
+    "Central Mansi": "mns-cen",
     "Central Masela": "mxz",
     "Central Mashan Hmong": "hmm",
     "Central Mazahua": "maz",
@@ -9756,7 +9767,7 @@ ALL_LANGS = {
     "Dek": "dek",
     "Dela-Oenale": "row",
     "Delo": "ntr",
-    "Delta Yokuts": "nai-dly",
+    "Delta Yokuts": "yok-dly",
     "Dem": "dem",
     "Dema": "dmx",
     "Demisa": "dei",
@@ -9965,6 +9976,7 @@ ALL_LANGS = {
     "Eastern Katu": "ktv",
     "Eastern Kayah": "eky",
     "Eastern Keres": "kee",
+    "Eastern Khanty": "kca-eas",
     "Eastern Krahn": "kqo",
     "Eastern Lalu": "yit",
     "Eastern Lawa": "lwl",
@@ -10258,7 +10270,7 @@ ALL_LANGS = {
     "Garre": "gex",
     "Garus": "gyb",
     "Garza": "xgr",
-    "Gashowu": "nai-gsy",
+    "Gashowu": "yok-gsy",
     "Gata'": "gaq",
     "Gaulish": "cel-gau",
     "Gavak": "dmc",
@@ -11310,7 +11322,6 @@ ALL_LANGS = {
     "Khamyang": "ksu",
     "Khana": "ogo",
     "Khandeshi": "khn",
-    "Khanty": "kca",
     "Khao": "xao",
     "Kharam Naga": "kfw",
     "Kharia": "khr",
@@ -11378,7 +11389,7 @@ ALL_LANGS = {
     "Kinalakna": "kco",
     "Kinaray-a": "krj",
     "Kinga": "zga",
-    "Kings River Yokuts": "nai-kry",
+    "Kings River Yokuts": "yok-kry",
     "Kinikinao": "gqn",
     "Kinnauri": "kfk",
     "Kintaq": "knq",
@@ -12328,7 +12339,6 @@ ALL_LANGS = {
     "Mano": "mev",
     "Manombai": "woo",
     "Mansaka": "msk",
-    "Mansi": "mns",
     "Mansoanka": "msw",
     "Manta": "myg",
     "Mantsi": "nty",
@@ -12390,7 +12400,7 @@ ALL_LANGS = {
     "Marka": "rkm",
     "Markweeta": "enb",
     "Marma": "rmz",
-    "Maroon Spirit Language": "cpe-mar",
+    "Maroon Spirit Language": "crp-mar",
     "Marovo": "mvo",
     "Marrgu": "mhg",
     "Marriammu": "xru",
@@ -12621,7 +12631,7 @@ ALL_LANGS = {
     "Miji": "sjl",
     "Miju": "mxj",
     "Mikasuki": "mik",
-    "Milang": "und-mil",
+    "Milang": "tbq-mil",
     "Mili": "ymh",
     "Millcayac": "sai-mil",
     "Miltu": "mlj",
@@ -13268,7 +13278,6 @@ ALL_LANGS = {
     "Northern Alta": "aqn",
     "Northern Altai": "atv",
     "Northern Amami-Oshima": "ryn",
-    "Northern Bai": "bfc",
     "Northern Bontoc": "rbk",
     "Northern Catanduanes Bicolano": "cts",
     "Northern Dagara": "dgi",
@@ -13283,11 +13292,13 @@ ALL_LANGS = {
     "Northern Kalapuya": "nrt",
     "Northern Kam": "doc",
     "Northern Kankanay": "xnn",
+    "Northern Khanty": "kca-nor",
     "Northern Khmer": "kxm",
     "Northern Kissi": "kqs",
     "Northern Kurdish": "kmr",
     "Northern Lorung": "lbr",
     "Northern Luri": "lrc",
+    "Northern Mansi": "mns-nor",
     "Northern Mashan Hmong": "hmp",
     "Northern Muji": "ymx",
     "Northern Ndebele": "nd",
@@ -13322,7 +13333,7 @@ ALL_LANGS = {
     "Northern Toussian": "tsp",
     "Northern Tujia": "tji",
     "Northern Tutchone": "ttm",
-    "Northern Valley Yokuts": "nai-nvy",
+    "Northern Valley Yokuts": "yok-nvy",
     "Northern Yukaghir": "ykg",
     "Northwest Gbaya": "gya",
     "Northwest Maidu": "mjd",
@@ -13368,7 +13379,6 @@ ALL_LANGS = {
     "Nume": "tgs",
     "Numee": "kdk",
     "Numidian": "nxm",
-    "Nung": "nut",
     "Nungali": "nug",
     "Nunggubuyu": "nuy",
     "Nungon": "paa-nun",
@@ -13431,6 +13441,7 @@ ALL_LANGS = {
     "Nzanyi": "nja",
     "Nzima": "nzi",
     "Ná-Meo": "neo",
+    "Nùng": "nut",
     "Nüpode Huitoto": "hux",
     "Nǀuu": "ngh",
     "O'chi'chi'": "xoc",
@@ -13644,7 +13655,6 @@ ALL_LANGS = {
     "Pahi": "lgt",
     "Pahlavani": "phv",
     "Pai Tavytera": "pta",
-    "Pai-lang": "tbq-plg",
     "Paicî": "pri",
     "Paikoneka": "awd-pai",
     "Paipai": "ppi",
@@ -13664,7 +13674,7 @@ ALL_LANGS = {
     "Palawan Batak": "bya",
     "Paleni": "pnl",
     "Palenquero": "pln",
-    "Palewyami": "nai-ply",
+    "Palewyami": "yok-ply",
     "Pali": "pi",
     "Palikur": "plu",
     "Paliyan": "pcf",
@@ -13705,6 +13715,7 @@ ALL_LANGS = {
     "Pannei": "pnc",
     "Pannonian Rusyn": "rsk",
     "Panobo": "pno",
+    "Panyi Bai": "bfc",
     "Panyjima": "pnw",
     "Panzaleo": "sai-pnz",
     "Pao": "ppa",
@@ -13943,6 +13954,7 @@ ALL_LANGS = {
     "Proto-Austronesian": "map-pro",
     "Proto-Avaro-Andian": "cau-ava-pro",
     "Proto-Bahnaric": "mkh-ban-pro",
+    "Proto-Bai": "sit-bai-pro",
     "Proto-Balto-Slavic": "ine-bsl-pro",
     "Proto-Bantoid": "nic-bod-pro",
     "Proto-Bantu": "bnt-pro",
@@ -14037,6 +14049,7 @@ ALL_LANGS = {
     "Proto-Kartvelian": "ccs-pro",
     "Proto-Katuic": "mkh-kat-pro",
     "Proto-Kham": "sit-kha-pro",
+    "Proto-Khanty": "kca-pro",
     "Proto-Khasian": "aav-khs-pro",
     "Proto-Khmeric": "mkh-kmr-pro",
     "Proto-Khmuic": "mkh-khm-pro",
@@ -14065,6 +14078,7 @@ ALL_LANGS = {
     "Proto-Malayo-Sumbawan": "poz-msa-pro",
     "Proto-Mande": "dmn-pro",
     "Proto-Mangbetu": "csu-maa-pro",
+    "Proto-Mansi": "mns-pro",
     "Proto-Mari": "chm-pro",
     "Proto-Masa": "cdc-mas-pro",
     "Proto-Mayan": "myn-pro",
@@ -14486,7 +14500,7 @@ ALL_LANGS = {
     "Samei": "smh",
     "Samo": "smq",
     "Samoan": "sm",
-    "Samoan Plantation Pidgin": "cpe-spp",
+    "Samoan Plantation Pidgin": "crp-spp",
     "Samogitian": "sgs",
     "Samosa": "swm",
     "Sampang": "rav",
@@ -14500,7 +14514,7 @@ ALL_LANGS = {
     "San Juan Atzingo Popoloca": "poe",
     "San Juan Colorado Mixtec": "mjc",
     "San Juan Guelavía Zapotec": "zab",
-    "San Juan Quiahije Chatino": "ctp-san",
+    "San Juan Quiahije Chatino": "omq-sjq",
     "San Juan Teita Mixtec": "xtj",
     "San Luís Temalacayuca Popoloca": "pps",
     "San Marcos Tlalcoyalco Popoloca": "pls",
@@ -14750,6 +14764,7 @@ ALL_LANGS = {
     "Sibu Melanau": "sdx",
     "Sicanian": "sxc",
     "Sicel": "scx",
+    "Sichuanese": "zhx-sic",
     "Sicilian": "scn",
     "Siculo-Arabic": "sqr",
     "Sidamo": "sid",
@@ -14845,6 +14860,7 @@ ALL_LANGS = {
     "Sokoro": "sok",
     "Solano": "xso",
     "Soli": "sby",
+    "Solombala English": "crp-slb",
     "Solon": "tuw-sol",
     "Solong": "aaw",
     "Solos": "sol",
@@ -14927,6 +14943,7 @@ ALL_LANGS = {
     "Southern Kalapuya": "sxk",
     "Southern Kalinga": "ksc",
     "Southern Kam": "kmc",
+    "Southern Khanty": "kca-sou",
     "Southern Kissi": "kss",
     "Southern Kiwai": "kjd",
     "Southern Kurdish": "sdh",
@@ -14934,6 +14951,7 @@ ALL_LANGS = {
     "Southern Lorung": "lrr",
     "Southern Luri": "luz",
     "Southern Ma'di": "snm",
+    "Southern Mansi": "mns-sou",
     "Southern Mashan Hmong": "hma",
     "Southern Mnong": "mnn",
     "Southern Muji": "ymc",
@@ -14966,7 +14984,7 @@ ALL_LANGS = {
     "Southern Toussian": "wib",
     "Southern Tujia": "tjs",
     "Southern Tutchone": "tce",
-    "Southern Valley Yokuts": "nai-svy",
+    "Southern Valley Yokuts": "yok-svy",
     "Southern Yukaghir": "yux",
     "Southwest Gbaya": "gso",
     "Southwest Palawano": "plv",
@@ -15562,7 +15580,7 @@ ALL_LANGS = {
     "Tukudede": "tkd",
     "Tukumanféd": "tkf",
     "Tula": "tul",
-    "Tule-Kaweah Yokuts": "nai-tky",
+    "Tule-Kaweah Yokuts": "yok-tky",
     "Tulehu": "tlu",
     "Tulishi": "tey",
     "Tulu": "tcy",
@@ -16008,7 +16026,7 @@ ALL_LANGS = {
     "Western Gurung": "gvr",
     "Western Highland Chatino": "ctp",
     "Western Huasteca Nahuatl": "nhw",
-    "Western Jicaque": "und-wji",
+    "Western Jicaque": "nai-wji",
     "Western Juxtlahuaca Mixtec": "jmx",
     "Western Karaboro": "kza",
     "Western Katu": "kuf",
@@ -17703,17 +17721,11 @@ ALT_LANGS = {
     "Bai": [
         "Sakata"
     ],
-    "Bai-lang": [
-        "Pai-lang"
-    ],
     "Baiap": [
         "Dakaka"
     ],
     "Baihong": [
         "Honi"
-    ],
-    "Bailang": [
-        "Pai-lang"
     ],
     "Baining": [
         "Qaqet"
@@ -18364,7 +18376,7 @@ ALT_LANGS = {
         "Bidyogo"
     ],
     "Bijiang Bai": [
-        "Northern Bai"
+        "Panyi Bai"
     ],
     "Bijim": [
         "Kwanka"
@@ -21913,6 +21925,9 @@ ALT_LANGS = {
     "Hatang Kayey": [
         "Remontado Agta"
     ],
+    "Hattian": [
+        "Hattic"
+    ],
     "Haut-Berrichon": [
         "Bourbonnais-Berrichon"
     ],
@@ -24480,7 +24495,6 @@ ALT_LANGS = {
         "Lashi"
     ],
     "Laemae": [
-        "Northern Bai",
         "Lama Bai"
     ],
     "Laha": [
@@ -24530,7 +24544,6 @@ ALT_LANGS = {
         "Naruo"
     ],
     "Lama": [
-        "Northern Bai",
         "Gur Lama",
         "Lama Bai"
     ],
@@ -24745,6 +24758,9 @@ ALT_LANGS = {
     ],
     "Lemeting": [
         "Belait"
+    ],
+    "Lemo": [
+        "Panyi Bai"
     ],
     "Lenca": [
         "Honduran Lenca"
@@ -27112,9 +27128,6 @@ ALT_LANGS = {
     "Northern Amuzgo": [
         "Guerrero Amuzgo"
     ],
-    "Northern Bai": [
-        "Lama Bai"
-    ],
     "Northern Bobo Madaré": [
         "Konabéré"
     ],
@@ -27238,7 +27251,8 @@ ALT_LANGS = {
         "Baïnounk Gubëeher"
     ],
     "Nung": [
-        "Anong"
+        "Anong",
+        "Nùng"
     ],
     "Nung Din": [
         "Nong Zhuang"
@@ -27784,6 +27798,9 @@ ALT_LANGS = {
     "Pahouin": [
         "Fang (Bantu)"
     ],
+    "Pai-lang": [
+        "Bailang"
+    ],
     "Paicone": [
         "Paikoneka"
     ],
@@ -27791,7 +27808,7 @@ ALT_LANGS = {
         "Paikoneka"
     ],
     "Pailang": [
-        "Pai-lang"
+        "Bailang"
     ],
     "Pailibo": [
         "Bokar"
@@ -27954,9 +27971,6 @@ ALT_LANGS = {
     ],
     "Panya": [
         "Mak (Nigeria)"
-    ],
-    "Panyi Bai": [
-        "Northern Bai"
     ],
     "Papago": [
         "O'odham"
@@ -29773,6 +29787,9 @@ ALT_LANGS = {
     "Sibo": [
         "Xibe"
     ],
+    "Sichuanese Mandarin": [
+        "Sichuanese"
+    ],
     "Sidaama": [
         "Sidamo"
     ],
@@ -29972,6 +29989,12 @@ ALT_LANGS = {
     ],
     "Solognot": [
         "Orléanais"
+    ],
+    "Solombala English-Russian Pidgin": [
+        "Solombala English"
+    ],
+    "Solombala-English": [
+        "Solombala English"
     ],
     "Solomons Pidgin": [
         "Pijin"
