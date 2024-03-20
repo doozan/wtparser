@@ -1308,7 +1308,7 @@ ALL_LANG_IDS = {
     "cdj": "Churahi",
     "cdm": "Chepang",
     "cdn": "Chaudangsi",
-    "cdo": "Min Dong",
+    "cdo": "Eastern Min",
     "cdr": "Cinda-Regi-Tiyal",
     "cds": "Chadian Sign Language",
     "cdy": "Chadong",
@@ -1466,7 +1466,7 @@ ALL_LANG_IDS = {
     "cpo": "Kpee",
     "cps": "Capiznon",
     "cpu": "Pichis Ashéninka",
-    "cpx": "Puxian",
+    "cpx": "Puxian Min",
     "cpy": "South Ucayali Ashéninka",
     "cqd": "Chuanqiandian Cluster Miao",
     "cr": "Cree",
@@ -1587,7 +1587,7 @@ ALL_LANG_IDS = {
     "czh": "Huizhou",
     "czk": "Knaanic",
     "czn": "Zenzontepec Chatino",
-    "czo": "Min Zhong",
+    "czo": "Central Min",
     "czt": "Zotung Chin",
     "da": "Danish",
     "daa": "Dangaléat",
@@ -2931,6 +2931,7 @@ ALL_LANG_IDS = {
     "jos": "Jordanian Sign Language",
     "jow": "Jowulu",
     "jpr": "Judeo-Persian",
+    "jpx-hcj": "Hachijō",
     "jpx-pro": "Proto-Japonic",
     "jpx-ryu-pro": "Proto-Ryukyuan",
     "jqr": "Jaqaru",
@@ -4291,7 +4292,7 @@ ALL_LANG_IDS = {
     "mnl": "Tiale",
     "mnm": "Mapena",
     "mnn": "Southern Mnong",
-    "mnp": "Min Bei",
+    "mnp": "Northern Min",
     "mnq": "Minriq",
     "mnr": "Mono (California)",
     "mns-cen": "Central Mansi",
@@ -4649,6 +4650,10 @@ ALL_LANG_IDS = {
     "nal": "Nalik",
     "nam": "Ngan'gityemerri",
     "nan": "Min Nan",
+    "nan-hbl": "Hokkien",
+    "nan-hnm": "Hainanese",
+    "nan-luh": "Leizhou Min",
+    "nan-tws": "Teochew",
     "nao": "Naaba",
     "nap": "Neapolitan",
     "naq": "Khoekhoe",
@@ -8083,12 +8088,10 @@ ALL_LANG_IDS = {
     "zhi": "Zhire",
     "zhn": "Nong Zhuang",
     "zhw": "Zhoa",
-    "zhx-lui": "Leizhou Min",
     "zhx-min-pro": "Proto-Min",
     "zhx-sht": "Shaozhou Tuhua",
     "zhx-sic": "Sichuanese",
     "zhx-tai": "Taishanese",
-    "zhx-teo": "Teochew",
     "zia": "Zia",
     "zib": "Zimbabwe Sign Language",
     "zik": "Zimakani",
@@ -9429,6 +9432,7 @@ ALL_LANGS = {
     "Central Mashan Hmong": "hmm",
     "Central Mazahua": "maz",
     "Central Melanau": "mel",
+    "Central Min": "czo",
     "Central Mnong": "cmo",
     "Central Nahuatl": "nhn",
     "Central Nicobarese": "ncb",
@@ -9984,6 +9988,7 @@ ALL_LANGS = {
     "Eastern Maninkakan": "emk",
     "Eastern Mari": "mhr",
     "Eastern Meohang": "emg",
+    "Eastern Min": "cdo",
     "Eastern Mnong": "mng",
     "Eastern Muria": "emu",
     "Eastern Ngad'a": "nea",
@@ -10507,6 +10512,7 @@ ALL_LANGS = {
     "Gyem": "gye",
     "Güenoa": "sai-gue",
     "Habu": "hbu",
+    "Hachijō": "jpx-hcj",
     "Hadiyya": "hdy",
     "Hadothi": "hoj",
     "Hadrami": "xhd",
@@ -10515,6 +10521,7 @@ ALL_LANGS = {
     "Hahon": "hah",
     "Haida": "hai",
     "Haigwai": "hgw",
+    "Hainanese": "nan-hnm",
     "Hainyaxo Bozo": "bzx",
     "Haiphong Sign Language": "haf",
     "Haisla": "has",
@@ -10616,6 +10623,7 @@ ALL_LANGS = {
     "Hoava": "hoa",
     "Hobyót": "hoh",
     "Hoia Hoia": "hhi",
+    "Hokkien": "nan-hbl",
     "Holikachuk": "hoi",
     "Holiya": "hoy",
     "Holma": "hod",
@@ -11908,7 +11916,7 @@ ALL_LANGS = {
     "Lehalurup": "urr",
     "Leinong Naga": "lzn",
     "Leipon": "lek",
-    "Leizhou Min": "zhx-lui",
+    "Leizhou Min": "nan-luh",
     "Lela": "dri",
     "Lelak": "llk",
     "Lele (Chad)": "lln",
@@ -12639,10 +12647,7 @@ ALL_LANGS = {
     "Milyan": "imy",
     "Mimi of Decorse": "und-mmd",
     "Mimi of Nachtigal": "und-mmn",
-    "Min Bei": "mnp",
-    "Min Dong": "cdo",
     "Min Nan": "nan",
-    "Min Zhong": "czo",
     "Mina": "hna",
     "Minaean": "inm",
     "Minang": "xrg",
@@ -13300,6 +13305,7 @@ ALL_LANGS = {
     "Northern Luri": "lrc",
     "Northern Mansi": "mns-nor",
     "Northern Mashan Hmong": "hmp",
+    "Northern Min": "mnp",
     "Northern Muji": "ymx",
     "Northern Ndebele": "nd",
     "Northern Ngbandi": "ngb",
@@ -14255,7 +14261,7 @@ ALL_LANGS = {
     "Putai": "mfl",
     "Putoh": "put",
     "Putukwam": "afe",
-    "Puxian": "cpx",
+    "Puxian Min": "cpx",
     "Puyo-Paekche": "xpp",
     "Puyuma": "pyu",
     "Pwaamei": "pme",
@@ -15311,7 +15317,7 @@ ALL_LANGS = {
     "Tenino": "tqn",
     "Tenis": "tns",
     "Tennet": "tex",
-    "Teochew": "zhx-teo",
+    "Teochew": "nan-tws",
     "Teojomulco Chatino": "omq-teo",
     "Teop": "tio",
     "Teor": "tev",
@@ -17881,11 +17887,20 @@ ALT_LANGS = {
     "Bankal": [
         "Zhár"
     ],
+    "Banlam": [
+        "Hokkien"
+    ],
+    "Banlamese": [
+        "Hokkien"
+    ],
     "Bannock": [
         "Northern Paiute"
     ],
     "Bannoni": [
         "Banoni"
+    ],
+    "Bantoanon": [
+        "Asi"
     ],
     "Bantoid Kare": [
         "Kari"
@@ -18416,6 +18431,9 @@ ALT_LANGS = {
     ],
     "Bina (Papua New Guinea)": [
         "Bina"
+    ],
+    "Binantoanon": [
+        "Asi"
     ],
     "Bini": [
         "Edo"
@@ -19347,6 +19365,9 @@ ALT_LANGS = {
     ],
     "Central Mashan Miao": [
         "Central Mashan Hmong"
+    ],
+    "Central Min Chinese": [
+        "Central Min"
     ],
     "Central Plateau Dialects": [
         "Kermanic"
@@ -20722,6 +20743,9 @@ ALT_LANGS = {
     "Eastern Lisu": [
         "Lipo"
     ],
+    "Eastern Min Chinese": [
+        "Eastern Min"
+    ],
     "Eastern Mono": [
         "Mono (California)"
     ],
@@ -21057,6 +21081,9 @@ ALT_LANGS = {
     ],
     "French Guianese Creole": [
         "Guianese Creole"
+    ],
+    "Fukien": [
+        "Hokkien"
     ],
     "Fulani": [
         "Fula"
@@ -21855,11 +21882,20 @@ ALT_LANGS = {
     "Hach t’an": [
         "Lacandon"
     ],
+    "Hachijo": [
+        "Hachijō"
+    ],
     "Haen": [
         "Hän"
     ],
     "Hagei": [
         "Green Gelao"
+    ],
+    "Hailamese": [
+        "Hainanese"
+    ],
+    "Hainamese": [
+        "Hainanese"
     ],
     "Hainan Cham": [
         "Tsat"
@@ -22064,7 +22100,7 @@ ALT_LANGS = {
         "Northern Hindko"
     ],
     "Hinghwa": [
-        "Puxian"
+        "Puxian Min"
     ],
     "Hinuq": [
         "Hinukh"
@@ -22125,6 +22161,9 @@ ALT_LANGS = {
     ],
     "Hohenlohisch": [
         "East Franconian"
+    ],
+    "Hokkienese": [
+        "Hokkien"
     ],
     "Hollar Gadbas": [
         "Ollari"
@@ -23229,6 +23268,9 @@ ALT_LANGS = {
     ],
     "Kango (Tshopo District)": [
         "Kango-Sua"
+    ],
+    "Kankana-ey": [
+        "Kankanaey"
     ],
     "Kankuamo": [
         "Atanques"
@@ -26048,11 +26090,41 @@ ALT_LANGS = {
     "Mimi-N": [
         "Mimi of Nachtigal"
     ],
+    "Min Bei": [
+        "Northern Min"
+    ],
+    "Min Bei Chinese": [
+        "Northern Min"
+    ],
+    "Min Chung": [
+        "Central Min"
+    ],
+    "Min Chung Chinese": [
+        "Central Min"
+    ],
+    "Min Dong": [
+        "Eastern Min"
+    ],
     "Min Dong Chinese": [
-        "Min Dong"
+        "Eastern Min"
+    ],
+    "Min Pei": [
+        "Northern Min"
+    ],
+    "Min Pei Chinese": [
+        "Northern Min"
+    ],
+    "Min Tung": [
+        "Eastern Min"
+    ],
+    "Min Tung Chinese": [
+        "Eastern Min"
+    ],
+    "Min Zhong": [
+        "Central Min"
     ],
     "Min Zhong Chinese": [
-        "Min Zhong"
+        "Central Min"
     ],
     "Mina (Cameroon)": [
         "Mina"
@@ -27155,6 +27227,9 @@ ALT_LANGS = {
     "Northern Huishui Miao": [
         "Northern Huishui Hmong"
     ],
+    "Northern Kankana-ey": [
+        "Northern Kankanay"
+    ],
     "Northern Lega": [
         "Lega-Mwenga"
     ],
@@ -27169,6 +27244,9 @@ ALT_LANGS = {
     ],
     "Northern Mashan Miao": [
         "Northern Mashan Hmong"
+    ],
+    "Northern Min Chinese": [
+        "Northern Min"
     ],
     "Northern Pimi": [
         "Northern Pumi"
@@ -28683,16 +28761,28 @@ ALT_LANGS = {
         "Bu-Nao Bunu"
     ],
     "Pu Xian": [
-        "Puxian"
+        "Puxian Min"
     ],
     "Pu Xian Chinese": [
-        "Puxian"
+        "Puxian Min"
+    ],
+    "Pu Xian Min": [
+        "Puxian Min"
+    ],
+    "Pu Xian Min Chinese": [
+        "Puxian Min"
     ],
     "Pu-Xian": [
-        "Puxian"
+        "Puxian Min"
+    ],
+    "Pu-Xian Chinese": [
+        "Puxian Min"
     ],
     "Pu-Xian Min": [
-        "Puxian"
+        "Puxian Min"
+    ],
+    "Pu-Xian Min Chinese": [
+        "Puxian Min"
     ],
     "Puchikwar": [
         "A-Pucikwar"
@@ -28761,13 +28851,19 @@ ALT_LANGS = {
         "Pashto"
     ],
     "Putian": [
-        "Puxian"
+        "Puxian Min"
     ],
     "Putonghua": [
         "Mandarin"
     ],
-    "Puxian Min": [
-        "Puxian"
+    "Puxian": [
+        "Puxian Min"
+    ],
+    "Puxian Chinese": [
+        "Puxian Min"
+    ],
+    "Puxian Min Chinese": [
+        "Puxian Min"
     ],
     "Puyi": [
         "Bouyei"
@@ -28822,6 +28918,9 @@ ALT_LANGS = {
     ],
     "Quaiquer": [
         "Awa-Cuaiquer"
+    ],
+    "Quanzhang": [
+        "Hokkien"
     ],
     "Quecha": [
         "Kichwa"
@@ -29932,6 +30031,9 @@ ALT_LANGS = {
     "Siwuri": [
         "Tuwuli"
     ],
+    "Siyama": [
+        "Pangutaran Sama"
+    ],
     "Siyin": [
         "Siyin Chin"
     ],
@@ -30437,6 +30539,9 @@ ALT_LANGS = {
     "Tadzhik": [
         "Tajik"
     ],
+    "Tagabili": [
+        "Tboli"
+    ],
     "Tagale": [
         "Tegali"
     ],
@@ -30801,6 +30906,9 @@ ALT_LANGS = {
     ],
     "Tedim": [
         "Tedim Chin"
+    ],
+    "Teduray": [
+        "Tiruray"
     ],
     "Tegele": [
         "Tegali"
@@ -32409,7 +32517,7 @@ ALT_LANGS = {
         "Khinalug"
     ],
     "Xinghua": [
-        "Puxian"
+        "Puxian Min"
     ],
     "Xinlong-Muya": [
         "Horpa"
