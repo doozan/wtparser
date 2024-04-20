@@ -3745,7 +3745,7 @@ ALL_LANG_IDS = {
     "lio": "Liki",
     "lip": "Sekpele",
     "liq": "Libido",
-    "lir": "Liberian English",
+    "lir": "Liberian Kreyol",
     "lis": "Lisu",
     "liu": "Logorik",
     "liv": "Livonian",
@@ -11963,7 +11963,7 @@ ALL_LANGS = {
     "Liana-Seti": "ste",
     "Liangmai Naga": "njn",
     "Liberia Kpelle": "xpe",
-    "Liberian English": "lir",
+    "Liberian Kreyol": "lir",
     "Libido": "liq",
     "Libinza": "liz",
     "Libon Bikol": "lbl",
@@ -32473,6 +32473,9 @@ ALT_LANGS = {
     ],
     "Xalapa": [
         "Jutiapa"
+    ],
+    "Xalimego": [
+        "Fala"
     ],
     "Xapacura": [
         "Chapacura"
