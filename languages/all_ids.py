@@ -4066,7 +4066,7 @@ ALL_LANG_IDS = {
     "meu": "Motu",
     "mev": "Mano",
     "mew": "Maaka",
-    "mey": "Hassaniya",
+    "mey": "Hassaniya Arabic",
     "mez": "Menominee",
     "mfa": "Pattani Malay",
     "mfb": "Bangka",
@@ -10559,7 +10559,7 @@ ALL_LANGS = {
     "Harzani": "hrz",
     "Hasaitic": "sem-has",
     "Hasha": "ybj",
-    "Hassaniya": "mey",
+    "Hassaniya Arabic": "mey",
     "Hatam": "had",
     "Hattic": "xht",
     "Hausa": "ha",
@@ -22069,6 +22069,9 @@ ALT_LANGS = {
     "Highland Mari": [
         "Western Mari"
     ],
+    "Highland Zoque": [
+        "Highland Popoluca"
+    ],
     "Higi": [
         "Kamwe"
     ],
@@ -22984,6 +22987,9 @@ ALT_LANGS = {
     ],
     "Jíwere": [
         "Chiwere"
+    ],
+    "K'Ho": [
+        "Koho"
     ],
     "K'abeena": [
         "Alaba"
@@ -24851,6 +24857,9 @@ ALT_LANGS = {
     ],
     "Lia": [
         "Bolia"
+    ],
+    "Liangshan Yi": [
+        "Nuosu"
     ],
     "Libaali": [
         "Bali"
@@ -27275,11 +27284,20 @@ ALT_LANGS = {
     "Northern Yali": [
         "Angguruk Yali"
     ],
+    "Northern Yi": [
+        "Nuosu"
+    ],
     "Northwestern Tasmanian": [
         "Peerapper"
     ],
     "Northwestern Thai": [
         "Northern Thai"
+    ],
+    "Nosu": [
+        "Nuosu"
+    ],
+    "Nosu Yi": [
+        "Nuosu"
     ],
     "Ntogapid": [
         "Arara-Karo"
@@ -27337,6 +27355,9 @@ ALT_LANGS = {
     ],
     "Nunu": [
         "Bu-Nao Bunu"
+    ],
+    "Nuosu Yi": [
+        "Nuosu"
     ],
     "Nupe-Nupe-Tako": [
         "Nupe"
@@ -29730,6 +29751,12 @@ ALT_LANGS = {
     "Sharchop": [
         "Tshangla"
     ],
+    "Sharpa": [
+        "Sherpa"
+    ],
+    "Sharwa": [
+        "Sherpa"
+    ],
     "Shawiya Berber": [
         "Tachawit"
     ],
@@ -29886,6 +29913,9 @@ ALT_LANGS = {
     "Sibo": [
         "Xibe"
     ],
+    "Sichuan Yi": [
+        "Nuosu"
+    ],
     "Sichuanese Mandarin": [
         "Sichuanese"
     ],
@@ -29900,6 +29930,9 @@ ALT_LANGS = {
     ],
     "Sierra Leonean Creole": [
         "Krio"
+    ],
+    "Sierra Popoluca": [
+        "Highland Popoluca"
     ],
     "Sigi": [
         "Ledo Kaili"
@@ -32485,6 +32518,9 @@ ALT_LANGS = {
     ],
     "Xgana": [
         "ǁGana"
+    ],
+    "Xiaerba": [
+        "Sherpa"
     ],
     "Xiandao": [
         "Achang"
