@@ -1243,6 +1243,7 @@ ALL_LANG_IDS = {
     "car": "Kari'na",
     "cas": "Tsimané",
     "cau-abz-pro": "Proto-Abkhaz-Abaza",
+    "cau-and-pro": "Proto-Andian",
     "cau-ava-pro": "Proto-Avaro-Andian",
     "cau-cir-pro": "Proto-Circassian",
     "cau-drg-pro": "Proto-Dargwa",
@@ -13947,6 +13948,7 @@ ALL_LANGS = {
     "Proto-Algonquian": "alg-pro",
     "Proto-Amuesha-Chamicuro": "awd-amc-pro",
     "Proto-Anatolian": "ine-ana-pro",
+    "Proto-Andian": "cau-and-pro",
     "Proto-Apachean": "apa-pro",
     "Proto-Arawa": "auf-pro",
     "Proto-Arawak": "awd-pro",
@@ -28517,8 +28519,11 @@ ALT_LANGS = {
     "Proto-Amazonian Jê": [
         "Proto-Cerrado"
     ],
-    "Proto-Andian": [
-        "Proto-Avaro-Andian"
+    "Proto-Andi": [
+        "Proto-Andian"
+    ],
+    "Proto-Andic": [
+        "Proto-Andian"
     ],
     "Proto-Apache": [
         "Proto-Apachean"
