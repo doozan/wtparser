@@ -2801,6 +2801,7 @@ ALL_LANG_IDS = {
     "isr": "Israeli Sign Language",
     "ist": "Istriot",
     "isu": "Isu",
+    "isv": "Interslavic",
     "it": "Italian",
     "itb": "Binongan Itneg",
     "itc-pro": "Proto-Italic",
@@ -5851,7 +5852,7 @@ ALL_LANG_IDS = {
     "rol": "Romblomanon",
     "rom": "Romani",
     "roo": "Rotokas",
-    "rop": "Kriol",
+    "rop": "Australian Kriol",
     "ror": "Rongga",
     "rou": "Runga",
     "row": "Dela-Oenale",
@@ -6822,7 +6823,7 @@ ALL_LANG_IDS = {
     "tns": "Tenis",
     "tnt": "Tontemboan",
     "tnu": "Tay Khang",
-    "tnv": "Tangchangya",
+    "tnv": "Tanchangya",
     "tnw": "Tonsawang",
     "tnx": "Tanema",
     "tny": "Tongwe",
@@ -8667,6 +8668,7 @@ ALL_LANGS = {
     "Auslan": "asf",
     "Austral": "aut",
     "Australian Aboriginal Sign Language": "asw",
+    "Australian Kriol": "rop",
     "Austrian Sign Language": "asq",
     "Austronesian Mari": "hob",
     "Auwe": "smf",
@@ -10793,6 +10795,7 @@ ALL_LANGS = {
     "Interlingua": "ia",
     "Interlingue": "ie",
     "International Sign": "ils",
+    "Interslavic": "isv",
     "Intha": "int",
     "Inuinnaqtun": "esx-inq",
     "Inuit Sign Language": "iks",
@@ -11598,7 +11601,6 @@ ALL_LANGS = {
     "Krikati-Timbira": "xri",
     "Krim": "krm",
     "Krio": "kri",
-    "Kriol": "rop",
     "Krisa": "ksi",
     "Kristang": "mcm",
     "Krobu": "kxb",
@@ -15197,12 +15199,12 @@ ALL_LANGS = {
     "Tanacross": "tcb",
     "Tanahmerah": "tcm",
     "Tanapag": "tpv",
+    "Tanchangya": "tnv",
     "Tandaganon": "tgn",
     "Tandia": "tni",
     "Tanema": "tnx",
     "Tangale": "tan",
     "Tangam": "sit-tgm",
-    "Tangchangya": "tnv",
     "Tanggu": "tgu",
     "Tangkhul Naga": "nmf",
     "Tangko": "tkx",
@@ -17426,9 +17428,6 @@ ALT_LANGS = {
     ],
     "Australian Aborigines Sign Language": [
         "Australian Aboriginal Sign Language"
-    ],
-    "Australian Kriol": [
-        "Kriol"
     ],
     "Australian Sign Language": [
         "Auslan"
@@ -24187,7 +24186,8 @@ ALT_LANGS = {
     ],
     "Kriol": [
         "Belizean Creole",
-        "Guinea-Bissau Creole"
+        "Guinea-Bissau Creole",
+        "Australian Kriol"
     ],
     "Kriolu": [
         "Kabuverdianu",
@@ -30759,6 +30759,9 @@ ALT_LANGS = {
     "Tangarare": [
         "Ghari"
     ],
+    "Tangchangya": [
+        "Tanchangya"
+    ],
     "Tangga": [
         "Niwer Mil"
     ],
@@ -31204,6 +31207,9 @@ ALT_LANGS = {
     "Tommo So Dogon": [
         "Tommo So"
     ],
+    "Tonchongya": [
+        "Tanchangya"
+    ],
     "Tonga": [
         "Ten'edn",
         "Tonga (Malawi)",
@@ -31215,6 +31221,9 @@ ALT_LANGS = {
     ],
     "Tongarewa": [
         "Penrhyn"
+    ],
+    "Tongchongya": [
+        "Tanchangya"
     ],
     "Tongshi": [
         "Hlai"
@@ -31715,6 +31724,9 @@ ALT_LANGS = {
     ],
     "Vawngtu": [
         "Zyphe"
+    ],
+    "Vedda": [
+        "Veddah"
     ],
     "Vendômois": [
         "Orléanais"
