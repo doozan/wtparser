@@ -378,6 +378,7 @@ ALL_LANG_IDS = {
     "arq": "Algerian Arabic",
     "arr": "Arara-Karo",
     "ars": "Najdi Arabic",
+    "art-adu": "Adûni",
     "art-bel": "Belter Creole",
     "art-blk": "Bolak",
     "art-bsp": "Black Speech",
@@ -2518,7 +2519,7 @@ ALL_LANG_IDS = {
     "hmh": "Southwestern Huishui Hmong",
     "hmi": "Northern Huishui Hmong",
     "hmj": "Ge",
-    "hmk": "Maek",
+    "hmk": "Yemaek",
     "hml": "Luopohe Hmong",
     "hmm": "Central Mashan Hmong",
     "hmn-pro": "Proto-Hmong",
@@ -3191,7 +3192,7 @@ ALL_LANG_IDS = {
     "kji": "Zabana",
     "kjj": "Khinalug",
     "kjk": "Highland Konjo",
-    "kjl": "Kham",
+    "kjl": "Western Parbate Kham",
     "kjm": "Kháng",
     "kjn": "Kunjen",
     "kjo": "Harijan Kinnauri",
@@ -8187,7 +8188,7 @@ ALL_LANG_IDS = {
     "zpx": "San Baltazar Loxicha Zapotec",
     "zpy": "Mazaltepec Zapotec",
     "zpz": "Texmelucan Zapotec",
-    "zra": "Kaya",
+    "zra": "Gaya",
     "zrg": "Mirgan",
     "zrn": "Zirenkel",
     "zro": "Záparo",
@@ -8286,6 +8287,7 @@ ALL_LANGS = {
     "Aduge": "adu",
     "Adyghe": "ady",
     "Adzera": "adz",
+    "Adûni": "art-adu",
     "Aeka": "aez",
     "Aekyom": "awi",
     "Aequian": "xae",
@@ -10287,6 +10289,7 @@ ALL_LANGS = {
     "Gavião do Jiparaná": "gvo",
     "Gawar-Bati": "gwt",
     "Gawwada": "gwd",
+    "Gaya": "zra",
     "Gayil": "gyl",
     "Gayo": "gay",
     "Gayón": "sai-gay",
@@ -11252,7 +11255,6 @@ ALL_LANGS = {
     "Kawésqar": "alc",
     "Kaxararí": "ktx",
     "Kaxuyana": "kbb",
-    "Kaya": "zra",
     "Kayabí": "kyz",
     "Kayagar": "kyt",
     "Kayan": "pdu",
@@ -11329,7 +11331,6 @@ ALL_LANGS = {
     "Khakas": "kjh",
     "Khalaj": "klj",
     "Khaling": "klr",
-    "Kham": "kjl",
     "Khamnigan Mongol": "ykh",
     "Khamti": "kht",
     "Khamyang": "ksu",
@@ -12177,7 +12178,6 @@ ALL_LANGS = {
     "Madukayang Kalinga": "kmd",
     "Madurese": "mad",
     "Mae": "mme",
-    "Maek": "hmk",
     "Maeng Itneg": "itt",
     "Mafa": "maf",
     "Mafea": "mkv",
@@ -16054,6 +16054,7 @@ ALL_LANGS = {
     "Western Neo-Aramaic": "amw",
     "Western Ojibwa": "ojw",
     "Western Panjabi": "pnb",
+    "Western Parbate Kham": "kjl",
     "Western Penan": "pne",
     "Western Pwo": "pwo",
     "Western Sisaala": "ssl",
@@ -16273,6 +16274,7 @@ ALL_LANGS = {
     "Yele": "yle",
     "Yelmek": "jel",
     "Yelogu": "ylg",
+    "Yemaek": "hmk",
     "Yemba": "ybb",
     "Yemeni Arabic": "ayn",
     "Yemsa": "jnj",
@@ -21299,9 +21301,6 @@ ALT_LANGS = {
     "Gay": [
         "Andoa"
     ],
-    "Gaya": [
-        "Kaya"
-    ],
     "Gaye": [
         "Andoa"
     ],
@@ -23319,7 +23318,7 @@ ALT_LANGS = {
         "Fer",
         "Kara (New Guinea)",
         "Caranqui",
-        "Kaya"
+        "Gaya"
     ],
     "Kara (Papua New Guinea)": [
         "Kara (New Guinea)"
@@ -23335,7 +23334,7 @@ ALT_LANGS = {
         "Karadjeri"
     ],
     "Karak": [
-        "Kaya"
+        "Gaya"
     ],
     "Karang": [
         "Ngas"
@@ -23524,6 +23523,9 @@ ALT_LANGS = {
     ],
     "Kaxuiâna": [
         "Kaxuyana"
+    ],
+    "Kaya": [
+        "Gaya"
     ],
     "Kayan Murik": [
         "Murik (Malaysia)"
@@ -25208,6 +25210,9 @@ ALT_LANGS = {
     "Madiya": [
         "Dandami Maria",
         "Hill Maria"
+    ],
+    "Maek": [
+        "Yemaek"
     ],
     "Magbukun Ayta": [
         "Bataan Ayta"
@@ -32235,6 +32240,9 @@ ALT_LANGS = {
     "Western rGyalrong": [
         "Horpa"
     ],
+    "Westron": [
+        "Adûni"
+    ],
     "White Karen": [
         "S'gaw Karen"
     ],
@@ -32854,7 +32862,7 @@ ALT_LANGS = {
         "Ye'kwana"
     ],
     "Ye-Maek": [
-        "Maek"
+        "Yemaek"
     ],
     "Yecuatla Totonac": [
         "Misantla Totonac"
@@ -32880,9 +32888,6 @@ ALT_LANGS = {
     ],
     "Yem": [
         "Yemsa"
-    ],
-    "Yemaek": [
-        "Maek"
     ],
     "Yemma": [
         "Yemsa"
