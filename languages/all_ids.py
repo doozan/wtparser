@@ -4167,6 +4167,12 @@ ALL_LANG_IDS = {
     "mip": "Apasco-Apoala Mixtec",
     "miq": "Miskito",
     "mir": "Isthmus Mixe",
+    "mis-isa": "Isaurian",
+    "mis-jie": "Jie",
+    "mis-kas": "Kassite",
+    "mis-mmd": "Mimi of Decorse",
+    "mis-mmn": "Mimi of Nachtigal",
+    "mis-phi": "Philistine",
     "mit": "Southern Puebla Mixtec",
     "miu": "Cacaloxtepec Mixtec",
     "miw": "Akoye",
@@ -7133,12 +7139,6 @@ ALL_LANG_IDS = {
     "umu": "Munsee",
     "una": "North Watut",
     "und": "Undetermined",
-    "und-isa": "Isaurian",
-    "und-jie": "Jie",
-    "und-kas": "Kassite",
-    "und-mmd": "Mimi of Decorse",
-    "und-mmn": "Mimi of Nachtigal",
-    "und-phi": "Philistine",
     "une": "Uneme",
     "ung": "Ngarinyin",
     "unk": "Enawené-Nawé",
@@ -7602,7 +7602,7 @@ ALL_LANG_IDS = {
     "xin": "Xinca",
     "xir": "Xiriâna",
     "xis": "Kisan",
-    "xiv": "Indus Valley Language",
+    "xiv": "Harappan",
     "xiy": "Xipaya",
     "xjb": "Minjungbal",
     "xka": "Kalkoti",
@@ -10554,6 +10554,7 @@ ALL_LANGS = {
     "Hanoi Sign Language": "hab",
     "Hanunoo": "hnn",
     "Harami": "xha",
+    "Harappan": "xiv",
     "Harari": "har",
     "Haraza": "nub-har",
     "Harijan Kinnauri": "kjo",
@@ -10784,7 +10785,6 @@ ALL_LANGS = {
     "Indonesian Sign Language": "inl",
     "Indri": "idr",
     "Indus Kohistani": "mvy",
-    "Indus Valley Language": "xiv",
     "Inebu One": "oin",
     "Ineseño": "inz",
     "Inga": "inb",
@@ -10828,7 +10828,7 @@ ALL_LANGS = {
     "Isan": "tts",
     "Isanzu": "isn",
     "Isarog Agta": "agk",
-    "Isaurian": "und-isa",
+    "Isaurian": "mis-isa",
     "Isconahua": "isc",
     "Isebe": "igo",
     "Ishkashimi": "isk",
@@ -10939,7 +10939,7 @@ ALL_LANGS = {
     "Jiba": "juo",
     "Jibu": "jib",
     "Jicarilla": "apj",
-    "Jie": "und-jie",
+    "Jie": "mis-jie",
     "Jiiddu": "jii",
     "Jilbe": "jie",
     "Jili": "mgi",
@@ -11225,7 +11225,7 @@ ALL_LANGS = {
     "Kaska": "kkz",
     "Kaskean": "zsk",
     "Kaskihá": "gva",
-    "Kassite": "und-kas",
+    "Kassite": "mis-kas",
     "Kassonke": "kao",
     "Kasua": "khs",
     "Kataang": "kgd",
@@ -12649,8 +12649,8 @@ ALL_LANGS = {
     "Miltu": "mlj",
     "Miluk": "iml",
     "Milyan": "imy",
-    "Mimi of Decorse": "und-mmd",
-    "Mimi of Nachtigal": "und-mmn",
+    "Mimi of Decorse": "mis-mmd",
+    "Mimi of Nachtigal": "mis-mmn",
     "Min Nan": "nan",
     "Mina": "hna",
     "Minaean": "inm",
@@ -13827,7 +13827,7 @@ ALL_LANGS = {
     "Phangduwali": "phw",
     "Phende": "pem",
     "Philippine Sign Language": "psp",
-    "Philistine": "und-phi",
+    "Philistine": "mis-phi",
     "Phimbi": "phm",
     "Phoenician": "phn",
     "Phola": "ypg",
@@ -22410,6 +22410,9 @@ ALT_LANGS = {
     "Indonesian Bajo": [
         "Indonesian Bajau"
     ],
+    "Indus Valley Language": [
+        "Harappan"
+    ],
     "Inga": [
         "Kichwa"
     ],
@@ -30299,6 +30302,12 @@ ALT_LANGS = {
     ],
     "Southern Prinmi": [
         "Southern Pumi"
+    ],
+    "Southern Pwo": [
+        "Eastern Pwo"
+    ],
+    "Southern Pwo Karen": [
+        "Eastern Pwo"
     ],
     "Southern Sesotho": [
         "Sotho"
