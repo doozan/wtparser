@@ -160,7 +160,7 @@ ALL_LANG_IDS = {
     "ahs": "Ashe",
     "aht": "Ahtna",
     "aia": "Arosi",
-    "aib": "Aynu",
+    "aib": "Äynu",
     "aic": "Ainbai",
     "aid": "Alngith",
     "aie": "Amara",
@@ -551,7 +551,7 @@ ALL_LANG_IDS = {
     "axk": "Aka (Central Africa)",
     "axl": "Lower Southern Aranda",
     "axm": "Middle Armenian",
-    "axx": "Xaragure",
+    "axx": "Xârâgurè",
     "ay": "Aymara",
     "aya": "Awar",
     "ayb": "Ayizo",
@@ -964,7 +964,7 @@ ALL_LANG_IDS = {
     "box": "Buamu",
     "boy": "Bodo (Central Africa)",
     "boz": "Tiéyaxo Bozo",
-    "bpa": "Dakaka",
+    "bpa": "Daakaka",
     "bpd": "Banda-Banda",
     "bpg": "Bonggo",
     "bph": "Botlikh",
@@ -1236,7 +1236,7 @@ ALL_LANG_IDS = {
     "caj": "Chané",
     "cak": "Kaqchikel",
     "cal": "Carolinian",
-    "cam": "Cemuhî",
+    "cam": "Cèmuhî",
     "can": "Chambri",
     "cao": "Chácobo",
     "cap": "Chipaya",
@@ -1254,7 +1254,7 @@ ALL_LANG_IDS = {
     "cau-nwc-pro": "Proto-Northwest Caucasian",
     "cau-tsz-pro": "Proto-Tsezian",
     "cav": "Cavineña",
-    "caw": "Callawalla",
+    "caw": "Kallawaya",
     "cax": "Chiquitano",
     "cay": "Cayuga",
     "caz": "Canichana",
@@ -1365,7 +1365,7 @@ ALL_LANG_IDS = {
     "cim": "Cimbrian",
     "cin": "Cinta Larga",
     "cip": "Chiapanec",
-    "cir": "Tiri",
+    "cir": "Tîrî",
     "ciy": "Chaima",
     "cja": "Western Cham",
     "cje": "Chru",
@@ -1392,7 +1392,7 @@ ALL_LANG_IDS = {
     "ckv": "Kavalan",
     "ckx": "Caka",
     "cky": "Cakfem-Mushere",
-    "ckz": "Cakchiquel-Quiché Mixed Language",
+    "ckz": "Kaqchikel-K'iche' Mixed Language",
     "cla": "Ron",
     "clc": "Chilcotin",
     "cld": "Chaldean Neo-Aramaic",
@@ -1493,7 +1493,6 @@ ALL_LANG_IDS = {
     "crp-rsn": "Russenorsk",
     "crp-slb": "Solombala English",
     "crp-spp": "Samoan Plantation Pidgin",
-    "crp-tnw": "Tangwang",
     "crp-tpr": "Taimyr Pidgin Russian",
     "crq": "Iyo'wujwa Chorote",
     "crr": "Carolina Algonquian",
@@ -2111,7 +2110,7 @@ ALL_LANG_IDS = {
     "gau": "Kondekor",
     "gaw": "Nobonob",
     "gay": "Gayo",
-    "gba": "Gbaya",
+    "gba-pro": "Proto-Gbaya",
     "gbb": "Kaytetye",
     "gbd": "Karadjeri",
     "gbe": "Niksek",
@@ -2231,6 +2230,7 @@ ALL_LANG_IDS = {
     "gjk": "Kachi Koli",
     "gjm": "Gunditjmara",
     "gjn": "Gonja",
+    "gjr": "Gurindji Kriol",
     "gju": "Gojri",
     "gka": "Guya",
     "gkd": "Magɨ",
@@ -2293,7 +2293,7 @@ ALL_LANG_IDS = {
     "gng": "Ngangam",
     "gnh": "Lere",
     "gni": "Gooniyandi",
-    "gnj": "Ngen",
+    "gnj": "Ngen of Djonkro",
     "gnk": "ǁGana",
     "gnl": "Gangulu",
     "gnm": "Ginuman",
@@ -3045,7 +3045,7 @@ ALL_LANG_IDS = {
     "kdh": "Tem",
     "kdi": "Kumam",
     "kdj": "Karamojong",
-    "kdk": "Numee",
+    "kdk": "Numèè",
     "kdl": "Tsikimba",
     "kdm": "Kagoma",
     "kdn": "Kunda",
@@ -3549,7 +3549,7 @@ ALL_LANG_IDS = {
     "kxo": "Kanoé",
     "kxp": "Wadiyara Koli",
     "kxq": "Smärky Kanum",
-    "kxr": "Koro (New Guinea)",
+    "kxr": "Manus Koro",
     "kxs": "Kangjia",
     "kxt": "Koiwat",
     "kxu": "Kui (India)",
@@ -3784,7 +3784,7 @@ ALL_LANG_IDS = {
     "llb": "Lolo",
     "llc": "Lele (Guinea)",
     "lld": "Ladin",
-    "lle": "Lele (New Guinea)",
+    "lle": "Lele (Papua New Guinea)",
     "llf": "Hermit",
     "llg": "Lole",
     "llh": "Lamu",
@@ -3880,7 +3880,7 @@ ALL_LANG_IDS = {
     "lro": "Laro",
     "lrr": "Southern Lorung",
     "lrt": "Larantuka Malay",
-    "lrv": "Larevat",
+    "lrv": "Larëvat",
     "lrz": "Lemerig",
     "lsa": "Lasgerdi",
     "lsd": "Lishana Deni",
@@ -4167,12 +4167,14 @@ ALL_LANG_IDS = {
     "mip": "Apasco-Apoala Mixtec",
     "miq": "Miskito",
     "mir": "Isthmus Mixe",
+    "mis-hkl": "Kelantan Peranakan",
     "mis-isa": "Isaurian",
     "mis-jie": "Jie",
     "mis-kas": "Kassite",
     "mis-mmd": "Mimi of Decorse",
     "mis-mmn": "Mimi of Nachtigal",
     "mis-phi": "Philistine",
+    "mis-tnw": "Tangwang",
     "mit": "Southern Puebla Mixtec",
     "miu": "Cacaloxtepec Mixtec",
     "miw": "Akoye",
@@ -4234,7 +4236,7 @@ ALL_LANG_IDS = {
     "mks": "Silacayoapan Mixtec",
     "mkt": "Vamale",
     "mku": "Konyanka Maninka",
-    "mkv": "Mafea",
+    "mkv": "Mav̋ea",
     "mkx": "Cinamiguin Manobo",
     "mky": "East Makian",
     "mkz": "Makasae",
@@ -4265,7 +4267,7 @@ ALL_LANG_IDS = {
     "mmb": "Momina",
     "mmc": "Michoacán Mazahua",
     "mmd": "Maonan",
-    "mme": "Mae",
+    "mme": "Tirax",
     "mmf": "Mundat",
     "mmg": "North Ambrym",
     "mmh": "Mehináku",
@@ -4390,7 +4392,7 @@ ALL_LANG_IDS = {
     "mqz": "Malasanga",
     "mr": "Marathi",
     "mra": "Mlabri",
-    "mrb": "Marino",
+    "mrb": "Sungwadia",
     "mrc": "Maricopa",
     "mrd": "Western Magar",
     "mre": "Martha's Vineyard Sign Language",
@@ -4400,7 +4402,7 @@ ALL_LANG_IDS = {
     "mrj": "Western Mari",
     "mrk": "Hmwaveke",
     "mrl": "Mortlockese",
-    "mrm": "Merlav",
+    "mrm": "Mwerlap",
     "mrn": "Cheke Holo",
     "mro": "Mru",
     "mrp": "Morouas",
@@ -4521,7 +4523,7 @@ ALL_LANG_IDS = {
     "mwl": "Mirandese",
     "mwm": "Sar",
     "mwn": "Nyamwanga",
-    "mwo": "Central Maewo",
+    "mwo": "Sungwadaga",
     "mwp": "Kala Lagaw Ya",
     "mwq": "Mün Chin",
     "mwr": "Marwari",
@@ -4659,10 +4661,15 @@ ALL_LANG_IDS = {
     "nal": "Nalik",
     "nam": "Ngan'gityemerri",
     "nan": "Min Nan",
+    "nan-dat": "Datian Min",
     "nan-hbl": "Hokkien",
+    "nan-hlh": "Hailufeng Min",
     "nan-hnm": "Hainanese",
+    "nan-lnx": "Longyan Min",
     "nan-luh": "Leizhou Min",
     "nan-tws": "Teochew",
+    "nan-zhe": "Zhenan Min",
+    "nan-zsh": "Sanxiang Min",
     "nao": "Naaba",
     "nap": "Neapolitan",
     "naq": "Khoekhoe",
@@ -5067,7 +5074,7 @@ ALL_LANG_IDS = {
     "ntw": "Nottoway",
     "ntx": "Somra",
     "nty": "Mantsi",
-    "nua": "Yuaga",
+    "nua": "Yuanga",
     "nub-har": "Haraza",
     "nub-pro": "Proto-Nubian",
     "nuc": "Nukuini",
@@ -5355,7 +5362,6 @@ ALL_LANG_IDS = {
     "paq": "Parya",
     "par": "Panamint",
     "pas": "Papasena",
-    "pat": "Papitalai",
     "pau": "Palauan",
     "pav": "Wari'",
     "paw": "Pawnee",
@@ -5508,10 +5514,10 @@ ALL_LANG_IDS = {
     "plw": "Brooke's Point Palawano",
     "ply": "Bolyu",
     "plz": "Paluan",
-    "pma": "Paama",
+    "pma": "Paamese",
     "pmb": "Pambia",
     "pmd": "Pallanganmiddang",
-    "pme": "Pwaamei",
+    "pme": "Pwaamèi",
     "pmf": "Pamona",
     "pmi": "Northern Pumi",
     "pmj": "Southern Pumi",
@@ -5564,7 +5570,7 @@ ALL_LANG_IDS = {
     "pom": "Southeastern Pomo",
     "pon": "Pohnpeian",
     "poo": "Central Pomo",
-    "pop": "Pwapwa",
+    "pop": "Pwapwâ",
     "poq": "Texistepec Popoluca",
     "pos": "Sayula Popoluca",
     "pot": "Potawatomi",
@@ -5579,6 +5585,7 @@ ALL_LANG_IDS = {
     "poz-hce-pro": "Proto-Halmahera-Cenderawasih",
     "poz-lgx-pro": "Proto-Lampungic",
     "poz-mcm-pro": "Proto-Malayo-Chamic",
+    "poz-mic-pro": "Proto-Micronesian",
     "poz-mly-pro": "Proto-Malayic",
     "poz-msa-pro": "Proto-Malayo-Sumbawan",
     "poz-oce-pro": "Proto-Oceanic",
@@ -5775,7 +5782,7 @@ ALL_LANG_IDS = {
     "ret": "Retta",
     "rey": "Reyesano",
     "rga": "Roria",
-    "rge": "Romani Greek",
+    "rge": "Romano-Greek",
     "rgk": "Rangkas",
     "rgn": "Romagnol",
     "rgr": "Resígaro",
@@ -6185,7 +6192,7 @@ ALL_LANG_IDS = {
     "sie": "Simaa",
     "sif": "Siamou",
     "sig": "Paasaal",
-    "sih": "Zire",
+    "sih": "Sîshëë",
     "sii": "Shom Peng",
     "sij": "Numbami",
     "sik": "Sikiana",
@@ -7151,7 +7158,7 @@ ALL_LANG_IDS = {
     "uok": "Uokha",
     "uon": "Kulon",
     "upi": "Umeda",
-    "upv": "Uripiv-Wala-Rano-Atchin",
+    "upv": "Northeast Malakula",
     "ur": "Urdu",
     "ura": "Urarina",
     "urb": "Urubú-Kaapor",
@@ -7173,9 +7180,9 @@ ALL_LANG_IDS = {
     "url": "Urali",
     "urm": "Urapmin",
     "urn": "Uruangnirin",
-    "uro": "Ura (New Guinea)",
+    "uro": "Ura (Papua New Guinea)",
     "urp": "Uru-Pa-In",
-    "urr": "Lehalurup",
+    "urr": "Löyöp",
     "urt": "Urat",
     "uru": "Urumi",
     "urv": "Uruava",
@@ -7286,7 +7293,7 @@ ALL_LANG_IDS = {
     "vra": "Vera'a",
     "vro": "Võro",
     "vrs": "Varisi",
-    "vrt": "Banam Bay",
+    "vrt": "Burmbar",
     "vsi": "Moldova Sign Language",
     "vsl": "Venezuelan Sign Language",
     "vsv": "Valencian Sign Language",
@@ -7864,7 +7871,7 @@ ALL_LANG_IDS = {
     "ydg": "Yidgha",
     "ydk": "Yoidik",
     "yea": "Ravula",
-    "yec": "Yeniche",
+    "yec": "Yenish",
     "yee": "Yimas",
     "yei": "Yeni",
     "yej": "Yevanic",
@@ -7929,7 +7936,7 @@ ALL_LANG_IDS = {
     "ylo": "Naruo",
     "ylr": "Yalarnnga",
     "ylu": "Aribwaung",
-    "yly": "Nyâlayu",
+    "yly": "Nyelâyu",
     "ymb": "Yambes",
     "ymc": "Southern Muji",
     "ymd": "Muda",
@@ -8715,7 +8722,6 @@ ALL_LANGS = {
     "Ayizi": "yyz",
     "Ayizo": "ayb",
     "Aymara": "ay",
-    "Aynu": "aib",
     "Ayomán": "sai-ayo",
     "Ayoquesco Zapotec": "zaf",
     "Ayoreo": "ayo",
@@ -8845,7 +8851,6 @@ ALL_LANGS = {
     "Bamwe": "bmg",
     "Ban Khor Sign Language": "bfk",
     "Bana": "bcw",
-    "Banam Bay": "vrt",
     "Banao Itneg": "bjx",
     "Banaro": "byz",
     "Banda": "bnd",
@@ -9297,6 +9302,7 @@ ALL_LANGS = {
     "Bure": "bvh",
     "Burgundian": "gem-bur",
     "Burji": "bji",
+    "Burmbar": "vrt",
     "Burmese": "my",
     "Burmeso": "bzu",
     "Buru (Indonesia)": "mhs",
@@ -9353,11 +9359,9 @@ ALL_LANGS = {
     "Caijia": "sit-cai",
     "Cajonos Zapotec": "zad",
     "Caka": "ckx",
-    "Cakchiquel-Quiché Mixed Language": "ckz",
     "Cakfem-Mushere": "cky",
     "Calabrian Greek": "grk-cal",
     "Calamian Tagbanwa": "tbk",
-    "Callawalla": "caw",
     "Calusa": "nai-cal",
     "Caluyanun": "clu",
     "Caló": "rmq",
@@ -9415,7 +9419,6 @@ ALL_LANGS = {
     "Cebaara Senoufo": "sef",
     "Cebuano": "ceb",
     "Celtiberian": "xce",
-    "Cemuhî": "cam",
     "Cen": "cen",
     "Central Asmat": "cns",
     "Central Atlas Tamazight": "tzm",
@@ -9429,7 +9432,6 @@ ALL_LANGS = {
     "Central Huasteca Nahuatl": "nch",
     "Central Huishui Hmong": "hmc",
     "Central Kurdish": "ckb",
-    "Central Maewo": "mwo",
     "Central Mahuatlán Zapoteco": "zam",
     "Central Malay": "pse",
     "Central Mansi": "mns-cen",
@@ -9692,9 +9694,11 @@ ALL_LANGS = {
     "Cypriot Arabic": "acy",
     "Czech": "cs",
     "Czech Sign Language": "cse",
+    "Cèmuhî": "cam",
     "Cốông": "cnc",
     "Da'a Kaili": "kzf",
     "Daai Chin": "dao",
+    "Daakaka": "bpa",
     "Daantanai'": "lni",
     "Daasanach": "dsh",
     "Daba": "dbq",
@@ -9717,7 +9721,6 @@ ALL_LANGS = {
     "Dai": "dij",
     "Dair": "drb",
     "Dairi Batak": "btd",
-    "Dakaka": "bpa",
     "Dakka": "dkk",
     "Dakota": "dak",
     "Dakpa": "dka",
@@ -9754,6 +9757,7 @@ ALL_LANGS = {
     "Daro-Matu Melanau": "dro",
     "Darumbal": "xgm",
     "Dass": "dot",
+    "Datian Min": "nan-dat",
     "Datooga": "tcc",
     "Daungwurrung": "dgw",
     "Daur": "dta",
@@ -10298,7 +10302,6 @@ ALL_LANGS = {
     "Gbanu": "gbv",
     "Gbanziri": "gbg",
     "Gbari": "gby",
-    "Gbaya": "gba",
     "Gbaya-Bossangoa": "gbp",
     "Gbaya-Bozoum": "gbq",
     "Gbaya-Mbodomo": "gmm",
@@ -10487,6 +10490,7 @@ ALL_LANGS = {
     "Gurgula": "ggg",
     "Guriaso": "grx",
     "Gurindji": "gue",
+    "Gurindji Kriol": "gjr",
     "Gurjar Apabhramsa": "inc-gup",
     "Gurmana": "gvm",
     "Guro": "goa",
@@ -10528,6 +10532,7 @@ ALL_LANGS = {
     "Hahon": "hah",
     "Haida": "hai",
     "Haigwai": "hgw",
+    "Hailufeng Min": "nan-hlh",
     "Hainanese": "nan-hnm",
     "Hainyaxo Bozo": "bzx",
     "Haiphong Sign Language": "haf",
@@ -11085,6 +11090,7 @@ ALL_LANGS = {
     "Kalinago": "crb",
     "Kalkatungu": "ktg",
     "Kalkoti": "xka",
+    "Kallawaya": "caw",
     "Kalmyk": "xal",
     "Kalo Finnish Romani": "rmf",
     "Kalou": "ywa",
@@ -11169,6 +11175,7 @@ ALL_LANGS = {
     "Kaptiau": "kbi",
     "Kapya": "klo",
     "Kaqchikel": "cak",
+    "Kaqchikel-K'iche' Mixed Language": "ckz",
     "Kara (New Guinea)": "leu",
     "Kara (Tanzania)": "reg",
     "Karachay-Balkar": "krc",
@@ -11283,6 +11290,7 @@ ALL_LANGS = {
     "Keiyo": "eyo",
     "Kela-Yela": "kel",
     "Kelabit": "kzi",
+    "Kelantan Peranakan": "mis-hkl",
     "Keley-I Kallahan": "ify",
     "Keliko": "kbo",
     "Kelo": "xel",
@@ -11539,7 +11547,6 @@ ALL_LANGS = {
     "Korku": "kfq",
     "Korlai Creole Portuguese": "vkp",
     "Koro (India)": "jkr",
-    "Koro (New Guinea)": "kxr",
     "Koro (Vanuatu)": "krf",
     "Koro (West Africa)": "kfo",
     "Koromfé": "kfz",
@@ -11875,11 +11882,11 @@ ALL_LANGS = {
     "Larantuka Malay": "lrt",
     "Lardil": "lbz",
     "Larestani": "lrl",
-    "Larevat": "lrv",
     "Larike-Wakasihu": "alo",
     "Laro": "lro",
     "Larteh": "lar",
     "Laru": "lan",
+    "Larëvat": "lrv",
     "Lasalimu": "llm",
     "Lasgerdi": "lsa",
     "Lashi": "lsi",
@@ -11918,7 +11925,6 @@ ALL_LANGS = {
     "Legbo": "agb",
     "Legenyem": "lcc",
     "Lehali": "tql",
-    "Lehalurup": "urr",
     "Leinong Naga": "lzn",
     "Leipon": "lek",
     "Leizhou Min": "nan-luh",
@@ -11927,7 +11933,7 @@ ALL_LANGS = {
     "Lele (Chad)": "lln",
     "Lele (Congo)": "lel",
     "Lele (Guinea)": "llc",
-    "Lele (New Guinea)": "lle",
+    "Lele (Papua New Guinea)": "lle",
     "Lelemi": "lef",
     "Lelepa": "lpa",
     "Lembena": "leq",
@@ -12053,6 +12059,7 @@ ALL_LANGS = {
     "Longjia": "sit-lnj",
     "Longto": "wok",
     "Longuda": "lnu",
+    "Longyan Min": "nan-lnx",
     "Loniu": "los",
     "Lonwolwol": "crc",
     "Loo": "ldo",
@@ -12139,6 +12146,7 @@ ALL_LANGS = {
     "Lyélé": "lee",
     "Láadan": "ldn",
     "Láá Láá Bwamu": "bwj",
+    "Löyöp": "urr",
     "Lü": "khb",
     "Ma": "msj",
     "Ma Manda": "skc",
@@ -12177,10 +12185,8 @@ ALL_LANGS = {
     "Madngele": "zml",
     "Madukayang Kalinga": "kmd",
     "Madurese": "mad",
-    "Mae": "mme",
     "Maeng Itneg": "itt",
     "Mafa": "maf",
-    "Mafea": "mkv",
     "Mag-Anchi Ayta": "sgb",
     "Mag-Indi Ayta": "blx",
     "Magahat": "mtw",
@@ -12355,6 +12361,7 @@ ALL_LANGS = {
     "Manta": "myg",
     "Mantsi": "nty",
     "Manumanaw Karen": "kxf",
+    "Manus Koro": "kxr",
     "Manusela": "wha",
     "Manx": "gv",
     "Manya": "mzj",
@@ -12403,7 +12410,6 @@ ALL_LANGS = {
     "Maring": "mbw",
     "Maring Naga": "nng",
     "Maringarr": "zmt",
-    "Marino": "mrb",
     "Mariri": "mqi",
     "Maritime Sign Language": "nsr",
     "Maritsauá": "msp",
@@ -12466,6 +12472,7 @@ ALL_LANGS = {
     "Mauritian Creole": "mfe",
     "Mauritian Sign Language": "lsy",
     "Mauwake": "mhl",
+    "Mav̋ea": "mkv",
     "Mawa": "mcw",
     "Mawak": "mjj",
     "Mawan": "mcz",
@@ -12579,7 +12586,6 @@ ALL_LANGS = {
     "Merei": "lmb",
     "Merey": "meq",
     "Meriam": "ulk",
-    "Merlav": "mrm",
     "Meroitic": "xmr",
     "Meru": "mer",
     "Mesaka": "iyo",
@@ -12909,6 +12915,7 @@ ALL_LANGS = {
     "Mwani": "wmw",
     "Mwatebu": "mwa",
     "Mwera": "mwe",
+    "Mwerlap": "mrm",
     "Mwimbi-Muthambi": "mws",
     "Mwotlap": "mlv",
     "Mycenaean Greek": "gmy",
@@ -13133,7 +13140,7 @@ ALL_LANGS = {
     "Ngbundu": "nuu",
     "Ngelima": "agh",
     "Ngemba": "nge",
-    "Ngen": "gnj",
+    "Ngen of Djonkro": "gnj",
     "Ngendelengo": "nql",
     "Ngeq": "ngt",
     "Ngete": "nnn",
@@ -13281,6 +13288,7 @@ ALL_LANGS = {
     "North Watut": "una",
     "Northeast Kiwai": "kiw",
     "Northeast Maidu": "nmu",
+    "Northeast Malakula": "upv",
     "Northeast Pashayi": "aee",
     "Northeastern Dinka": "dip",
     "Northeastern Pomo": "pef",
@@ -13387,8 +13395,8 @@ ALL_LANGS = {
     "Numanggang": "nop",
     "Numbami": "sij",
     "Nume": "tgs",
-    "Numee": "kdk",
     "Numidian": "nxm",
+    "Numèè": "kdk",
     "Nungali": "nug",
     "Nunggubuyu": "nuy",
     "Nungon": "paa-nun",
@@ -13424,6 +13432,7 @@ ALL_LANGS = {
     "Nyaturu": "rim",
     "Nyaw": "nyw",
     "Nyawaygi": "nyt",
+    "Nyelâyu": "yly",
     "Nyemba": "nba",
     "Nyengo": "nye",
     "Nyenkha": "neh",
@@ -13444,7 +13453,6 @@ ALL_LANGS = {
     "Nyulnyul": "nyv",
     "Nyunga": "nys",
     "Nyungwe": "nyu",
-    "Nyâlayu": "yly",
     "Nzadi": "nzd",
     "Nzakambay": "nzy",
     "Nzakara": "nzk",
@@ -13650,7 +13658,7 @@ ALL_LANGS = {
     "Pa'a": "pqa",
     "Pa'o Karen": "blk",
     "Pa-Hng": "pha",
-    "Paama": "pma",
+    "Paamese": "pma",
     "Paasaal": "sig",
     "Pacahuara": "pcp",
     "Pacoh": "pac",
@@ -13736,7 +13744,6 @@ ALL_LANGS = {
     "Papel": "pbo",
     "Papi": "ppe",
     "Papiamentu": "pap",
-    "Papitalai": "pat",
     "Papora": "ppu",
     "Papua New Guinean Sign Language": "pgz",
     "Papuan Malay": "pmy",
@@ -14020,6 +14027,7 @@ ALL_LANGS = {
     "Proto-Eskimo-Aleut": "esx-pro",
     "Proto-Fali": "alv-fli-pro",
     "Proto-Finnic": "urj-fin-pro",
+    "Proto-Gbaya": "gba-pro",
     "Proto-Gbe": "alv-gbe-pro",
     "Proto-Georgian-Zan": "ccs-gzn-pro",
     "Proto-Germanic": "gem-pro",
@@ -14095,6 +14103,7 @@ ALL_LANGS = {
     "Proto-Mayan": "myn-pro",
     "Proto-Mazatec": "omq-maz-pro",
     "Proto-Medo-Parthian": "ira-mpr-pro",
+    "Proto-Micronesian": "poz-mic-pro",
     "Proto-Mien": "hmx-mie-pro",
     "Proto-Min": "zhx-min-pro",
     "Proto-Mixe-Zoque": "nai-miz-pro",
@@ -14269,8 +14278,8 @@ ALL_LANGS = {
     "Puxian Min": "cpx",
     "Puyo-Paekche": "xpp",
     "Puyuma": "pyu",
-    "Pwaamei": "pme",
-    "Pwapwa": "pop",
+    "Pwaamèi": "pme",
+    "Pwapwâ": "pop",
     "Pyapun": "pcw",
     "Pye Krumen": "pye",
     "Pyemmairre": "xpb",
@@ -14396,9 +14405,9 @@ ALL_LANGS = {
     "Romagnol": "rgn",
     "Romam": "rmx",
     "Romani": "rom",
-    "Romani Greek": "rge",
     "Romanian": "ro",
     "Romanian Sign Language": "rms",
+    "Romano-Greek": "rge",
     "Romano-Serbian": "rsb",
     "Romanova": "rmv",
     "Romansch": "rm",
@@ -14570,6 +14579,7 @@ ALL_LANGS = {
     "Santiago Xanica Zapotec": "zpr",
     "Santo Domingo Albarradas Zapotec": "zas",
     "Sanumá": "xsu",
+    "Sanxiang Min": "nan-zsh",
     "Sapa": "tys",
     "Saparua": "spr",
     "Sapará": "sai-sap",
@@ -15059,6 +15069,8 @@ ALL_LANGS = {
     "Sumtu Chin": "csv",
     "Sunam": "ssk",
     "Sundanese": "su",
+    "Sungwadaga": "mwo",
+    "Sungwadia": "mrb",
     "Sunum": "ymn",
     "Sunwar": "suz",
     "Suoy": "syo",
@@ -15096,6 +15108,7 @@ ALL_LANGS = {
     "São Paulo Kaingáng": "zkp",
     "Sãotomense": "cri",
     "Sìcìté Sénoufo": "sep",
+    "Sîshëë": "sih",
     "Sô": "sss",
     "T'en": "tct",
     "Taabwa": "tap",
@@ -15212,7 +15225,7 @@ ALL_LANGS = {
     "Tangsa": "nst",
     "Tanguat": "tbs",
     "Tangut": "txg",
-    "Tangwang": "crp-tnw",
+    "Tangwang": "mis-tnw",
     "Tanimbili": "tbe",
     "Tanimuca-Retuarã": "tnc",
     "Tanjijili": "uji",
@@ -15425,8 +15438,8 @@ ALL_LANGS = {
     "Tira": "tic",
     "Tirahi": "tra",
     "Tiranige Diga Dogon": "tde",
+    "Tirax": "mme",
     "Tircul": "pyx",
-    "Tiri": "cir",
     "Tiruray": "tiy",
     "Tita": "tdq",
     "Titan": "ttv",
@@ -15664,6 +15677,7 @@ ALL_LANGS = {
     "Tày Tac": "tyt",
     "Tây Bồi": "tas",
     "Téén": "lor",
+    "Tîrî": "cir",
     "Tübatulabal": "tub",
     "U": "uuu",
     "Uab Meto": "aoz",
@@ -15746,7 +15760,7 @@ ALL_LANGS = {
     "Upper Tanana": "tau",
     "Upper Taromi": "tov",
     "Upper Umpqua": "xup",
-    "Ura (New Guinea)": "uro",
+    "Ura (Papua New Guinea)": "uro",
     "Ura (Vanuatu)": "uur",
     "Uradhi": "urf",
     "Urak Lawoi'": "urk",
@@ -15761,7 +15775,6 @@ ALL_LANGS = {
     "Urigina": "urg",
     "Urim": "uri",
     "Urimo": "urx",
-    "Uripiv-Wala-Rano-Atchin": "upv",
     "Urningangg": "urc",
     "Uru": "ure",
     "Uru-Eu-Wau-Wau": "urz",
@@ -16149,7 +16162,6 @@ ALL_LANGS = {
     "Xakriabá": "xkr",
     "Xamtanga": "xan",
     "Xanaguía Zapotec": "ztg",
-    "Xaragure": "axx",
     "Xavante": "xav",
     "Xerénte": "xer",
     "Xetá": "xet",
@@ -16169,6 +16181,7 @@ ALL_LANGS = {
     "Xukurú": "xoo",
     "Xwela Gbe": "xwe",
     "Xârâcùù": "ane",
+    "Xârâgurè": "axx",
     "Yaa": "iyx",
     "Yaaku": "muu",
     "Yabarana": "yar",
@@ -16280,7 +16293,7 @@ ALL_LANGS = {
     "Yemsa": "jnj",
     "Yendang": "yen",
     "Yeni": "yei",
-    "Yeniche": "yec",
+    "Yenish": "yec",
     "Yerakai": "yra",
     "Yeretuar": "gop",
     "Yerong": "yrn",
@@ -16335,7 +16348,7 @@ ALL_LANGS = {
     "Younuo Bunu": "buh",
     "Yout Wam": "ytw",
     "Yoy": "yoy",
-    "Yuaga": "nua",
+    "Yuanga": "nua",
     "Yucatec Maya": "yua",
     "Yucatec Maya Sign Language": "msd",
     "Yuchi": "yuc",
@@ -16401,6 +16414,7 @@ ALL_LANGS = {
     "Zenzontepec Chatino": "czn",
     "Zhaba": "zhb",
     "Zhang-Zhung": "xzh",
+    "Zhenan Min": "nan-zhe",
     "Zhire": "zhi",
     "Zhoa": "zhw",
     "Zhuang": "za",
@@ -16413,7 +16427,6 @@ ALL_LANGS = {
     "Zimbabwe Sign Language": "zib",
     "Zinza": "zin",
     "Zipser German": "gmw-zps",
-    "Zire": "sih",
     "Zirenkel": "zrn",
     "Ziriya": "zir",
     "Zizilivakan": "ziz",
@@ -16433,6 +16446,7 @@ ALL_LANGS = {
     "Záparo": "zro",
     "Àhàn": "ahn",
     "Áncá": "acb",
+    "Äynu": "aib",
     "Ömie": "aom",
     "Önge": "oon",
     "ǀXam": "xam",
@@ -16491,7 +16505,7 @@ ALT_LANGS = {
         "Bankon"
     ],
     "Abdal": [
-        "Aynu"
+        "Äynu"
     ],
     "Abewa": [
         "Asu"
@@ -16695,10 +16709,13 @@ ALT_LANGS = {
         "Aeka"
     ],
     "Aini": [
-        "Aynu"
+        "Äynu"
+    ],
+    "Ainu": [
+        "Äynu"
     ],
     "Ainu (China)": [
-        "Aynu"
+        "Äynu"
     ],
     "Ainu (Japan)": [
         "Ainu"
@@ -17572,11 +17589,17 @@ ALT_LANGS = {
     "Ayitcha": [
         "Kings River Yokuts"
     ],
+    "Ayiwo": [
+        "Aiwoo"
+    ],
     "Ayizo Gbe": [
         "Ayizo"
     ],
     "Aymälläl": [
         "Kistane"
+    ],
+    "Aynu": [
+        "Äynu"
     ],
     "Ayo": [
         "A'ou"
@@ -17731,7 +17754,7 @@ ALT_LANGS = {
         "Sakata"
     ],
     "Baiap": [
-        "Dakaka"
+        "Daakaka"
     ],
     "Baihong": [
         "Honi"
@@ -17826,8 +17849,14 @@ ALT_LANGS = {
     "Bamun": [
         "Bamum"
     ],
+    "Ban-lam": [
+        "Hokkien"
+    ],
     "Banagabo": [
         "Lega-Shabunda"
+    ],
+    "Banam Bay": [
+        "Burmbar"
     ],
     "Banar": [
         "Maia"
@@ -19072,11 +19101,20 @@ ALT_LANGS = {
     "Cakchiquel": [
         "Kaqchikel"
     ],
+    "Cakchiquel-Quiché Mixed Language": [
+        "Kaqchikel-K'iche' Mixed Language"
+    ],
     "Calchaquí": [
         "Cacán"
     ],
     "Callaga": [
         "Abipon"
+    ],
+    "Callahuaya": [
+        "Kallawaya"
+    ],
+    "Callawalla": [
+        "Kallawaya"
     ],
     "Camaracoto": [
         "Pemon"
@@ -19286,7 +19324,7 @@ ALT_LANGS = {
         "Kawishana"
     ],
     "Cauque Mayan": [
-        "Cakchiquel-Quiché Mixed Language"
+        "Kaqchikel-K'iche' Mixed Language"
     ],
     "Cavinena": [
         "Cavineña"
@@ -19317,6 +19355,12 @@ ALT_LANGS = {
     ],
     "Cañar Highland Quecha": [
         "Kichwa"
+    ],
+    "Cemuhi": [
+        "Cèmuhî"
+    ],
+    "Cemuhî": [
+        "Cèmuhî"
     ],
     "Cen Tuum": [
         "Centúúm"
@@ -19362,6 +19406,9 @@ ALT_LANGS = {
     ],
     "Central Kilimanjaro": [
         "Vunjo"
+    ],
+    "Central Maewo": [
+        "Sungwadaga"
     ],
     "Central Maipurean": [
         "Proto-Paresi-Waura"
@@ -19827,7 +19874,7 @@ ALT_LANGS = {
         "Tshwa"
     ],
     "Ciri": [
-        "Tiri"
+        "Tîrî"
     ],
     "Cita": [
         "Opuuo"
@@ -20082,9 +20129,6 @@ ALT_LANGS = {
     "Côông": [
         "Cốông"
     ],
-    "Daakaka": [
-        "Dakaka"
-    ],
     "Dabra": [
         "Taworta"
     ],
@@ -20114,6 +20158,9 @@ ALT_LANGS = {
     ],
     "Dai Lue": [
         "Lü"
+    ],
+    "Dakaka": [
+        "Daakaka"
     ],
     "Dakhani": [
         "Deccani"
@@ -20241,6 +20288,9 @@ ALT_LANGS = {
     "Dasaga": [
         "Dazaga"
     ],
+    "Datian": [
+        "Datian Min"
+    ],
     "Datiwuy": [
         "Dhuwal"
     ],
@@ -20324,6 +20374,9 @@ ALT_LANGS = {
     ],
     "Denesuline": [
         "Chipewyan"
+    ],
+    "Denggan": [
+        "Burmbar"
     ],
     "Denjongka": [
         "Sikkimese"
@@ -20454,6 +20507,9 @@ ALT_LANGS = {
     "Diola-Fogny": [
         "Jola-Fonyi"
     ],
+    "Dirak": [
+        "Tirax"
+    ],
     "Dirari": [
         "Dieri"
     ],
@@ -20559,6 +20615,9 @@ ALT_LANGS = {
     "Dranjongke": [
         "Sikkimese"
     ],
+    "Drubea": [
+        "Dumbea"
+    ],
     "Dsandai": [
         "Janday"
     ],
@@ -20570,6 +20629,9 @@ ALT_LANGS = {
     ],
     "Duan": [
         "Halang Doan"
+    ],
+    "Dubea": [
+        "Dumbea"
     ],
     "Duccany": [
         "Deccani"
@@ -20799,7 +20861,7 @@ ALT_LANGS = {
         "Askopan"
     ],
     "Ejnu": [
-        "Aynu"
+        "Äynu"
     ],
     "Ekoka Kung": [
         "ǃKung"
@@ -20929,7 +20991,7 @@ ALT_LANGS = {
         "Jeikó"
     ],
     "Eyni": [
-        "Aynu"
+        "Äynu"
     ],
     "Eza": [
         "Ezaa"
@@ -21891,7 +21953,19 @@ ALT_LANGS = {
     "Hagei": [
         "Green Gelao"
     ],
+    "Hai Lok Hong": [
+        "Hailufeng Min"
+    ],
     "Hailamese": [
+        "Hainanese"
+    ],
+    "Hailufeng": [
+        "Hailufeng Min"
+    ],
+    "Hainam": [
+        "Hainanese"
+    ],
+    "Hainam Min": [
         "Hainanese"
     ],
     "Hainamese": [
@@ -21899,6 +21973,9 @@ ALT_LANGS = {
     ],
     "Hainan Cham": [
         "Tsat"
+    ],
+    "Hainan Min": [
+        "Hainanese"
     ],
     "Haitian": [
         "Haitian Creole"
@@ -21922,7 +21999,7 @@ ALT_LANGS = {
         "Proto-Afroasiatic"
     ],
     "Haméa": [
-        "Tiri"
+        "Tîrî"
     ],
     "Han": [
         "Hän"
@@ -22007,10 +22084,16 @@ ALT_LANGS = {
         "Yolmo"
     ],
     "Hellenoromani": [
-        "Romani Greek"
+        "Romano-Greek"
     ],
     "Hen Kha": [
         "Nyenkha"
+    ],
+    "Henghua": [
+        "Puxian Min"
+    ],
+    "Henghwa": [
+        "Puxian Min"
     ],
     "Henka": [
         "Nyenkha"
@@ -22102,6 +22185,9 @@ ALT_LANGS = {
     "Hindki of Hazara": [
         "Northern Hindko"
     ],
+    "Hinghua": [
+        "Puxian Min"
+    ],
     "Hinghwa": [
         "Puxian Min"
     ],
@@ -22165,8 +22251,14 @@ ALT_LANGS = {
     "Hohenlohisch": [
         "East Franconian"
     ],
+    "Hokkien Kelantan": [
+        "Kelantan Peranakan"
+    ],
     "Hokkienese": [
         "Hokkien"
+    ],
+    "Hoklo Min": [
+        "Hailufeng Min"
     ],
     "Hollar Gadbas": [
         "Ollari"
@@ -23314,6 +23406,9 @@ ALT_LANGS = {
     "Kapucha": [
         "Bezhta"
     ],
+    "Kaqchikel-Kʼicheʼ Mixed Language": [
+        "Kaqchikel-K'iche' Mixed Language"
+    ],
     "Kar": [
         "Fakkanci"
     ],
@@ -23566,6 +23661,15 @@ ALT_LANGS = {
     ],
     "Kelanchi": [
         "Fakkanci"
+    ],
+    "Kelantan Local Hokkien": [
+        "Kelantan Peranakan"
+    ],
+    "Kelantan Peranakan Chinese": [
+        "Kelantan Peranakan"
+    ],
+    "Kelantan Peranakan Hokkien": [
+        "Kelantan Peranakan"
     ],
     "Kele": [
         "Ekele",
@@ -24092,10 +24196,13 @@ ALT_LANGS = {
         "Koro (India)",
         "Koro (West Africa)",
         "Koro (Vanuatu)",
-        "Koro (New Guinea)"
+        "Manus Koro"
+    ],
+    "Koro (New Guinea)": [
+        "Manus Koro"
     ],
     "Koro (Papua New Guinea)": [
-        "Koro (New Guinea)"
+        "Manus Koro"
     ],
     "Koro Jula": [
         "Koro (West Africa)"
@@ -24682,6 +24789,9 @@ ALT_LANGS = {
     "Lare": [
         "Laze"
     ],
+    "Larevat": [
+        "Larëvat"
+    ],
     "Large Flowery Miao": [
         "A-Hmao"
     ],
@@ -24784,23 +24894,29 @@ ALT_LANGS = {
     "Legeri": [
         "Kwanka"
     ],
+    "Lehalurup": [
+        "Löyöp"
+    ],
+    "Leizhou": [
+        "Leizhou Min"
+    ],
     "Lel": [
         "Nyishi"
     ],
     "Lele": [
         "Lele (Congo)",
         "Lele (Guinea)",
-        "Lele (New Guinea)",
+        "Lele (Papua New Guinea)",
         "Lele (Chad)"
     ],
     "Lele (Democratic Republic of the Congo)": [
         "Lele (Congo)"
     ],
-    "Lele (Papua New Guinea)": [
-        "Lele (New Guinea)"
+    "Lele (New Guinea)": [
+        "Lele (Papua New Guinea)"
     ],
     "Lele Hai": [
-        "Lele (New Guinea)"
+        "Lele (Papua New Guinea)"
     ],
     "Lemakot": [
         "Kara (New Guinea)"
@@ -24916,6 +25032,9 @@ ALT_LANGS = {
     "Linngithig": [
         "Linngithigh"
     ],
+    "Liongna": [
+        "Longyan Min"
+    ],
     "Lipan Apache": [
         "Lipan"
     ],
@@ -25021,6 +25140,9 @@ ALT_LANGS = {
     "Longovicien": [
         "Lorrain"
     ],
+    "Longyan": [
+        "Longyan Min"
+    ],
     "Looma": [
         "Loma"
     ],
@@ -25084,6 +25206,12 @@ ALT_LANGS = {
     ],
     "Lue": [
         "Lü"
+    ],
+    "Luichew": [
+        "Leizhou Min"
+    ],
+    "Luichew Min": [
+        "Leizhou Min"
     ],
     "Luiseno": [
         "Luiseño"
@@ -25214,8 +25342,14 @@ ALT_LANGS = {
         "Dandami Maria",
         "Hill Maria"
     ],
+    "Mae": [
+        "Tirax"
+    ],
     "Maek": [
         "Yemaek"
+    ],
+    "Mafea": [
+        "Mav̋ea"
     ],
     "Magbukun Ayta": [
         "Bataan Ayta"
@@ -25493,6 +25627,9 @@ ALT_LANGS = {
     "Manitsawá": [
         "Maritsauá"
     ],
+    "Manouche": [
+        "Sinte Romani"
+    ],
     "Mantion": [
         "Manikion"
     ],
@@ -25620,6 +25757,9 @@ ALT_LANGS = {
     ],
     "Maringe": [
         "Cheke Holo"
+    ],
+    "Marino": [
+        "Sungwadia"
     ],
     "Maripú": [
         "Mucuchí"
@@ -25749,6 +25889,12 @@ ALT_LANGS = {
     ],
     "Mauritian": [
         "Mauritian Creole"
+    ],
+    "Mavea": [
+        "Mav̋ea"
+    ],
+    "Mavia": [
+        "Mav̋ea"
     ],
     "Mawa (Chad)": [
         "Mawa"
@@ -25992,6 +26138,9 @@ ALT_LANGS = {
     "Meradan": [
         "Marrithiyel"
     ],
+    "Merelava": [
+        "Mwerlap"
+    ],
     "Mereo": [
         "Emerillon"
     ],
@@ -26000,6 +26149,9 @@ ALT_LANGS = {
     ],
     "Meriam Mir": [
         "Meriam"
+    ],
+    "Merlav": [
+        "Mwerlap"
     ],
     "Merwari": [
         "Marwari"
@@ -26671,7 +26823,7 @@ ALT_LANGS = {
         "Mesqan"
     ],
     "Méa": [
-        "Tiri"
+        "Tîrî"
     ],
     "Mòoré": [
         "Moore"
@@ -26872,11 +27024,20 @@ ALT_LANGS = {
     "Ndaktup": [
         "Kwaja"
     ],
+    "Ndenggan": [
+        "Burmbar"
+    ],
     "Ndepuu": [
         "Unde Kaili"
     ],
     "Ndra'ngith": [
         "Ntra'ngith"
+    ],
+    "Ndrumbea": [
+        "Dumbea"
+    ],
+    "Ndumbea": [
+        "Dumbea"
     ],
     "Ndyuka": [
         "Aukan"
@@ -27008,8 +27169,8 @@ ALT_LANGS = {
     "Ngbaka Minagende": [
         "Ngbaka"
     ],
-    "Ngen of Djonkro": [
-        "Ngen"
+    "Ngen": [
+        "Ngen of Djonkro"
     ],
     "Nggoth": [
         "Ngkoth"
@@ -27173,6 +27334,9 @@ ALT_LANGS = {
     ],
     "North East Tasmanian": [
         "Pyemmairre"
+    ],
+    "North Maewo": [
+        "Sungwadia"
     ],
     "North Mbundu": [
         "Kimbundu"
@@ -27346,6 +27510,9 @@ ALT_LANGS = {
     "Numao": [
         "Bu-Nao Bunu"
     ],
+    "Numee": [
+        "Numèè"
+    ],
     "Numipu": [
         "Nez Perce"
     ],
@@ -27408,6 +27575,9 @@ ALT_LANGS = {
     "Nyakyusa-Ngonde": [
         "Nyakyusa"
     ],
+    "Nyalayu": [
+        "Nyelâyu"
+    ],
     "Nyamunsange": [
         "Lega-Shabunda"
     ],
@@ -27429,6 +27599,9 @@ ALT_LANGS = {
     ],
     "Nye": [
         "Shoo-Minda-Nye"
+    ],
+    "Nyelayu": [
+        "Nyelâyu"
     ],
     "Nyen": [
         "Nyenkha"
@@ -27482,6 +27655,9 @@ ALT_LANGS = {
     ],
     "Nyuunga": [
         "Nyunga"
+    ],
+    "Nyâlayu": [
+        "Nyelâyu"
     ],
     "Náhuat": [
         "Pipil"
@@ -27886,6 +28062,9 @@ ALT_LANGS = {
     "Pa'o": [
         "Pa'o Karen"
     ],
+    "Paama": [
+        "Paamese"
+    ],
     "Pabir": [
         "Bura"
     ],
@@ -28087,6 +28266,9 @@ ALT_LANGS = {
     "Papiamento": [
         "Papiamentu"
     ],
+    "Papitalai": [
+        "Manus Koro"
+    ],
     "Papola": [
         "Papora"
     ],
@@ -28247,6 +28429,9 @@ ALT_LANGS = {
     "Paíter": [
         "Suruí"
     ],
+    "Païta": [
+        "Dumbea"
+    ],
     "Peagaxinan": [
         "Natú"
     ],
@@ -28388,6 +28573,12 @@ ALT_LANGS = {
     "Plateau Tonga": [
         "Tonga (Zambia)"
     ],
+    "Poamei": [
+        "Pwaamèi"
+    ],
+    "Poapoa": [
+        "Pwapwâ"
+    ],
     "Poavosa": [
         "Babuza"
     ],
@@ -28399,6 +28590,9 @@ ALT_LANGS = {
     ],
     "Poguli": [
         "Pogali"
+    ],
+    "Pohena": [
+        "Kallawaya"
     ],
     "Poitevin": [
         "Poitevin-Saintongeais"
@@ -28797,25 +28991,13 @@ ALT_LANGS = {
     "Pu Xian": [
         "Puxian Min"
     ],
-    "Pu Xian Chinese": [
-        "Puxian Min"
-    ],
     "Pu Xian Min": [
-        "Puxian Min"
-    ],
-    "Pu Xian Min Chinese": [
         "Puxian Min"
     ],
     "Pu-Xian": [
         "Puxian Min"
     ],
-    "Pu-Xian Chinese": [
-        "Puxian Min"
-    ],
     "Pu-Xian Min": [
-        "Puxian Min"
-    ],
-    "Pu-Xian Min Chinese": [
         "Puxian Min"
     ],
     "Puchikwar": [
@@ -28893,14 +29075,14 @@ ALT_LANGS = {
     "Puxian": [
         "Puxian Min"
     ],
-    "Puxian Chinese": [
-        "Puxian Min"
-    ],
-    "Puxian Min Chinese": [
-        "Puxian Min"
-    ],
     "Puyi": [
         "Bouyei"
+    ],
+    "Pwaamei": [
+        "Pwaamèi"
+    ],
+    "Pwapwa": [
+        "Pwapwâ"
     ],
     "Pyem": [
         "Fyam"
@@ -29161,8 +29343,8 @@ ALT_LANGS = {
     "Romanche": [
         "Romansch"
     ],
-    "Romano-Greek": [
-        "Romani Greek"
+    "Romani Greek": [
+        "Romano-Greek"
     ],
     "Romansh": [
         "Romansch"
@@ -29292,6 +29474,9 @@ ALT_LANGS = {
     "Sacata": [
         "Sácata"
     ],
+    "Sahiu": [
+        "Sanxiang Min"
+    ],
     "Saint Kitts Creole": [
         "Antigua and Barbuda Creole English"
     ],
@@ -29372,6 +29557,9 @@ ALT_LANGS = {
     ],
     "Sambla": [
         "Seenku"
+    ],
+    "Samheung": [
+        "Sanxiang Min"
     ],
     "Samu": [
         "Samatao"
@@ -29502,6 +29690,9 @@ ALT_LANGS = {
     ],
     "Santa Rosa": [
         "Guamo"
+    ],
+    "Sanxiang": [
+        "Sanxiang Min"
     ],
     "Sanya Hui": [
         "Tsat"
@@ -30035,6 +30226,9 @@ ALT_LANGS = {
     "Sinti-Manouche": [
         "Sinte Romani"
     ],
+    "Sintitikes": [
+        "Sinte Romani"
+    ],
     "Sinufana": [
         "Sinúfana"
     ],
@@ -30058,6 +30252,9 @@ ALT_LANGS = {
     ],
     "Sirio": [
         "Nawaru"
+    ],
+    "Sishee": [
+        "Sîshëë"
     ],
     "Siska": [
         "Tonga (Malawi)"
@@ -30202,7 +30399,7 @@ ALT_LANGS = {
         "Tashelhit"
     ],
     "South Ambrym": [
-        "Dakaka"
+        "Daakaka"
     ],
     "South Estonian": [
         "Võro"
@@ -30990,6 +31187,15 @@ ALT_LANGS = {
         "Kitembo",
         "Motembo"
     ],
+    "Teo-Swa": [
+        "Teochew"
+    ],
+    "Teo-Swa Min": [
+        "Teochew"
+    ],
+    "Teochew Min": [
+        "Teochew"
+    ],
     "Teotitlán del Valle Zapotec": [
         "San Juan Guelavía Zapotec"
     ],
@@ -31141,10 +31347,16 @@ ALT_LANGS = {
         "Tegali"
     ],
     "Tinrin": [
-        "Tiri"
+        "Tîrî"
+    ],
+    "Tio-Sua": [
+        "Teochew"
     ],
     "Tipay": [
         "Tipai"
+    ],
+    "Tiri": [
+        "Tîrî"
     ],
     "Tirio": [
         "Makayam"
@@ -31467,9 +31679,6 @@ ALT_LANGS = {
     "Tétum Praça": [
         "Tetun Dili"
     ],
-    "Tîrî": [
-        "Tiri"
-    ],
     "Tümpisha": [
         "Panamint"
     ],
@@ -31590,10 +31799,12 @@ ALT_LANGS = {
         "Upper Sorbian"
     ],
     "Ura": [
-        "Fungwa"
+        "Fungwa",
+        "Ura (Papua New Guinea)",
+        "Ura (Vanuatu)"
     ],
-    "Ura (Papua New Guinea)": [
-        "Ura (New Guinea)"
+    "Ura (New Guinea)": [
+        "Ura (Papua New Guinea)"
     ],
     "Urak Lawoc": [
         "Urak Lawoi'"
@@ -31603,6 +31814,9 @@ ALT_LANGS = {
     ],
     "Urartean": [
         "Urartian"
+    ],
+    "Uripiv-Wala-Rano-Atchin": [
+        "Northeast Malakula"
     ],
     "Uruku": [
         "Arara-Karo"
@@ -31715,6 +31929,9 @@ ALT_LANGS = {
     ],
     "Varihío": [
         "Huarijio"
+    ],
+    "Vartavo": [
+        "Burmbar"
     ],
     "Varzenehi": [
         "Kermanic"
@@ -32550,6 +32767,12 @@ ALT_LANGS = {
     "Xapakúra": [
         "Chapacura"
     ],
+    "Xaracuu": [
+        "Xârâcùù"
+    ],
+    "Xaragure": [
+        "Xârâgurè"
+    ],
     "Xgana": [
         "ǁGana"
     ],
@@ -32654,9 +32877,6 @@ ALT_LANGS = {
     ],
     "Xá Phó": [
         "Laghuu"
-    ],
-    "Xârâgurè": [
-        "Xaragure"
     ],
     "Ya": [
         "Kwanka"
@@ -32901,6 +33121,9 @@ ALT_LANGS = {
     "Yemma": [
         "Yemsa"
     ],
+    "Yeniche": [
+        "Yenish"
+    ],
     "Yeral": [
         "Nheengatu"
     ],
@@ -32975,6 +33198,9 @@ ALT_LANGS = {
     ],
     "Youle Jinuo": [
         "Youle Jino"
+    ],
+    "Yuaga": [
+        "Yuanga"
     ],
     "Yuanmen": [
         "Hlai"
@@ -33112,6 +33338,9 @@ ALT_LANGS = {
     "Zenúfana": [
         "Sinúfana"
     ],
+    "Zhenan": [
+        "Zhenan Min"
+    ],
     "Zhongsha": [
         "Hlai"
     ],
@@ -33135,6 +33364,9 @@ ALT_LANGS = {
     ],
     "Zipserisch": [
         "Zipser German"
+    ],
+    "Zire": [
+        "Sîshëë"
     ],
     "Zo": [
         "Mak (Nigeria)",
@@ -33217,11 +33449,8 @@ ALT_LANGS = {
     "Äiwoo": [
         "Aiwoo"
     ],
-    "Äynu": [
-        "Aynu"
-    ],
     "Äynú": [
-        "Aynu"
+        "Äynu"
     ],
     "Índios do Coxodoá": [
         "Suruahá"
