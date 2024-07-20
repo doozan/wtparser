@@ -273,7 +273,7 @@ ALL_LANG_IDS = {
     "amp": "Alamblak",
     "amq": "Amahai",
     "amr": "Amarakaeri",
-    "ams": "Southern Amami-Oshima",
+    "ams": "Southern Amami Ōshima",
     "amt": "Amto",
     "amu": "Guerrero Amuzgo",
     "amv": "Ambelau",
@@ -1676,6 +1676,7 @@ ALL_LANG_IDS = {
     "dgw": "Daungwurrung",
     "dgx": "Doghoro",
     "dgz": "Daga",
+    "dhd": "Dhundhari",
     "dhg": "Dhangu",
     "dhi": "Dhimal",
     "dhl": "Dhalandji",
@@ -4777,7 +4778,7 @@ ALL_LANG_IDS = {
     "nez": "Nez Perce",
     "nfa": "Dhao",
     "nfd": "Ahwai",
-    "nfl": "Aiwoo",
+    "nfl": "Äiwoo",
     "nfr": "Nafaanra",
     "nfu": "Mfumte",
     "ng": "Ndonga",
@@ -5212,7 +5213,7 @@ ALL_LANG_IDS = {
     "okk": "Kwamtim One",
     "okl": "Old Kentish Sign Language",
     "okm": "Middle Korean",
-    "okn": "Oki-No-Erabu",
+    "okn": "Okinoerabu",
     "oko": "Old Korean",
     "okr": "Kirike",
     "oks": "Oko-Eni-Osayen",
@@ -5906,7 +5907,7 @@ ALL_LANG_IDS = {
     "rwo": "Rawa",
     "rxd": "Ngardi",
     "rxw": "Karuwali",
-    "ryn": "Northern Amami-Oshima",
+    "ryn": "Northern Amami Ōshima",
     "rys": "Yaeyama",
     "ryu": "Okinawan",
     "rzh": "Razihi",
@@ -6760,7 +6761,7 @@ ALL_LANG_IDS = {
     "tkf": "Tukumanféd",
     "tkl": "Tokelauan",
     "tkm": "Takelma",
-    "tkn": "Toku-No-Shima",
+    "tkn": "Tokunoshima",
     "tkp": "Tikopia",
     "tkq": "Tee",
     "tkr": "Tsakhur",
@@ -8344,7 +8345,6 @@ ALL_LANGS = {
     "Airoran": "air",
     "Aisi": "mmq",
     "Aiton": "aio",
-    "Aiwoo": "nfl",
     "Aja": "aja",
     "Ajagua": "sai-ajg",
     "Ajawa": "ajw",
@@ -9812,6 +9812,7 @@ ALL_LANGS = {
     "Dhodia": "dho",
     "Dhofari Arabic": "adf",
     "Dhudhuroa": "ddr",
+    "Dhundhari": "dhd",
     "Dhungaloo": "dhx",
     "Dhurga": "dhu",
     "Dhuwal": "dwu",
@@ -13294,7 +13295,7 @@ ALL_LANGS = {
     "Northeastern Pomo": "pef",
     "Northern Alta": "aqn",
     "Northern Altai": "atv",
-    "Northern Amami-Oshima": "ryn",
+    "Northern Amami Ōshima": "ryn",
     "Northern Bontoc": "rbk",
     "Northern Catanduanes Bicolano": "cts",
     "Northern Dagara": "dgi",
@@ -13493,9 +13494,9 @@ ALL_LANGS = {
     "Ojibwe": "oj",
     "Ojitlán Chinantec": "chj",
     "Okanagan": "oka",
-    "Oki-No-Erabu": "okn",
     "Okiek": "oki",
     "Okinawan": "ryu",
+    "Okinoerabu": "okn",
     "Oko-Eni-Osayen": "oks",
     "Oko-Juwoi": "okj",
     "Okobo": "okb",
@@ -14947,7 +14948,7 @@ ALL_LANGS = {
     "Southeastern Tepehuan": "stp",
     "Southern Alta": "agy",
     "Southern Altai": "alt",
-    "Southern Amami-Oshima": "ams",
+    "Southern Amami Ōshima": "ams",
     "Southern Bai": "bfs",
     "Southern Birifor": "biv",
     "Southern Bobo": "bwq",
@@ -15488,7 +15489,7 @@ ALL_LANGS = {
     "Tokano": "zuh",
     "Tokelauan": "tkl",
     "Toki Pona": "tok",
-    "Toku-No-Shima": "tkn",
+    "Tokunoshima": "tkn",
     "Tol": "jic",
     "Tolai": "ksd",
     "Tolaki": "lbw",
@@ -16446,6 +16447,7 @@ ALL_LANGS = {
     "Záparo": "zro",
     "Àhàn": "ahn",
     "Áncá": "acb",
+    "Äiwoo": "nfl",
     "Äynu": "aib",
     "Ömie": "aom",
     "Önge": "oon",
@@ -16734,6 +16736,9 @@ ALT_LANGS = {
     ],
     "Aiwa": [
         "Abishira"
+    ],
+    "Aiwoo": [
+        "Äiwoo"
     ],
     "Aja": [
         "Adja"
@@ -17590,7 +17595,7 @@ ALT_LANGS = {
         "Kings River Yokuts"
     ],
     "Ayiwo": [
-        "Aiwoo"
+        "Äiwoo"
     ],
     "Ayizo Gbe": [
         "Ayizo"
@@ -20452,6 +20457,7 @@ ALT_LANGS = {
         "Luo"
     ],
     "Dhundari": [
+        "Dhundhari",
         "Marwari"
     ],
     "Dia": [
@@ -22744,6 +22750,9 @@ ALT_LANGS = {
     ],
     "Jaikó": [
         "Jeikó"
+    ],
+    "Jaipuri": [
+        "Dhundhari"
     ],
     "Jakalteko": [
         "Jakaltek"
@@ -27380,6 +27389,9 @@ ALT_LANGS = {
     "Northern Altay": [
         "Northern Altai"
     ],
+    "Northern Amami-Oshima": [
+        "Northern Amami Ōshima"
+    ],
     "Northern Amuzgo": [
         "Guerrero Amuzgo"
     ],
@@ -27759,14 +27771,14 @@ ALT_LANGS = {
     "Okere": [
         "Cherepon"
     ],
+    "Oki-No-Erabu": [
+        "Okinoerabu"
+    ],
     "Oki-no-Erabu": [
-        "Oki-No-Erabu"
+        "Okinoerabu"
     ],
     "Okino-Erabu": [
-        "Oki-No-Erabu"
-    ],
-    "Okinoerabu": [
-        "Oki-No-Erabu"
+        "Okinoerabu"
     ],
     "Okordia": [
         "Okodia"
@@ -30443,6 +30455,9 @@ ALT_LANGS = {
     "Southern Altay": [
         "Southern Altai"
     ],
+    "Southern Amami-Oshima": [
+        "Southern Amami Ōshima"
+    ],
     "Southern Amuzgo": [
         "Guerrero Amuzgo"
     ],
@@ -31412,11 +31427,11 @@ ALT_LANGS = {
     "Tokaleya": [
         "Toka-Leya"
     ],
-    "Toku-no-Shima": [
-        "Toku-No-Shima"
+    "Toku-No-Shima": [
+        "Tokunoshima"
     ],
-    "Tokunoshima": [
-        "Toku-No-Shima"
+    "Toku-no-Shima": [
+        "Tokunoshima"
     ],
     "Tolashi": [
         "Talysh"
@@ -33445,9 +33460,6 @@ ALT_LANGS = {
     ],
     "ut-Ma'in": [
         "Fakkanci"
-    ],
-    "Äiwoo": [
-        "Aiwoo"
     ],
     "Äynú": [
         "Äynu"
