@@ -17338,6 +17338,9 @@ ALT_LANGS = {
     "Ashreti": [
         "Phalura"
     ],
+    "Asokan Prakrit": [
+        "Ashokan Prakrit"
+    ],
     "Asu": [
         "Pare"
     ],
@@ -17646,6 +17649,9 @@ ALT_LANGS = {
     ],
     "Azumara": [
         "Wayumará"
+    ],
+    "Aśokan Prakrit": [
+        "Ashokan Prakrit"
     ],
     "BCS": [
         "Serbo-Croatian"
