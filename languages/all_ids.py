@@ -2172,7 +2172,6 @@ ALL_LANG_IDS = {
     "gej": "Gen",
     "gek": "Gerka",
     "gel": "Fakkanci",
-    "gem-bur": "Burgundian",
     "gem-pro": "Proto-Germanic",
     "geq": "Geme",
     "ges": "Geser-Gorom",
@@ -2251,6 +2250,7 @@ ALL_LANG_IDS = {
     "gma": "Gambera",
     "gmb": "Gula'alaa",
     "gmd": "Mághdì",
+    "gme-bur": "Burgundian",
     "gme-cgo": "Crimean Gothic",
     "gmg": "Magiyi",
     "gmh": "Middle High German",
@@ -2733,7 +2733,6 @@ ALL_LANG_IDS = {
     "inc-ohi": "Old Hindi",
     "inc-oor": "Old Odia",
     "inc-opa": "Old Punjabi",
-    "inc-pra": "Prakrit",
     "inc-pro": "Proto-Indo-Aryan",
     "ine-ana-pro": "Proto-Anatolian",
     "ine-bsl-pro": "Proto-Balto-Slavic",
@@ -4188,6 +4187,8 @@ ALL_LANG_IDS = {
     "mjc": "San Juan Colorado Mixtec",
     "mjd": "Northwest Maidu",
     "mje": "Muskum",
+    "mjg-mgl": "Mongghul",
+    "mjg-mgr": "Mangghuer",
     "mji": "Kim Mun",
     "mjj": "Mawak",
     "mjk": "Matukar",
@@ -5615,6 +5616,7 @@ ALL_LANG_IDS = {
     "pqa": "Pa'a",
     "pqe-pro": "Proto-Eastern Malayo-Polynesian",
     "pqm": "Malecite-Passamaquoddy",
+    "pra": "Prakrit",
     "pra-niy": "Niya Prakrit",
     "prc": "Parachi",
     "pre": "Principense",
@@ -7584,8 +7586,6 @@ ALL_LANG_IDS = {
     "xgi": "Garingbal",
     "xgl": "Galindian",
     "xgm": "Darumbal",
-    "xgn-mgl": "Mongghul",
-    "xgn-mgr": "Mangghuer",
     "xgn-pro": "Proto-Mongolic",
     "xgr": "Garza",
     "xgu": "Unggumi",
@@ -9296,7 +9296,7 @@ ALL_LANGS = {
     "Burate": "bti",
     "Burduna": "bxn",
     "Bure": "bvh",
-    "Burgundian": "gem-bur",
+    "Burgundian": "gme-bur",
     "Burji": "bji",
     "Burmbar": "vrt",
     "Burmese": "my",
@@ -12339,7 +12339,7 @@ ALL_LANGS = {
     "Mangerr": "zme",
     "Mangga Buang": "mmo",
     "Manggarai": "mqy",
-    "Mangghuer": "xgn-mgr",
+    "Mangghuer": "mjg-mgr",
     "Mango": "mge",
     "Mangole": "mqc",
     "Mangseng": "mbh",
@@ -12762,7 +12762,7 @@ ALL_LANGS = {
     "Monastic Sign Language": "mzg",
     "Mondropolon": "npn",
     "Mondé": "mnd",
-    "Mongghul": "xgn-mgl",
+    "Mongghul": "mjg-mgl",
     "Mongo": "lol",
     "Mongol": "mgt",
     "Mongolian": "mn",
@@ -13943,7 +13943,7 @@ ALL_LANGS = {
     "Powari": "pwr",
     "Powhatan": "pim",
     "Poyanáwa": "pyn",
-    "Prakrit": "inc-pra",
+    "Prakrit": "pra",
     "Prasuni": "prn",
     "Primitive Irish": "pgl",
     "Principense": "pre",
@@ -16765,6 +16765,9 @@ ALT_LANGS = {
     "Ajami": [
         "Mozarabic"
     ],
+    "Ajarani": [
+        "Ỹaroamë"
+    ],
     "Ajoulot": [
         "Franc-Comtois"
     ],
@@ -19452,6 +19455,12 @@ ALT_LANGS = {
     "Central Thai": [
         "Thai"
     ],
+    "Central Waicá": [
+        "Yanomámi"
+    ],
+    "Central-Waika": [
+        "Yanomámi"
+    ],
     "Central-Western Ijo": [
         "Izon"
     ],
@@ -21659,8 +21668,14 @@ ALT_LANGS = {
     "Guadeloupean Creole French": [
         "Antillean Creole"
     ],
+    "Guaharibo": [
+        "Yanomamö"
+    ],
     "Guaiatacá": [
         "Waitaká"
+    ],
+    "Guaica": [
+        "Yanomamö"
     ],
     "Guaicurú": [
         "Kadiwéu"
@@ -21670,6 +21685,9 @@ ALT_LANGS = {
     ],
     "Guaitacá": [
         "Waitaká"
+    ],
+    "Guajaribo": [
+        "Yanomamö"
     ],
     "Guajiro": [
         "Wayuu"
@@ -22409,6 +22427,12 @@ ALT_LANGS = {
     ],
     "Hutterite German": [
         "Hutterisch"
+    ],
+    "Huzhu": [
+        "Mongghul"
+    ],
+    "Huzhu Monguor": [
+        "Mongghul"
     ],
     "Hyolmo": [
         "Yolmo"
@@ -26355,6 +26379,12 @@ ALT_LANGS = {
     "Mingrel": [
         "Mingrelian"
     ],
+    "Minhe": [
+        "Mangghuer"
+    ],
+    "Minhe Monguor": [
+        "Mangghuer"
+    ],
     "Mini": [
         "Barikewa",
         "Mouwase"
@@ -26538,23 +26568,11 @@ ALT_LANGS = {
     "Mong Leng": [
         "Green Hmong"
     ],
-    "Mongor": [
-        "Mongghul",
-        "Mangghuer"
-    ],
-    "Mongour": [
-        "Mongghul",
-        "Mangghuer"
-    ],
     "Mongoyó": [
         "Kamakan"
     ],
     "Mongsen Ao": [
         "Ao"
-    ],
-    "Monguor": [
-        "Mongghul",
-        "Mangghuer"
     ],
     "Mono": [
         "Mono (Congo)",
@@ -27751,6 +27769,9 @@ ALT_LANGS = {
     "Occidental": [
         "Interlingue"
     ],
+    "Occidental Yanomami": [
+        "Yanomamö"
+    ],
     "Ocuiltec": [
         "Tlahuica"
     ],
@@ -28014,6 +28035,9 @@ ALT_LANGS = {
     ],
     "Orcoquiza": [
         "Atakapa"
+    ],
+    "Oriental Yanomami": [
+        "Yanomámi"
     ],
     "Oriya": [
         "Odia"
@@ -29709,6 +29733,12 @@ ALT_LANGS = {
     "Sandia Tiwa": [
         "Southern Tiwa"
     ],
+    "Sanema": [
+        "Sanumá"
+    ],
+    "Sanemá": [
+        "Sanumá"
+    ],
     "Sanga": [
         "Sanga (Congo)",
         "Sanga (Nigeria)"
@@ -29731,8 +29761,14 @@ ALT_LANGS = {
     "Sangsari": [
         "Sangisari"
     ],
+    "Sanima": [
+        "Sanumá"
+    ],
     "Sankuma": [
         "Konabéré"
+    ],
+    "Sanma": [
+        "Sanumá"
     ],
     "Sanna": [
         "Cypriot Arabic"
@@ -29758,11 +29794,20 @@ ALT_LANGS = {
     "Santa Rosa": [
         "Guamo"
     ],
+    "Sanuma": [
+        "Sanumá"
+    ],
     "Sanxiang": [
         "Sanxiang Min"
     ],
     "Sanya Hui": [
         "Tsat"
+    ],
+    "Sanöma": [
+        "Sanumá"
+    ],
+    "Sanɨma": [
+        "Sanumá"
     ],
     "Sao": [
         "Thao"
@@ -29995,6 +30040,9 @@ ALT_LANGS = {
     "Sham Doaniya": [
         "Aiton"
     ],
+    "Shamatari": [
+        "Yanomamö"
+    ],
     "Shamay": [
         "Osamayi"
     ],
@@ -30087,6 +30135,12 @@ ALT_LANGS = {
     ],
     "Shipo": [
         "Shaozhou Tuhua"
+    ],
+    "Shiriana": [
+        "Ninam"
+    ],
+    "Shirishana": [
+        "Ninam"
     ],
     "Shirwi": [
         "Xianbei"
@@ -32146,11 +32200,23 @@ ALT_LANGS = {
     "Wai Wai": [
         "Waiwai"
     ],
+    "Waica": [
+        "Yanomámi"
+    ],
     "Waicura": [
         "Waikuri"
     ],
+    "Waicá": [
+        "Yanomámi"
+    ],
+    "Waika": [
+        "Yanomámi"
+    ],
     "Waikurú": [
         "Kadiwéu"
+    ],
+    "Waiká": [
+        "Yanomámi"
     ],
     "Waima": [
         "Wainumá"
@@ -32831,6 +32897,15 @@ ALT_LANGS = {
     "Xalimego": [
         "Fala"
     ],
+    "Xamatari": [
+        "Yanomamö"
+    ],
+    "Xamatauteri": [
+        "Yanomamö"
+    ],
+    "Xamathari": [
+        "Yanomamö"
+    ],
     "Xapacura": [
         "Chapacura"
     ],
@@ -32890,6 +32965,15 @@ ALT_LANGS = {
     ],
     "Xipaia": [
         "Xipaya"
+    ],
+    "Xiriana": [
+        "Ninam"
+    ],
+    "Xirixana": [
+        "Ninam"
+    ],
+    "Xiriâna": [
+        "Ninam"
     ],
     "Xironga": [
         "Ronga"
@@ -33063,6 +33147,12 @@ ALT_LANGS = {
     "Yamphu": [
         "Southern Lorung"
     ],
+    "Yanam": [
+        "Ninam"
+    ],
+    "Yanam-Ninam": [
+        "Ninam"
+    ],
     "Yanda": [
         "Yanda Dogon"
     ],
@@ -33086,6 +33176,22 @@ ALT_LANGS = {
     ],
     "Yanguang Zhuang": [
         "Nong Zhuang"
+    ],
+    "Yanomami": [
+        "Yanomamö",
+        "Yanomámi"
+    ],
+    "Yanomamé": [
+        "Yanomámi"
+    ],
+    "Yanomamï": [
+        "Yanomamö"
+    ],
+    "Yanomám": [
+        "Yanomámi"
+    ],
+    "Yanomámi": [
+        "Yanomámi"
     ],
     "Yanuma": [
         "Wainumá"
@@ -33348,11 +33454,20 @@ ALT_LANGS = {
     "Yurúna": [
         "Jurúna"
     ],
+    "Yãnomamɨ": [
+        "Yanomamö"
+    ],
+    "Yãnomãmɨ": [
+        "Yanomamö"
+    ],
     "Yúki": [
         "Yuqui"
     ],
     "Yüeh": [
         "Cantonese"
+    ],
+    "Yąnomamö": [
+        "Yanomamö"
     ],
     "Zaachila Zapoteco": [
         "Zaachila Zapotec"
