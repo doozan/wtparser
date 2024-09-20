@@ -2736,6 +2736,7 @@ ALL_LANG_IDS = {
     "inc-pro": "Proto-Indo-Aryan",
     "ine-ana-pro": "Proto-Anatolian",
     "ine-bsl-pro": "Proto-Balto-Slavic",
+    "ine-kal": "Kalašma",
     "ine-pae": "Paeonian",
     "ine-pro": "Proto-Indo-European",
     "ine-toc-pro": "Proto-Tocharian",
@@ -5745,7 +5746,6 @@ ALL_LANG_IDS = {
     "rag": "Logooli",
     "rah": "Rabha",
     "rai": "Ramoaaina",
-    "raj": "Rajasthani",
     "rak": "Tulu-Bohuai",
     "ral": "Ralte",
     "ram": "Canela",
@@ -7341,7 +7341,7 @@ ALL_LANG_IDS = {
     "wbt": "Wanman",
     "wbv": "Wajarri",
     "wbw": "Woi",
-    "wca": "Yanomámi",
+    "wca": "Yanomam",
     "wci": "Waci Gbe",
     "wdd": "Wandji",
     "wdg": "Wadaginam",
@@ -11082,6 +11082,7 @@ ALL_LANGS = {
     "Kalarko": "kba",
     "Kalasha": "kls",
     "Kalasuri": "xme-kls",
+    "Kalašma": "ine-kal",
     "Kalenjin": "kln",
     "Kalinago": "crb",
     "Kalkatungu": "ktg",
@@ -14322,7 +14323,6 @@ ALL_LANGS = {
     "Raga": "lml",
     "Rahambuu": "raz",
     "Rajah Kabunsuwan Manobo": "mqk",
-    "Rajasthani": "raj",
     "Rajbanshi": "rjs",
     "Raji": "rji",
     "Rajong": "rjg",
@@ -16236,8 +16236,8 @@ ALL_LANGS = {
     "Yangum Gel": "ygl",
     "Yangum Mon": "ymo",
     "Yankunytjatjara": "kdd",
+    "Yanomam": "wca",
     "Yanomamö": "guu",
-    "Yanomámi": "wca",
     "Yansi": "yns",
     "Yanyuwa": "jao",
     "Yao": "yao",
@@ -19456,10 +19456,10 @@ ALT_LANGS = {
         "Thai"
     ],
     "Central Waicá": [
-        "Yanomámi"
+        "Yanomam"
     ],
     "Central-Waika": [
-        "Yanomámi"
+        "Yanomam"
     ],
     "Central-Western Ijo": [
         "Izon"
@@ -23270,8 +23270,14 @@ ALT_LANGS = {
     "Kalaallisut": [
         "Greenlandic"
     ],
+    "Kalasmaic": [
+        "Kalašma"
+    ],
     "Kalasur": [
         "Kalasuri"
+    ],
+    "Kalašmaic": [
+        "Kalašma"
     ],
     "Kalhiphona": [
         "Kalinago"
@@ -28037,7 +28043,7 @@ ALT_LANGS = {
         "Atakapa"
     ],
     "Oriental Yanomami": [
-        "Yanomámi"
+        "Yanomam"
     ],
     "Oriya": [
         "Odia"
@@ -29807,6 +29813,9 @@ ALT_LANGS = {
         "Sanumá"
     ],
     "Sanɨma": [
+        "Sanumá"
+    ],
+    "Sanỳma": [
         "Sanumá"
     ],
     "Sao": [
@@ -32201,22 +32210,22 @@ ALT_LANGS = {
         "Waiwai"
     ],
     "Waica": [
-        "Yanomámi"
+        "Yanomam"
     ],
     "Waicura": [
         "Waikuri"
     ],
     "Waicá": [
-        "Yanomámi"
+        "Yanomam"
     ],
     "Waika": [
-        "Yanomámi"
+        "Yanomam"
     ],
     "Waikurú": [
         "Kadiwéu"
     ],
     "Waiká": [
-        "Yanomámi"
+        "Yanomam"
     ],
     "Waima": [
         "Wainumá"
@@ -33179,19 +33188,22 @@ ALT_LANGS = {
     ],
     "Yanomami": [
         "Yanomamö",
-        "Yanomámi"
+        "Yanomam"
     ],
     "Yanomamé": [
-        "Yanomámi"
+        "Yanomam"
     ],
     "Yanomamï": [
         "Yanomamö"
     ],
+    "Yanomamỳ": [
+        "Yanomamö"
+    ],
     "Yanomám": [
-        "Yanomámi"
+        "Yanomam"
     ],
     "Yanomámi": [
-        "Yanomámi"
+        "Yanomam"
     ],
     "Yanuma": [
         "Wainumá"
@@ -33453,6 +33465,9 @@ ALT_LANGS = {
     ],
     "Yurúna": [
         "Jurúna"
+    ],
+    "Yãnomamè": [
+        "Yanomam"
     ],
     "Yãnomamɨ": [
         "Yanomamö"
