@@ -544,7 +544,7 @@ ALL_LANG_IDS = {
     "aww": "Awun",
     "awx": "Awara",
     "awy": "Edera Awyu",
-    "axb": "Abipon",
+    "axb": "Abipón",
     "axe": "Ayerrerenge",
     "axg": "Mato Grosso Arára",
     "axk": "Aka (Central Africa)",
@@ -3690,7 +3690,7 @@ ALL_LANG_IDS = {
     "lel": "Lele (Congo)",
     "lem": "Nomaande",
     "len": "Honduran Lenca",
-    "leo": "Leti (Cameroon)",
+    "leo": "Mengisa",
     "lep": "Lepcha",
     "leq": "Lembena",
     "ler": "Lenkau",
@@ -3895,7 +3895,7 @@ ALL_LANG_IDS = {
     "lt": "Lithuanian",
     "ltc": "Middle Chinese",
     "ltg": "Latgalian",
-    "lti": "Leti (Indonesia)",
+    "lti": "Leti",
     "ltn": "Latundê",
     "lto": "Olutsotso",
     "lts": "Lutachoni",
@@ -5950,6 +5950,7 @@ ALL_LANG_IDS = {
     "sai-gam": "Gamela",
     "sai-gay": "Gayón",
     "sai-gmo": "Guamo",
+    "sai-gua": "Guachí",
     "sai-gue": "Güenoa",
     "sai-hau": "Haush",
     "sai-jee-pro": "Proto-Jê",
@@ -8123,7 +8124,6 @@ ALL_LANG_IDS = {
     "zkz": "Khazar",
     "zle-ono": "Old Novgorodian",
     "zle-ort": "Old Ruthenian",
-    "zlw-mas": "Masurian",
     "zlw-ocs": "Old Czech",
     "zlw-opl": "Old Polish",
     "zlw-osk": "Old Slovak",
@@ -8243,7 +8243,7 @@ ALL_LANGS = {
     "Abenlen Ayta": "abp",
     "Abidji": "abi",
     "Abinomn": "bsa",
-    "Abipon": "axb",
+    "Abipón": "axb",
     "Abishira": "ash",
     "Abkhaz": "ab",
     "Abom": "aob",
@@ -10422,6 +10422,7 @@ ALL_LANGS = {
     "Groma": "gro",
     "Gros Ventre": "ats",
     "Gua": "gwx",
+    "Guachí": "sai-gua",
     "Guahibo": "guh",
     "Guajajára": "gub",
     "Guajá": "gvj",
@@ -11955,8 +11956,7 @@ ALL_LANGS = {
     "Lese": "les",
     "Lesing-Gelimi": "let",
     "Letemboi": "nms",
-    "Leti (Cameroon)": "leo",
-    "Leti (Indonesia)": "lti",
+    "Leti": "lti",
     "Levuka": "lvu",
     "Lewo": "lww",
     "Lewo Eleng": "lwe",
@@ -12447,7 +12447,6 @@ ALL_LANGS = {
     "Massachusett": "wam",
     "Massalat": "mdg",
     "Massep": "mvs",
-    "Masurian": "zlw-mas",
     "Matagalpa": "mtn",
     "Matal": "mfh",
     "Matanawi": "sai-mat",
@@ -12572,6 +12571,7 @@ ALL_LANGS = {
     "Mende": "men",
     "Mengaka": "xmg",
     "Mengen": "mee",
+    "Mengisa": "leo",
     "Menien": "sai-men",
     "Menka": "mea",
     "Menominee": "mez",
@@ -16507,8 +16507,8 @@ ALT_LANGS = {
     "Abigira": [
         "Abishira"
     ],
-    "Abipón": [
-        "Abipon"
+    "Abipon": [
+        "Abipón"
     ],
     "Abiquira": [
         "Abishira"
@@ -17030,6 +17030,9 @@ ALT_LANGS = {
     ],
     "Ancient Egyptian": [
         "Egyptian"
+    ],
+    "Ancient Khmer": [
+        "Old Khmer"
     ],
     "Ancient Nordic": [
         "Proto-Norse"
@@ -19129,7 +19132,7 @@ ALT_LANGS = {
         "Cacán"
     ],
     "Callaga": [
-        "Abipon"
+        "Abipón"
     ],
     "Callahuaya": [
         "Kallawaya"
@@ -21662,6 +21665,9 @@ ALT_LANGS = {
     "Griko": [
         "Italiot Greek"
     ],
+    "Guachi": [
+        "Guachí"
+    ],
     "Guadeloupean Creole": [
         "Antillean Creole"
     ],
@@ -23318,7 +23324,7 @@ ALT_LANGS = {
         "Kalkatungu"
     ],
     "Kalyaga": [
-        "Abipon"
+        "Abipón"
     ],
     "Kalāsur": [
         "Kalasuri"
@@ -25024,8 +25030,7 @@ ALT_LANGS = {
         "Sakata"
     ],
     "Leti": [
-        "Leti (Cameroon)",
-        "Leti (Indonesia)"
+        "Mengisa"
     ],
     "Lett": [
         "Latvian"
@@ -26016,9 +26021,6 @@ ALT_LANGS = {
     ],
     "Mazorij": [
         "Macoris"
-    ],
-    "Mazurian": [
-        "Masurian"
     ],
     "Maʔúŋke": [
         "Chiwere"
@@ -32160,6 +32162,12 @@ ALT_LANGS = {
     ],
     "Waanyi": [
         "Wanyi"
+    ],
+    "Wachi": [
+        "Guachí"
+    ],
+    "Wachí": [
+        "Guachí"
     ],
     "Wada wurrung": [
         "Wathaurong"
