@@ -7232,7 +7232,7 @@ ALL_LANG_IDS = {
     "vbb": "Southeast Babar",
     "vbk": "Southwestern Bontoc",
     "ve": "Venda",
-    "vec": "Venetian",
+    "vec": "Venetan",
     "ved": "Veddah",
     "vem": "Vemgo-Mabas",
     "veo": "Ventureño",
@@ -7641,6 +7641,7 @@ ALL_LANG_IDS = {
     "xle": "Lemnian",
     "xlg": "Ancient Ligurian",
     "xli": "Liburnian",
+    "xln": "Alanic",
     "xlo": "Loup A",
     "xlp": "Lepontic",
     "xls": "Lusitanian",
@@ -7742,6 +7743,7 @@ ALL_LANG_IDS = {
     "xsb": "Sambali",
     "xsc-pro": "Proto-Scythian",
     "xsc-sak-pro": "Proto-Saka",
+    "xsc-sar-pro": "Proto-Sarmatian",
     "xsc-skw-pro": "Proto-Saka-Wakhi",
     "xsd": "Sidetic",
     "xse": "Sempan",
@@ -8391,6 +8393,7 @@ ALL_LANGS = {
     "Alak": "alk",
     "Alamblak": "amp",
     "Alangan": "alj",
+    "Alanic": "xln",
     "Alapmunte": "apv",
     "Alas-Kluet Batak": "btz",
     "Alawa": "alh",
@@ -14173,6 +14176,7 @@ ALL_LANGS = {
     "Proto-Samoyedic": "syd-pro",
     "Proto-Sanglechi-Ishkashimi": "ira-sgi-pro",
     "Proto-Sara": "csu-sar-pro",
+    "Proto-Sarmatian": "xsc-sar-pro",
     "Proto-Scythian": "xsc-pro",
     "Proto-Selkup": "sel-pro",
     "Proto-Semitic": "sem-pro",
@@ -15827,7 +15831,7 @@ ALL_LANGS = {
     "Vehes": "val",
     "Vemgo-Mabas": "vem",
     "Venda": "ve",
-    "Venetian": "vec",
+    "Venetan": "vec",
     "Venetic": "xve",
     "Venezuelan Sign Language": "vsl",
     "Ventureño": "veo",
@@ -32094,8 +32098,8 @@ ALT_LANGS = {
     "Vendômois": [
         "Orléanais"
     ],
-    "Venetan": [
-        "Venetian"
+    "Venetian": [
+        "Venetan"
     ],
     "Vengo": [
         "Babungo"
