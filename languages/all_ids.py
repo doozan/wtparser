@@ -24409,6 +24409,9 @@ ALT_LANGS = {
     "Kuanyama": [
         "Kwanyama"
     ],
+    "Kuay": [
+        "Kuy"
+    ],
     "Kubeo": [
         "Cubeo"
     ],
@@ -24434,6 +24437,7 @@ ALT_LANGS = {
         "Kugu-Muminh"
     ],
     "Kui": [
+        "Kuy",
         "Kui (Indonesia)",
         "Kui (India)"
     ],
@@ -30743,6 +30747,9 @@ ALT_LANGS = {
     ],
     "Suaro": [
         "Maia"
+    ],
+    "Suay": [
+        "Kuy"
     ],
     "Subu": [
         "Isubu"
