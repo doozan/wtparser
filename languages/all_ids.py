@@ -6,7 +6,7 @@ ALL_LANG_IDS = {
     "aad": "Amal",
     "aaf": "Aranadan",
     "aag": "Ambrak",
-    "aah": "Abu' Arapesh",
+    "aah": "Abu'",
     "aai": "Arifama-Miniafia",
     "aak": "Ankave",
     "aal": "Afade",
@@ -2541,6 +2541,7 @@ ALL_LANG_IDS = {
     "hnh": "ǁAni",
     "hni": "Hani",
     "hnj": "Green Hmong",
+    "hnm": "Hainanese",
     "hnn": "Hanunoo",
     "hno": "Northern Hindko",
     "hns": "Caribbean Hindustani",
@@ -2817,7 +2818,7 @@ ALL_LANG_IDS = {
     "itw": "Ito",
     "itx": "Itik",
     "ity": "Moyadan Itneg",
-    "itz": "Itzá",
+    "itz": "Itza'",
     "iu": "Inuktitut",
     "ium": "Iu Mien",
     "ivb": "Ibatan",
@@ -3906,6 +3907,7 @@ ALL_LANG_IDS = {
     "lud": "Ludian",
     "lue": "Luvale",
     "luf": "Laua",
+    "luh": "Leizhou Min",
     "lui": "Luiseño",
     "luj": "Luna",
     "luk": "Lunanakha",
@@ -4164,7 +4166,7 @@ ALL_LANG_IDS = {
     "mip": "Apasco-Apoala Mixtec",
     "miq": "Miskito",
     "mir": "Isthmus Mixe",
-    "mis-hkl": "Kelantan Peranakan",
+    "mis-hkl": "Kelantan Peranakan Hokkien",
     "mis-isa": "Isaurian",
     "mis-jie": "Jie",
     "mis-jzh": "Jizhao",
@@ -4669,9 +4671,7 @@ ALL_LANG_IDS = {
     "nan-dat": "Datian Min",
     "nan-hbl": "Hokkien",
     "nan-hlh": "Hailufeng Min",
-    "nan-hnm": "Hainanese",
     "nan-lnx": "Longyan Min",
-    "nan-luh": "Leizhou Min",
     "nan-tws": "Teochew",
     "nan-zhe": "Zhenan Min",
     "nan-zsh": "Sanxiang Min",
@@ -6230,6 +6230,7 @@ ALL_LANG_IDS = {
     "siz": "Siwi",
     "sja": "Epena",
     "sjb": "Sajau Basap",
+    "sjc": "Shaojiang Min",
     "sjd": "Kildin Sami",
     "sje": "Pite Sami",
     "sjg": "Assangori",
@@ -8252,7 +8253,7 @@ ALL_LANGS = {
     "Abon": "abo",
     "Abron": "abr",
     "Abu": "ado",
-    "Abu' Arapesh": "aah",
+    "Abu'": "aah",
     "Abua": "abn",
     "Abui": "abz",
     "Abun": "kgr",
@@ -10532,7 +10533,7 @@ ALL_LANGS = {
     "Haida": "hai",
     "Haigwai": "hgw",
     "Hailufeng Min": "nan-hlh",
-    "Hainanese": "nan-hnm",
+    "Hainanese": "hnm",
     "Hainyaxo Bozo": "bzx",
     "Haiphong Sign Language": "haf",
     "Haisla": "has",
@@ -10861,7 +10862,7 @@ ALL_LANGS = {
     "Itsekiri": "its",
     "Itu Mbon Uzo": "itm",
     "Itundujia Mixtec": "mce",
-    "Itzá": "itz",
+    "Itza'": "itz",
     "Iu Mien": "ium",
     "Ivatan": "ivv",
     "Iwaidja": "ibd",
@@ -11291,7 +11292,7 @@ ALL_LANGS = {
     "Keiyo": "eyo",
     "Kela-Yela": "kel",
     "Kelabit": "kzi",
-    "Kelantan Peranakan": "mis-hkl",
+    "Kelantan Peranakan Hokkien": "mis-hkl",
     "Keley-I Kallahan": "ify",
     "Keliko": "kbo",
     "Kelo": "xel",
@@ -11928,7 +11929,7 @@ ALL_LANGS = {
     "Lehali": "tql",
     "Leinong Naga": "lzn",
     "Leipon": "lek",
-    "Leizhou Min": "nan-luh",
+    "Leizhou Min": "luh",
     "Lela": "dri",
     "Lelak": "llk",
     "Lele (Chad)": "lln",
@@ -14731,6 +14732,7 @@ ALL_LANGS = {
     "Shanenawa": "swo",
     "Shanga": "sho",
     "Shangzhai": "jih",
+    "Shaojiang Min": "sjc",
     "Shaozhou Tuhua": "zhx-sht",
     "Sharanahua": "mcd",
     "Shark Bay": "ssv",
@@ -16532,8 +16534,8 @@ ALT_LANGS = {
     "Abor": [
         "Adi"
     ],
-    "Abu'": [
-        "Abu' Arapesh"
+    "Abu' Arapesh": [
+        "Abu'"
     ],
     "Abuzeydabadi": [
         "Kermanic"
@@ -20901,6 +20903,9 @@ ALT_LANGS = {
     "Efutu": [
         "Awutu"
     ],
+    "Ei": [
+        "E"
+    ],
     "Eivo": [
         "Askopan"
     ],
@@ -22081,6 +22086,9 @@ ALT_LANGS = {
     "Hanuno'o": [
         "Hanunoo"
     ],
+    "Hanunó'o": [
+        "Hanunoo"
+    ],
     "Hao-Bai": [
         "Honi"
     ],
@@ -22314,7 +22322,7 @@ ALT_LANGS = {
         "Hoyahoya"
     ],
     "Hokkien Kelantan": [
-        "Kelantan Peranakan"
+        "Kelantan Peranakan Hokkien"
     ],
     "Hokkienese": [
         "Hokkien"
@@ -22727,13 +22735,16 @@ ALT_LANGS = {
         "Itene"
     ],
     "Itza": [
-        "Itzá"
+        "Itza'"
     ],
     "Itzaj": [
-        "Itzá"
+        "Itza'"
     ],
-    "Itza’": [
-        "Itzá"
+    "Itzaʼ": [
+        "Itza'"
+    ],
+    "Itzá": [
+        "Itza'"
     ],
     "Iuruna": [
         "Jurúna"
@@ -23740,13 +23751,13 @@ ALT_LANGS = {
         "Fakkanci"
     ],
     "Kelantan Local Hokkien": [
-        "Kelantan Peranakan"
+        "Kelantan Peranakan Hokkien"
     ],
     "Kelantan Peranakan Chinese": [
-        "Kelantan Peranakan"
+        "Kelantan Peranakan Hokkien"
     ],
     "Kelantan Peranakan Hokkien": [
-        "Kelantan Peranakan"
+        "Kelantan Peranakan Hokkien"
     ],
     "Kele": [
         "Ekele",
@@ -24981,6 +24992,9 @@ ALT_LANGS = {
     "Leizhou": [
         "Leizhou Min"
     ],
+    "Leizhou Chinese": [
+        "Leizhou Min"
+    ],
     "Lel": [
         "Nyishi"
     ],
@@ -25288,6 +25302,9 @@ ALT_LANGS = {
         "Lü"
     ],
     "Luichew": [
+        "Leizhou Min"
+    ],
+    "Luichew Chinese": [
         "Leizhou Min"
     ],
     "Luichew Min": [
@@ -26746,13 +26763,17 @@ ALT_LANGS = {
         "Anguthimri"
     ],
     "Mro": [
-        "Mro Chin"
+        "Mro Chin",
+        "Mru"
     ],
     "Mro-Khimi": [
         "Mro Chin"
     ],
     "Mro-Khimi Chin": [
         "Mro Chin"
+    ],
+    "Mrung": [
+        "Mru"
     ],
     "Muak": [
         "Muak Sa-aak"
@@ -30086,6 +30107,15 @@ ALT_LANGS = {
     "Shanxinese": [
         "Jin"
     ],
+    "Shao-Jiang Chinese": [
+        "Shaojiang Min"
+    ],
+    "Shao-Jiang Min": [
+        "Shaojiang Min"
+    ],
+    "Shaojiang Chinese": [
+        "Shaojiang Min"
+    ],
     "Sharchop": [
         "Tshangla"
     ],
@@ -30296,6 +30326,9 @@ ALT_LANGS = {
     "Silesian Polish": [
         "Silesian"
     ],
+    "Sileti": [
+        "Sylheti"
+    ],
     "Siletz": [
         "Chetco-Tolowa"
     ],
@@ -30310,6 +30343,9 @@ ALT_LANGS = {
     ],
     "Sillok": [
         "Aka (Sudan)"
+    ],
+    "Siloti": [
+        "Sylheti"
     ],
     "Simalungun": [
         "Simalungun Batak"
@@ -30864,6 +30900,15 @@ ALT_LANGS = {
     ],
     "Sydney": [
         "Dharug"
+    ],
+    "Sylhetti": [
+        "Sylheti"
+    ],
+    "Syloti": [
+        "Sylheti"
+    ],
+    "Syloty": [
+        "Sylheti"
     ],
     "Syuba": [
         "Kagate"
@@ -31829,7 +31874,7 @@ ALT_LANGS = {
         "Dogrib"
     ],
     "Ua": [
-        "Abu' Arapesh"
+        "Abu'"
     ],
     "Uagiro": [
         "Wayuu"
@@ -32879,6 +32924,12 @@ ALT_LANGS = {
     ],
     "Wusa Yi": [
         "Wumeng"
+    ],
+    "Wuse": [
+        "E"
+    ],
+    "Wusehua": [
+        "E"
     ],
     "Wusi-Kerepua": [
         "Wusi"
