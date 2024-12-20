@@ -1291,7 +1291,6 @@ ALL_LANG_IDS = {
     "ccj": "Kasanga",
     "ccl": "Cutchi-Swahili",
     "ccm": "Malaccan Creole Malay",
-    "ccn-pro": "Proto-North Caucasian",
     "cco": "Comaltepec Chinantec",
     "ccp": "Chakma",
     "ccr": "Cacaopera",
@@ -14135,7 +14134,6 @@ ALL_LANGS = {
     "Proto-Nilo-Saharan": "ssa-pro",
     "Proto-Nilotic": "sdv-nil-pro",
     "Proto-Norse": "gmq-pro",
-    "Proto-North Caucasian": "ccn-pro",
     "Proto-North Dravidian": "dra-nor-pro",
     "Proto-North Halmahera": "paa-nha-pro",
     "Proto-North Iroquoian": "iro-nor-pro",
@@ -29440,11 +29438,14 @@ ALT_LANGS = {
     "Richa": [
         "Kulere"
     ],
-    "Rifain": [
-        "Tarifit"
-    ],
     "Rifao": [
         "Nimoa"
+    ],
+    "Riffian": [
+        "Tarifit"
+    ],
+    "Rifian": [
+        "Tarifit"
     ],
     "Rimachu": [
         "Maynas"
@@ -31161,6 +31162,7 @@ ALT_LANGS = {
         "Tuareg"
     ],
     "Tamazight": [
+        "Tarifit",
         "Moroccan Amazigh"
     ],
     "Tanaina": [
