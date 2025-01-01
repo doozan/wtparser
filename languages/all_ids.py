@@ -25374,6 +25374,12 @@ ALT_LANGS = {
     "Mabɨŋ": [
         "Aisi"
     ],
+    "Macanese Creole": [
+        "Macanese"
+    ],
+    "Macanese patois": [
+        "Macanese"
+    ],
     "Macao Pidgin Portuguese": [
         "Macau Pidgin Portuguese"
     ],
@@ -30304,6 +30310,9 @@ ALT_LANGS = {
     ],
     "Sichuanese Mandarin": [
         "Sichuanese"
+    ],
+    "Siculian": [
+        "Sicel"
     ],
     "Sidaama": [
         "Sidamo"
