@@ -294,7 +294,7 @@ ALL_LANG_IDS = {
     "anj": "Anor",
     "ank": "Goemai",
     "anl": "Anu",
-    "anm": "Anal",
+    "anm": "Anāl",
     "ann": "Obolo",
     "ano": "Andoque",
     "anp": "Angika",
@@ -589,7 +589,7 @@ ALL_LANG_IDS = {
     "ba": "Bashkir",
     "baa": "Babatana",
     "bab": "Bainouk-Gunyuño",
-    "bac": "Badui",
+    "bac": "Baduy",
     "bae": "Baré",
     "baf": "Nubaca",
     "bag": "Tuki",
@@ -5282,7 +5282,6 @@ ALL_LANG_IDS = {
     "oog": "Ong",
     "oon": "Önge",
     "oor": "Oorlams",
-    "oos": "Old Ossetic",
     "opa": "Okpamheri",
     "opk": "Kopkaka",
     "opm": "Oksapmin",
@@ -5303,7 +5302,6 @@ ALL_LANG_IDS = {
     "orx": "Oro",
     "orz": "Ormu",
     "os": "Ossetian",
-    "os-pro": "Proto-Ossetic",
     "osa": "Osage",
     "osc": "Oscan",
     "osi": "Osing",
@@ -8130,6 +8128,7 @@ ALL_LANG_IDS = {
     "zkz": "Khazar",
     "zle-ono": "Old Novgorodian",
     "zle-ort": "Old Ruthenian",
+    "zls-chs": "Church Slavonic",
     "zlw-ocs": "Old Czech",
     "zlw-opl": "Old Polish",
     "zlw-osk": "Old Slovak",
@@ -8480,7 +8479,6 @@ ALL_LANGS = {
     "Ana Tinga Dogon": "dti",
     "Anaang": "anw",
     "Anakalangu": "akg",
-    "Anal": "anm",
     "Anam": "pda",
     "Anambé": "aan",
     "Anamgura": "imi",
@@ -8551,6 +8549,7 @@ ALL_LANGS = {
     "Anuta": "aud",
     "Anyi": "any",
     "Anyin Morofo": "mtb",
+    "Anāl": "anm",
     "Ao": "njo",
     "Aoheng": "pni",
     "Aore": "aor",
@@ -8757,7 +8756,7 @@ ALL_LANGS = {
     "Bade": "bde",
     "Badeshi": "bdz",
     "Badimaya": "bia",
-    "Badui": "bac",
+    "Baduy": "bac",
     "Badyara": "pbp",
     "Baeggu": "bvd",
     "Baekje": "pkc",
@@ -9590,6 +9589,7 @@ ALL_LANGS = {
     "Chulym": "clw",
     "Chumburung": "ncu",
     "Churahi": "cdj",
+    "Church Slavonic": "zls-chs",
     "Churuya": "sai-chu",
     "Chut": "scb",
     "Chuukese": "chk",
@@ -13558,7 +13558,6 @@ ALL_LANGS = {
     "Old Nubian": "onw",
     "Old Occitan": "pro",
     "Old Odia": "inc-oor",
-    "Old Ossetic": "oos",
     "Old Persian": "peo",
     "Old Polish": "zlw-opl",
     "Old Prussian": "prg",
@@ -14152,7 +14151,6 @@ ALL_LANGS = {
     "Proto-Ogoni": "nic-ogo-pro",
     "Proto-Omotic": "omv-pro",
     "Proto-Ongan": "qfa-ong-pro",
-    "Proto-Ossetic": "os-pro",
     "Proto-Oti-Volta": "nic-ovo-pro",
     "Proto-Oto-Manguean": "omq-pro",
     "Proto-Oto-Pamean": "omq-otp-pro",
@@ -16894,8 +16892,8 @@ ALT_LANGS = {
     "Alai": [
         "Amal"
     ],
-    "Alanic": [
-        "Old Ossetic"
+    "Alanian": [
+        "Alanic"
     ],
     "Alasapa": [
         "Alazapa"
@@ -17020,10 +17018,13 @@ ALT_LANGS = {
         "Guerrero Amuzgo"
     ],
     "Anaal": [
-        "Anal"
+        "Anāl"
     ],
     "Anacaioury": [
         "Yao (South America)"
+    ],
+    "Anal": [
+        "Anāl"
     ],
     "Anambe": [
         "Anambé"
@@ -17734,6 +17735,9 @@ ALT_LANGS = {
     ],
     "Badjala": [
         "Butchulla"
+    ],
+    "Badui": [
+        "Baduy"
     ],
     "Baegu": [
         "Baeggu"
@@ -22173,6 +22177,9 @@ ALT_LANGS = {
     ],
     "Henkha": [
         "Nyenkha"
+    ],
+    "Hernician": [
+        "Hernican"
     ],
     "Hettite": [
         "Hittite"
@@ -27030,7 +27037,7 @@ ALT_LANGS = {
     ],
     "Namfau": [
         "Anmatyerre",
-        "Anal"
+        "Anāl"
     ],
     "Namo Me": [
         "Fasu"
@@ -27930,9 +27937,6 @@ ALT_LANGS = {
     ],
     "Old Oriya": [
         "Old Odia"
-    ],
-    "Old Ossetian": [
-        "Old Ossetic"
     ],
     "Old Permian": [
         "Old Komi"
@@ -29905,10 +29909,6 @@ ALT_LANGS = {
     ],
     "Sarliya": [
         "Sarli"
-    ],
-    "Sarmatian": [
-        "Old Ossetic",
-        "Proto-Ossetic"
     ],
     "Sarsi": [
         "Tsuut'ina"
