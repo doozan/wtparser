@@ -1486,6 +1486,7 @@ ALL_LANG_IDS = {
     "cro": "Crow",
     "crp-bip": "Basque-Icelandic Pidgin",
     "crp-gep": "West Greenlandic Pidgin",
+    "crp-kia": "Kiautschou German Pidgin",
     "crp-mar": "Maroon Spirit Language",
     "crp-mpp": "Macau Pidgin Portuguese",
     "crp-rsn": "Russenorsk",
@@ -11390,6 +11391,7 @@ ALL_LANGS = {
     "Khwe": "xuu",
     "Kháng": "kjm",
     "Khün": "kkh",
+    "Kiautschou German Pidgin": "crp-kia",
     "Kibala": "blv",
     "Kibena": "bez",
     "Kibet": "kie",
@@ -23935,6 +23937,9 @@ ALT_LANGS = {
     ],
     "KiVunjo Chaga": [
         "Vunjo"
+    ],
+    "Kiautschou Pidgin German": [
+        "Kiautschou German Pidgin"
     ],
     "Kibai": [
         "Sakata"
